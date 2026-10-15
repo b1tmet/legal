@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es" data-lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eliminar cuenta · Delete account — B1TMET Pro</title>
+<script>
+  (function () {
+    var l = localStorage.getItem('b1t-lang') ||
+      ((navigator.language || 'es').toLowerCase().indexOf('es') === 0 ? 'es' : 'en');
+    document.documentElement.setAttribute('data-lang', l);
+    document.documentElement.lang = l;
+  })();
+</script>
+<style>
+  :root{--primary:#385bd6;--secondary:#a2b2f4;--dark:#17062b;--bg:#edeef4;--surface:#fff;
+    --text:#17062b;--muted:#5a5470;--border:#d9dbea;--row:#f5f6fb}
+  @media (prefers-color-scheme:dark){:root{--bg:#120424;--surface:#1e0b38;--text:#edeef4;
+    --muted:#b3acc8;--border:#3a2a5c;--row:#251046}}
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--bg);color:var(--text);line-height:1.6;
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+  body [lang]{display:block}
+  html[data-lang="es"] body [lang="en"],html[data-lang="en"] body [lang="es"]{display:none!important}
+  .hero{position:relative;color:#fff;padding:28px 20px 90px;
+    background:linear-gradient(135deg,#17062b 0%,#2a1060 45%,#385bd6 100%)}
+  .bar{max-width:760px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+  .brand{font-weight:900;letter-spacing:.06em;font-size:1.15rem}
+  .brand span{color:var(--secondary);font-weight:600;letter-spacing:0}
+  .langs{display:flex;gap:6px}
+  .langs button{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.3);
+    border-radius:999px;padding:5px 14px;cursor:pointer;font:inherit;font-weight:600;font-size:.85rem}
+  .langs button.on{background:#fff;color:var(--dark)}
+  .title{max-width:760px;margin:36px auto 0}
+  .title h1{margin:0;font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.2}
+  .wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:70px;display:block}
+  main{max-width:760px;margin:-40px auto 40px;padding:0 16px;position:relative}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:18px;
+    padding:clamp(20px,4vw,40px);box-shadow:0 10px 30px rgba(23,6,43,.08)}
+  h2{font-size:1.15rem;margin:30px 0 10px;padding-left:12px;border-left:4px solid var(--primary)}
+  h2:first-child{margin-top:0}
+  a{color:var(--primary)}
+  @media (prefers-color-scheme:dark){a{color:var(--secondary)}}
+  ol li,ul li{margin:4px 0}
+  .mail{display:inline-block;margin:6px 0;padding:10px 18px;border-radius:12px;text-decoration:none;
+    background:var(--primary);color:#fff!important;font-weight:600}
+  footer{text-align:center;color:var(--muted);font-size:.85rem;padding:0 16px 36px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="bar">
+    <div class="brand">B1TMET <span>Pro</span></div>
+    <div class="langs">
+      <button type="button" data-set="es">ES</button>
+      <button type="button" data-set="en">EN</button>
+    </div>
+  </div>
+  <div class="title">
+    <h1 lang="es">Eliminar tu cuenta</h1>
+    <h1 lang="en">Delete your account</h1>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,40 C240,80 480,0 720,30 C960,60 1200,10 1440,35 L1440,70 L0,70 Z" fill="var(--bg)"/>
+  </svg>
+</header>
+
+<main>
+<article class="card" lang="es">
+  <h2>Desde la App (inmediato)</h2>
+  <ol>
+    <li>Abre B1TMET Pro e inicia sesión.</li>
+    <li>Ve a <strong>Ajustes → Privacidad → Eliminar cuenta</strong>.</li>
+    <li>Confirma la eliminación.</li>
+  </ol>
+
+  <h2>Sin acceso a la App</h2>
+  <p>Escríbenos desde el correo asociado a tu cuenta con el asunto <strong>«Eliminar cuenta»</strong>.
+  Eliminaremos tu cuenta y te lo confirmaremos por correo.</p>
+  <a class="mail" href="mailto:b1tmet@b1tmet.com?subject=Eliminar%20cuenta">b1tmet@b1tmet.com</a>
+
+  <h2>Qué se elimina</h2>
+  <ul>
+    <li>Tu nombre de usuario, correo, contraseña (hash) y vinculación con Google.</li>
+    <li>Tus preferencias guardadas y todas tus sesiones activas.</li>
+  </ul>
+
+  <h2>Qué se conserva y por cuánto tiempo</h2>
+  <ul>
+    <li><strong>Registros técnicos con IP:</strong> se eliminan automáticamente en un máximo de 14 días.</li>
+    <li><strong>Registros de pago</strong> de cursos comprados en la web (Stripe): lo que exijan las
+      obligaciones fiscales y contables.</li>
+  </ul>
+  <p>Más información en nuestro <a href="index.html">Aviso de privacidad</a>.</p>
+</article>
+
+<article class="card" lang="en">
+  <h2>In the App (immediate)</h2>
+  <ol>
+    <li>Open B1TMET Pro and sign in.</li>
+    <li>Go to <strong>Settings → Privacy → Delete account</strong>.</li>
+    <li>Confirm the deletion.</li>
+  </ol>
+
+  <h2>Without access to the App</h2>
+  <p>Email us from the address linked to your account with the subject
+  <strong>"Delete account"</strong>. We will delete your account and confirm by email.</p>
+  <a class="mail" href="mailto:b1tmet@b1tmet.com?subject=Delete%20account">b1tmet@b1tmet.com</a>
+
+  <h2>What is deleted</h2>
+  <ul>
+    <li>Your username, email, password (hash) and Google link.</li>
+    <li>Your saved preferences and all active sessions.</li>
+  </ul>
+
+  <h2>What is kept and for how long</h2>
+  <ul>
+    <li><strong>Technical logs with IP:</strong> automatically deleted within 14 days at most.</li>
+    <li><strong>Payment records</strong> for courses purchased on the website (Stripe): as required by
+      tax and accounting obligations.</li>
+  </ul>
+  <p>More information in our <a href="index.html">Privacy Notice</a>.</p>
+</article>
+</main>
+
+<footer>© 2026 B1TMET Technologies</footer>
+
+<script>
+  (function () {
+    var btns = document.querySelectorAll('.langs button');
+    function mark() {
+      var cur = document.documentElement.getAttribute('data-lang');
+      btns.forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-set') === cur); });
+    }
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var l = b.getAttribute('data-set');
+        document.documentElement.setAttribute('data-lang', l);
+        document.documentElement.lang = l;
+        localStorage.setItem('b1t-lang', l);
+        mark();
+      });
+    });
+    mark();
+  })();
+</script>
+</body>
+</html>
