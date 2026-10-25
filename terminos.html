@@ -4,20 +4,23 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Términos de uso · Terms of Use — B1TMET Pro</title>
-    <meta
-      name="description"
-      content="Términos de uso de B1TMET Pro / B1TMET Pro Terms of Use"
-    />
+    <meta name="description" content="Términos de uso de B1TMET Pro / B1TMET Pro Terms of Use" />
     <meta name="theme-color" content="#17062b" />
     <link rel="icon" href="favicon.ico" sizes="any" />
     <link rel="stylesheet" href="assets/styles.css" />
     <script>
       (function () {
-        var l =
-          localStorage.getItem("b1t-lang") ||
-          ((navigator.language || "es").toLowerCase().indexOf("es") === 0
-            ? "es"
-            : "en");
+        var S = ["es", "en", "pt", "fr", "it", "nl"], l = null;
+        try { l = new URLSearchParams(location.search).get("lang"); } catch (e) {}
+        if (S.indexOf(l) < 0) { try { l = localStorage.getItem("b1t-lang"); } catch (e) {} }
+        if (S.indexOf(l) < 0) {
+          l = "en";
+          var list = navigator.languages || [navigator.language || "en"];
+          for (var i = 0; i < list.length; i++) {
+            var c = String(list[i] || "").slice(0, 2).toLowerCase();
+            if (S.indexOf(c) >= 0) { l = c; break; }
+          }
+        }
         document.documentElement.setAttribute("data-lang", l);
         document.documentElement.lang = l;
       })();
@@ -27,430 +30,281 @@
     <header class="hero">
       <span class="logo mark" aria-hidden="true"></span>
       <div class="bar">
-        <a class="brand" href="index.html"
-          ><img
-            class="brand-img"
-            src="assets/logo-h-light.png"
-            alt="B1TMET"
-          /><small>Pro</small></a
-        >
+        <a class="brand" href="index.html"><img class="brand-img" src="assets/logo-h-light.png" alt="B1TMET" /><small>Pro</small></a>
         <div class="langs">
           <button type="button" data-set="es">ES</button>
           <button type="button" data-set="en">EN</button>
+          <button type="button" data-set="pt">PT</button>
+          <button type="button" data-set="fr">FR</button>
+          <button type="button" data-set="it">IT</button>
+          <button type="button" data-set="nl">NL</button>
         </div>
       </div>
       <div class="title">
         <h1 lang="es">Términos de uso</h1>
         <h1 lang="en">Terms of Use</h1>
-        <p lang="es">Última actualización: 19 de octubre de 2026</p>
-        <p lang="en">Last updated: October 19, 2026</p>
+        <h1 lang="pt">Termos de uso</h1>
+        <h1 lang="fr">Conditions d'utilisation</h1>
+        <h1 lang="it">Termini di utilizzo</h1>
+        <h1 lang="nl">Gebruiksvoorwaarden</h1>
+        <p lang="es">Última actualización: 25 de octubre de 2026</p>
+        <p lang="en">Last updated: October 25, 2026</p>
+        <p lang="pt">Última atualização: 25 de outubro de 2026</p>
+        <p lang="fr">Dernière mise à jour : 25 octobre 2026</p>
+        <p lang="it">Ultimo aggiornamento: 25 ottobre 2026</p>
+        <p lang="nl">Laatst bijgewerkt: 25 oktober 2026</p>
       </div>
-      <svg
-        class="wave"
-        viewBox="0 0 1440 70"
-        preserveAspectRatio="none"
-        aria-hidden="true"
-      >
-        <path
-          d="M0,40 C240,80 480,0 720,30 C960,60 1200,10 1440,35 L1440,70 L0,70 Z"
-          fill="var(--bg)"
-        />
+      <svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,40 C240,80 480,0 720,30 C960,60 1200,10 1440,35 L1440,70 L0,70 Z" fill="var(--bg)" />
       </svg>
     </header>
 
     <main>
-      <!-- ======================= ESPAÑOL ======================= -->
+      <!-- ======================= ES ======================= -->
       <article class="card" lang="es">
         <h2>1. Aceptación</h2>
-        <p>
-          Estos Términos de uso (los «Términos») regulan el uso de la
-          aplicación B1TMET Pro (la «App») y la compra de cursos en
-          <a href="https://b1tmet.com">b1tmet.com</a>. Al crear una cuenta, usar
-          la App o comprar un curso, aceptas estos Términos. Si no estás de
-          acuerdo, no uses el servicio.
-        </p>
-
+        <p>Estos Términos de uso (los «Términos») regulan el uso de la aplicación B1TMET Pro (la «App») y la compra de cursos en <a href="https://b1tmet.com">b1tmet.com</a>. Al crear una cuenta, usar la App o comprar un curso, aceptas estos Términos. Si no estás de acuerdo, no uses el servicio.</p>
         <h2>2. Quién presta el servicio</h2>
-        <p>
-          El servicio lo presta <strong>B1TMET Technologies</strong>, con
-          domicilio en [DOMICILIO COMPLETO, MÉXICO]. Contacto:
-          <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>.
-        </p>
-
+        <p>El servicio lo presta <strong>B1TMET Technologies</strong>, con domicilio en Copilco 300, Edificio 1, Depto. 104, Col. Copilco Universidad, Alcaldía Coyoacán, C.P. 04360, Ciudad de México, México. Contacto: <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>.</p>
         <h2>3. Tu cuenta</h2>
-        <ul>
-          <li>Debes tener <strong>18 años o más</strong> para usar la App.</li>
-          <li>
-            Los datos que nos des deben ser veraces. Eres responsable de
-            mantener tu contraseña en secreto y de la actividad de tu cuenta.
-          </li>
-          <li>
-            Si te registras con correo y contraseña, te enviaremos un enlace
-            para verificar tu correo. Las cuentas que no se verifiquen en
-            <strong>7 días</strong> se eliminan automáticamente.
-          </li>
-          <li>
-            Puedes eliminar tu cuenta en cualquier momento, como se explica en
-            <a href="eliminar-cuenta.html">Eliminar cuenta</a>.
-          </li>
-        </ul>
-
+        <ul><li>Debes tener <strong>18 años o más</strong> para usar la App.</li><li>Los datos que nos des deben ser veraces. Eres responsable de mantener tu contraseña en secreto y de la actividad de tu cuenta.</li><li>Si te registras con correo y contraseña, te enviaremos un enlace para verificar tu correo. Las cuentas que no se verifiquen en <strong>7 días</strong> se eliminan automáticamente.</li><li>Puedes eliminar tu cuenta en cualquier momento, como se explica en <a href="eliminar-cuenta.html">Eliminar cuenta</a>.</li></ul>
         <h2>4. Uso permitido</h2>
-        <p>
-          Te concedemos una licencia personal, no exclusiva, no transferible y
-          revocable para usar la App en tus dispositivos. No está permitido:
-        </p>
-        <ul>
-          <li>
-            Copiar, modificar, descompilar o aplicar ingeniería inversa a la
-            App, salvo en lo que la ley permita expresamente.
-          </li>
-          <li>
-            Acceder a nuestros servidores por medios automatizados (bots,
-            scraping) o eludir los límites de uso y las medidas de seguridad.
-          </li>
-          <li>
-            Revender, redistribuir o explotar comercialmente los datos,
-            pronósticos o contenidos sin nuestra autorización por escrito.
-          </li>
-          <li>
-            Usar el servicio para fines ilícitos o de forma que perjudique a
-            otros usuarios o a nuestra infraestructura.
-          </li>
-        </ul>
-
+        <p>Te concedemos una licencia personal, no exclusiva, no transferible y revocable para usar la App en tus dispositivos. No está permitido:</p>
+        <ul><li>Copiar, modificar, descompilar o aplicar ingeniería inversa a la App, salvo en lo que la ley permita expresamente.</li><li>Acceder a nuestros servidores por medios automatizados (bots, scraping) o eludir los límites de uso y las medidas de seguridad.</li><li>Revender, redistribuir o explotar comercialmente los datos, pronósticos o contenidos sin nuestra autorización por escrito.</li><li>Usar el servicio para fines ilícitos o de forma que perjudique a otros usuarios o a nuestra infraestructura.</li></ul>
         <h2>5. Información meteorológica</h2>
-        <div class="note">
-          Los pronósticos y datos de la App son <strong>orientativos</strong>.
-          Proceden de modelos numéricos y de proveedores externos, y pueden
-          contener errores o retrasos. <strong>No sustituyen</strong> los avisos
-          oficiales de los servicios meteorológicos nacionales ni de protección
-          civil. No los uses como única fuente para decisiones de las que
-          dependa la seguridad de personas o bienes (por ejemplo, navegación
-          aérea o marítima).
-        </div>
-
+        <div class="note">Los pronósticos y datos de la App son <strong>orientativos</strong>. Proceden de modelos numéricos y de proveedores externos, y pueden contener errores o retrasos. <strong>No sustituyen</strong> los avisos oficiales de los servicios meteorológicos nacionales ni de protección civil. No los uses como única fuente para decisiones de las que dependa la seguridad de personas o bienes (por ejemplo, navegación aérea o marítima).</div>
         <h2>6. Disponibilidad del servicio</h2>
-        <p>
-          Hacemos lo razonable para que el servicio funcione de forma continua,
-          pero no garantizamos que esté libre de interrupciones o errores.
-          Podemos realizar mantenimiento, modificar funciones o suspender
-          temporalmente el servicio cuando sea necesario.
-        </p>
-
+        <p>Hacemos lo razonable para que el servicio funcione de forma continua, pero no garantizamos que esté libre de interrupciones o errores. Podemos realizar mantenimiento, modificar funciones o suspender temporalmente el servicio cuando sea necesario.</p>
         <h2>7. Cursos y pagos</h2>
-        <ul>
-          <li>
-            Los cursos se compran en
-            <a href="https://b1tmet.com">b1tmet.com</a>. El precio, el
-            contenido y la modalidad (grabado o en vivo) se indican en la página
-            de cada curso antes del pago.
-          </li>
-          <li>
-            Los pagos se procesan a través de <strong>Stripe</strong>. No
-            almacenamos los datos de tu tarjeta.
-          </li>
-          <li>
-            El acceso a un curso es personal e intransferible. No está permitido
-            compartir tu acceso ni descargar o redistribuir el material, salvo
-            que el curso lo permita expresamente.
-          </li>
-        </ul>
-
+        <ul><li>Los cursos se compran en <a href="https://b1tmet.com">b1tmet.com</a>. El precio, el contenido y la modalidad (grabado o en vivo) se indican en la página de cada curso antes del pago.</li><li>Los pagos se procesan a través de <strong>Stripe</strong>. No almacenamos los datos de tu tarjeta.</li><li>El acceso a un curso es personal e intransferible. No está permitido compartir tu acceso ni descargar o redistribuir el material, salvo que el curso lo permita expresamente.</li></ul>
         <h2>8. Política de reembolsos</h2>
         <p>Puedes solicitar el reembolso completo de un curso si:</p>
-        <ul>
-          <li>
-            <strong>Cursos grabados:</strong> lo pides dentro de los
-            <strong>14 días naturales</strong> siguientes a la compra, has
-            consumido <strong>menos del 20 %</strong> del contenido y no has
-            obtenido el certificado.
-          </li>
-          <li>
-            <strong>Cursos en vivo:</strong> lo pides con al menos
-            <strong>48 horas</strong> de antelación al inicio de la primera
-            sesión.
-          </li>
-        </ul>
+        <ul><li><strong>Cursos grabados:</strong> lo pides dentro de los <strong>14 días naturales</strong> siguientes a la compra, has consumido <strong>menos del 20 %</strong> del contenido y no has obtenido el certificado.</li><li><strong>Cursos en vivo:</strong> lo pides con al menos <strong>48 horas</strong> de antelación al inicio de la primera sesión.</li></ul>
         <p>Además, siempre reembolsaremos el importe si:</p>
-        <ul>
-          <li>Se te cobró dos veces o por error.</li>
-          <li>
-            Cancelamos el curso, o no pudimos darte acceso por causas que nos
-            sean imputables.
-          </li>
-        </ul>
-        <p>
-          <strong>Cómo solicitarlo:</strong> escribe a
-          <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a> desde el
-          correo con el que compraste, indicando el curso y la fecha de compra.
-          Si procede, el reembolso se hace al mismo medio de pago a través de
-          Stripe; suele reflejarse en <strong>5 a 10 días hábiles</strong>,
-          según tu banco. Al reembolsarse, se retira el acceso al curso.
-        </p>
-        <p class="muted">
-          Fuera de estos casos no se realizan reembolsos, salvo cuando la ley
-          aplicable lo exija. Nada en esta política limita los derechos que te
-          reconoce la legislación de protección al consumidor.
-        </p>
-
+        <ul><li>Se te cobró dos veces o por error.</li><li>Cancelamos el curso, o no pudimos darte acceso por causas que nos sean imputables.</li></ul>
+        <p><strong>Cómo solicitarlo:</strong> escribe a <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a> desde el correo con el que compraste, indicando el curso y la fecha de compra. Si procede, el reembolso se hace al mismo medio de pago a través de Stripe; suele reflejarse en <strong>5 a 10 días hábiles</strong>, según tu banco. Al reembolsarse, se retira el acceso al curso.</p>
+        <p class="muted">Fuera de estos casos no se realizan reembolsos, salvo cuando la ley aplicable lo exija. Nada en esta política limita los derechos que te reconoce la legislación de protección al consumidor.</p>
         <h2>9. Propiedad intelectual</h2>
-        <p>
-          La App, la marca B1TMET, los cursos y sus contenidos son propiedad de
-          B1TMET Technologies o de sus licenciantes. Los mapas base son ©
-          colaboradores de OpenStreetMap, © CARTO y © OpenTopoMap, y parte de
-          los datos meteorológicos procede de OpenWeather, cada uno según sus
-          propias licencias.
-        </p>
-
+        <p>La App, la marca B1TMET, los cursos y sus contenidos son propiedad de B1TMET Technologies o de sus licenciantes. Los mapas base son © colaboradores de OpenStreetMap, © CARTO y © OpenTopoMap, y parte de los datos meteorológicos procede de OpenWeather, cada uno según sus propias licencias.</p>
         <h2>10. Suspensión y cancelación</h2>
-        <p>
-          Podemos suspender o cancelar una cuenta que incumpla estos Términos,
-          en especial los puntos 4 y 7, con aviso previo cuando sea posible.
-          Tú puedes dejar de usar el servicio y eliminar tu cuenta cuando
-          quieras.
-        </p>
-
+        <p>Podemos suspender o cancelar una cuenta que incumpla estos Términos, en especial los puntos 4 y 7, con aviso previo cuando sea posible. Tú puedes dejar de usar el servicio y eliminar tu cuenta cuando quieras.</p>
         <h2>11. Limitación de responsabilidad</h2>
-        <p>
-          En la medida en que la ley lo permita, B1TMET Technologies no será
-          responsable de daños indirectos ni de pérdidas derivadas del uso de la
-          información meteorológica, de interrupciones del servicio o de causas
-          fuera de nuestro control razonable. Esto no limita la responsabilidad
-          que no pueda excluirse conforme a la ley.
-        </p>
-
+        <p>En la medida en que la ley lo permita, B1TMET Technologies no será responsable de daños indirectos ni de pérdidas derivadas del uso de la información meteorológica, de interrupciones del servicio o de causas fuera de nuestro control razonable. Esto no limita la responsabilidad que no pueda excluirse conforme a la ley.</p>
         <h2>12. Privacidad</h2>
-        <p>
-          El tratamiento de tus datos se explica en nuestro
-          <a href="index.html">Aviso de privacidad</a>.
-        </p>
-
+        <p>El tratamiento de tus datos se explica en nuestro <a href="index.html">Aviso de privacidad</a>.</p>
         <h2>13. Cambios a estos Términos</h2>
-        <p>
-          Podemos actualizar estos Términos. Publicaremos los cambios en esta
-          página con su fecha de actualización y, si son relevantes, te
-          avisaremos en la App. Si sigues usando el servicio después del cambio,
-          se entiende que los aceptas.
-        </p>
-
+        <p>Podemos actualizar estos Términos. Publicaremos los cambios en esta página con su fecha de actualización y, si son relevantes, te avisaremos en la App. Si sigues usando el servicio después del cambio, se entiende que los aceptas.</p>
         <h2>14. Ley aplicable</h2>
-        <p>
-          Estos Términos se rigen por las leyes de los Estados Unidos
-          Mexicanos. Para cualquier controversia, las partes se someten a los
-          tribunales competentes de [CIUDAD, ESTADO], México, sin perjuicio de
-          los derechos que te correspondan como consumidor, incluida la
-          posibilidad de acudir a la Procuraduría Federal del Consumidor
-          (PROFECO).
-        </p>
-
+        <p>Estos Términos se rigen por las leyes de los Estados Unidos Mexicanos. Para cualquier controversia, las partes se someten a los tribunales competentes de la Ciudad de México, México, sin perjuicio de los derechos que te correspondan como consumidor, incluida la posibilidad de acudir a la Procuraduría Federal del Consumidor (PROFECO).</p>
         <h2>15. Contacto</h2>
-        <p>
-          Para cualquier duda sobre estos Términos:
-          <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>.
-        </p>
+        <p>Para cualquier duda sobre estos Términos: <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>.</p>
       </article>
 
-      <!-- ======================= ENGLISH ======================= -->
+      <!-- ======================= EN ======================= -->
       <article class="card" lang="en">
         <h2>1. Acceptance</h2>
-        <p>
-          These Terms of Use (the "Terms") govern the use of the B1TMET Pro
-          application (the "App") and the purchase of courses on
-          <a href="https://b1tmet.com">b1tmet.com</a>. By creating an account,
-          using the App or buying a course, you accept these Terms. If you do
-          not agree, do not use the service.
-        </p>
-
+        <p>These Terms of Use (the "Terms") govern the use of the B1TMET Pro application (the "App") and the purchase of courses on <a href="https://b1tmet.com">b1tmet.com</a>. By creating an account, using the App or buying a course, you accept these Terms. If you do not agree, do not use the service.</p>
         <h2>2. Who provides the service</h2>
-        <p>
-          The service is provided by <strong>B1TMET Technologies</strong>,
-          located at [FULL ADDRESS, MEXICO]. Contact:
-          <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>.
-        </p>
-
+        <p>The service is provided by <strong>B1TMET Technologies</strong>, located at Copilco 300, Edificio 1, Depto. 104, Col. Copilco Universidad, Alcaldía Coyoacán, C.P. 04360, Ciudad de México, México. Contact: <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>.</p>
         <h2>3. Your account</h2>
-        <ul>
-          <li>
-            You must be <strong>18 years of age or older</strong> to use the
-            App.
-          </li>
-          <li>
-            The information you provide must be accurate. You are responsible
-            for keeping your password secret and for the activity on your
-            account.
-          </li>
-          <li>
-            If you sign up with email and password, we will send you a link to
-            verify your email. Accounts that are not verified within
-            <strong>7 days</strong> are deleted automatically.
-          </li>
-          <li>
-            You can delete your account at any time, as explained in
-            <a href="eliminar-cuenta.html">Delete your account</a>.
-          </li>
-        </ul>
-
+        <ul><li>You must be <strong>18 years of age or older</strong> to use the App.</li><li>The information you provide must be accurate. You are responsible for keeping your password secret and for the activity on your account.</li><li>If you sign up with email and password, we will send you a link to verify your email. Accounts that are not verified within <strong>7 days</strong> are deleted automatically.</li><li>You can delete your account at any time, as explained in <a href="eliminar-cuenta.html">Delete your account</a>.</li></ul>
         <h2>4. Permitted use</h2>
-        <p>
-          We grant you a personal, non-exclusive, non-transferable and revocable
-          license to use the App on your devices. You may not:
-        </p>
-        <ul>
-          <li>
-            Copy, modify, decompile or reverse engineer the App, except as
-            expressly permitted by law.
-          </li>
-          <li>
-            Access our servers by automated means (bots, scraping) or circumvent
-            usage limits and security measures.
-          </li>
-          <li>
-            Resell, redistribute or commercially exploit the data, forecasts or
-            content without our written permission.
-          </li>
-          <li>
-            Use the service for unlawful purposes or in a way that harms other
-            users or our infrastructure.
-          </li>
-        </ul>
-
+        <p>We grant you a personal, non-exclusive, non-transferable and revocable license to use the App on your devices. You may not:</p>
+        <ul><li>Copy, modify, decompile or reverse engineer the App, except as expressly permitted by law.</li><li>Access our servers by automated means (bots, scraping) or circumvent usage limits and security measures.</li><li>Resell, redistribute or commercially exploit the data, forecasts or content without our written permission.</li><li>Use the service for unlawful purposes or in a way that harms other users or our infrastructure.</li></ul>
         <h2>5. Weather information</h2>
-        <div class="note">
-          The forecasts and data in the App are for
-          <strong>guidance only</strong>. They come from numerical models and
-          third-party providers and may contain errors or delays. They
-          <strong>do not replace</strong> official warnings from national
-          weather services or civil protection agencies. Do not use them as
-          your only source for decisions on which the safety of people or
-          property depends (for example, aviation or marine navigation).
-        </div>
-
+        <div class="note">The forecasts and data in the App are for <strong>guidance only</strong>. They come from numerical models and third-party providers and may contain errors or delays. They <strong>do not replace</strong> official warnings from national weather services or civil protection agencies. Do not use them as your only source for decisions on which the safety of people or property depends (for example, aviation or marine navigation).</div>
         <h2>6. Service availability</h2>
-        <p>
-          We make reasonable efforts to keep the service running continuously,
-          but we do not guarantee that it will be free of interruptions or
-          errors. We may carry out maintenance, change features or temporarily
-          suspend the service when necessary.
-        </p>
-
+        <p>We make reasonable efforts to keep the service running continuously, but we do not guarantee that it will be free of interruptions or errors. We may carry out maintenance, change features or temporarily suspend the service when necessary.</p>
         <h2>7. Courses and payments</h2>
-        <ul>
-          <li>
-            Courses are purchased on
-            <a href="https://b1tmet.com">b1tmet.com</a>. The price, content and
-            format (recorded or live) are shown on each course page before
-            payment.
-          </li>
-          <li>
-            Payments are processed by <strong>Stripe</strong>. We do not store
-            your card details.
-          </li>
-          <li>
-            Course access is personal and non-transferable. You may not share
-            your access or download or redistribute the material unless the
-            course expressly allows it.
-          </li>
-        </ul>
-
+        <ul><li>Courses are purchased on <a href="https://b1tmet.com">b1tmet.com</a>. The price, content and format (recorded or live) are shown on each course page before payment.</li><li>Payments are processed by <strong>Stripe</strong>. We do not store your card details.</li><li>Course access is personal and non-transferable. You may not share your access or download or redistribute the material unless the course expressly allows it.</li></ul>
         <h2>8. Refund policy</h2>
         <p>You can request a full refund for a course if:</p>
-        <ul>
-          <li>
-            <strong>Recorded courses:</strong> you request it within
-            <strong>14 calendar days</strong> of purchase, you have completed
-            <strong>less than 20%</strong> of the content and you have not
-            obtained the certificate.
-          </li>
-          <li>
-            <strong>Live courses:</strong> you request it at least
-            <strong>48 hours</strong> before the first session starts.
-          </li>
-        </ul>
+        <ul><li><strong>Recorded courses:</strong> you request it within <strong>14 calendar days</strong> of purchase, you have completed <strong>less than 20%</strong> of the content and you have not obtained the certificate.</li><li><strong>Live courses:</strong> you request it at least <strong>48 hours</strong> before the first session starts.</li></ul>
         <p>We will also always refund the amount if:</p>
-        <ul>
-          <li>You were charged twice or by mistake.</li>
-          <li>
-            We cancel the course, or we could not give you access for reasons
-            attributable to us.
-          </li>
-        </ul>
-        <p>
-          <strong>How to request it:</strong> write to
-          <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a> from the
-          email you used to purchase, stating the course and purchase date. If
-          approved, the refund is issued to the same payment method through
-          Stripe; it usually appears within
-          <strong>5 to 10 business days</strong>, depending on your bank. Once
-          refunded, access to the course is removed.
-        </p>
-        <p class="muted">
-          Outside these cases, no refunds are issued, except where required by
-          applicable law. Nothing in this policy limits the rights granted to
-          you by consumer protection law.
-        </p>
-
+        <ul><li>You were charged twice or by mistake.</li><li>We cancel the course, or we could not give you access for reasons attributable to us.</li></ul>
+        <p><strong>How to request it:</strong> write to <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a> from the email you used to purchase, stating the course and purchase date. If approved, the refund is issued to the same payment method through Stripe; it usually appears within <strong>5 to 10 business days</strong>, depending on your bank. Once refunded, access to the course is removed.</p>
+        <p class="muted">Outside these cases, no refunds are issued, except where required by applicable law. Nothing in this policy limits the rights granted to you by consumer protection law.</p>
         <h2>9. Intellectual property</h2>
-        <p>
-          The App, the B1TMET brand, the courses and their content belong to
-          B1TMET Technologies or its licensors. Base maps are © OpenStreetMap
-          contributors, © CARTO and © OpenTopoMap, and part of the weather data
-          comes from OpenWeather, each under its own license.
-        </p>
-
+        <p>The App, the B1TMET brand, the courses and their content belong to B1TMET Technologies or its licensors. Base maps are © OpenStreetMap contributors, © CARTO and © OpenTopoMap, and part of the weather data comes from OpenWeather, each under its own license.</p>
         <h2>10. Suspension and termination</h2>
-        <p>
-          We may suspend or terminate an account that breaches these Terms,
-          especially sections 4 and 7, with prior notice where possible. You
-          may stop using the service and delete your account at any time.
-        </p>
-
+        <p>We may suspend or terminate an account that breaches these Terms, especially sections 4 and 7, with prior notice where possible. You may stop using the service and delete your account at any time.</p>
         <h2>11. Limitation of liability</h2>
-        <p>
-          To the extent permitted by law, B1TMET Technologies shall not be
-          liable for indirect damages or for losses arising from the use of the
-          weather information, service interruptions or causes beyond our
-          reasonable control. This does not limit any liability that cannot be
-          excluded by law.
-        </p>
-
+        <p>To the extent permitted by law, B1TMET Technologies shall not be liable for indirect damages or for losses arising from the use of the weather information, service interruptions or causes beyond our reasonable control. This does not limit any liability that cannot be excluded by law.</p>
         <h2>12. Privacy</h2>
-        <p>
-          How we process your data is explained in our
-          <a href="index.html">Privacy Policy</a>.
-        </p>
-
+        <p>How we process your data is explained in our <a href="index.html">Privacy Policy</a>.</p>
         <h2>13. Changes to these Terms</h2>
-        <p>
-          We may update these Terms. We will publish changes on this page with
-          their update date and, if they are material, we will let you know in
-          the App. Continuing to use the service after a change means you
-          accept it.
-        </p>
-
+        <p>We may update these Terms. We will publish changes on this page with their update date and, if they are material, we will let you know in the App. Continuing to use the service after a change means you accept it.</p>
         <h2>14. Governing law</h2>
-        <p>
-          These Terms are governed by the laws of the United Mexican States.
-          For any dispute, the parties submit to the competent courts of [CITY,
-          STATE], Mexico, without prejudice to your rights as a consumer,
-          including the option to contact Mexico's Federal Consumer Protection
-          Agency (PROFECO).
-        </p>
-
+        <p>These Terms are governed by the laws of the United Mexican States. For any dispute, the parties submit to the competent courts of Mexico City, Mexico, without prejudice to your rights as a consumer, including the option to contact Mexico's Federal Consumer Protection Agency (PROFECO).</p>
         <h2>15. Contact</h2>
-        <p>
-          For any questions about these Terms:
-          <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>.
-        </p>
+        <p>For any questions about these Terms: <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>.</p>
       </article>
+
+      <!-- ======================= PT ======================= -->
+      <article class="card" lang="pt">
+        <h2>1. Aceitação</h2>
+        <p>Estes Termos de uso (os «Termos») regulam o uso do aplicativo B1TMET Pro (o «App») e a compra de cursos em <a href="https://b1tmet.com">b1tmet.com</a>. Ao criar uma conta, usar o App ou comprar um curso, você aceita estes Termos. Se não concordar, não use o serviço.</p>
+        <h2>2. Quem presta o serviço</h2>
+        <p>O serviço é prestado pela <strong>B1TMET Technologies</strong>, com domicílio em Copilco 300, Edificio 1, Depto. 104, Col. Copilco Universidad, Alcaldía Coyoacán, C.P. 04360, Ciudad de México, México. Contato: <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>.</p>
+        <h2>3. Sua conta</h2>
+        <ul><li>Você precisa ter <strong>18 anos ou mais</strong> para usar o App.</li><li>Os dados que você nos fornecer devem ser verdadeiros. Você é responsável por manter sua senha em segredo e pela atividade da sua conta.</li><li>Se você se cadastrar com e-mail e senha, enviaremos um link para verificar seu e-mail. As contas que não forem verificadas em <strong>7 dias</strong> são excluídas automaticamente.</li><li>Você pode excluir sua conta a qualquer momento, como explicado em <a href="eliminar-cuenta.html">Excluir conta</a>.</li></ul>
+        <h2>4. Uso permitido</h2>
+        <p>Concedemos a você uma licença pessoal, não exclusiva, intransferível e revogável para usar o App nos seus dispositivos. Não é permitido:</p>
+        <ul><li>Copiar, modificar, descompilar ou fazer engenharia reversa do App, exceto na medida em que a lei o permita expressamente.</li><li>Acessar nossos servidores por meios automatizados (bots, scraping) ou contornar os limites de uso e as medidas de segurança.</li><li>Revender, redistribuir ou explorar comercialmente os dados, previsões ou conteúdos sem nossa autorização por escrito.</li><li>Usar o serviço para fins ilícitos ou de forma que prejudique outros usuários ou nossa infraestrutura.</li></ul>
+        <h2>5. Informação meteorológica</h2>
+        <div class="note">As previsões e os dados do App são <strong>orientativos</strong>. Provêm de modelos numéricos e de fornecedores externos e podem conter erros ou atrasos. <strong>Não substituem</strong> os avisos oficiais dos serviços meteorológicos nacionais nem da defesa civil. Não os use como única fonte para decisões das quais dependa a segurança de pessoas ou bens (por exemplo, navegação aérea ou marítima).</div>
+        <h2>6. Disponibilidade do serviço</h2>
+        <p>Fazemos o razoável para que o serviço funcione de forma contínua, mas não garantimos que esteja livre de interrupções ou erros. Podemos realizar manutenção, modificar funções ou suspender temporariamente o serviço quando necessário.</p>
+        <h2>7. Cursos e pagamentos</h2>
+        <ul><li>Os cursos são comprados em <a href="https://b1tmet.com">b1tmet.com</a>. O preço, o conteúdo e a modalidade (gravado ou ao vivo) são indicados na página de cada curso antes do pagamento.</li><li>Os pagamentos são processados pela <strong>Stripe</strong>. Não armazenamos os dados do seu cartão.</li><li>O acesso a um curso é pessoal e intransferível. Não é permitido compartilhar seu acesso nem baixar ou redistribuir o material, salvo se o curso o permitir expressamente.</li></ul>
+        <h2>8. Política de reembolso</h2>
+        <p>Você pode solicitar o reembolso integral de um curso se:</p>
+        <ul><li><strong>Cursos gravados:</strong> você o solicitar nos <strong>14 dias corridos</strong> seguintes à compra, tiver consumido <strong>menos de 20 %</strong> do conteúdo e não tiver obtido o certificado.</li><li><strong>Cursos ao vivo:</strong> você o solicitar com pelo menos <strong>48 horas</strong> de antecedência do início da primeira sessão.</li></ul>
+        <p>Além disso, sempre reembolsaremos o valor se:</p>
+        <ul><li>Você foi cobrado duas vezes ou por engano.</li><li>Cancelarmos o curso ou não pudermos lhe dar acesso por motivos que nos sejam imputáveis.</li></ul>
+        <p><strong>Como solicitar:</strong> escreva para <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a> a partir do e-mail com o qual comprou, indicando o curso e a data da compra. Se for procedente, o reembolso é feito no mesmo meio de pagamento por meio da Stripe; costuma aparecer em <strong>5 a 10 dias úteis</strong>, dependendo do seu banco. Com o reembolso, o acesso ao curso é retirado.</p>
+        <p class="muted">Fora desses casos não são feitos reembolsos, salvo quando a lei aplicável o exigir. Nada nesta política limita os direitos que a legislação de proteção ao consumidor lhe garante.</p>
+        <h2>9. Propriedade intelectual</h2>
+        <p>O App, a marca B1TMET, os cursos e seus conteúdos são propriedade da B1TMET Technologies ou de seus licenciantes. Os mapas base são © colaboradores do OpenStreetMap, © CARTO e © OpenTopoMap, e parte dos dados meteorológicos provém da OpenWeather, cada um conforme suas próprias licenças.</p>
+        <h2>10. Suspensão e cancelamento</h2>
+        <p>Podemos suspender ou cancelar uma conta que descumpra estes Termos, especialmente os pontos 4 e 7, com aviso prévio quando possível. Você pode deixar de usar o serviço e excluir sua conta quando quiser.</p>
+        <h2>11. Limitação de responsabilidade</h2>
+        <p>Na medida em que a lei o permita, a B1TMET Technologies não será responsável por danos indiretos nem por perdas decorrentes do uso da informação meteorológica, de interrupções do serviço ou de causas fora do nosso controle razoável. Isso não limita a responsabilidade que não possa ser excluída nos termos da lei.</p>
+        <h2>12. Privacidade</h2>
+        <p>O tratamento dos seus dados é explicado no nosso <a href="index.html">Aviso de privacidade</a>.</p>
+        <h2>13. Alterações nestes Termos</h2>
+        <p>Podemos atualizar estes Termos. Publicaremos as alterações nesta página com a data de atualização e, se forem relevantes, avisaremos você no App. Se você continuar usando o serviço após a alteração, entende-se que a aceita.</p>
+        <h2>14. Lei aplicável</h2>
+        <p>Estes Termos são regidos pelas leis dos Estados Unidos Mexicanos. Para qualquer controvérsia, as partes submetem-se aos tribunais competentes da Cidade do México, México, sem prejuízo dos direitos que lhe correspondam como consumidor, incluindo a possibilidade de recorrer à Procuradoria Federal do Consumidor do México (PROFECO).</p>
+        <h2>15. Contato</h2>
+        <p>Para qualquer dúvida sobre estes Termos: <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>.</p>
+      </article>
+
+      <!-- ======================= FR ======================= -->
+      <article class="card" lang="fr">
+        <h2>1. Acceptation</h2>
+        <p>Les présentes Conditions d'utilisation (les « Conditions ») régissent l'utilisation de l'application B1TMET Pro (l'« App ») et l'achat de cours sur <a href="https://b1tmet.com">b1tmet.com</a>. En créant un compte, en utilisant l'App ou en achetant un cours, vous acceptez ces Conditions. Si vous n'êtes pas d'accord, n'utilisez pas le service.</p>
+        <h2>2. Qui fournit le service</h2>
+        <p>Le service est fourni par <strong>B1TMET Technologies</strong>, domiciliée à l'adresse suivante : Copilco 300, Edificio 1, Depto. 104, Col. Copilco Universidad, Alcaldía Coyoacán, C.P. 04360, Ciudad de México, México. Contact : <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>.</p>
+        <h2>3. Votre compte</h2>
+        <ul><li>Vous devez avoir <strong>18 ans ou plus</strong> pour utiliser l'App.</li><li>Les informations que vous nous fournissez doivent être exactes. Vous êtes responsable de la confidentialité de votre mot de passe et de l'activité de votre compte.</li><li>Si vous vous inscrivez avec un e-mail et un mot de passe, nous vous enverrons un lien pour vérifier votre e-mail. Les comptes non vérifiés dans un délai de <strong>7 jours</strong> sont supprimés automatiquement.</li><li>Vous pouvez supprimer votre compte à tout moment, comme expliqué sur la page <a href="eliminar-cuenta.html">Supprimer le compte</a>.</li></ul>
+        <h2>4. Utilisation autorisée</h2>
+        <p>Nous vous accordons une licence personnelle, non exclusive, non transférable et révocable pour utiliser l'App sur vos appareils. Il est interdit de :</p>
+        <ul><li>Copier, modifier, décompiler ou désassembler l'App, sauf dans la mesure expressément autorisée par la loi.</li><li>Accéder à nos serveurs par des moyens automatisés (bots, scraping) ou contourner les limites d'utilisation et les mesures de sécurité.</li><li>Revendre, redistribuer ou exploiter commercialement les données, prévisions ou contenus sans notre autorisation écrite.</li><li>Utiliser le service à des fins illicites ou d'une manière qui nuit aux autres utilisateurs ou à notre infrastructure.</li></ul>
+        <h2>5. Informations météorologiques</h2>
+        <div class="note">Les prévisions et données de l'App sont fournies <strong>à titre indicatif</strong>. Elles proviennent de modèles numériques et de fournisseurs tiers et peuvent contenir des erreurs ou des retards. Elles <strong>ne remplacent pas</strong> les alertes officielles des services météorologiques nationaux ni de la protection civile. Ne les utilisez pas comme seule source pour des décisions dont dépend la sécurité des personnes ou des biens (par exemple, la navigation aérienne ou maritime).</div>
+        <h2>6. Disponibilité du service</h2>
+        <p>Nous faisons des efforts raisonnables pour que le service fonctionne en continu, mais nous ne garantissons pas qu'il soit exempt d'interruptions ou d'erreurs. Nous pouvons effectuer des opérations de maintenance, modifier des fonctions ou suspendre temporairement le service si nécessaire.</p>
+        <h2>7. Cours et paiements</h2>
+        <ul><li>Les cours s'achètent sur <a href="https://b1tmet.com">b1tmet.com</a>. Le prix, le contenu et le format (enregistré ou en direct) sont indiqués sur la page de chaque cours avant le paiement.</li><li>Les paiements sont traités par <strong>Stripe</strong>. Nous ne conservons pas les données de votre carte.</li><li>L'accès à un cours est personnel et non transférable. Il est interdit de partager votre accès ou de télécharger ou redistribuer le contenu, sauf si le cours l'autorise expressément.</li></ul>
+        <h2>8. Politique de remboursement</h2>
+        <p>Vous pouvez demander le remboursement intégral d'un cours si :</p>
+        <ul><li><strong>Cours enregistrés :</strong> vous en faites la demande dans les <strong>14 jours calendaires</strong> suivant l'achat, vous avez consulté <strong>moins de 20 %</strong> du contenu et vous n'avez pas obtenu le certificat.</li><li><strong>Cours en direct :</strong> vous en faites la demande au moins <strong>48 heures</strong> avant le début de la première séance.</li></ul>
+        <p>Nous rembourserons en outre toujours le montant si :</p>
+        <ul><li>Vous avez été débité deux fois ou par erreur.</li><li>Nous annulons le cours, ou nous n'avons pas pu vous donner accès pour des raisons qui nous sont imputables.</li></ul>
+        <p><strong>Comment le demander :</strong> écrivez à <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a> depuis l'adresse e-mail utilisée pour l'achat, en indiquant le cours et la date d'achat. Le cas échéant, le remboursement est effectué sur le même moyen de paiement via Stripe ; il apparaît généralement sous <strong>5 à 10 jours ouvrés</strong>, selon votre banque. Une fois le remboursement effectué, l'accès au cours est retiré.</p>
+        <p class="muted">En dehors de ces cas, aucun remboursement n'est effectué, sauf lorsque la loi applicable l'exige. Rien dans cette politique ne limite les droits que vous confère la législation sur la protection des consommateurs.</p>
+        <h2>9. Propriété intellectuelle</h2>
+        <p>L'App, la marque B1TMET, les cours et leurs contenus appartiennent à B1TMET Technologies ou à ses concédants de licence. Les fonds de carte sont © contributeurs d'OpenStreetMap, © CARTO et © OpenTopoMap, et une partie des données météorologiques provient d'OpenWeather, chacun selon sa propre licence.</p>
+        <h2>10. Suspension et résiliation</h2>
+        <p>Nous pouvons suspendre ou résilier un compte qui enfreint ces Conditions, en particulier les points 4 et 7, avec un préavis lorsque c'est possible. Vous pouvez cesser d'utiliser le service et supprimer votre compte à tout moment.</p>
+        <h2>11. Limitation de responsabilité</h2>
+        <p>Dans la mesure permise par la loi, B1TMET Technologies ne saurait être tenue responsable des dommages indirects ni des pertes résultant de l'utilisation des informations météorologiques, d'interruptions du service ou de causes échappant à notre contrôle raisonnable. Cela ne limite pas la responsabilité qui ne peut être exclue en vertu de la loi.</p>
+        <h2>12. Confidentialité</h2>
+        <p>Le traitement de vos données est expliqué dans notre <a href="index.html">Politique de confidentialité</a>.</p>
+        <h2>13. Modifications des présentes Conditions</h2>
+        <p>Nous pouvons mettre à jour ces Conditions. Nous publierons les modifications sur cette page avec leur date de mise à jour et, si elles sont importantes, nous vous en informerons dans l'App. Si vous continuez à utiliser le service après une modification, vous êtes réputé l'accepter.</p>
+        <h2>14. Droit applicable</h2>
+        <p>Les présentes Conditions sont régies par les lois des États-Unis du Mexique. Pour tout litige, les parties se soumettent aux tribunaux compétents de Mexico (Ciudad de México), Mexique, sans préjudice de vos droits en tant que consommateur, y compris la possibilité de vous adresser au Bureau fédéral de protection des consommateurs du Mexique (PROFECO).</p>
+        <h2>15. Contact</h2>
+        <p>Pour toute question concernant ces Conditions : <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>.</p>
+      </article>
+
+      <!-- ======================= IT ======================= -->
+      <article class="card" lang="it">
+        <h2>1. Accettazione</h2>
+        <p>I presenti Termini di utilizzo (i «Termini») disciplinano l'uso dell'applicazione B1TMET Pro (l'«App») e l'acquisto di corsi su <a href="https://b1tmet.com">b1tmet.com</a>. Creando un account, usando l'App o acquistando un corso, accetti questi Termini. Se non sei d'accordo, non usare il servizio.</p>
+        <h2>2. Chi fornisce il servizio</h2>
+        <p>Il servizio è fornito da <strong>B1TMET Technologies</strong>, con sede in Copilco 300, Edificio 1, Depto. 104, Col. Copilco Universidad, Alcaldía Coyoacán, C.P. 04360, Ciudad de México, México. Contatto: <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>.</p>
+        <h2>3. Il tuo account</h2>
+        <ul><li>Devi avere <strong>almeno 18 anni</strong> per usare l'App.</li><li>I dati che ci fornisci devono essere veritieri. Sei responsabile di mantenere segreta la tua password e dell'attività del tuo account.</li><li>Se ti registri con e-mail e password, ti invieremo un link per verificare la tua e-mail. Gli account non verificati entro <strong>7 giorni</strong> vengono eliminati automaticamente.</li><li>Puoi eliminare il tuo account in qualsiasi momento, come spiegato in <a href="eliminar-cuenta.html">Elimina account</a>.</li></ul>
+        <h2>4. Uso consentito</h2>
+        <p>Ti concediamo una licenza personale, non esclusiva, non trasferibile e revocabile per usare l'App sui tuoi dispositivi. Non è consentito:</p>
+        <ul><li>Copiare, modificare, decompilare o sottoporre a reverse engineering l'App, salvo nei limiti espressamente consentiti dalla legge.</li><li>Accedere ai nostri server con mezzi automatizzati (bot, scraping) o aggirare i limiti di utilizzo e le misure di sicurezza.</li><li>Rivendere, ridistribuire o sfruttare commercialmente i dati, le previsioni o i contenuti senza la nostra autorizzazione scritta.</li><li>Usare il servizio per scopi illeciti o in modo da danneggiare altri utenti o la nostra infrastruttura.</li></ul>
+        <h2>5. Informazioni meteorologiche</h2>
+        <div class="note">Le previsioni e i dati dell'App sono <strong>indicativi</strong>. Provengono da modelli numerici e da fornitori esterni e possono contenere errori o ritardi. <strong>Non sostituiscono</strong> gli avvisi ufficiali dei servizi meteorologici nazionali né della protezione civile. Non usarli come unica fonte per decisioni da cui dipende la sicurezza di persone o beni (ad esempio, navigazione aerea o marittima).</div>
+        <h2>6. Disponibilità del servizio</h2>
+        <p>Facciamo quanto ragionevolmente possibile perché il servizio funzioni in modo continuo, ma non garantiamo che sia privo di interruzioni o errori. Possiamo effettuare manutenzione, modificare funzioni o sospendere temporaneamente il servizio quando necessario.</p>
+        <h2>7. Corsi e pagamenti</h2>
+        <ul><li>I corsi si acquistano su <a href="https://b1tmet.com">b1tmet.com</a>. Il prezzo, il contenuto e la modalità (registrato o dal vivo) sono indicati nella pagina di ciascun corso prima del pagamento.</li><li>I pagamenti sono elaborati tramite <strong>Stripe</strong>. Non conserviamo i dati della tua carta.</li><li>L'accesso a un corso è personale e non trasferibile. Non è consentito condividere il tuo accesso né scaricare o ridistribuire il materiale, salvo che il corso lo consenta espressamente.</li></ul>
+        <h2>8. Politica di rimborso</h2>
+        <p>Puoi richiedere il rimborso completo di un corso se:</p>
+        <ul><li><strong>Corsi registrati:</strong> lo richiedi entro <strong>14 giorni di calendario</strong> dall'acquisto, hai fruito di <strong>meno del 20 %</strong> dei contenuti e non hai ottenuto il certificato.</li><li><strong>Corsi dal vivo:</strong> lo richiedi almeno <strong>48 ore</strong> prima dell'inizio della prima sessione.</li></ul>
+        <p>Inoltre, rimborseremo sempre l'importo se:</p>
+        <ul><li>Ti è stato addebitato due volte o per errore.</li><li>Annulliamo il corso o non abbiamo potuto darti accesso per cause a noi imputabili.</li></ul>
+        <p><strong>Come richiederlo:</strong> scrivi a <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a> dall'indirizzo e-mail usato per l'acquisto, indicando il corso e la data di acquisto. Se dovuto, il rimborso viene effettuato sullo stesso metodo di pagamento tramite Stripe; di solito appare entro <strong>5-10 giorni lavorativi</strong>, a seconda della tua banca. Con il rimborso, l'accesso al corso viene revocato.</p>
+        <p class="muted">Al di fuori di questi casi non si effettuano rimborsi, salvo quando lo richieda la legge applicabile. Nulla in questa politica limita i diritti che ti riconosce la normativa a tutela dei consumatori.</p>
+        <h2>9. Proprietà intellettuale</h2>
+        <p>L'App, il marchio B1TMET, i corsi e i relativi contenuti sono di proprietà di B1TMET Technologies o dei suoi licenzianti. Le mappe di base sono © collaboratori di OpenStreetMap, © CARTO e © OpenTopoMap, e parte dei dati meteorologici proviene da OpenWeather, ciascuno secondo le proprie licenze.</p>
+        <h2>10. Sospensione e cessazione</h2>
+        <p>Possiamo sospendere o chiudere un account che violi questi Termini, in particolare i punti 4 e 7, con preavviso quando possibile. Puoi smettere di usare il servizio ed eliminare il tuo account quando vuoi.</p>
+        <h2>11. Limitazione di responsabilità</h2>
+        <p>Nei limiti consentiti dalla legge, B1TMET Technologies non sarà responsabile per danni indiretti né per perdite derivanti dall'uso delle informazioni meteorologiche, da interruzioni del servizio o da cause al di fuori del nostro ragionevole controllo. Ciò non limita la responsabilità che non può essere esclusa per legge.</p>
+        <h2>12. Privacy</h2>
+        <p>Il trattamento dei tuoi dati è spiegato nella nostra <a href="index.html">Informativa sulla privacy</a>.</p>
+        <h2>13. Modifiche ai presenti Termini</h2>
+        <p>Possiamo aggiornare questi Termini. Pubblicheremo le modifiche in questa pagina con la data di aggiornamento e, se rilevanti, te lo comunicheremo nell'App. Se continui a usare il servizio dopo la modifica, si intende che la accetti.</p>
+        <h2>14. Legge applicabile</h2>
+        <p>I presenti Termini sono regolati dalle leggi degli Stati Uniti Messicani. Per qualsiasi controversia, le parti si sottopongono ai tribunali competenti di Città del Messico, Messico, fatti salvi i diritti che ti spettano come consumatore, inclusa la possibilità di rivolgerti alla Procura federale del consumatore messicana (PROFECO).</p>
+        <h2>15. Contatti</h2>
+        <p>Per qualsiasi domanda su questi Termini: <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>.</p>
+      </article>
+
+      <!-- ======================= NL ======================= -->
+      <article class="card" lang="nl">
+        <h2>1. Aanvaarding</h2>
+        <p>Deze Gebruiksvoorwaarden (de "Voorwaarden") regelen het gebruik van de applicatie B1TMET Pro (de "App") en de aankoop van cursussen op <a href="https://b1tmet.com">b1tmet.com</a>. Door een account aan te maken, de App te gebruiken of een cursus te kopen, aanvaard je deze Voorwaarden. Ga je er niet mee akkoord, gebruik de dienst dan niet.</p>
+        <h2>2. Wie de dienst levert</h2>
+        <p>De dienst wordt geleverd door <strong>B1TMET Technologies</strong>, gevestigd te Copilco 300, Edificio 1, Depto. 104, Col. Copilco Universidad, Alcaldía Coyoacán, C.P. 04360, Ciudad de México, México. Contact: <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>.</p>
+        <h2>3. Je account</h2>
+        <ul><li>Je moet <strong>18 jaar of ouder</strong> zijn om de App te gebruiken.</li><li>De gegevens die je ons geeft, moeten juist zijn. Je bent verantwoordelijk voor het geheimhouden van je wachtwoord en voor de activiteit op je account.</li><li>Als je je registreert met e-mail en wachtwoord, sturen we je een link om je e-mailadres te verifiëren. Accounts die niet binnen <strong>7 dagen</strong> zijn geverifieerd, worden automatisch verwijderd.</li><li>Je kunt je account op elk moment verwijderen, zoals uitgelegd op <a href="eliminar-cuenta.html">Account verwijderen</a>.</li></ul>
+        <h2>4. Toegestaan gebruik</h2>
+        <p>We verlenen je een persoonlijke, niet-exclusieve, niet-overdraagbare en herroepbare licentie om de App op je apparaten te gebruiken. Het is niet toegestaan om:</p>
+        <ul><li>De App te kopiëren, te wijzigen, te decompileren of te reverse-engineeren, behalve voor zover de wet dat uitdrukkelijk toestaat.</li><li>Onze servers met geautomatiseerde middelen (bots, scraping) te benaderen of gebruikslimieten en beveiligingsmaatregelen te omzeilen.</li><li>De gegevens, voorspellingen of inhoud zonder onze schriftelijke toestemming door te verkopen, te herverspreiden of commercieel te exploiteren.</li><li>De dienst te gebruiken voor onwettige doeleinden of op een manier die andere gebruikers of onze infrastructuur schaadt.</li></ul>
+        <h2>5. Weersinformatie</h2>
+        <div class="note">De voorspellingen en gegevens in de App zijn <strong>indicatief</strong>. Ze zijn afkomstig van numerieke modellen en externe leveranciers en kunnen fouten of vertragingen bevatten. Ze <strong>vervangen geen</strong> officiële waarschuwingen van nationale weerdiensten of de civiele bescherming. Gebruik ze niet als enige bron voor beslissingen waarvan de veiligheid van personen of goederen afhangt (bijvoorbeeld lucht- of scheepvaart).</div>
+        <h2>6. Beschikbaarheid van de dienst</h2>
+        <p>We doen redelijke inspanningen om de dienst ononderbroken te laten werken, maar garanderen niet dat hij vrij is van onderbrekingen of fouten. We kunnen onderhoud uitvoeren, functies wijzigen of de dienst tijdelijk opschorten wanneer dat nodig is.</p>
+        <h2>7. Cursussen en betalingen</h2>
+        <ul><li>Cursussen worden gekocht op <a href="https://b1tmet.com">b1tmet.com</a>. De prijs, inhoud en vorm (opgenomen of live) staan vóór de betaling op de pagina van elke cursus.</li><li>Betalingen worden verwerkt door <strong>Stripe</strong>. We slaan je kaartgegevens niet op.</li><li>Toegang tot een cursus is persoonlijk en niet overdraagbaar. Het is niet toegestaan je toegang te delen of het materiaal te downloaden of te herverspreiden, tenzij de cursus dat uitdrukkelijk toestaat.</li></ul>
+        <h2>8. Terugbetalingsbeleid</h2>
+        <p>Je kunt de volledige terugbetaling van een cursus aanvragen als:</p>
+        <ul><li><strong>Opgenomen cursussen:</strong> je het aanvraagt binnen <strong>14 kalenderdagen</strong> na aankoop, je <strong>minder dan 20%</strong> van de inhoud hebt bekeken en je het certificaat niet hebt behaald.</li><li><strong>Livecursussen:</strong> je het ten minste <strong>48 uur</strong> vóór de start van de eerste sessie aanvraagt.</li></ul>
+        <p>Daarnaast betalen we het bedrag altijd terug als:</p>
+        <ul><li>Je twee keer of per vergissing bent belast.</li><li>Wij de cursus annuleren, of je om redenen die aan ons te wijten zijn geen toegang konden geven.</li></ul>
+        <p><strong>Zo vraag je het aan:</strong> schrijf naar <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a> vanaf het e-mailadres waarmee je hebt gekocht, met vermelding van de cursus en de aankoopdatum. Als het verzoek wordt toegekend, wordt het bedrag via Stripe teruggestort op hetzelfde betaalmiddel; dit is meestal binnen <strong>5 tot 10 werkdagen</strong> zichtbaar, afhankelijk van je bank. Na terugbetaling vervalt de toegang tot de cursus.</p>
+        <p class="muted">Buiten deze gevallen wordt niet terugbetaald, behalve als de toepasselijke wet dat vereist. Niets in dit beleid beperkt de rechten die het consumentenrecht je geeft.</p>
+        <h2>9. Intellectueel eigendom</h2>
+        <p>De App, het merk B1TMET, de cursussen en hun inhoud zijn eigendom van B1TMET Technologies of haar licentiegevers. De basiskaarten zijn © OpenStreetMap-bijdragers, © CARTO en © OpenTopoMap, en een deel van de weergegevens is afkomstig van OpenWeather, elk volgens de eigen licenties.</p>
+        <h2>10. Opschorting en beëindiging</h2>
+        <p>We kunnen een account dat deze Voorwaarden schendt, in het bijzonder de punten 4 en 7, opschorten of beëindigen, indien mogelijk met voorafgaande kennisgeving. Je kunt op elk moment stoppen met de dienst en je account verwijderen.</p>
+        <h2>11. Beperking van aansprakelijkheid</h2>
+        <p>Voor zover de wet dat toestaat, is B1TMET Technologies niet aansprakelijk voor indirecte schade of voor verliezen als gevolg van het gebruik van de weersinformatie, onderbrekingen van de dienst of oorzaken buiten onze redelijke controle. Dit beperkt geen aansprakelijkheid die volgens de wet niet kan worden uitgesloten.</p>
+        <h2>12. Privacy</h2>
+        <p>Hoe we je gegevens verwerken, staat in onze <a href="index.html">Privacybeleid</a>.</p>
+        <h2>13. Wijzigingen in deze Voorwaarden</h2>
+        <p>We kunnen deze Voorwaarden bijwerken. We publiceren wijzigingen op deze pagina met de datum van bijwerking en laten het je, als ze wezenlijk zijn, weten in de App. Als je de dienst na een wijziging blijft gebruiken, aanvaard je die.</p>
+        <h2>14. Toepasselijk recht</h2>
+        <p>Op deze Voorwaarden is het recht van de Verenigde Mexicaanse Staten van toepassing. Geschillen worden voorgelegd aan de bevoegde rechtbanken van Mexico-Stad, Mexico, onverminderd je rechten als consument, waaronder de mogelijkheid om je te wenden tot de Mexicaanse federale consumentenautoriteit (PROFECO).</p>
+        <h2>15. Contact</h2>
+        <p>Voor vragen over deze Voorwaarden: <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>.</p>
+      </article>
+
     </main>
 
     <footer class="foot">
       <picture>
-        <source
-          srcset="assets/logo-h-light.png"
-          media="(prefers-color-scheme: dark)"
-        />
+        <source srcset="assets/logo-h-light.png" media="(prefers-color-scheme: dark)" />
         <img class="foot-img" src="assets/logo-h-dark.png" alt="B1TMET" />
       </picture>
       <p lang="es">
@@ -467,17 +321,40 @@
         <a href="mailto:b1tmet@b1tmet.com">Contact</a> ·
         <a href="https://b1tmet.com">About</a>
       </p>
-      <p lang="es" class="muted">
-        Los pronósticos de B1TMET Pro son orientativos y no sustituyen los
-        avisos oficiales de los servicios meteorológicos nacionales.
-        Mapas: © colaboradores de OpenStreetMap, © CARTO, © OpenTopoMap.
+      <p lang="pt">
+        <a href="index.html">Aviso de privacidade</a> ·
+        <a href="terminos.html">Termos de uso</a> ·
+        <a href="eliminar-cuenta.html">Excluir conta</a> ·
+        <a href="mailto:b1tmet@b1tmet.com">Contato</a> ·
+        <a href="https://b1tmet.com">Sobre</a>
       </p>
-      <p lang="en" class="muted">
-        B1TMET Pro forecasts are for guidance only and do not replace official
-        warnings from national weather services.
-        Maps: © OpenStreetMap contributors, © CARTO, © OpenTopoMap.
+      <p lang="fr">
+        <a href="index.html">Politique de confidentialité</a> ·
+        <a href="terminos.html">Conditions d'utilisation</a> ·
+        <a href="eliminar-cuenta.html">Supprimer le compte</a> ·
+        <a href="mailto:b1tmet@b1tmet.com">Contact</a> ·
+        <a href="https://b1tmet.com">À propos</a>
       </p>
-
+      <p lang="it">
+        <a href="index.html">Informativa sulla privacy</a> ·
+        <a href="terminos.html">Termini di utilizzo</a> ·
+        <a href="eliminar-cuenta.html">Elimina account</a> ·
+        <a href="mailto:b1tmet@b1tmet.com">Contatti</a> ·
+        <a href="https://b1tmet.com">Chi siamo</a>
+      </p>
+      <p lang="nl">
+        <a href="index.html">Privacybeleid</a> ·
+        <a href="terminos.html">Gebruiksvoorwaarden</a> ·
+        <a href="eliminar-cuenta.html">Account verwijderen</a> ·
+        <a href="mailto:b1tmet@b1tmet.com">Contact</a> ·
+        <a href="https://b1tmet.com">Over ons</a>
+      </p>
+      <p lang="es" class="muted">Los pronósticos de B1TMET Pro son orientativos y no sustituyen los avisos oficiales de los servicios meteorológicos nacionales. Mapas: © colaboradores de OpenStreetMap, © CARTO, © OpenTopoMap.</p>
+      <p lang="en" class="muted">B1TMET Pro forecasts are for guidance only and do not replace official warnings from national weather services. Maps: © OpenStreetMap contributors, © CARTO, © OpenTopoMap.</p>
+      <p lang="pt" class="muted">As previsões do B1TMET Pro são apenas orientativas e não substituem os avisos oficiais dos serviços meteorológicos nacionais. Mapas: © colaboradores do OpenStreetMap, © CARTO, © OpenTopoMap.</p>
+      <p lang="fr" class="muted">Les prévisions de B1TMET Pro sont fournies à titre indicatif et ne remplacent pas les alertes officielles des services météorologiques nationaux. Cartes : © contributeurs d'OpenStreetMap, © CARTO, © OpenTopoMap.</p>
+      <p lang="it" class="muted">Le previsioni di B1TMET Pro sono indicative e non sostituiscono gli avvisi ufficiali dei servizi meteorologici nazionali. Mappe: © collaboratori di OpenStreetMap, © CARTO, © OpenTopoMap.</p>
+      <p lang="nl" class="muted">De voorspellingen van B1TMET Pro zijn indicatief en vervangen geen officiële waarschuwingen van nationale weerdiensten. Kaarten: © OpenStreetMap-bijdragers, © CARTO, © OpenTopoMap.</p>
       <div>© 2026 B1TMET Technologies</div>
     </footer>
 

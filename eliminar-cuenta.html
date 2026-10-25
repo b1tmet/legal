@@ -4,20 +4,23 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Eliminar cuenta · Delete account — B1TMET Pro</title>
-    <meta
-      name="description"
-      content="Cómo eliminar tu cuenta de B1TMET Pro / How to delete your B1TMET Pro account"
-    />
+    <meta name="description" content="Cómo eliminar tu cuenta de B1TMET Pro / How to delete your B1TMET Pro account" />
     <meta name="theme-color" content="#17062b" />
     <link rel="icon" href="favicon.ico" sizes="any" />
     <link rel="stylesheet" href="assets/styles.css" />
     <script>
       (function () {
-        var l =
-          localStorage.getItem("b1t-lang") ||
-          ((navigator.language || "es").toLowerCase().indexOf("es") === 0
-            ? "es"
-            : "en");
+        var S = ["es", "en", "pt", "fr", "it", "nl"], l = null;
+        try { l = new URLSearchParams(location.search).get("lang"); } catch (e) {}
+        if (S.indexOf(l) < 0) { try { l = localStorage.getItem("b1t-lang"); } catch (e) {} }
+        if (S.indexOf(l) < 0) {
+          l = "en";
+          var list = navigator.languages || [navigator.language || "en"];
+          for (var i = 0; i < list.length; i++) {
+            var c = String(list[i] || "").slice(0, 2).toLowerCase();
+            if (S.indexOf(c) >= 0) { l = c; break; }
+          }
+        }
         document.documentElement.setAttribute("data-lang", l);
         document.documentElement.lang = l;
       })();
@@ -27,137 +30,169 @@
     <header class="hero">
       <span class="logo mark" aria-hidden="true"></span>
       <div class="bar">
-        <a class="brand" href="index.html"
-          ><img
-            class="brand-img"
-            src="assets/logo-h-light.png"
-            alt="B1TMET"
-          /><small>Pro</small></a
-        >
+        <a class="brand" href="index.html"><img class="brand-img" src="assets/logo-h-light.png" alt="B1TMET" /><small>Pro</small></a>
         <div class="langs">
           <button type="button" data-set="es">ES</button>
           <button type="button" data-set="en">EN</button>
+          <button type="button" data-set="pt">PT</button>
+          <button type="button" data-set="fr">FR</button>
+          <button type="button" data-set="it">IT</button>
+          <button type="button" data-set="nl">NL</button>
         </div>
       </div>
       <div class="title">
         <h1 lang="es">Eliminar tu cuenta</h1>
         <h1 lang="en">Delete your account</h1>
+        <h1 lang="pt">Excluir sua conta</h1>
+        <h1 lang="fr">Supprimer votre compte</h1>
+        <h1 lang="it">Elimina il tuo account</h1>
+        <h1 lang="nl">Je account verwijderen</h1>
       </div>
-      <svg
-        class="wave"
-        viewBox="0 0 1440 70"
-        preserveAspectRatio="none"
-        aria-hidden="true"
-      >
-        <path
-          d="M0,40 C240,80 480,0 720,30 C960,60 1200,10 1440,35 L1440,70 L0,70 Z"
-          fill="var(--bg)"
-        />
+      <svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,40 C240,80 480,0 720,30 C960,60 1200,10 1440,35 L1440,70 L0,70 Z" fill="var(--bg)" />
       </svg>
     </header>
 
     <main>
+      <!-- ======================= ES ======================= -->
       <article class="card" lang="es">
         <h2>Desde la App (inmediato)</h2>
-        <ol>
-          <li>Abre B1TMET Pro e inicia sesión.</li>
-          <li>Ve a <strong>Ajustes → Privacidad → Eliminar cuenta</strong>.</li>
-          <li>Confirma la eliminación.</li>
-        </ol>
-
+        <ol><li>Abre B1TMET Pro e inicia sesión.</li><li>Ve a <strong>Ajustes → Privacidad → Eliminar cuenta</strong>.</li><li>Confirma la eliminación.</li></ol>
         <h2>Sin acceso a la App</h2>
-        <p>
-          Escríbenos desde el correo asociado a tu cuenta con el asunto
-          <strong>«Eliminar cuenta»</strong>. Eliminaremos tu cuenta y te lo
-          confirmaremos por correo.
-        </p>
-        <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=Eliminar%20cuenta"
-          >b1tmet@b1tmet.com</a
-        >
-
+        <p>Escríbenos desde el correo asociado a tu cuenta con el asunto <strong>«Eliminar cuenta»</strong>. Eliminaremos tu cuenta y te lo confirmaremos por correo.</p>
+        <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=Eliminar%20cuenta">b1tmet@b1tmet.com</a>
         <h2>Qué se elimina</h2>
-        <ul>
-          <li>
-            Tu nombre de usuario, correo, contraseña (hash) y vinculación con
-            Google.
-          </li>
-          <li>Tus preferencias guardadas y todas tus sesiones activas.</li>
-        </ul>
-
+        <ul><li>Tu nombre de usuario, correo, contraseña (hash) y vinculación con Google.</li><li>Tus preferencias guardadas y todas tus sesiones activas.</li></ul>
         <h2>Qué se conserva y por cuánto tiempo</h2>
-        <ul>
-          <li>
-            <strong>Registros técnicos con IP:</strong> se eliminan
-            automáticamente en un máximo de 14 días.
-          </li>
-          <li>
-            <strong>Registros de pago</strong> de cursos comprados en la web
-            (Stripe): lo que exijan las obligaciones fiscales y contables.
-          </li>
-        </ul>
-        <p>
-          Más información en nuestro
-          <a href="index.html">Aviso de privacidad</a>.
-        </p>
+        <ul><li><strong>Registros técnicos con IP:</strong> se eliminan automáticamente en un máximo de 14 días.</li><li><strong>Registros de pago</strong> de cursos comprados en la web (Stripe): lo que exijan las obligaciones fiscales y contables.</li></ul>
+        <p>Más información en nuestro <a href="index.html">Aviso de privacidad</a>.</p>
       </article>
 
+      <!-- ======================= EN ======================= -->
       <article class="card" lang="en">
         <h2>In the App (immediate)</h2>
-        <ol>
-          <li>Open B1TMET Pro and sign in.</li>
-          <li>Go to <strong>Settings → Privacy → Delete account</strong>.</li>
-          <li>Confirm the deletion.</li>
-        </ol>
-
+        <ol><li>Open B1TMET Pro and sign in.</li><li>Go to <strong>Settings → Privacy → Delete account</strong>.</li><li>Confirm the deletion.</li></ol>
         <h2>Without access to the App</h2>
-        <p>
-          Email us from the address linked to your account with the subject
-          <strong>"Delete account"</strong>. We will delete your account and
-          confirm by email.
-        </p>
-        <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=Delete%20account"
-          >b1tmet@b1tmet.com</a
-        >
-
+        <p>Email us from the address linked to your account with the subject <strong>"Delete account"</strong>. We will delete your account and confirm by email.</p>
+        <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=Delete%20account">b1tmet@b1tmet.com</a>
         <h2>What is deleted</h2>
-        <ul>
-          <li>Your username, email, password (hash) and Google link.</li>
-          <li>Your saved preferences and all active sessions.</li>
-        </ul>
-
+        <ul><li>Your username, email, password (hash) and Google link.</li><li>Your saved preferences and all active sessions.</li></ul>
         <h2>What is kept and for how long</h2>
-        <ul>
-          <li>
-            <strong>Technical logs with IP:</strong> automatically deleted
-            within 14 days at most.
-          </li>
-          <li>
-            <strong>Payment records</strong> for courses purchased on the
-            website (Stripe): as required by tax and accounting obligations.
-          </li>
-        </ul>
-        <p>More information in our <a href="index.html">Privacy Notice</a>.</p>
+        <ul><li><strong>Technical logs with IP:</strong> automatically deleted within 14 days at most.</li><li><strong>Payment records</strong> for courses purchased on the website (Stripe): as required by tax and accounting obligations.</li></ul>
+        <p>More information in our <a href="index.html">Privacy Policy</a>.</p>
       </article>
+
+      <!-- ======================= PT ======================= -->
+      <article class="card" lang="pt">
+        <h2>No App (imediato)</h2>
+        <ol><li>Abra o B1TMET Pro e entre na sua conta.</li><li>Vá em <strong>Configurações → Privacidade → Excluir conta</strong>.</li><li>Confirme a exclusão.</li></ol>
+        <h2>Sem acesso ao App</h2>
+        <p>Escreva para nós a partir do e-mail associado à sua conta, com o assunto <strong>«Excluir conta»</strong>. Excluiremos sua conta e confirmaremos por e-mail.</p>
+        <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=Excluir%20conta">b1tmet@b1tmet.com</a>
+        <h2>O que é excluído</h2>
+        <ul><li>Seu nome de usuário, e-mail, senha (hash) e vínculo com o Google.</li><li>Suas preferências salvas e todas as suas sessões ativas.</li></ul>
+        <h2>O que é mantido e por quanto tempo</h2>
+        <ul><li><strong>Registros técnicos com IP:</strong> são excluídos automaticamente em no máximo 14 dias.</li><li><strong>Registros de pagamento</strong> de cursos comprados no site (Stripe): o que exigirem as obrigações fiscais e contábeis.</li></ul>
+        <p>Mais informações no nosso <a href="index.html">Aviso de privacidade</a>.</p>
+      </article>
+
+      <!-- ======================= FR ======================= -->
+      <article class="card" lang="fr">
+        <h2>Dans l'App (immédiat)</h2>
+        <ol><li>Ouvrez B1TMET Pro et connectez-vous.</li><li>Allez dans <strong>Paramètres → Confidentialité → Supprimer le compte</strong>.</li><li>Confirmez la suppression.</li></ol>
+        <h2>Sans accès à l'App</h2>
+        <p>Écrivez-nous depuis l'adresse e-mail associée à votre compte, avec l'objet <strong>« Supprimer le compte »</strong>. Nous supprimerons votre compte et vous le confirmerons par e-mail.</p>
+        <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=Supprimer%20le%20compte">b1tmet@b1tmet.com</a>
+        <h2>Ce qui est supprimé</h2>
+        <ul><li>Votre nom d'utilisateur, votre e-mail, votre mot de passe (haché) et l'association avec Google.</li><li>Vos préférences enregistrées et toutes vos sessions actives.</li></ul>
+        <h2>Ce qui est conservé et pendant combien de temps</h2>
+        <ul><li><strong>Journaux techniques avec IP :</strong> supprimés automatiquement dans un délai maximal de 14 jours.</li><li><strong>Registres de paiement</strong> des cours achetés sur le site web (Stripe) : selon les obligations fiscales et comptables.</li></ul>
+        <p>Plus d'informations dans notre <a href="index.html">Politique de confidentialité</a>.</p>
+      </article>
+
+      <!-- ======================= IT ======================= -->
+      <article class="card" lang="it">
+        <h2>Dall'App (immediato)</h2>
+        <ol><li>Apri B1TMET Pro ed effettua l'accesso.</li><li>Vai su <strong>Impostazioni → Privacy → Elimina account</strong>.</li><li>Conferma l'eliminazione.</li></ol>
+        <h2>Senza accesso all'App</h2>
+        <p>Scrivici dall'indirizzo e-mail associato al tuo account con oggetto <strong>«Elimina account»</strong>. Elimineremo il tuo account e te lo confermeremo via e-mail.</p>
+        <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=Elimina%20account">b1tmet@b1tmet.com</a>
+        <h2>Cosa viene eliminato</h2>
+        <ul><li>Nome utente, e-mail, password (hash) e collegamento con Google.</li><li>Le preferenze salvate e tutte le sessioni attive.</li></ul>
+        <h2>Cosa viene conservato e per quanto tempo</h2>
+        <ul><li><strong>Log tecnici con IP:</strong> eliminati automaticamente entro un massimo di 14 giorni.</li><li><strong>Registrazioni dei pagamenti</strong> dei corsi acquistati sul sito web (Stripe): quanto richiesto dagli obblighi fiscali e contabili.</li></ul>
+        <p>Maggiori informazioni nella nostra <a href="index.html">Informativa sulla privacy</a>.</p>
+      </article>
+
+      <!-- ======================= NL ======================= -->
+      <article class="card" lang="nl">
+        <h2>In de App (direct)</h2>
+        <ol><li>Open B1TMET Pro en log in.</li><li>Ga naar <strong>Instellingen → Privacy → Account verwijderen</strong>.</li><li>Bevestig het verwijderen.</li></ol>
+        <h2>Zonder toegang tot de App</h2>
+        <p>Stuur ons een e-mail vanaf het adres dat aan je account is gekoppeld, met als onderwerp <strong>"Account verwijderen"</strong>. We verwijderen je account en bevestigen dat per e-mail.</p>
+        <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=Account%20verwijderen">b1tmet@b1tmet.com</a>
+        <h2>Wat wordt verwijderd</h2>
+        <ul><li>Je gebruikersnaam, e-mailadres, wachtwoord (hash) en koppeling met Google.</li><li>Je opgeslagen voorkeuren en al je actieve sessies.</li></ul>
+        <h2>Wat blijft bewaard en hoe lang</h2>
+        <ul><li><strong>Technische logboeken met IP:</strong> worden binnen maximaal 14 dagen automatisch verwijderd.</li><li><strong>Betalingsgegevens</strong> van cursussen die op de website zijn gekocht (Stripe): zolang fiscale en boekhoudkundige verplichtingen dat vereisen.</li></ul>
+        <p>Meer informatie in onze <a href="index.html">Privacybeleid</a>.</p>
+      </article>
+
     </main>
 
     <footer class="foot">
       <picture>
-        <source
-          srcset="assets/logo-h-light.png"
-          media="(prefers-color-scheme: dark)"
-        />
+        <source srcset="assets/logo-h-light.png" media="(prefers-color-scheme: dark)" />
         <img class="foot-img" src="assets/logo-h-dark.png" alt="B1TMET" />
       </picture>
       <p lang="es">
         <a href="index.html">Aviso de privacidad</a> ·
+        <a href="terminos.html">Términos de uso</a> ·
         <a href="eliminar-cuenta.html">Eliminar cuenta</a> ·
-        <a href="mailto:b1tmet@b1tmet.com">Contacto</a>
+        <a href="mailto:b1tmet@b1tmet.com">Contacto</a> ·
+        <a href="https://b1tmet.com">Acerca de</a>
       </p>
       <p lang="en">
-        <a href="index.html">Privacy Notice</a> ·
+        <a href="index.html">Privacy Policy</a> ·
+        <a href="terminos.html">Terms of Use</a> ·
         <a href="eliminar-cuenta.html">Delete account</a> ·
-        <a href="mailto:b1tmet@b1tmet.com">Contact</a>
+        <a href="mailto:b1tmet@b1tmet.com">Contact</a> ·
+        <a href="https://b1tmet.com">About</a>
       </p>
+      <p lang="pt">
+        <a href="index.html">Aviso de privacidade</a> ·
+        <a href="terminos.html">Termos de uso</a> ·
+        <a href="eliminar-cuenta.html">Excluir conta</a> ·
+        <a href="mailto:b1tmet@b1tmet.com">Contato</a> ·
+        <a href="https://b1tmet.com">Sobre</a>
+      </p>
+      <p lang="fr">
+        <a href="index.html">Politique de confidentialité</a> ·
+        <a href="terminos.html">Conditions d'utilisation</a> ·
+        <a href="eliminar-cuenta.html">Supprimer le compte</a> ·
+        <a href="mailto:b1tmet@b1tmet.com">Contact</a> ·
+        <a href="https://b1tmet.com">À propos</a>
+      </p>
+      <p lang="it">
+        <a href="index.html">Informativa sulla privacy</a> ·
+        <a href="terminos.html">Termini di utilizzo</a> ·
+        <a href="eliminar-cuenta.html">Elimina account</a> ·
+        <a href="mailto:b1tmet@b1tmet.com">Contatti</a> ·
+        <a href="https://b1tmet.com">Chi siamo</a>
+      </p>
+      <p lang="nl">
+        <a href="index.html">Privacybeleid</a> ·
+        <a href="terminos.html">Gebruiksvoorwaarden</a> ·
+        <a href="eliminar-cuenta.html">Account verwijderen</a> ·
+        <a href="mailto:b1tmet@b1tmet.com">Contact</a> ·
+        <a href="https://b1tmet.com">Over ons</a>
+      </p>
+      <p lang="es" class="muted">Los pronósticos de B1TMET Pro son orientativos y no sustituyen los avisos oficiales de los servicios meteorológicos nacionales. Mapas: © colaboradores de OpenStreetMap, © CARTO, © OpenTopoMap.</p>
+      <p lang="en" class="muted">B1TMET Pro forecasts are for guidance only and do not replace official warnings from national weather services. Maps: © OpenStreetMap contributors, © CARTO, © OpenTopoMap.</p>
+      <p lang="pt" class="muted">As previsões do B1TMET Pro são apenas orientativas e não substituem os avisos oficiais dos serviços meteorológicos nacionais. Mapas: © colaboradores do OpenStreetMap, © CARTO, © OpenTopoMap.</p>
+      <p lang="fr" class="muted">Les prévisions de B1TMET Pro sont fournies à titre indicatif et ne remplacent pas les alertes officielles des services météorologiques nationaux. Cartes : © contributeurs d'OpenStreetMap, © CARTO, © OpenTopoMap.</p>
+      <p lang="it" class="muted">Le previsioni di B1TMET Pro sono indicative e non sostituiscono gli avvisi ufficiali dei servizi meteorologici nazionali. Mappe: © collaboratori di OpenStreetMap, © CARTO, © OpenTopoMap.</p>
+      <p lang="nl" class="muted">De voorspellingen van B1TMET Pro zijn indicatief en vervangen geen officiële waarschuwingen van nationale weerdiensten. Kaarten: © OpenStreetMap-bijdragers, © CARTO, © OpenTopoMap.</p>
       <div>© 2026 B1TMET Technologies</div>
     </footer>
 

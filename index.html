@@ -3,21 +3,24 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Aviso de privacidad · Privacy Notice — B1TMET Pro</title>
-    <meta
-      name="description"
-      content="Aviso de privacidad de B1TMET Pro / B1TMET Pro Privacy Notice"
-    />
+    <title>Aviso de privacidad · Privacy Policy — B1TMET Pro</title>
+    <meta name="description" content="Aviso de privacidad de B1TMET Pro / B1TMET Pro Privacy Policy" />
     <meta name="theme-color" content="#17062b" />
     <link rel="icon" href="favicon.ico" sizes="any" />
     <link rel="stylesheet" href="assets/styles.css" />
     <script>
       (function () {
-        var l =
-          localStorage.getItem("b1t-lang") ||
-          ((navigator.language || "es").toLowerCase().indexOf("es") === 0
-            ? "es"
-            : "en");
+        var S = ["es", "en", "pt", "fr", "it", "nl"], l = null;
+        try { l = new URLSearchParams(location.search).get("lang"); } catch (e) {}
+        if (S.indexOf(l) < 0) { try { l = localStorage.getItem("b1t-lang"); } catch (e) {} }
+        if (S.indexOf(l) < 0) {
+          l = "en";
+          var list = navigator.languages || [navigator.language || "en"];
+          for (var i = 0; i < list.length; i++) {
+            var c = String(list[i] || "").slice(0, 2).toLowerCase();
+            if (S.indexOf(c) >= 0) { l = c; break; }
+          }
+        }
         document.documentElement.setAttribute("data-lang", l);
         document.documentElement.lang = l;
       })();
@@ -27,538 +30,271 @@
     <header class="hero">
       <span class="logo mark" aria-hidden="true"></span>
       <div class="bar">
-        <a class="brand" href="index.html"
-          ><img
-            class="brand-img"
-            src="assets/logo-h-light.png"
-            alt="B1TMET"
-          /><small>Pro</small></a
-        >
+        <a class="brand" href="index.html"><img class="brand-img" src="assets/logo-h-light.png" alt="B1TMET" /><small>Pro</small></a>
         <div class="langs">
           <button type="button" data-set="es">ES</button>
           <button type="button" data-set="en">EN</button>
+          <button type="button" data-set="pt">PT</button>
+          <button type="button" data-set="fr">FR</button>
+          <button type="button" data-set="it">IT</button>
+          <button type="button" data-set="nl">NL</button>
         </div>
       </div>
       <div class="title">
         <h1 lang="es">Aviso de privacidad</h1>
-        <h1 lang="en">Privacy Notice</h1>
-        <p lang="es">Última actualización: 18 de octubre de 2026</p>
-        <p lang="en">Last updated: October 18, 2026</p>
+        <h1 lang="en">Privacy Policy</h1>
+        <h1 lang="pt">Aviso de privacidade</h1>
+        <h1 lang="fr">Politique de confidentialité</h1>
+        <h1 lang="it">Informativa sulla privacy</h1>
+        <h1 lang="nl">Privacybeleid</h1>
+        <p lang="es">Última actualización: 25 de octubre de 2026</p>
+        <p lang="en">Last updated: October 25, 2026</p>
+        <p lang="pt">Última atualização: 25 de outubro de 2026</p>
+        <p lang="fr">Dernière mise à jour : 25 octobre 2026</p>
+        <p lang="it">Ultimo aggiornamento: 25 ottobre 2026</p>
+        <p lang="nl">Laatst bijgewerkt: 25 oktober 2026</p>
       </div>
-      <svg
-        class="wave"
-        viewBox="0 0 1440 70"
-        preserveAspectRatio="none"
-        aria-hidden="true"
-      >
-        <path
-          d="M0,40 C240,80 480,0 720,30 C960,60 1200,10 1440,35 L1440,70 L0,70 Z"
-          fill="var(--bg)"
-        />
+      <svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,40 C240,80 480,0 720,30 C960,60 1200,10 1440,35 L1440,70 L0,70 Z" fill="var(--bg)" />
       </svg>
     </header>
 
     <main>
-      <!-- ======================= ESPAÑOL ======================= -->
+      <!-- ======================= ES ======================= -->
       <article class="card" lang="es">
         <h2>1. Responsable</h2>
-        <p>
-          <strong>B1TMET Technologies</strong>, con domicilio en [DOMICILIO
-          COMPLETO, MÉXICO], es responsable del tratamiento de los datos
-          personales que se recaban a través de la aplicación B1TMET Pro (la
-          «App»).
-        </p>
-        <p>
-          Contacto para privacidad:
-          <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>
-        </p>
-
+        <p><strong>B1TMET Technologies</strong>, con domicilio en Copilco 300, Edificio 1, Depto. 104, Col. Copilco Universidad, Alcaldía Coyoacán, C.P. 04360, Ciudad de México, México, es responsable del tratamiento de los datos personales que se recaban a través de la aplicación B1TMET Pro (la «App»).</p>
+        <p>Contacto para privacidad: <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a></p>
         <h2>2. Datos personales que tratamos</h2>
         <p>No tratamos datos personales sensibles.</p>
-        <div class="tbl">
-          <table>
-            <tr>
-              <th>Dato</th>
-              <th>Cuándo se obtiene</th>
-            </tr>
-            <tr>
-              <td>Nombre de usuario y correo electrónico</td>
-              <td>Al crear una cuenta</td>
-            </tr>
-            <tr>
-              <td>Contraseña (solo guardamos un hash irreversible)</td>
-              <td>Al registrarte con correo y contraseña</td>
-            </tr>
-            <tr>
-              <td>Identificador de Google, nombre y correo</td>
-              <td>Si inicias sesión con Google</td>
-            </tr>
-            <tr>
-              <td>Ubicación aproximada (coordenadas GPS)</td>
-              <td>Si concedes el permiso de ubicación</td>
-            </tr>
-            <tr>
-              <td>Dirección IP</td>
-              <td>En cada conexión con nuestros servidores</td>
-            </tr>
-            <tr>
-              <td>
-                Preferencias de la App (orden de secciones, unidades, idioma)
-              </td>
-              <td>Al usar la App</td>
-            </tr>
-          </table>
-        </div>
-        <p class="muted">
-          La foto de perfil de Google solo se muestra en tu dispositivo; no la
-          almacenamos.
-        </p>
-
+        <div class="tbl"><table><tr><th>Dato</th><th>Cuándo se obtiene</th></tr><tr><td>Nombre de usuario y correo electrónico</td><td>Al crear una cuenta</td></tr><tr><td>Contraseña (solo guardamos un hash irreversible)</td><td>Al registrarte con correo y contraseña</td></tr><tr><td>Identificador de Google, nombre y correo</td><td>Si inicias sesión con Google</td></tr><tr><td>Ubicación precisa (coordenadas GPS)</td><td>Si concedes el permiso de ubicación</td></tr><tr><td>Dirección IP</td><td>En cada conexión con nuestros servidores</td></tr><tr><td>Preferencias de la App (orden de secciones, unidades, idioma)</td><td>Al usar la App</td></tr></table></div>
+        <p class="muted">La foto de perfil de Google solo se muestra en tu dispositivo; no la almacenamos.</p>
         <h2>3. Finalidades</h2>
-        <p>
-          Todas las finalidades son <strong>necesarias</strong> para prestar el
-          servicio que solicitas:
-        </p>
-        <ul>
-          <li>Crear y gestionar tu cuenta e iniciar sesión.</li>
-          <li>Generar pronósticos meteorológicos para tu ubicación.</li>
-          <li>Sincronizar tus preferencias entre sesiones.</li>
-          <li>
-            Enviarte el correo de recuperación de contraseña cuando lo pidas.
-          </li>
-          <li>
-            Proteger el servicio frente a abusos y accesos no autorizados.
-          </li>
-        </ul>
-        <div class="note">
-          <strong>No</strong> usamos tus datos para publicidad,
-          <strong>no</strong> los vendemos, <strong>no</strong> usamos
-          herramientas de analítica ni de seguimiento, y
-          <strong>no</strong> usamos inteligencia artificial para tratar tus
-          datos.
-        </div>
-
+        <p>Todas las finalidades son <strong>necesarias</strong> para prestar el servicio que solicitas:</p>
+        <ul><li>Crear y gestionar tu cuenta e iniciar sesión.</li><li>Generar pronósticos meteorológicos para tu ubicación.</li><li>Sincronizar tus preferencias entre sesiones.</li><li>Enviarte el correo de verificación de tu cuenta al registrarte.</li><li>Enviarte el correo de recuperación de contraseña cuando lo pidas.</li><li>Proteger el servicio frente a abusos y accesos no autorizados.</li></ul>
+        <div class="note"><strong>No</strong> usamos tus datos para publicidad, <strong>no</strong> los vendemos, <strong>no</strong> usamos herramientas de analítica ni de seguimiento, y <strong>no</strong> usamos inteligencia artificial para tratar tus datos.</div>
         <h2>4. Ubicación</h2>
-        <p>
-          La ubicación solo se usa para calcular el pronóstico. Se envía a
-          nuestro servidor, <strong>no se asocia a tu cuenta</strong> y no se
-          guarda en ningún historial. Para parte del pronóstico, nuestro
-          servidor consulta a OpenWeather con esas coordenadas; OpenWeather no
-          recibe tu IP ni tus datos de cuenta.
-        </p>
-        <p>
-          Puedes negar o retirar el permiso de ubicación en cualquier momento
-          desde los ajustes de tu dispositivo; algunas funciones dejarán de
-          estar disponibles.
-        </p>
-
+        <p>La ubicación solo se usa para calcular el pronóstico. Se envía a nuestro servidor, <strong>no se asocia a tu cuenta</strong> y no se guarda en ningún historial: en los registros técnicos del servidor las coordenadas se ocultan. Para parte del pronóstico, nuestro servidor consulta a OpenWeather con esas coordenadas; OpenWeather no recibe tu IP ni tus datos de cuenta.</p>
+        <p>En tu dispositivo se guarda la última ubicación para mostrarte el pronóstico al abrir la App. Puedes borrarla en <strong>Ajustes → Privacidad → Borrar datos locales</strong>.</p>
+        <p>Puedes negar o retirar el permiso de ubicación en cualquier momento desde los ajustes de tu dispositivo; algunas funciones dejarán de estar disponibles.</p>
         <h2>5. Con quién compartimos datos</h2>
         <p>Solo con proveedores que nos ayudan a prestar el servicio:</p>
-        <div class="tbl">
-          <table>
-            <tr>
-              <th>Proveedor</th>
-              <th>Para qué</th>
-              <th>Datos</th>
-            </tr>
-            <tr>
-              <td>IONOS</td>
-              <td>Servidor de la aplicación</td>
-              <td>IP, peticiones técnicas</td>
-            </tr>
-            <tr>
-              <td>Hostinger</td>
-              <td>Base de datos y correo electrónico</td>
-              <td>Datos de cuenta, correo</td>
-            </tr>
-            <tr>
-              <td>Google</td>
-              <td>Inicio de sesión con Google (opcional)</td>
-              <td>Lo necesario para autenticarte</td>
-            </tr>
-            <tr>
-              <td>OpenWeather</td>
-              <td>Datos meteorológicos</td>
-              <td>Coordenadas, desde nuestro servidor</td>
-            </tr>
-            <tr>
-              <td>OpenStreetMap Foundation</td>
-              <td>Mapas base</td>
-              <td>Tu IP, al cargar los mapas</td>
-            </tr>
-            <tr>
-              <td>CARTO</td>
-              <td>Mapas base alternativos (si eliges esa capa)</td>
-              <td>Tu IP, al cargar los mapas</td>
-            </tr>
-            <tr>
-              <td>OpenTopoMap</td>
-              <td>Mapa topográfico (si eliges esa capa)</td>
-              <td>Tu IP, al cargar los mapas</td>
-            </tr>
-              <td>Stripe</td>
-              <td>Pagos de cursos en nuestra web</td>
-              <td>Datos de pago (no los almacenamos)</td>
-            </tr>
-          </table>
-        </div>
-        <p>
-          Algunos de estos proveedores procesan datos fuera de México. No
-          compartimos tus datos con nadie más, salvo que una autoridad
-          competente lo requiera conforme a la ley.
-        </p>
-
+        <div class="tbl"><table><tr><th>Proveedor</th><th>Para qué</th><th>Datos</th></tr><tr><td>IONOS</td><td>Servidor de la aplicación</td><td>IP, peticiones técnicas</td></tr><tr><td>Hostinger</td><td>Base de datos y correo electrónico</td><td>Datos de cuenta, correo</td></tr><tr><td>Google</td><td>Inicio de sesión con Google (opcional)</td><td>Lo necesario para autenticarte</td></tr><tr><td>OpenWeather</td><td>Datos meteorológicos</td><td>Coordenadas, desde nuestro servidor</td></tr><tr><td>OpenStreetMap Foundation</td><td>Mapas base</td><td>Tu IP, al cargar los mapas</td></tr><tr><td>CARTO</td><td>Mapas base alternativos (si eliges esa capa)</td><td>Tu IP, al cargar los mapas</td></tr><tr><td>OpenTopoMap</td><td>Mapa topográfico (si eliges esa capa)</td><td>Tu IP, al cargar los mapas</td></tr><tr><td>Stripe</td><td>Pagos de cursos en nuestra web</td><td>Datos de pago (no los almacenamos)</td></tr></table></div>
+        <p>Algunos de estos proveedores procesan datos fuera de México. No compartimos tus datos con nadie más, salvo que una autoridad competente lo requiera conforme a la ley.</p>
         <h2>6. Cuánto tiempo los conservamos</h2>
-        <div class="tbl">
-          <table>
-            <tr>
-              <th>Dato</th>
-              <th>Plazo</th>
-            </tr>
-            <tr>
-              <td>Datos de cuenta</td>
-              <td>Hasta que elimines tu cuenta</td>
-            </tr>
-            <tr>
-              <td>Sesiones activas de la App</td>
-              <td>Hasta 30 días sin uso, o hasta que cierres sesión</td>
-            </tr>
-            <tr>
-              <td>Enlace de recuperación de contraseña</td>
-              <td>1 hora</td>
-            </tr>
-            <tr>
-              <td>Registros técnicos con IP</td>
-              <td>14 días</td>
-            </tr>
-            <tr>
-              <td>Caché de pronósticos</td>
-              <td>Horas</td>
-            </tr>
-            <tr>
-              <td>Registros de pago (Stripe)</td>
-              <td>Lo que exijan las obligaciones fiscales y contables</td>
-            </tr>
-          </table>
-        </div>
-
+        <div class="tbl"><table><tr><th>Dato</th><th>Plazo</th></tr><tr><td>Datos de cuenta</td><td>Hasta que elimines tu cuenta</td></tr><tr><td>Sesiones activas de la App</td><td>Hasta 30 días sin uso, o hasta que cierres sesión</td></tr><tr><td>Enlace de recuperación de contraseña</td><td>1 hora</td></tr><tr><td>Enlace de verificación de correo</td><td>24 horas</td></tr><tr><td>Cuentas sin verificar (registro con correo y contraseña)</td><td>7 días; después se eliminan automáticamente</td></tr><tr><td>Registros técnicos con IP</td><td>14 días</td></tr><tr><td>Caché de pronósticos</td><td>Horas</td></tr><tr><td>Última ubicación en tu dispositivo</td><td>Hasta que la actualices o borres los datos locales</td></tr><tr><td>Registros de pago (Stripe)</td><td>Lo que exijan las obligaciones fiscales y contables</td></tr></table></div>
         <h2>7. Seguridad</h2>
-        <p>
-          Las comunicaciones con nuestros servidores van cifradas (HTTPS). Las
-          contraseñas se guardan con hash bcrypt. Las credenciales de sesión de
-          la App se almacenan cifradas en tu dispositivo. Limitamos los intentos
-          de acceso para prevenir abusos.
-        </p>
-
+        <p>Las comunicaciones con nuestros servidores van cifradas (HTTPS). Las contraseñas se guardan con hash bcrypt. Las credenciales de sesión de la App se almacenan cifradas en tu dispositivo. Limitamos los intentos de acceso para prevenir abusos.</p>
         <h2>8. Tus derechos (ARCO) y revocación</h2>
-        <p>
-          Puedes <strong>acceder</strong> a tus datos,
-          <strong>rectificarlos</strong>, <strong>cancelarlos</strong> u
-          <strong>oponerte</strong> a su tratamiento, así como
-          <strong>revocar tu consentimiento</strong>, escribiendo a
-          <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a> con:
-        </p>
-        <ul>
-          <li>Tu nombre y el correo asociado a tu cuenta.</li>
-          <li>
-            El derecho que deseas ejercer y una descripción clara de tu
-            solicitud.
-          </li>
-        </ul>
-        <p>
-          Responderemos en los plazos que establece la ley. Si consideras que
-          tus derechos no han sido atendidos, puedes acudir a la
-          <strong>Secretaría Anticorrupción y Buen Gobierno</strong>. Si resides
-          en la Unión Europea, también puedes dirigirte a la autoridad de
-          protección de datos de tu país.
-        </p>
-
+        <p>Puedes <strong>acceder</strong> a tus datos, <strong>rectificarlos</strong>, <strong>cancelarlos</strong> u <strong>oponerte</strong> a su tratamiento, así como <strong>revocar tu consentimiento</strong>, escribiendo a <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a> con:</p>
+        <ul><li>Tu nombre y el correo asociado a tu cuenta.</li><li>El derecho que deseas ejercer y una descripción clara de tu solicitud.</li></ul>
+        <p>Responderemos en los plazos que establece la ley. Si consideras que tus derechos no han sido atendidos, puedes acudir a la <strong>Secretaría Anticorrupción y Buen Gobierno</strong>. Si resides en la Unión Europea, también puedes dirigirte a la autoridad de protección de datos de tu país.</p>
         <h2>9. Eliminar tu cuenta</h2>
-        <ul>
-          <li>
-            <strong>Desde la App:</strong> Ajustes → Privacidad → Eliminar
-            cuenta.
-          </li>
-          <li>
-            <strong>Sin la App:</strong> siguiendo las instrucciones en
-            <a href="eliminar-cuenta.html">Eliminar cuenta</a>.
-          </li>
-        </ul>
-        <p>
-          Al eliminarla, borramos tus datos de cuenta y cerramos todas tus
-          sesiones. Los registros técnicos se eliminan automáticamente en un
-          máximo de 14 días.
-        </p>
-
+        <ul><li><strong>Desde la App:</strong> Ajustes → Privacidad → Eliminar cuenta.</li><li><strong>Sin la App:</strong> siguiendo las instrucciones en <a href="eliminar-cuenta.html">Eliminar cuenta</a>.</li></ul>
+        <p>Al eliminarla, borramos tus datos de cuenta y cerramos todas tus sesiones. Los registros técnicos se eliminan automáticamente en un máximo de 14 días.</p>
         <h2>10. Menores de edad</h2>
-        <p>
-          La App está dirigida a personas <strong>mayores de 18 años</strong>.
-          No recabamos conscientemente datos de menores. Si detectamos una
-          cuenta de un menor, la eliminaremos.
-        </p>
-
+        <p>La App está dirigida a personas <strong>mayores de 18 años</strong>. No recabamos conscientemente datos de menores. Si detectamos una cuenta de un menor, la eliminaremos.</p>
         <h2>11. Cambios a este aviso</h2>
-        <p>
-          Publicaremos cualquier cambio en esta página, indicando la fecha de
-          actualización. Si un cambio afecta de forma relevante al tratamiento
-          de tus datos, te lo informaremos en la App.
-        </p>
+        <p>Publicaremos cualquier cambio en esta página, indicando la fecha de actualización. Si un cambio afecta de forma relevante al tratamiento de tus datos, te lo informaremos en la App.</p>
       </article>
 
-      <!-- ======================= ENGLISH ======================= -->
+      <!-- ======================= EN ======================= -->
       <article class="card" lang="en">
         <h2>1. Data controller</h2>
-        <p>
-          <strong>B1TMET Technologies</strong>, located at [FULL ADDRESS,
-          MEXICO], is responsible for the processing of personal data collected
-          through the B1TMET Pro application (the "App").
-        </p>
-        <p>
-          Privacy contact:
-          <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>
-        </p>
-
+        <p><strong>B1TMET Technologies</strong>, located at Copilco 300, Edificio 1, Depto. 104, Col. Copilco Universidad, Alcaldía Coyoacán, C.P. 04360, Ciudad de México, México, is responsible for the processing of personal data collected through the B1TMET Pro application (the "App").</p>
+        <p>Privacy contact: <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a></p>
         <h2>2. Personal data we process</h2>
         <p>We do not process sensitive personal data.</p>
-        <div class="tbl">
-          <table>
-            <tr>
-              <th>Data</th>
-              <th>When it is collected</th>
-            </tr>
-            <tr>
-              <td>Username and email address</td>
-              <td>When you create an account</td>
-            </tr>
-            <tr>
-              <td>Password (we only store an irreversible hash)</td>
-              <td>When you sign up with email and password</td>
-            </tr>
-            <tr>
-              <td>Google identifier, name and email</td>
-              <td>If you sign in with Google</td>
-            </tr>
-            <tr>
-              <td>Approximate location (GPS coordinates)</td>
-              <td>If you grant location permission</td>
-            </tr>
-            <tr>
-              <td>IP address</td>
-              <td>On every connection to our servers</td>
-            </tr>
-            <tr>
-              <td>App preferences (section order, units, language)</td>
-              <td>While using the App</td>
-            </tr>
-          </table>
-        </div>
-        <p class="muted">
-          Your Google profile photo is only displayed on your device; we do not
-          store it.
-        </p>
-
+        <div class="tbl"><table><tr><th>Data</th><th>When it is collected</th></tr><tr><td>Username and email address</td><td>When you create an account</td></tr><tr><td>Password (we only store an irreversible hash)</td><td>When you sign up with email and password</td></tr><tr><td>Google identifier, name and email</td><td>If you sign in with Google</td></tr><tr><td>Precise location (GPS coordinates)</td><td>If you grant location permission</td></tr><tr><td>IP address</td><td>On every connection to our servers</td></tr><tr><td>App preferences (section order, units, language)</td><td>While using the App</td></tr></table></div>
+        <p class="muted">Your Google profile photo is only displayed on your device; we do not store it.</p>
         <h2>3. Purposes</h2>
-        <p>
-          All purposes are <strong>necessary</strong> to provide the service you
-          request:
-        </p>
-        <ul>
-          <li>Creating and managing your account and signing you in.</li>
-          <li>Generating weather forecasts for your location.</li>
-          <li>Syncing your preferences across sessions.</li>
-          <li>Sending you the password recovery email when you request it.</li>
-          <li>Protecting the service against abuse and unauthorized access.</li>
-        </ul>
-        <div class="note">
-          We do <strong>not</strong> use your data for advertising, we do
-          <strong>not</strong> sell it, we do <strong>not</strong> use analytics
-          or tracking tools, and we do <strong>not</strong> use artificial
-          intelligence to process your data.
-        </div>
-
+        <p>All purposes are <strong>necessary</strong> to provide the service you request:</p>
+        <ul><li>Creating and managing your account and signing you in.</li><li>Generating weather forecasts for your location.</li><li>Syncing your preferences across sessions.</li><li>Sending you the account verification email when you sign up.</li><li>Sending you the password recovery email when you request it.</li><li>Protecting the service against abuse and unauthorized access.</li></ul>
+        <div class="note">We do <strong>not</strong> use your data for advertising, we do <strong>not</strong> sell it, we do <strong>not</strong> use analytics or tracking tools, and we do <strong>not</strong> use artificial intelligence to process your data.</div>
         <h2>4. Location</h2>
-        <p>
-          Location is used only to compute the forecast. It is sent to our
-          server, <strong>is not linked to your account</strong> and is not
-          stored in any history. For part of the forecast, our server queries
-          OpenWeather with those coordinates; OpenWeather does not receive your
-          IP address or account data.
-        </p>
-        <p>
-          You can deny or revoke location permission at any time in your device
-          settings; some features will no longer be available.
-        </p>
-
+        <p>Location is used only to compute the forecast. It is sent to our server, <strong>is not linked to your account</strong> and is not stored in any history: coordinates are masked in the server's technical logs. For part of the forecast, our server queries OpenWeather with those coordinates; OpenWeather does not receive your IP address or account data.</p>
+        <p>Your device keeps the last location so it can show the forecast when you open the App. You can erase it in <strong>Settings → Privacy → Clear local data</strong>.</p>
+        <p>You can deny or revoke location permission at any time in your device settings; some features will no longer be available.</p>
         <h2>5. Who we share data with</h2>
         <p>Only with providers that help us deliver the service:</p>
-        <div class="tbl">
-          <table>
-            <tr>
-              <th>Provider</th>
-              <th>Purpose</th>
-              <th>Data</th>
-            </tr>
-            <tr>
-              <td>IONOS</td>
-              <td>Application server</td>
-              <td>IP, technical requests</td>
-            </tr>
-            <tr>
-              <td>Hostinger</td>
-              <td>Database and email</td>
-              <td>Account data, email</td>
-            </tr>
-            <tr>
-              <td>Google</td>
-              <td>Sign in with Google (optional)</td>
-              <td>What is needed to authenticate you</td>
-            </tr>
-            <tr>
-              <td>OpenWeather</td>
-              <td>Weather data</td>
-              <td>Coordinates, from our server</td>
-            </tr>
-            <tr>
-              <td>OpenStreetMap Foundation</td>
-              <td>Base maps</td>
-              <td>Your IP, when loading maps</td>
-            </tr>
-            <tr>
-              <td>CARTO</td>
-              <td>Alternative base maps (if you choose that layer)</td>
-              <td>Your IP, when loading maps</td>
-            </tr>
-            <tr>
-              <td>OpenTopoMap</td>
-              <td>Topographic map (if you choose that layer)</td>
-              <td>Your IP, when loading maps</td>
-            </tr>
-            <tr>
-              <td>Stripe</td>
-              <td>Course payments on our website</td>
-              <td>Payment data (we do not store it)</td>
-            </tr>
-          </table>
-        </div>
-        <p>
-          Some of these providers process data outside Mexico. We do not share
-          your data with anyone else, unless required by a competent authority
-          in accordance with the law.
-        </p>
-
+        <div class="tbl"><table><tr><th>Provider</th><th>Purpose</th><th>Data</th></tr><tr><td>IONOS</td><td>Application server</td><td>IP, technical requests</td></tr><tr><td>Hostinger</td><td>Database and email</td><td>Account data, email</td></tr><tr><td>Google</td><td>Sign in with Google (optional)</td><td>What is needed to authenticate you</td></tr><tr><td>OpenWeather</td><td>Weather data</td><td>Coordinates, from our server</td></tr><tr><td>OpenStreetMap Foundation</td><td>Base maps</td><td>Your IP, when loading maps</td></tr><tr><td>CARTO</td><td>Alternative base maps (if you choose that layer)</td><td>Your IP, when loading maps</td></tr><tr><td>OpenTopoMap</td><td>Topographic map (if you choose that layer)</td><td>Your IP, when loading maps</td></tr><tr><td>Stripe</td><td>Course payments on our website</td><td>Payment data (we do not store it)</td></tr></table></div>
+        <p>Some of these providers process data outside Mexico. We do not share your data with anyone else, unless required by a competent authority in accordance with the law.</p>
         <h2>6. How long we keep it</h2>
-        <div class="tbl">
-          <table>
-            <tr>
-              <th>Data</th>
-              <th>Period</th>
-            </tr>
-            <tr>
-              <td>Account data</td>
-              <td>Until you delete your account</td>
-            </tr>
-            <tr>
-              <td>Active App sessions</td>
-              <td>Up to 30 days of inactivity, or until you sign out</td>
-            </tr>
-            <tr>
-              <td>Password recovery link</td>
-              <td>1 hour</td>
-            </tr>
-            <tr>
-              <td>Technical logs with IP</td>
-              <td>14 days</td>
-            </tr>
-            <tr>
-              <td>Forecast cache</td>
-              <td>Hours</td>
-            </tr>
-            <tr>
-              <td>Payment records (Stripe)</td>
-              <td>As required by tax and accounting obligations</td>
-            </tr>
-          </table>
-        </div>
-
+        <div class="tbl"><table><tr><th>Data</th><th>Period</th></tr><tr><td>Account data</td><td>Until you delete your account</td></tr><tr><td>Active App sessions</td><td>Up to 30 days of inactivity, or until you sign out</td></tr><tr><td>Password recovery link</td><td>1 hour</td></tr><tr><td>Email verification link</td><td>24 hours</td></tr><tr><td>Unverified accounts (email and password sign-up)</td><td>7 days; then they are deleted automatically</td></tr><tr><td>Technical logs with IP</td><td>14 days</td></tr><tr><td>Forecast cache</td><td>Hours</td></tr><tr><td>Last location on your device</td><td>Until you update it or clear local data</td></tr><tr><td>Payment records (Stripe)</td><td>As required by tax and accounting obligations</td></tr></table></div>
         <h2>7. Security</h2>
-        <p>
-          Communications with our servers are encrypted (HTTPS). Passwords are
-          stored as bcrypt hashes. App session credentials are stored encrypted
-          on your device. We limit access attempts to prevent abuse.
-        </p>
-
+        <p>Communications with our servers are encrypted (HTTPS). Passwords are stored as bcrypt hashes. App session credentials are stored encrypted on your device. We limit access attempts to prevent abuse.</p>
         <h2>8. Your rights and consent withdrawal</h2>
-        <p>
-          You can <strong>access</strong>, <strong>rectify</strong>,
-          <strong>delete</strong> or <strong>object</strong> to the processing
-          of your data, and <strong>withdraw your consent</strong>, by writing
-          to <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a> with:
-        </p>
-        <ul>
-          <li>Your name and the email linked to your account.</li>
-          <li>
-            The right you wish to exercise and a clear description of your
-            request.
-          </li>
-        </ul>
-        <p>
-          We will respond within the time limits set by law. If you believe your
-          rights have not been respected, you may contact Mexico's
-          <strong>Secretaría Anticorrupción y Buen Gobierno</strong>. If you
-          live in the European Union, you may also contact your country's data
-          protection authority.
-        </p>
-
+        <p>You can <strong>access</strong>, <strong>rectify</strong>, <strong>delete</strong> or <strong>object</strong> to the processing of your data, and <strong>withdraw your consent</strong>, by writing to <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a> with:</p>
+        <ul><li>Your name and the email linked to your account.</li><li>The right you wish to exercise and a clear description of your request.</li></ul>
+        <p>We will respond within the time limits set by law. If you believe your rights have not been respected, you may contact Mexico's <strong>Secretaría Anticorrupción y Buen Gobierno</strong>. If you live in the European Union, you may also contact your country's data protection authority.</p>
         <h2>9. Deleting your account</h2>
-        <ul>
-          <li>
-            <strong>In the App:</strong> Settings → Privacy → Delete account.
-          </li>
-          <li>
-            <strong>Without the App:</strong> follow the instructions on
-            <a href="eliminar-cuenta.html">Delete your account</a>.
-          </li>
-        </ul>
-        <p>
-          When you delete it, we erase your account data and close all your
-          sessions. Technical logs are automatically deleted within 14 days at
-          most.
-        </p>
-
+        <ul><li><strong>In the App:</strong> Settings → Privacy → Delete account.</li><li><strong>Without the App:</strong> follow the instructions on <a href="eliminar-cuenta.html">Delete your account</a>.</li></ul>
+        <p>When you delete it, we erase your account data and close all your sessions. Technical logs are automatically deleted within 14 days at most.</p>
         <h2>10. Minors</h2>
-        <p>
-          The App is intended for people
-          <strong>18 years of age or older</strong>. We do not knowingly collect
-          data from minors. If we detect a minor's account, we will delete it.
-        </p>
-
-        <h2>11. Changes to this notice</h2>
-        <p>
-          We will publish any changes on this page, stating the update date. If
-          a change materially affects how your data is processed, we will inform
-          you in the App.
-        </p>
+        <p>The App is intended for people <strong>18 years of age or older</strong>. We do not knowingly collect data from minors. If we detect a minor's account, we will delete it.</p>
+        <h2>11. Changes to this policy</h2>
+        <p>We will publish any changes on this page, stating the update date. If a change materially affects how your data is processed, we will inform you in the App.</p>
       </article>
+
+      <!-- ======================= PT ======================= -->
+      <article class="card" lang="pt">
+        <h2>1. Responsável</h2>
+        <p>A <strong>B1TMET Technologies</strong>, com domicílio em Copilco 300, Edificio 1, Depto. 104, Col. Copilco Universidad, Alcaldía Coyoacán, C.P. 04360, Ciudad de México, México, é responsável pelo tratamento dos dados pessoais coletados por meio do aplicativo B1TMET Pro (o «App»).</p>
+        <p>Contato para privacidade: <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a></p>
+        <h2>2. Dados pessoais que tratamos</h2>
+        <p>Não tratamos dados pessoais sensíveis.</p>
+        <div class="tbl"><table><tr><th>Dado</th><th>Quando é obtido</th></tr><tr><td>Nome de usuário e e-mail</td><td>Ao criar uma conta</td></tr><tr><td>Senha (guardamos apenas um hash irreversível)</td><td>Ao se cadastrar com e-mail e senha</td></tr><tr><td>Identificador do Google, nome e e-mail</td><td>Se você entrar com o Google</td></tr><tr><td>Localização precisa (coordenadas GPS)</td><td>Se você conceder a permissão de localização</td></tr><tr><td>Endereço IP</td><td>Em cada conexão com nossos servidores</td></tr><tr><td>Preferências do App (ordem das seções, unidades, idioma)</td><td>Ao usar o App</td></tr></table></div>
+        <p class="muted">A foto de perfil do Google é exibida apenas no seu dispositivo; não a armazenamos.</p>
+        <h2>3. Finalidades</h2>
+        <p>Todas as finalidades são <strong>necessárias</strong> para prestar o serviço que você solicita:</p>
+        <ul><li>Criar e gerenciar sua conta e iniciar sua sessão.</li><li>Gerar previsões meteorológicas para a sua localização.</li><li>Sincronizar suas preferências entre sessões.</li><li>Enviar o e-mail de verificação da sua conta quando você se cadastra.</li><li>Enviar o e-mail de recuperação de senha quando você solicitar.</li><li>Proteger o serviço contra abusos e acessos não autorizados.</li></ul>
+        <div class="note"><strong>Não</strong> usamos seus dados para publicidade, <strong>não</strong> os vendemos, <strong>não</strong> usamos ferramentas de análise nem de rastreamento e <strong>não</strong> usamos inteligência artificial para tratar seus dados.</div>
+        <h2>4. Localização</h2>
+        <p>A localização é usada apenas para calcular a previsão. É enviada ao nosso servidor, <strong>não é associada à sua conta</strong> e não é guardada em nenhum histórico: nos registros técnicos do servidor, as coordenadas são ocultadas. Para parte da previsão, nosso servidor consulta a OpenWeather com essas coordenadas; a OpenWeather não recebe seu IP nem os dados da sua conta.</p>
+        <p>No seu dispositivo fica guardada a última localização, para mostrar a previsão ao abrir o App. Você pode apagá-la em <strong>Configurações → Privacidade → Limpar dados locais</strong>.</p>
+        <p>Você pode negar ou revogar a permissão de localização a qualquer momento nas configurações do seu dispositivo; algumas funções deixarão de estar disponíveis.</p>
+        <h2>5. Com quem compartilhamos dados</h2>
+        <p>Apenas com fornecedores que nos ajudam a prestar o serviço:</p>
+        <div class="tbl"><table><tr><th>Fornecedor</th><th>Para quê</th><th>Dados</th></tr><tr><td>IONOS</td><td>Servidor do aplicativo</td><td>IP, solicitações técnicas</td></tr><tr><td>Hostinger</td><td>Banco de dados e e-mail</td><td>Dados da conta, e-mail</td></tr><tr><td>Google</td><td>Login com o Google (opcional)</td><td>O necessário para autenticar você</td></tr><tr><td>OpenWeather</td><td>Dados meteorológicos</td><td>Coordenadas, a partir do nosso servidor</td></tr><tr><td>OpenStreetMap Foundation</td><td>Mapas base</td><td>Seu IP, ao carregar os mapas</td></tr><tr><td>CARTO</td><td>Mapas base alternativos (se você escolher essa camada)</td><td>Seu IP, ao carregar os mapas</td></tr><tr><td>OpenTopoMap</td><td>Mapa topográfico (se você escolher essa camada)</td><td>Seu IP, ao carregar os mapas</td></tr><tr><td>Stripe</td><td>Pagamentos de cursos no nosso site</td><td>Dados de pagamento (não os armazenamos)</td></tr></table></div>
+        <p>Alguns desses fornecedores tratam dados fora do México. Não compartilhamos seus dados com mais ninguém, salvo quando uma autoridade competente o exigir nos termos da lei.</p>
+        <h2>6. Por quanto tempo os guardamos</h2>
+        <div class="tbl"><table><tr><th>Dado</th><th>Prazo</th></tr><tr><td>Dados da conta</td><td>Até você excluir sua conta</td></tr><tr><td>Sessões ativas do App</td><td>Até 30 dias sem uso, ou até você sair da conta</td></tr><tr><td>Link de recuperação de senha</td><td>1 hora</td></tr><tr><td>Link de verificação de e-mail</td><td>24 horas</td></tr><tr><td>Contas não verificadas (cadastro com e-mail e senha)</td><td>7 dias; depois são excluídas automaticamente</td></tr><tr><td>Registros técnicos com IP</td><td>14 dias</td></tr><tr><td>Cache de previsões</td><td>Horas</td></tr><tr><td>Última localização no seu dispositivo</td><td>Até você atualizá-la ou limpar os dados locais</td></tr><tr><td>Registros de pagamento (Stripe)</td><td>O que exigirem as obrigações fiscais e contábeis</td></tr></table></div>
+        <h2>7. Segurança</h2>
+        <p>As comunicações com nossos servidores são criptografadas (HTTPS). As senhas são armazenadas com hash bcrypt. As credenciais de sessão do App são armazenadas criptografadas no seu dispositivo. Limitamos as tentativas de acesso para evitar abusos.</p>
+        <h2>8. Seus direitos e revogação do consentimento</h2>
+        <p>Você pode <strong>acessar</strong> seus dados, <strong>retificá-los</strong>, <strong>cancelá-los</strong> ou <strong>se opor</strong> ao seu tratamento, bem como <strong>revogar seu consentimento</strong>, escrevendo para <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a> com:</p>
+        <ul><li>Seu nome e o e-mail associado à sua conta.</li><li>O direito que deseja exercer e uma descrição clara da sua solicitação.</li></ul>
+        <p>Responderemos nos prazos estabelecidos pela lei. Se você considerar que seus direitos não foram atendidos, pode recorrer à <strong>Secretaría Anticorrupción y Buen Gobierno</strong> do México. Se você reside na União Europeia, também pode recorrer à autoridade de proteção de dados do seu país.</p>
+        <h2>9. Excluir sua conta</h2>
+        <ul><li><strong>No App:</strong> Configurações → Privacidade → Excluir conta.</li><li><strong>Sem o App:</strong> seguindo as instruções em <a href="eliminar-cuenta.html">Excluir conta</a>.</li></ul>
+        <p>Ao excluí-la, apagamos os dados da sua conta e encerramos todas as suas sessões. Os registros técnicos são excluídos automaticamente em no máximo 14 dias.</p>
+        <h2>10. Menores de idade</h2>
+        <p>O App é destinado a pessoas com <strong>18 anos ou mais</strong>. Não coletamos intencionalmente dados de menores. Se detectarmos uma conta de um menor, ela será excluída.</p>
+        <h2>11. Alterações neste aviso</h2>
+        <p>Publicaremos qualquer alteração nesta página, indicando a data de atualização. Se uma alteração afetar de forma relevante o tratamento dos seus dados, informaremos você no App.</p>
+      </article>
+
+      <!-- ======================= FR ======================= -->
+      <article class="card" lang="fr">
+        <h2>1. Responsable du traitement</h2>
+        <p><strong>B1TMET Technologies</strong>, domiciliée à l'adresse suivante : Copilco 300, Edificio 1, Depto. 104, Col. Copilco Universidad, Alcaldía Coyoacán, C.P. 04360, Ciudad de México, México, est responsable du traitement des données personnelles collectées via l'application B1TMET Pro (l'« App »).</p>
+        <p>Contact confidentialité : <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a></p>
+        <h2>2. Données personnelles que nous traitons</h2>
+        <p>Nous ne traitons pas de données personnelles sensibles.</p>
+        <div class="tbl"><table><tr><th>Donnée</th><th>Quand elle est collectée</th></tr><tr><td>Nom d'utilisateur et adresse e-mail</td><td>Lors de la création d'un compte</td></tr><tr><td>Mot de passe (nous ne conservons qu'un hachage irréversible)</td><td>Lors de l'inscription avec e-mail et mot de passe</td></tr><tr><td>Identifiant Google, nom et e-mail</td><td>Si vous vous connectez avec Google</td></tr><tr><td>Position précise (coordonnées GPS)</td><td>Si vous accordez l'autorisation de localisation</td></tr><tr><td>Adresse IP</td><td>À chaque connexion à nos serveurs</td></tr><tr><td>Préférences de l'App (ordre des sections, unités, langue)</td><td>Lors de l'utilisation de l'App</td></tr></table></div>
+        <p class="muted">Votre photo de profil Google s'affiche uniquement sur votre appareil ; nous ne la conservons pas.</p>
+        <h2>3. Finalités</h2>
+        <p>Toutes les finalités sont <strong>nécessaires</strong> pour fournir le service que vous demandez :</p>
+        <ul><li>Créer et gérer votre compte et vous connecter.</li><li>Générer des prévisions météorologiques pour votre position.</li><li>Synchroniser vos préférences entre les sessions.</li><li>Vous envoyer l'e-mail de vérification de votre compte lors de l'inscription.</li><li>Vous envoyer l'e-mail de récupération du mot de passe lorsque vous le demandez.</li><li>Protéger le service contre les abus et les accès non autorisés.</li></ul>
+        <div class="note">Nous <strong>n'utilisons pas</strong> vos données à des fins publicitaires, nous <strong>ne les vendons pas</strong>, nous <strong>n'utilisons aucun</strong> outil d'analyse ni de suivi, et nous <strong>n'utilisons pas</strong> d'intelligence artificielle pour traiter vos données.</div>
+        <h2>4. Localisation</h2>
+        <p>La position sert uniquement à calculer les prévisions. Elle est envoyée à notre serveur, <strong>n'est pas associée à votre compte</strong> et n'est conservée dans aucun historique : dans les journaux techniques du serveur, les coordonnées sont masquées. Pour une partie des prévisions, notre serveur interroge OpenWeather avec ces coordonnées ; OpenWeather ne reçoit ni votre adresse IP ni les données de votre compte.</p>
+        <p>Votre appareil conserve la dernière position afin d'afficher les prévisions à l'ouverture de l'App. Vous pouvez l'effacer dans <strong>Paramètres → Confidentialité → Effacer les données locales</strong>.</p>
+        <p>Vous pouvez refuser ou retirer l'autorisation de localisation à tout moment dans les réglages de votre appareil ; certaines fonctions ne seront alors plus disponibles.</p>
+        <h2>5. Avec qui nous partageons des données</h2>
+        <p>Uniquement avec des prestataires qui nous aident à fournir le service :</p>
+        <div class="tbl"><table><tr><th>Prestataire</th><th>Finalité</th><th>Données</th></tr><tr><td>IONOS</td><td>Serveur de l'application</td><td>IP, requêtes techniques</td></tr><tr><td>Hostinger</td><td>Base de données et e-mail</td><td>Données du compte, e-mail</td></tr><tr><td>Google</td><td>Connexion avec Google (facultative)</td><td>Le nécessaire pour vous authentifier</td></tr><tr><td>OpenWeather</td><td>Données météorologiques</td><td>Coordonnées, depuis notre serveur</td></tr><tr><td>OpenStreetMap Foundation</td><td>Fonds de carte</td><td>Votre IP, lors du chargement des cartes</td></tr><tr><td>CARTO</td><td>Fonds de carte alternatifs (si vous choisissez cette couche)</td><td>Votre IP, lors du chargement des cartes</td></tr><tr><td>OpenTopoMap</td><td>Carte topographique (si vous choisissez cette couche)</td><td>Votre IP, lors du chargement des cartes</td></tr><tr><td>Stripe</td><td>Paiement des cours sur notre site web</td><td>Données de paiement (nous ne les conservons pas)</td></tr></table></div>
+        <p>Certains de ces prestataires traitent des données en dehors du Mexique. Nous ne partageons vos données avec personne d'autre, sauf si une autorité compétente l'exige conformément à la loi.</p>
+        <h2>6. Durée de conservation</h2>
+        <div class="tbl"><table><tr><th>Donnée</th><th>Durée</th></tr><tr><td>Données du compte</td><td>Jusqu'à la suppression de votre compte</td></tr><tr><td>Sessions actives de l'App</td><td>Jusqu'à 30 jours sans utilisation, ou jusqu'à la déconnexion</td></tr><tr><td>Lien de récupération du mot de passe</td><td>1 heure</td></tr><tr><td>Lien de vérification de l'e-mail</td><td>24 heures</td></tr><tr><td>Comptes non vérifiés (inscription avec e-mail et mot de passe)</td><td>7 jours ; ils sont ensuite supprimés automatiquement</td></tr><tr><td>Journaux techniques avec IP</td><td>14 jours</td></tr><tr><td>Cache des prévisions</td><td>Quelques heures</td></tr><tr><td>Dernière position sur votre appareil</td><td>Jusqu'à sa mise à jour ou l'effacement des données locales</td></tr><tr><td>Registres de paiement (Stripe)</td><td>Selon les obligations fiscales et comptables</td></tr></table></div>
+        <h2>7. Sécurité</h2>
+        <p>Les communications avec nos serveurs sont chiffrées (HTTPS). Les mots de passe sont conservés sous forme de hachage bcrypt. Les identifiants de session de l'App sont stockés chiffrés sur votre appareil. Nous limitons les tentatives de connexion pour prévenir les abus.</p>
+        <h2>8. Vos droits et retrait du consentement</h2>
+        <p>Vous pouvez <strong>accéder</strong> à vos données, les <strong>rectifier</strong>, les <strong>supprimer</strong> ou vous <strong>opposer</strong> à leur traitement, ainsi que <strong>retirer votre consentement</strong>, en écrivant à <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a> en indiquant :</p>
+        <ul><li>Votre nom et l'adresse e-mail associée à votre compte.</li><li>Le droit que vous souhaitez exercer et une description claire de votre demande.</li></ul>
+        <p>Nous répondrons dans les délais prévus par la loi. Si vous estimez que vos droits n'ont pas été respectés, vous pouvez vous adresser à la <strong>Secretaría Anticorrupción y Buen Gobierno</strong> du Mexique. Si vous résidez dans l'Union européenne, vous pouvez également saisir l'autorité de protection des données de votre pays.</p>
+        <h2>9. Supprimer votre compte</h2>
+        <ul><li><strong>Dans l'App :</strong> Paramètres → Confidentialité → Supprimer le compte.</li><li><strong>Sans l'App :</strong> en suivant les instructions de la page <a href="eliminar-cuenta.html">Supprimer le compte</a>.</li></ul>
+        <p>Lors de la suppression, nous effaçons les données de votre compte et fermons toutes vos sessions. Les journaux techniques sont supprimés automatiquement dans un délai maximal de 14 jours.</p>
+        <h2>10. Mineurs</h2>
+        <p>L'App est destinée aux personnes <strong>âgées de 18 ans ou plus</strong>. Nous ne collectons pas sciemment de données concernant des mineurs. Si nous détectons le compte d'un mineur, nous le supprimerons.</p>
+        <h2>11. Modifications de cette politique</h2>
+        <p>Nous publierons toute modification sur cette page en indiquant la date de mise à jour. Si une modification affecte de manière significative le traitement de vos données, nous vous en informerons dans l'App.</p>
+      </article>
+
+      <!-- ======================= IT ======================= -->
+      <article class="card" lang="it">
+        <h2>1. Titolare del trattamento</h2>
+        <p><strong>B1TMET Technologies</strong>, con sede in Copilco 300, Edificio 1, Depto. 104, Col. Copilco Universidad, Alcaldía Coyoacán, C.P. 04360, Ciudad de México, México, è titolare del trattamento dei dati personali raccolti tramite l'applicazione B1TMET Pro (l'«App»).</p>
+        <p>Contatto per la privacy: <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a></p>
+        <h2>2. Dati personali che trattiamo</h2>
+        <p>Non trattiamo dati personali sensibili.</p>
+        <div class="tbl"><table><tr><th>Dato</th><th>Quando viene raccolto</th></tr><tr><td>Nome utente e indirizzo e-mail</td><td>Alla creazione di un account</td></tr><tr><td>Password (conserviamo solo un hash irreversibile)</td><td>Alla registrazione con e-mail e password</td></tr><tr><td>Identificativo Google, nome ed e-mail</td><td>Se accedi con Google</td></tr><tr><td>Posizione precisa (coordinate GPS)</td><td>Se concedi l'autorizzazione alla posizione</td></tr><tr><td>Indirizzo IP</td><td>A ogni connessione ai nostri server</td></tr><tr><td>Preferenze dell'App (ordine delle sezioni, unità, lingua)</td><td>Durante l'uso dell'App</td></tr></table></div>
+        <p class="muted">La foto del profilo Google viene mostrata solo sul tuo dispositivo; non la conserviamo.</p>
+        <h2>3. Finalità</h2>
+        <p>Tutte le finalità sono <strong>necessarie</strong> per fornire il servizio che richiedi:</p>
+        <ul><li>Creare e gestire il tuo account ed effettuare l'accesso.</li><li>Generare previsioni meteorologiche per la tua posizione.</li><li>Sincronizzare le tue preferenze tra le sessioni.</li><li>Inviarti l'e-mail di verifica del tuo account al momento della registrazione.</li><li>Inviarti l'e-mail di recupero della password quando la richiedi.</li><li>Proteggere il servizio da abusi e accessi non autorizzati.</li></ul>
+        <div class="note"><strong>Non</strong> usiamo i tuoi dati per pubblicità, <strong>non</strong> li vendiamo, <strong>non</strong> usiamo strumenti di analisi o di tracciamento e <strong>non</strong> usiamo l'intelligenza artificiale per trattare i tuoi dati.</div>
+        <h2>4. Posizione</h2>
+        <p>La posizione viene usata solo per calcolare le previsioni. Viene inviata al nostro server, <strong>non è associata al tuo account</strong> e non viene conservata in alcuno storico: nei log tecnici del server le coordinate vengono oscurate. Per una parte delle previsioni, il nostro server interroga OpenWeather con queste coordinate; OpenWeather non riceve il tuo IP né i dati del tuo account.</p>
+        <p>Il tuo dispositivo conserva l'ultima posizione per mostrarti le previsioni all'apertura dell'App. Puoi cancellarla in <strong>Impostazioni → Privacy → Cancella dati locali</strong>.</p>
+        <p>Puoi negare o revocare l'autorizzazione alla posizione in qualsiasi momento dalle impostazioni del dispositivo; alcune funzioni non saranno più disponibili.</p>
+        <h2>5. Con chi condividiamo i dati</h2>
+        <p>Solo con fornitori che ci aiutano a prestare il servizio:</p>
+        <div class="tbl"><table><tr><th>Fornitore</th><th>A cosa serve</th><th>Dati</th></tr><tr><td>IONOS</td><td>Server dell'applicazione</td><td>IP, richieste tecniche</td></tr><tr><td>Hostinger</td><td>Database ed e-mail</td><td>Dati dell'account, e-mail</td></tr><tr><td>Google</td><td>Accesso con Google (facoltativo)</td><td>Il necessario per autenticarti</td></tr><tr><td>OpenWeather</td><td>Dati meteorologici</td><td>Coordinate, dal nostro server</td></tr><tr><td>OpenStreetMap Foundation</td><td>Mappe di base</td><td>Il tuo IP, al caricamento delle mappe</td></tr><tr><td>CARTO</td><td>Mappe di base alternative (se scegli quel livello)</td><td>Il tuo IP, al caricamento delle mappe</td></tr><tr><td>OpenTopoMap</td><td>Mappa topografica (se scegli quel livello)</td><td>Il tuo IP, al caricamento delle mappe</td></tr><tr><td>Stripe</td><td>Pagamenti dei corsi sul nostro sito web</td><td>Dati di pagamento (non li conserviamo)</td></tr></table></div>
+        <p>Alcuni di questi fornitori trattano dati al di fuori del Messico. Non condividiamo i tuoi dati con nessun altro, salvo quando lo richieda un'autorità competente ai sensi di legge.</p>
+        <h2>6. Per quanto tempo li conserviamo</h2>
+        <div class="tbl"><table><tr><th>Dato</th><th>Periodo</th></tr><tr><td>Dati dell'account</td><td>Finché non elimini il tuo account</td></tr><tr><td>Sessioni attive dell'App</td><td>Fino a 30 giorni di inattività, o fino al logout</td></tr><tr><td>Link di recupero della password</td><td>1 ora</td></tr><tr><td>Link di verifica dell'e-mail</td><td>24 ore</td></tr><tr><td>Account non verificati (registrazione con e-mail e password)</td><td>7 giorni; poi vengono eliminati automaticamente</td></tr><tr><td>Log tecnici con IP</td><td>14 giorni</td></tr><tr><td>Cache delle previsioni</td><td>Alcune ore</td></tr><tr><td>Ultima posizione sul tuo dispositivo</td><td>Finché non la aggiorni o cancelli i dati locali</td></tr><tr><td>Registrazioni dei pagamenti (Stripe)</td><td>Quanto richiesto dagli obblighi fiscali e contabili</td></tr></table></div>
+        <h2>7. Sicurezza</h2>
+        <p>Le comunicazioni con i nostri server sono cifrate (HTTPS). Le password sono conservate come hash bcrypt. Le credenziali di sessione dell'App sono memorizzate cifrate sul tuo dispositivo. Limitiamo i tentativi di accesso per prevenire abusi.</p>
+        <h2>8. I tuoi diritti e la revoca del consenso</h2>
+        <p>Puoi <strong>accedere</strong> ai tuoi dati, <strong>rettificarli</strong>, <strong>cancellarli</strong> od <strong>opporti</strong> al loro trattamento, nonché <strong>revocare il tuo consenso</strong>, scrivendo a <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a> indicando:</p>
+        <ul><li>Il tuo nome e l'e-mail associata al tuo account.</li><li>Il diritto che desideri esercitare e una descrizione chiara della tua richiesta.</li></ul>
+        <p>Risponderemo entro i termini previsti dalla legge. Se ritieni che i tuoi diritti non siano stati rispettati, puoi rivolgerti alla <strong>Secretaría Anticorrupción y Buen Gobierno</strong> del Messico. Se risiedi nell'Unione europea, puoi rivolgerti anche all'autorità per la protezione dei dati del tuo Paese.</p>
+        <h2>9. Eliminare il tuo account</h2>
+        <ul><li><strong>Nell'App:</strong> Impostazioni → Privacy → Elimina account.</li><li><strong>Senza l'App:</strong> seguendo le istruzioni nella pagina <a href="eliminar-cuenta.html">Elimina account</a>.</li></ul>
+        <p>Quando lo elimini, cancelliamo i dati del tuo account e chiudiamo tutte le tue sessioni. I log tecnici vengono eliminati automaticamente entro un massimo di 14 giorni.</p>
+        <h2>10. Minori</h2>
+        <p>L'App è destinata a persone di <strong>almeno 18 anni</strong>. Non raccogliamo consapevolmente dati di minori. Se rileviamo l'account di un minore, lo elimineremo.</p>
+        <h2>11. Modifiche alla presente informativa</h2>
+        <p>Pubblicheremo qualsiasi modifica in questa pagina, indicando la data di aggiornamento. Se una modifica incide in modo rilevante sul trattamento dei tuoi dati, te lo comunicheremo nell'App.</p>
+      </article>
+
+      <!-- ======================= NL ======================= -->
+      <article class="card" lang="nl">
+        <h2>1. Verwerkingsverantwoordelijke</h2>
+        <p><strong>B1TMET Technologies</strong>, gevestigd te Copilco 300, Edificio 1, Depto. 104, Col. Copilco Universidad, Alcaldía Coyoacán, C.P. 04360, Ciudad de México, México, is verantwoordelijk voor de verwerking van persoonsgegevens die worden verzameld via de applicatie B1TMET Pro (de "App").</p>
+        <p>Contact voor privacy: <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a></p>
+        <h2>2. Persoonsgegevens die we verwerken</h2>
+        <p>We verwerken geen gevoelige persoonsgegevens.</p>
+        <div class="tbl"><table><tr><th>Gegeven</th><th>Wanneer het wordt verzameld</th></tr><tr><td>Gebruikersnaam en e-mailadres</td><td>Bij het aanmaken van een account</td></tr><tr><td>Wachtwoord (we bewaren alleen een onomkeerbare hash)</td><td>Bij registratie met e-mail en wachtwoord</td></tr><tr><td>Google-ID, naam en e-mailadres</td><td>Als je inlogt met Google</td></tr><tr><td>Precieze locatie (gps-coördinaten)</td><td>Als je toestemming geeft voor locatie</td></tr><tr><td>IP-adres</td><td>Bij elke verbinding met onze servers</td></tr><tr><td>App-voorkeuren (volgorde van secties, eenheden, taal)</td><td>Tijdens het gebruik van de App</td></tr></table></div>
+        <p class="muted">Je Google-profielfoto wordt alleen op je apparaat getoond; we slaan hem niet op.</p>
+        <h2>3. Doeleinden</h2>
+        <p>Alle doeleinden zijn <strong>noodzakelijk</strong> om de dienst te leveren die je vraagt:</p>
+        <ul><li>Je account aanmaken en beheren en je laten inloggen.</li><li>Weersvoorspellingen maken voor je locatie.</li><li>Je voorkeuren synchroniseren tussen sessies.</li><li>Je bij registratie de verificatie-e-mail voor je account sturen.</li><li>Je de e-mail voor wachtwoordherstel sturen wanneer je daarom vraagt.</li><li>De dienst beschermen tegen misbruik en onbevoegde toegang.</li></ul>
+        <div class="note">We gebruiken je gegevens <strong>niet</strong> voor advertenties, we verkopen ze <strong>niet</strong>, we gebruiken <strong>geen</strong> analyse- of trackingtools en we gebruiken <strong>geen</strong> kunstmatige intelligentie om je gegevens te verwerken.</div>
+        <h2>4. Locatie</h2>
+        <p>Je locatie wordt alleen gebruikt om de voorspelling te berekenen. Ze wordt naar onze server gestuurd, <strong>wordt niet aan je account gekoppeld</strong> en wordt in geen enkele geschiedenis bewaard: in de technische logboeken van de server worden de coördinaten afgeschermd. Voor een deel van de voorspelling raadpleegt onze server OpenWeather met die coördinaten; OpenWeather ontvangt je IP-adres en accountgegevens niet.</p>
+        <p>Je apparaat bewaart de laatste locatie om de voorspelling te tonen wanneer je de App opent. Je kunt die wissen via <strong>Instellingen → Privacy → Lokale gegevens wissen</strong>.</p>
+        <p>Je kunt de locatietoestemming op elk moment weigeren of intrekken in de instellingen van je apparaat; sommige functies zijn dan niet meer beschikbaar.</p>
+        <h2>5. Met wie we gegevens delen</h2>
+        <p>Alleen met leveranciers die ons helpen de dienst te leveren:</p>
+        <div class="tbl"><table><tr><th>Leverancier</th><th>Waarvoor</th><th>Gegevens</th></tr><tr><td>IONOS</td><td>Applicatieserver</td><td>IP, technische verzoeken</td></tr><tr><td>Hostinger</td><td>Database en e-mail</td><td>Accountgegevens, e-mail</td></tr><tr><td>Google</td><td>Inloggen met Google (optioneel)</td><td>Wat nodig is om je te verifiëren</td></tr><tr><td>OpenWeather</td><td>Weergegevens</td><td>Coördinaten, vanaf onze server</td></tr><tr><td>OpenStreetMap Foundation</td><td>Basiskaarten</td><td>Je IP-adres, bij het laden van kaarten</td></tr><tr><td>CARTO</td><td>Alternatieve basiskaarten (als je die laag kiest)</td><td>Je IP-adres, bij het laden van kaarten</td></tr><tr><td>OpenTopoMap</td><td>Topografische kaart (als je die laag kiest)</td><td>Je IP-adres, bij het laden van kaarten</td></tr><tr><td>Stripe</td><td>Betalingen voor cursussen op onze website</td><td>Betaalgegevens (we slaan ze niet op)</td></tr></table></div>
+        <p>Sommige van deze leveranciers verwerken gegevens buiten Mexico. We delen je gegevens met niemand anders, tenzij een bevoegde autoriteit dat volgens de wet vereist.</p>
+        <h2>6. Hoe lang we ze bewaren</h2>
+        <div class="tbl"><table><tr><th>Gegeven</th><th>Termijn</th></tr><tr><td>Accountgegevens</td><td>Tot je je account verwijdert</td></tr><tr><td>Actieve App-sessies</td><td>Tot 30 dagen zonder gebruik, of tot je uitlogt</td></tr><tr><td>Link voor wachtwoordherstel</td><td>1 uur</td></tr><tr><td>Link voor e-mailverificatie</td><td>24 uur</td></tr><tr><td>Niet-geverifieerde accounts (registratie met e-mail en wachtwoord)</td><td>7 dagen; daarna worden ze automatisch verwijderd</td></tr><tr><td>Technische logboeken met IP</td><td>14 dagen</td></tr><tr><td>Cache van voorspellingen</td><td>Enkele uren</td></tr><tr><td>Laatste locatie op je apparaat</td><td>Tot je die bijwerkt of de lokale gegevens wist</td></tr><tr><td>Betalingsgegevens (Stripe)</td><td>Zolang fiscale en boekhoudkundige verplichtingen dat vereisen</td></tr></table></div>
+        <h2>7. Beveiliging</h2>
+        <p>De communicatie met onze servers is versleuteld (HTTPS). Wachtwoorden worden opgeslagen als bcrypt-hash. De sessiegegevens van de App worden versleuteld op je apparaat bewaard. We beperken het aantal inlogpogingen om misbruik te voorkomen.</p>
+        <h2>8. Je rechten en intrekking van toestemming</h2>
+        <p>Je kunt je gegevens <strong>inzien</strong>, laten <strong>corrigeren</strong> of <strong>verwijderen</strong>, <strong>bezwaar maken</strong> tegen de verwerking en je <strong>toestemming intrekken</strong> door te schrijven naar <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a> met:</p>
+        <ul><li>Je naam en het e-mailadres dat aan je account is gekoppeld.</li><li>Het recht dat je wilt uitoefenen en een duidelijke omschrijving van je verzoek.</li></ul>
+        <p>We antwoorden binnen de wettelijke termijnen. Als je vindt dat je rechten niet zijn gerespecteerd, kun je je wenden tot de Mexicaanse <strong>Secretaría Anticorrupción y Buen Gobierno</strong>. Als je in de Europese Unie woont, kun je ook terecht bij de gegevensbeschermingsautoriteit van je land.</p>
+        <h2>9. Je account verwijderen</h2>
+        <ul><li><strong>In de App:</strong> Instellingen → Privacy → Account verwijderen.</li><li><strong>Zonder de App:</strong> volg de instructies op <a href="eliminar-cuenta.html">Account verwijderen</a>.</li></ul>
+        <p>Als je je account verwijdert, wissen we je accountgegevens en sluiten we al je sessies. Technische logboeken worden binnen maximaal 14 dagen automatisch verwijderd.</p>
+        <h2>10. Minderjarigen</h2>
+        <p>De App is bedoeld voor personen van <strong>18 jaar of ouder</strong>. We verzamelen niet bewust gegevens van minderjarigen. Als we een account van een minderjarige ontdekken, verwijderen we het.</p>
+        <h2>11. Wijzigingen in dit beleid</h2>
+        <p>We publiceren elke wijziging op deze pagina met de datum van bijwerking. Als een wijziging de verwerking van je gegevens wezenlijk beïnvloedt, laten we je dat weten in de App.</p>
+      </article>
+
     </main>
 
     <footer class="foot">
       <picture>
-        <source
-          srcset="assets/logo-h-light.png"
-          media="(prefers-color-scheme: dark)"
-        />
+        <source srcset="assets/logo-h-light.png" media="(prefers-color-scheme: dark)" />
         <img class="foot-img" src="assets/logo-h-dark.png" alt="B1TMET" />
       </picture>
-      <!-- <p lang="es">
-        <a href="index.html">Aviso de privacidad</a> ·
-        <a href="eliminar-cuenta.html">Eliminar cuenta</a> ·
-        <a href="mailto:b1tmet@b1tmet.com">Contacto</a>
-      </p>
-      <p lang="en">
-        <a href="index.html">Privacy Notice</a> ·
-        <a href="eliminar-cuenta.html">Delete account</a> ·
-        <a href="mailto:b1tmet@b1tmet.com">Contact</a>
-      </p> -->
       <p lang="es">
         <a href="index.html">Aviso de privacidad</a> ·
         <a href="terminos.html">Términos de uso</a> ·
@@ -573,17 +309,40 @@
         <a href="mailto:b1tmet@b1tmet.com">Contact</a> ·
         <a href="https://b1tmet.com">About</a>
       </p>
-      <p lang="es" class="muted">
-        Los pronósticos de B1TMET Pro son orientativos y no sustituyen los
-        avisos oficiales de los servicios meteorológicos nacionales.
-        Mapas: © colaboradores de OpenStreetMap, © CARTO, © OpenTopoMap.
+      <p lang="pt">
+        <a href="index.html">Aviso de privacidade</a> ·
+        <a href="terminos.html">Termos de uso</a> ·
+        <a href="eliminar-cuenta.html">Excluir conta</a> ·
+        <a href="mailto:b1tmet@b1tmet.com">Contato</a> ·
+        <a href="https://b1tmet.com">Sobre</a>
       </p>
-      <p lang="en" class="muted">
-        B1TMET Pro forecasts are for guidance only and do not replace official
-        warnings from national weather services.
-        Maps: © OpenStreetMap contributors, © CARTO, © OpenTopoMap.
+      <p lang="fr">
+        <a href="index.html">Politique de confidentialité</a> ·
+        <a href="terminos.html">Conditions d'utilisation</a> ·
+        <a href="eliminar-cuenta.html">Supprimer le compte</a> ·
+        <a href="mailto:b1tmet@b1tmet.com">Contact</a> ·
+        <a href="https://b1tmet.com">À propos</a>
       </p>
-
+      <p lang="it">
+        <a href="index.html">Informativa sulla privacy</a> ·
+        <a href="terminos.html">Termini di utilizzo</a> ·
+        <a href="eliminar-cuenta.html">Elimina account</a> ·
+        <a href="mailto:b1tmet@b1tmet.com">Contatti</a> ·
+        <a href="https://b1tmet.com">Chi siamo</a>
+      </p>
+      <p lang="nl">
+        <a href="index.html">Privacybeleid</a> ·
+        <a href="terminos.html">Gebruiksvoorwaarden</a> ·
+        <a href="eliminar-cuenta.html">Account verwijderen</a> ·
+        <a href="mailto:b1tmet@b1tmet.com">Contact</a> ·
+        <a href="https://b1tmet.com">Over ons</a>
+      </p>
+      <p lang="es" class="muted">Los pronósticos de B1TMET Pro son orientativos y no sustituyen los avisos oficiales de los servicios meteorológicos nacionales. Mapas: © colaboradores de OpenStreetMap, © CARTO, © OpenTopoMap.</p>
+      <p lang="en" class="muted">B1TMET Pro forecasts are for guidance only and do not replace official warnings from national weather services. Maps: © OpenStreetMap contributors, © CARTO, © OpenTopoMap.</p>
+      <p lang="pt" class="muted">As previsões do B1TMET Pro são apenas orientativas e não substituem os avisos oficiais dos serviços meteorológicos nacionais. Mapas: © colaboradores do OpenStreetMap, © CARTO, © OpenTopoMap.</p>
+      <p lang="fr" class="muted">Les prévisions de B1TMET Pro sont fournies à titre indicatif et ne remplacent pas les alertes officielles des services météorologiques nationaux. Cartes : © contributeurs d'OpenStreetMap, © CARTO, © OpenTopoMap.</p>
+      <p lang="it" class="muted">Le previsioni di B1TMET Pro sono indicative e non sostituiscono gli avvisi ufficiali dei servizi meteorologici nazionali. Mappe: © collaboratori di OpenStreetMap, © CARTO, © OpenTopoMap.</p>
+      <p lang="nl" class="muted">De voorspellingen van B1TMET Pro zijn indicatief en vervangen geen officiële waarschuwingen van nationale weerdiensten. Kaarten: © OpenStreetMap-bijdragers, © CARTO, © OpenTopoMap.</p>
       <div>© 2026 B1TMET Technologies</div>
     </footer>
 

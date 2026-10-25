@@ -9,7 +9,7 @@
       var l = b.getAttribute('data-set');
       document.documentElement.setAttribute('data-lang', l);
       document.documentElement.lang = l;
-      localStorage.setItem('b1t-lang', l);
+      try { localStorage.setItem('b1t-lang', l); } catch (e) {}
       mark();
     });
   });

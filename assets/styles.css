@@ -37,14 +37,18 @@ body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif
 }
 
-/* Idiomas */
+/* Idiomas: solo se muestra el bloque del idioma activo */
 body [lang] {
-  display: block
+  display: none
 }
 
-html[data-lang="es"] body [lang="en"],
-html[data-lang="en"] body [lang="es"] {
-  display: none !important
+html[data-lang="es"] body [lang="es"],
+html[data-lang="en"] body [lang="en"],
+html[data-lang="pt"] body [lang="pt"],
+html[data-lang="fr"] body [lang="fr"],
+html[data-lang="it"] body [lang="it"],
+html[data-lang="nl"] body [lang="nl"] {
+  display: block
 }
 
 /* Logo tintable (el PNG actúa como máscara, igual que en la app) */
@@ -80,6 +84,8 @@ html[data-lang="en"] body [lang="es"] {
   max-width: 880px;
   margin: 0 auto;
   display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
   align-items: center;
   justify-content: space-between
 }
@@ -109,6 +115,7 @@ html[data-lang="en"] body [lang="es"] {
 
 .langs {
   display: flex;
+  flex-wrap: wrap;
   gap: 6px
 }
 
@@ -117,7 +124,7 @@ html[data-lang="en"] body [lang="es"] {
   color: #fff;
   border: 1px solid rgba(255, 255, 255, .3);
   border-radius: 999px;
-  padding: 5px 14px;
+  padding: 5px 11px;
   cursor: pointer;
   font: inherit;
   font-weight: 600;
