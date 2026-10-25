@@ -113,27 +113,58 @@ html[data-lang="nl"] body [lang="nl"] {
   font-size: 1rem
 }
 
-.langs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px
-}
-
-.langs button {
+.langsel {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   background: rgba(255, 255, 255, .12);
-  color: #fff;
   border: 1px solid rgba(255, 255, 255, .3);
   border-radius: 999px;
-  padding: 5px 11px;
-  cursor: pointer;
-  font: inherit;
-  font-weight: 600;
-  font-size: .85rem
+  padding: 0 12px;
+  color: #fff;
+  cursor: pointer
 }
 
-.langs button.on {
-  background: #fff;
-  color: var(--dark)
+.langsel svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  flex: none
+}
+
+.langsel::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  pointer-events: none
+}
+
+.langsel select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  font-size: .9rem;
+  padding: 7px 4px;
+  cursor: pointer;
+  outline: none
+}
+
+.langsel select option {
+  color: #17062b
+}
+
+.langsel:focus-within {
+  border-color: #fff
 }
 
 .title {
