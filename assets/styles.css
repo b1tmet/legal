@@ -348,3 +348,24 @@ pre.code code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 details.faq{border-bottom:1px solid var(--border);padding:10px 0}
 details.faq summary{cursor:pointer;font-weight:600}
 details.faq p{margin:8px 0 0}
+
+/* ===== Documentación de la API ===== */
+.docs{display:grid;grid-template-columns:220px minmax(0,1fr);gap:28px;align-items:start}
+.toc{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto;border-right:1px solid var(--border);padding-right:14px;font-size:.9rem}
+.toc ol{margin:6px 0 0;padding-left:18px}
+.toc ol ol{margin:2px 0 4px}
+.toc li{margin:3px 0}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+.doc{min-width:0}
+.doc h2,.doc h3{scroll-margin-top:16px}
+.doc h3{font-size:1rem;margin:24px 0 8px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.method{display:inline-block;font-size:.75rem;font-weight:700;background:var(--primary);color:#fff;border-radius:6px;padding:2px 8px;margin-right:8px;vertical-align:middle}
+.doc code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em}
+.tabs{margin:12px 0}
+.tab-btns{display:flex;gap:4px}
+.tab-btns button{font:inherit;font-size:.85rem;padding:6px 12px;border:1px solid var(--border);border-bottom:0;border-radius:8px 8px 0 0;background:var(--row);color:var(--text);cursor:pointer}
+.tab-btns button.active{background:#17062b;color:#edeef4;border-color:#17062b}
+.tabs [data-panel]{display:none;margin-top:0;border-top-left-radius:0}
+.tabs [data-panel].active{display:block}
+@media (max-width:900px){.docs{grid-template-columns:1fr}.toc{position:static;max-height:none;border-right:0;border-bottom:1px solid var(--border);padding:0 0 12px}}
