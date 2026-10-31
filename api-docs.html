@@ -14,6 +14,8 @@
         try { l = new URLSearchParams(location.search).get("lang"); } catch (e) {}
         if (S.indexOf(l) >= 0) { try { localStorage.setItem("b1t-lang", l); } catch (e) {} }
         else { try { l = localStorage.getItem("b1t-lang"); } catch (e) {} }
+        // pt/fr/it/nl elegidos en otra página: la documentación solo está en ES/EN
+        if (l && S.indexOf(l) < 0) l = "en";        
         if (S.indexOf(l) < 0) {
           l = "en";
           var list = navigator.languages || [navigator.language || "en"];
