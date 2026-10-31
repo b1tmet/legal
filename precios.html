@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="es" data-lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Precios de la API · API Pricing — B1TMET</title>
+    <meta name="description" content="Planes y precios de la API de pronóstico B1TMET / B1TMET Forecast API plans and pricing" />
+    <meta name="theme-color" content="#17062b" />
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script>
+      (function () {
+        var S = ["es", "en", "pt", "fr", "it", "nl"], l = null;
+        try { l = new URLSearchParams(location.search).get("lang"); } catch (e) {}
+        if (S.indexOf(l) >= 0) { try { localStorage.setItem("b1t-lang", l); } catch (e) {} }
+        else { try { l = localStorage.getItem("b1t-lang"); } catch (e) {} }
+        if (S.indexOf(l) < 0) {
+          l = "en";
+          var list = navigator.languages || [navigator.language || "en"];
+          for (var i = 0; i < list.length; i++) {
+            var c = String(list[i] || "").slice(0, 2).toLowerCase();
+            if (S.indexOf(c) >= 0) { l = c; break; }
+          }
+        }
+        document.documentElement.setAttribute("data-lang", l);
+        document.documentElement.lang = l;
+      })();
+    </script>
+  </head>
+  <body class="wide">
+    <header class="hero">
+      <span class="logo mark" aria-hidden="true"></span>
+      <div class="bar">
+        <a class="brand" href="index.html"><img class="brand-img" src="assets/logo-h-light.png" alt="B1TMET" /><small>API</small></a>
+        <label class="langsel">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9s1.3-6.3 3.8-9z"/></svg>
+          <select id="langsel" aria-label="Idioma / Language">
+            <option value="es">Español</option>
+            <option value="en">English</option>
+            <option value="pt">Português</option>
+            <option value="fr">Français</option>
+            <option value="it">Italiano</option>
+            <option value="nl">Nederlands</option>
+          </select>
+        </label>
+      </div>
+      <div class="title">
+        <h1 lang="es">API de pronóstico</h1>
+        <h1 lang="en">Forecast API</h1>
+        <h1 lang="pt">API de previsão</h1>
+        <h1 lang="fr">API de prévision</h1>
+        <h1 lang="it">API di previsione</h1>
+        <h1 lang="nl">Weersvoorspellings-API</h1>
+        <p lang="es">Planes y precios</p>
+        <p lang="en">Plans and pricing</p>
+        <p lang="pt">Planos e preços</p>
+        <p lang="fr">Offres et tarifs</p>
+        <p lang="it">Piani e prezzi</p>
+        <p lang="nl">Abonnementen en prijzen</p>
+      </div>
+      <svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,40 C240,80 480,0 720,30 C960,60 1200,10 1440,35 L1440,70 L0,70 Z" fill="var(--bg)" />
+      </svg>
+    </header>
+
+    <main>
+      <!-- ======================= ES ======================= -->
+      <article class="card" lang="es">
+        <h2>Planes</h2>
+        <p class="lead">Pronóstico numérico WRF de alta resolución para el Caribe y Centroamérica, en JSON. Se consume desde cualquier lenguaje, servidor o navegador.</p>
+        <div class="plans">
+          <div class="plan">
+            <h3>Free</h3>
+            <div class="price">0 <small>USD/mes</small></div>
+            <ul><li>500 peticiones/día</li><li>10 peticiones/minuto</li><li>Pronóstico hasta 24 h</li><li>Resolución d01 (9–27 km)</li><li>Solo evaluación, sin uso comercial</li><li>Clave de 30 días, renovable</li></ul>
+            <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=B1TMET%20API%20Free">Solicitar clave</a>
+          </div>
+          <div class="plan">
+            <h3>Starter</h3>
+            <div class="price">19 <small>USD/mes</small></div>
+            <ul><li>5 000 peticiones/día</li><li>30 peticiones/minuto</li><li>Pronóstico hasta 72 h</li><li>Todas las resoluciones (hasta 3 km)</li><li>Uso comercial</li><li>2 claves · soporte por email</li></ul>
+            <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=B1TMET%20API%20Starter">Contratar</a>
+          </div>
+          <div class="plan featured">
+            <span class="tag">Recomendado</span>
+            <h3>Pro</h3>
+            <div class="price">79 <small>USD/mes</small></div>
+            <ul><li>20 000 peticiones/día</li><li>60 peticiones/minuto</li><li>Pronóstico hasta 72 h</li><li>Todas las resoluciones (hasta 3 km)</li><li>Uso comercial</li><li>5 claves · soporte prioritario</li></ul>
+            <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=B1TMET%20API%20Pro">Contratar</a>
+          </div>
+          <div class="plan">
+            <h3>Enterprise</h3>
+            <div class="price"><small>Desde</small> 199 <small>USD/mes</small></div>
+            <ul><li>Volumen y límites a medida</li><li>Pronóstico hasta 72 h</li><li>Todas las resoluciones (hasta 3 km)</li><li>Uso comercial</li><li>Hasta 20 claves</li><li>Acuerdo de soporte</li></ul>
+            <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=B1TMET%20API%20Enterprise">Contactar</a>
+          </div>
+        </div>
+        <p class="muted">Precios en USD/mes. Cuenta como petición cada llamada que devuelve datos o que indica coordenadas fuera del dominio. Los errores de la petición y los límites superados no cuentan.</p>
+
+        <h2>Variables</h2>
+        <p>Todos los planes incluyen las mismas variables, cada 3 horas: temperatura y humedad relativa a 2 m, presión en superficie y a nivel del mar, velocidad y dirección del viento a 10 m, precipitación en 3 h y sensación térmica. En unidades métricas o imperiales.</p>
+
+        <h2>Cobertura</h2>
+        <div class="tbl"><table><tr><th>Dominio</th><th>d01</th><th>d02</th><th>d03</th></tr><tr><td>Caribe</td><td>9 km</td><td>—</td><td>—</td></tr><tr><td>México</td><td>25 km</td><td>5 km</td><td>—</td></tr><tr><td>Panamá</td><td>27 km</td><td>9 km</td><td>3 km</td></tr><tr><td>Centroamérica</td><td>27 km</td><td>9 km</td><td>—</td></tr><tr><td>Cuba</td><td>27 km</td><td>9 km</td><td>—</td></tr><tr><td>Dominica</td><td>27 km</td><td>9 km</td><td>—</td></tr><tr><td>República Dominicana</td><td>27 km</td><td>9 km</td><td>—</td></tr></table></div>
+        <p class="muted">El plan Free incluye solo la columna d01. Si no indicas dominio, la API elige el más adecuado para tu punto.</p>
+
+        <h2>Ejemplo</h2>
+        <p>Pronóstico de 24 horas para un punto:</p>
+<pre class="code"><code>curl "https://thredds.b1tmet.com/v1/forecast/point?lat=23.13&amp;lon=-82.38&amp;hours=24" \
+  -H "Authorization: Bearer b1t_live_TU_CLAVE"</code></pre>
+        <p>Respuesta (resumida):</p>
+<pre class="code"><code>{
+  "model": { "domain": "cuba", "grid": "d02", "resolution_km": 9,
+             "run_init": "2026-10-31T00:00:00Z" },
+  "data": [
+    { "time": "2026-10-31T03:00:00Z",
+      "temperature_2m": 24.6, "relative_humidity_2m": 91.4,
+      "wind_speed_10m": 0.8, "wind_direction_10m": 120,
+      "precipitation_3h": 0, "apparent_temperature": 24.8 }
+  ]
+}</code></pre>
+        <p class="muted">La clave también se puede enviar como parámetro <code>?apikey=</code>. La documentación completa estará disponible próximamente.</p>
+
+        <h2>Preguntas frecuentes</h2>
+        <details class="faq"><summary>¿Qué cuenta como petición?</summary><p>Cada llamada a <code>/v1/forecast/point</code>, <code>/v1/domains</code> o <code>/v1/domains/{dominio}/runs</code> que responde con datos o con coordenadas fuera del dominio. <code>/v1/usage</code> y <code>/v1/status</code> no cuentan.</p></details>
+        <details class="faq"><summary>¿Cuándo se reinician las cuotas?</summary><p>La cuota diaria, a las 00:00 UTC. La de por minuto, al empezar cada minuto.</p></details>
+        <details class="faq"><summary>¿Qué pasa si supero el límite?</summary><p>La API responde con el código 429 y la cabecera <code>Retry-After</code>, que indica cuántos segundos esperar. No se cobra nada extra.</p></details>
+        <details class="faq"><summary>¿Con qué frecuencia se actualiza el pronóstico?</summary><p>El modelo se ejecuta cuatro veces al día (00, 06, 12 y 18 UTC). Cada respuesta indica la corrida usada en <code>run_init</code>.</p></details>
+        <details class="faq"><summary>¿Puedo usarla desde un navegador?</summary><p>Sí, la API admite peticiones desde cualquier origen. Ten en cuenta que una clave incluida en una web es visible para cualquiera: si se filtra, la revocamos y te damos otra.</p></details>
+        <details class="faq"><summary>¿Puedo usar el plan Free en un producto comercial?</summary><p>No. Free es para evaluación. Para uso comercial necesitas Starter o un plan superior.</p></details>
+        <details class="faq"><summary>¿Cómo contrato un plan?</summary><p>Escríbenos desde el botón del plan. Te enviaremos el enlace de pago (procesado por Stripe) y, una vez confirmado, tu clave.</p></details>
+        <details class="faq"><summary>¿Puedo cancelar?</summary><p>Sí. La suscripción es mensual y puedes cancelarla cuando quieras; tu clave sigue activa hasta el final del periodo pagado.</p></details>
+
+        <div class="note">Los pronósticos son orientativos y no sustituyen los avisos oficiales de los servicios meteorológicos nacionales. El uso de la API está sujeto a los <a href="terminos-api.html">Términos de la API</a>.</div>
+      </article>
+
+      <!-- ======================= EN ======================= -->
+      <article class="card" lang="en">
+        <h2>Plans</h2>
+        <p class="lead">High-resolution WRF numerical forecasts for the Caribbean and Central America, in JSON. Use it from any language, server or browser.</p>
+        <div class="plans">
+          <div class="plan">
+            <h3>Free</h3>
+            <div class="price">0 <small>USD/month</small></div>
+            <ul><li>500 requests/day</li><li>10 requests/minute</li><li>Forecast up to 24 h</li><li>d01 resolution (9–27 km)</li><li>Evaluation only, no commercial use</li><li>30-day key, renewable</li></ul>
+            <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=B1TMET%20API%20Free">Request key</a>
+          </div>
+          <div class="plan">
+            <h3>Starter</h3>
+            <div class="price">19 <small>USD/month</small></div>
+            <ul><li>5,000 requests/day</li><li>30 requests/minute</li><li>Forecast up to 72 h</li><li>All resolutions (down to 3 km)</li><li>Commercial use</li><li>2 keys · email support</li></ul>
+            <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=B1TMET%20API%20Starter">Subscribe</a>
+          </div>
+          <div class="plan featured">
+            <span class="tag">Recommended</span>
+            <h3>Pro</h3>
+            <div class="price">79 <small>USD/month</small></div>
+            <ul><li>20,000 requests/day</li><li>60 requests/minute</li><li>Forecast up to 72 h</li><li>All resolutions (down to 3 km)</li><li>Commercial use</li><li>5 keys · priority support</li></ul>
+            <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=B1TMET%20API%20Pro">Subscribe</a>
+          </div>
+          <div class="plan">
+            <h3>Enterprise</h3>
+            <div class="price"><small>From</small> 199 <small>USD/month</small></div>
+            <ul><li>Custom volume and limits</li><li>Forecast up to 72 h</li><li>All resolutions (down to 3 km)</li><li>Commercial use</li><li>Up to 20 keys</li><li>Support agreement</li></ul>
+            <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=B1TMET%20API%20Enterprise">Contact us</a>
+          </div>
+        </div>
+        <p class="muted">Prices in USD/month. A request is any call that returns data or reports coordinates outside the domain. Request errors and exceeded limits are not counted.</p>
+
+        <h2>Variables</h2>
+        <p>All plans include the same variables, every 3 hours: 2 m temperature and relative humidity, surface and mean sea level pressure, 10 m wind speed and direction, 3 h precipitation and apparent temperature. In metric or imperial units.</p>
+
+        <h2>Coverage</h2>
+        <div class="tbl"><table><tr><th>Domain</th><th>d01</th><th>d02</th><th>d03</th></tr><tr><td>Caribbean</td><td>9 km</td><td>—</td><td>—</td></tr><tr><td>Mexico</td><td>25 km</td><td>5 km</td><td>—</td></tr><tr><td>Panama</td><td>27 km</td><td>9 km</td><td>3 km</td></tr><tr><td>Central America</td><td>27 km</td><td>9 km</td><td>—</td></tr><tr><td>Cuba</td><td>27 km</td><td>9 km</td><td>—</td></tr><tr><td>Dominica</td><td>27 km</td><td>9 km</td><td>—</td></tr><tr><td>Dominican Republic</td><td>27 km</td><td>9 km</td><td>—</td></tr></table></div>
+        <p class="muted">The Free plan includes the d01 column only. If you don't specify a domain, the API picks the most suitable one for your point.</p>
+
+        <h2>Example</h2>
+        <p>24-hour forecast for a point:</p>
+<pre class="code"><code>curl "https://thredds.b1tmet.com/v1/forecast/point?lat=23.13&amp;lon=-82.38&amp;hours=24" \
+  -H "Authorization: Bearer b1t_live_YOUR_KEY"</code></pre>
+        <p>Response (abridged):</p>
+<pre class="code"><code>{
+  "model": { "domain": "cuba", "grid": "d02", "resolution_km": 9,
+             "run_init": "2026-10-31T00:00:00Z" },
+  "data": [
+    { "time": "2026-10-31T03:00:00Z",
+      "temperature_2m": 24.6, "relative_humidity_2m": 91.4,
+      "wind_speed_10m": 0.8, "wind_direction_10m": 120,
+      "precipitation_3h": 0, "apparent_temperature": 24.8 }
+  ]
+}</code></pre>
+        <p class="muted">The key can also be sent as the <code>?apikey=</code> parameter. Full documentation coming soon.</p>
+
+        <h2>FAQ</h2>
+        <details class="faq"><summary>What counts as a request?</summary><p>Every call to <code>/v1/forecast/point</code>, <code>/v1/domains</code> or <code>/v1/domains/{domain}/runs</code> that returns data or reports coordinates outside the domain. <code>/v1/usage</code> and <code>/v1/status</code> are not counted.</p></details>
+        <details class="faq"><summary>When do quotas reset?</summary><p>The daily quota at 00:00 UTC. The per-minute limit at the start of each minute.</p></details>
+        <details class="faq"><summary>What happens if I exceed the limit?</summary><p>The API returns status 429 with a <code>Retry-After</code> header telling you how many seconds to wait. There are no extra charges.</p></details>
+        <details class="faq"><summary>How often is the forecast updated?</summary><p>The model runs four times a day (00, 06, 12 and 18 UTC). Each response shows the run used in <code>run_init</code>.</p></details>
+        <details class="faq"><summary>Can I use it from a browser?</summary><p>Yes, the API accepts requests from any origin. Keep in mind that a key embedded in a website is visible to anyone: if it leaks, we revoke it and issue a new one.</p></details>
+        <details class="faq"><summary>Can I use the Free plan in a commercial product?</summary><p>No. Free is for evaluation. Commercial use requires Starter or a higher plan.</p></details>
+        <details class="faq"><summary>How do I subscribe?</summary><p>Write to us using the plan's button. We will send you the payment link (processed by Stripe) and, once confirmed, your key.</p></details>
+        <details class="faq"><summary>Can I cancel?</summary><p>Yes. The subscription is monthly and you can cancel at any time; your key stays active until the end of the paid period.</p></details>
+
+        <div class="note">Forecasts are for guidance only and do not replace official warnings from national weather services. Use of the API is subject to the <a href="terminos-api.html">API Terms</a>.</div>
+      </article>
+
+      <!-- ======================= PT ======================= -->
+      <article class="card" lang="pt">
+        <h2>Planos</h2>
+        <p class="lead">Previsão numérica WRF de alta resolução para o Caribe e a América Central, em JSON. Use a partir de qualquer linguagem, servidor ou navegador.</p>
+        <div class="plans">
+          <div class="plan">
+            <h3>Free</h3>
+            <div class="price">0 <small>USD/mês</small></div>
+            <ul><li>500 requisições/dia</li><li>10 requisições/minuto</li><li>Previsão de até 24 h</li><li>Resolução d01 (9–27 km)</li><li>Somente avaliação, sem uso comercial</li><li>Chave de 30 dias, renovável</li></ul>
+            <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=B1TMET%20API%20Free">Solicitar chave</a>
+          </div>
+          <div class="plan">
+            <h3>Starter</h3>
+            <div class="price">19 <small>USD/mês</small></div>
+            <ul><li>5.000 requisições/dia</li><li>30 requisições/minuto</li><li>Previsão de até 72 h</li><li>Todas as resoluções (até 3 km)</li><li>Uso comercial</li><li>2 chaves · suporte por e-mail</li></ul>
+            <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=B1TMET%20API%20Starter">Assinar</a>
+          </div>
+          <div class="plan featured">
+            <span class="tag">Recomendado</span>
+            <h3>Pro</h3>
+            <div class="price">79 <small>USD/mês</small></div>
+            <ul><li>20.000 requisições/dia</li><li>60 requisições/minuto</li><li>Previsão de até 72 h</li><li>Todas as resoluções (até 3 km)</li><li>Uso comercial</li><li>5 chaves · suporte prioritário</li></ul>
+            <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=B1TMET%20API%20Pro">Assinar</a>
+          </div>
+          <div class="plan">
+            <h3>Enterprise</h3>
+            <div class="price"><small>A partir de</small> 199 <small>USD/mês</small></div>
+            <ul><li>Volume e limites sob medida</li><li>Previsão de até 72 h</li><li>Todas as resoluções (até 3 km)</li><li>Uso comercial</li><li>Até 20 chaves</li><li>Acordo de suporte</li></ul>
+            <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=B1TMET%20API%20Enterprise">Fale conosco</a>
+          </div>
+        </div>
+        <p class="muted">Preços em USD/mês. Conta como requisição cada chamada que retorna dados ou que indica coordenadas fora do domínio. Erros de requisição e limites excedidos não contam.</p>
+
+        <h2>Variáveis</h2>
+        <p>Todos os planos incluem as mesmas variáveis, a cada 3 horas: temperatura e umidade relativa a 2 m, pressão na superfície e ao nível do mar, velocidade e direção do vento a 10 m, precipitação em 3 h e sensação térmica. Em unidades métricas ou imperiais.</p>
+
+        <h2>Cobertura</h2>
+        <div class="tbl"><table><tr><th>Domínio</th><th>d01</th><th>d02</th><th>d03</th></tr><tr><td>Caribe</td><td>9 km</td><td>—</td><td>—</td></tr><tr><td>México</td><td>25 km</td><td>5 km</td><td>—</td></tr><tr><td>Panamá</td><td>27 km</td><td>9 km</td><td>3 km</td></tr><tr><td>América Central</td><td>27 km</td><td>9 km</td><td>—</td></tr><tr><td>Cuba</td><td>27 km</td><td>9 km</td><td>—</td></tr><tr><td>Dominica</td><td>27 km</td><td>9 km</td><td>—</td></tr><tr><td>República Dominicana</td><td>27 km</td><td>9 km</td><td>—</td></tr></table></div>
+        <p class="muted">O plano Free inclui apenas a coluna d01. Se você não indicar um domínio, a API escolhe o mais adequado para o seu ponto.</p>
+
+        <h2>Exemplo</h2>
+        <p>Previsão de 24 horas para um ponto:</p>
+<pre class="code"><code>curl "https://thredds.b1tmet.com/v1/forecast/point?lat=23.13&amp;lon=-82.38&amp;hours=24" \
+  -H "Authorization: Bearer b1t_live_SUA_CHAVE"</code></pre>
+        <p>Resposta (resumida):</p>
+<pre class="code"><code>{
+  "model": { "domain": "cuba", "grid": "d02", "resolution_km": 9,
+             "run_init": "2026-10-31T00:00:00Z" },
+  "data": [
+    { "time": "2026-10-31T03:00:00Z",
+      "temperature_2m": 24.6, "relative_humidity_2m": 91.4,
+      "wind_speed_10m": 0.8, "wind_direction_10m": 120,
+      "precipitation_3h": 0, "apparent_temperature": 24.8 }
+  ]
+}</code></pre>
+        <p class="muted">A chave também pode ser enviada como parâmetro <code>?apikey=</code>. A documentação completa estará disponível em breve.</p>
+
+        <h2>Perguntas frequentes</h2>
+        <details class="faq"><summary>O que conta como requisição?</summary><p>Cada chamada a <code>/v1/forecast/point</code>, <code>/v1/domains</code> ou <code>/v1/domains/{domínio}/runs</code> que retorna dados ou coordenadas fora do domínio. <code>/v1/usage</code> e <code>/v1/status</code> não contam.</p></details>
+        <details class="faq"><summary>Quando as cotas são reiniciadas?</summary><p>A cota diária, às 00:00 UTC. A cota por minuto, no início de cada minuto.</p></details>
+        <details class="faq"><summary>O que acontece se eu ultrapassar o limite?</summary><p>A API responde com o código 429 e o cabeçalho <code>Retry-After</code>, que indica quantos segundos esperar. Não há cobrança extra.</p></details>
+        <details class="faq"><summary>Com que frequência a previsão é atualizada?</summary><p>O modelo é executado quatro vezes por dia (00, 06, 12 e 18 UTC). Cada resposta indica a rodada usada em <code>run_init</code>.</p></details>
+        <details class="faq"><summary>Posso usá-la a partir de um navegador?</summary><p>Sim, a API aceita requisições de qualquer origem. Lembre-se de que uma chave incluída em um site fica visível para qualquer pessoa: se ela vazar, nós a revogamos e enviamos outra.</p></details>
+        <details class="faq"><summary>Posso usar o plano Free em um produto comercial?</summary><p>Não. O Free é para avaliação. Para uso comercial é necessário o Starter ou um plano superior.</p></details>
+        <details class="faq"><summary>Como contrato um plano?</summary><p>Escreva para nós pelo botão do plano. Enviaremos o link de pagamento (processado pela Stripe) e, após a confirmação, a sua chave.</p></details>
+        <details class="faq"><summary>Posso cancelar?</summary><p>Sim. A assinatura é mensal e você pode cancelá-la quando quiser; sua chave continua ativa até o fim do período pago.</p></details>
+
+        <div class="note">As previsões são apenas orientativas e não substituem os avisos oficiais dos serviços meteorológicos nacionais. O uso da API está sujeito aos <a href="terminos-api.html">Termos da API</a>.</div>
+      </article>
+
+      <!-- ======================= FR ======================= -->
+      <article class="card" lang="fr">
+        <h2>Offres</h2>
+        <p class="lead">Prévisions numériques WRF à haute résolution pour les Caraïbes et l'Amérique centrale, en JSON. Utilisable depuis n'importe quel langage, serveur ou navigateur.</p>
+        <div class="plans">
+          <div class="plan">
+            <h3>Free</h3>
+            <div class="price">0 <small>USD/mois</small></div>
+            <ul><li>500 requêtes/jour</li><li>10 requêtes/minute</li><li>Prévision jusqu'à 24 h</li><li>Résolution d01 (9–27 km)</li><li>Évaluation uniquement, sans usage commercial</li><li>Clé de 30 jours, renouvelable</li></ul>
+            <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=B1TMET%20API%20Free">Demander une clé</a>
+          </div>
+          <div class="plan">
+            <h3>Starter</h3>
+            <div class="price">19 <small>USD/mois</small></div>
+            <ul><li>5 000 requêtes/jour</li><li>30 requêtes/minute</li><li>Prévision jusqu'à 72 h</li><li>Toutes les résolutions (jusqu'à 3 km)</li><li>Usage commercial</li><li>2 clés · support par e-mail</li></ul>
+            <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=B1TMET%20API%20Starter">S'abonner</a>
+          </div>
+          <div class="plan featured">
+            <span class="tag">Recommandé</span>
+            <h3>Pro</h3>
+            <div class="price">79 <small>USD/mois</small></div>
+            <ul><li>20 000 requêtes/jour</li><li>60 requêtes/minute</li><li>Prévision jusqu'à 72 h</li><li>Toutes les résolutions (jusqu'à 3 km)</li><li>Usage commercial</li><li>5 clés · support prioritaire</li></ul>
+            <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=B1TMET%20API%20Pro">S'abonner</a>
+          </div>
+          <div class="plan">
+            <h3>Enterprise</h3>
+            <div class="price"><small>À partir de</small> 199 <small>USD/mois</small></div>
+            <ul><li>Volume et limites sur mesure</li><li>Prévision jusqu'à 72 h</li><li>Toutes les résolutions (jusqu'à 3 km)</li><li>Usage commercial</li><li>Jusqu'à 20 clés</li><li>Contrat de support</li></ul>
+            <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=B1TMET%20API%20Enterprise">Nous contacter</a>
+          </div>
+        </div>
+        <p class="muted">Prix en USD/mois. Compte comme requête tout appel qui renvoie des données ou qui signale des coordonnées hors du domaine. Les erreurs de requête et les limites dépassées ne sont pas comptées.</p>
+
+        <h2>Variables</h2>
+        <p>Toutes les offres incluent les mêmes variables, toutes les 3 heures : température et humidité relative à 2 m, pression en surface et au niveau de la mer, vitesse et direction du vent à 10 m, précipitations sur 3 h et température ressentie. En unités métriques ou impériales.</p>
+
+        <h2>Couverture</h2>
+        <div class="tbl"><table><tr><th>Domaine</th><th>d01</th><th>d02</th><th>d03</th></tr><tr><td>Caraïbes</td><td>9 km</td><td>—</td><td>—</td></tr><tr><td>Mexique</td><td>25 km</td><td>5 km</td><td>—</td></tr><tr><td>Panama</td><td>27 km</td><td>9 km</td><td>3 km</td></tr><tr><td>Amérique centrale</td><td>27 km</td><td>9 km</td><td>—</td></tr><tr><td>Cuba</td><td>27 km</td><td>9 km</td><td>—</td></tr><tr><td>Dominique</td><td>27 km</td><td>9 km</td><td>—</td></tr><tr><td>République dominicaine</td><td>27 km</td><td>9 km</td><td>—</td></tr></table></div>
+        <p class="muted">L'offre Free inclut uniquement la colonne d01. Si vous n'indiquez pas de domaine, l'API choisit le plus adapté à votre point.</p>
+
+        <h2>Exemple</h2>
+        <p>Prévision sur 24 heures pour un point :</p>
+<pre class="code"><code>curl "https://thredds.b1tmet.com/v1/forecast/point?lat=23.13&amp;lon=-82.38&amp;hours=24" \
+  -H "Authorization: Bearer b1t_live_VOTRE_CLE"</code></pre>
+        <p>Réponse (abrégée) :</p>
+<pre class="code"><code>{
+  "model": { "domain": "cuba", "grid": "d02", "resolution_km": 9,
+             "run_init": "2026-10-31T00:00:00Z" },
+  "data": [
+    { "time": "2026-10-31T03:00:00Z",
+      "temperature_2m": 24.6, "relative_humidity_2m": 91.4,
+      "wind_speed_10m": 0.8, "wind_direction_10m": 120,
+      "precipitation_3h": 0, "apparent_temperature": 24.8 }
+  ]
+}</code></pre>
+        <p class="muted">La clé peut aussi être envoyée avec le paramètre <code>?apikey=</code>. La documentation complète sera bientôt disponible.</p>
+
+        <h2>Questions fréquentes</h2>
+        <details class="faq"><summary>Qu'est-ce qui compte comme une requête ?</summary><p>Chaque appel à <code>/v1/forecast/point</code>, <code>/v1/domains</code> ou <code>/v1/domains/{domaine}/runs</code> qui renvoie des données ou des coordonnées hors du domaine. <code>/v1/usage</code> et <code>/v1/status</code> ne sont pas comptés.</p></details>
+        <details class="faq"><summary>Quand les quotas sont-ils réinitialisés ?</summary><p>Le quota journalier à 00:00 UTC. La limite par minute au début de chaque minute.</p></details>
+        <details class="faq"><summary>Que se passe-t-il si je dépasse la limite ?</summary><p>L'API renvoie le code 429 avec l'en-tête <code>Retry-After</code>, qui indique combien de secondes attendre. Aucun frais supplémentaire.</p></details>
+        <details class="faq"><summary>À quelle fréquence la prévision est-elle mise à jour ?</summary><p>Le modèle tourne quatre fois par jour (00, 06, 12 et 18 UTC). Chaque réponse indique l'exécution utilisée dans <code>run_init</code>.</p></details>
+        <details class="faq"><summary>Puis-je l'utiliser depuis un navigateur ?</summary><p>Oui, l'API accepte les requêtes de n'importe quelle origine. Une clé intégrée à un site web est visible par tous : si elle fuite, nous la révoquons et vous en fournissons une nouvelle.</p></details>
+        <details class="faq"><summary>Puis-je utiliser l'offre Free dans un produit commercial ?</summary><p>Non. Free est réservée à l'évaluation. L'usage commercial nécessite Starter ou une offre supérieure.</p></details>
+        <details class="faq"><summary>Comment souscrire une offre ?</summary><p>Écrivez-nous via le bouton de l'offre. Nous vous enverrons le lien de paiement (traité par Stripe) puis, après confirmation, votre clé.</p></details>
+        <details class="faq"><summary>Puis-je résilier ?</summary><p>Oui. L'abonnement est mensuel et résiliable à tout moment ; votre clé reste active jusqu'à la fin de la période payée.</p></details>
+
+        <div class="note">Les prévisions sont fournies à titre indicatif et ne remplacent pas les alertes officielles des services météorologiques nationaux. L'utilisation de l'API est soumise aux <a href="terminos-api.html">Conditions de l'API</a>.</div>
+      </article>
+
+      <!-- ======================= IT ======================= -->
+      <article class="card" lang="it">
+        <h2>Piani</h2>
+        <p class="lead">Previsioni numeriche WRF ad alta risoluzione per i Caraibi e l'America centrale, in JSON. Utilizzabile da qualsiasi linguaggio, server o browser.</p>
+        <div class="plans">
+          <div class="plan">
+            <h3>Free</h3>
+            <div class="price">0 <small>USD/mese</small></div>
+            <ul><li>500 richieste/giorno</li><li>10 richieste/minuto</li><li>Previsione fino a 24 h</li><li>Risoluzione d01 (9–27 km)</li><li>Solo valutazione, nessun uso commerciale</li><li>Chiave di 30 giorni, rinnovabile</li></ul>
+            <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=B1TMET%20API%20Free">Richiedi chiave</a>
+          </div>
+          <div class="plan">
+            <h3>Starter</h3>
+            <div class="price">19 <small>USD/mese</small></div>
+            <ul><li>5.000 richieste/giorno</li><li>30 richieste/minuto</li><li>Previsione fino a 72 h</li><li>Tutte le risoluzioni (fino a 3 km)</li><li>Uso commerciale</li><li>2 chiavi · supporto via e-mail</li></ul>
+            <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=B1TMET%20API%20Starter">Abbonati</a>
+          </div>
+          <div class="plan featured">
+            <span class="tag">Consigliato</span>
+            <h3>Pro</h3>
+            <div class="price">79 <small>USD/mese</small></div>
+            <ul><li>20.000 richieste/giorno</li><li>60 richieste/minuto</li><li>Previsione fino a 72 h</li><li>Tutte le risoluzioni (fino a 3 km)</li><li>Uso commerciale</li><li>5 chiavi · supporto prioritario</li></ul>
+            <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=B1TMET%20API%20Pro">Abbonati</a>
+          </div>
+          <div class="plan">
+            <h3>Enterprise</h3>
+            <div class="price"><small>Da</small> 199 <small>USD/mese</small></div>
+            <ul><li>Volumi e limiti personalizzati</li><li>Previsione fino a 72 h</li><li>Tutte le risoluzioni (fino a 3 km)</li><li>Uso commerciale</li><li>Fino a 20 chiavi</li><li>Accordo di supporto</li></ul>
+            <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=B1TMET%20API%20Enterprise">Contattaci</a>
+          </div>
+        </div>
+        <p class="muted">Prezzi in USD/mese. Conta come richiesta ogni chiamata che restituisce dati o che segnala coordinate fuori dal dominio. Gli errori della richiesta e i limiti superati non vengono conteggiati.</p>
+
+        <h2>Variabili</h2>
+        <p>Tutti i piani includono le stesse variabili, ogni 3 ore: temperatura e umidità relativa a 2 m, pressione in superficie e al livello del mare, velocità e direzione del vento a 10 m, precipitazione in 3 h e temperatura percepita. In unità metriche o imperiali.</p>
+
+        <h2>Copertura</h2>
+        <div class="tbl"><table><tr><th>Dominio</th><th>d01</th><th>d02</th><th>d03</th></tr><tr><td>Caraibi</td><td>9 km</td><td>—</td><td>—</td></tr><tr><td>Messico</td><td>25 km</td><td>5 km</td><td>—</td></tr><tr><td>Panama</td><td>27 km</td><td>9 km</td><td>3 km</td></tr><tr><td>America centrale</td><td>27 km</td><td>9 km</td><td>—</td></tr><tr><td>Cuba</td><td>27 km</td><td>9 km</td><td>—</td></tr><tr><td>Dominica</td><td>27 km</td><td>9 km</td><td>—</td></tr><tr><td>Repubblica Dominicana</td><td>27 km</td><td>9 km</td><td>—</td></tr></table></div>
+        <p class="muted">Il piano Free include solo la colonna d01. Se non indichi un dominio, l'API sceglie quello più adatto al tuo punto.</p>
+
+        <h2>Esempio</h2>
+        <p>Previsione di 24 ore per un punto:</p>
+<pre class="code"><code>curl "https://thredds.b1tmet.com/v1/forecast/point?lat=23.13&amp;lon=-82.38&amp;hours=24" \
+  -H "Authorization: Bearer b1t_live_LA_TUA_CHIAVE"</code></pre>
+        <p>Risposta (abbreviata):</p>
+<pre class="code"><code>{
+  "model": { "domain": "cuba", "grid": "d02", "resolution_km": 9,
+             "run_init": "2026-10-31T00:00:00Z" },
+  "data": [
+    { "time": "2026-10-31T03:00:00Z",
+      "temperature_2m": 24.6, "relative_humidity_2m": 91.4,
+      "wind_speed_10m": 0.8, "wind_direction_10m": 120,
+      "precipitation_3h": 0, "apparent_temperature": 24.8 }
+  ]
+}</code></pre>
+        <p class="muted">La chiave può essere inviata anche come parametro <code>?apikey=</code>. La documentazione completa sarà disponibile a breve.</p>
+
+        <h2>Domande frequenti</h2>
+        <details class="faq"><summary>Cosa conta come richiesta?</summary><p>Ogni chiamata a <code>/v1/forecast/point</code>, <code>/v1/domains</code> o <code>/v1/domains/{dominio}/runs</code> che restituisce dati o coordinate fuori dal dominio. <code>/v1/usage</code> e <code>/v1/status</code> non vengono conteggiate.</p></details>
+        <details class="faq"><summary>Quando si azzerano le quote?</summary><p>La quota giornaliera alle 00:00 UTC. Il limite al minuto all'inizio di ogni minuto.</p></details>
+        <details class="faq"><summary>Cosa succede se supero il limite?</summary><p>L'API risponde con il codice 429 e l'intestazione <code>Retry-After</code>, che indica quanti secondi attendere. Nessun costo aggiuntivo.</p></details>
+        <details class="faq"><summary>Ogni quanto si aggiorna la previsione?</summary><p>Il modello gira quattro volte al giorno (00, 06, 12 e 18 UTC). Ogni risposta indica l'esecuzione usata in <code>run_init</code>.</p></details>
+        <details class="faq"><summary>Posso usarla da un browser?</summary><p>Sì, l'API accetta richieste da qualsiasi origine. Tieni presente che una chiave inserita in un sito web è visibile a chiunque: se viene divulgata, la revochiamo e te ne forniamo un'altra.</p></details>
+        <details class="faq"><summary>Posso usare il piano Free in un prodotto commerciale?</summary><p>No. Free è per la valutazione. Per l'uso commerciale serve Starter o un piano superiore.</p></details>
+        <details class="faq"><summary>Come sottoscrivo un piano?</summary><p>Scrivici dal pulsante del piano. Ti invieremo il link di pagamento (gestito da Stripe) e, dopo la conferma, la tua chiave.</p></details>
+        <details class="faq"><summary>Posso disdire?</summary><p>Sì. L'abbonamento è mensile e puoi disdirlo quando vuoi; la chiave resta attiva fino alla fine del periodo pagato.</p></details>
+
+        <div class="note">Le previsioni sono indicative e non sostituiscono gli avvisi ufficiali dei servizi meteorologici nazionali. L'uso dell'API è soggetto ai <a href="terminos-api.html">Termini dell'API</a>.</div>
+      </article>
+
+      <!-- ======================= NL ======================= -->
+      <article class="card" lang="nl">
+        <h2>Abonnementen</h2>
+        <p class="lead">Numerieke WRF-weersvoorspellingen met hoge resolutie voor het Caribisch gebied en Midden-Amerika, in JSON. Bruikbaar vanuit elke programmeertaal, server of browser.</p>
+        <div class="plans">
+          <div class="plan">
+            <h3>Free</h3>
+            <div class="price">0 <small>USD/maand</small></div>
+            <ul><li>500 verzoeken/dag</li><li>10 verzoeken/minuut</li><li>Voorspelling tot 24 uur</li><li>Resolutie d01 (9–27 km)</li><li>Alleen evaluatie, geen commercieel gebruik</li><li>Sleutel van 30 dagen, verlengbaar</li></ul>
+            <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=B1TMET%20API%20Free">Sleutel aanvragen</a>
+          </div>
+          <div class="plan">
+            <h3>Starter</h3>
+            <div class="price">19 <small>USD/maand</small></div>
+            <ul><li>5.000 verzoeken/dag</li><li>30 verzoeken/minuut</li><li>Voorspelling tot 72 uur</li><li>Alle resoluties (tot 3 km)</li><li>Commercieel gebruik</li><li>2 sleutels · ondersteuning per e-mail</li></ul>
+            <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=B1TMET%20API%20Starter">Abonneren</a>
+          </div>
+          <div class="plan featured">
+            <span class="tag">Aanbevolen</span>
+            <h3>Pro</h3>
+            <div class="price">79 <small>USD/maand</small></div>
+            <ul><li>20.000 verzoeken/dag</li><li>60 verzoeken/minuut</li><li>Voorspelling tot 72 uur</li><li>Alle resoluties (tot 3 km)</li><li>Commercieel gebruik</li><li>5 sleutels · voorrang bij ondersteuning</li></ul>
+            <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=B1TMET%20API%20Pro">Abonneren</a>
+          </div>
+          <div class="plan">
+            <h3>Enterprise</h3>
+            <div class="price"><small>Vanaf</small> 199 <small>USD/maand</small></div>
+            <ul><li>Volume en limieten op maat</li><li>Voorspelling tot 72 uur</li><li>Alle resoluties (tot 3 km)</li><li>Commercieel gebruik</li><li>Tot 20 sleutels</li><li>Ondersteuningsovereenkomst</li></ul>
+            <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=B1TMET%20API%20Enterprise">Contact opnemen</a>
+          </div>
+        </div>
+        <p class="muted">Prijzen in USD/maand. Als verzoek telt elke aanroep die gegevens teruggeeft of meldt dat de coördinaten buiten het domein liggen. Fouten in het verzoek en overschreden limieten tellen niet mee.</p>
+
+        <h2>Variabelen</h2>
+        <p>Alle abonnementen bevatten dezelfde variabelen, elke 3 uur: temperatuur en relatieve luchtvochtigheid op 2 m, luchtdruk aan het oppervlak en op zeeniveau, windsnelheid en windrichting op 10 m, neerslag over 3 uur en gevoelstemperatuur. In metrische of imperiale eenheden.</p>
+
+        <h2>Dekking</h2>
+        <div class="tbl"><table><tr><th>Domein</th><th>d01</th><th>d02</th><th>d03</th></tr><tr><td>Caribisch gebied</td><td>9 km</td><td>—</td><td>—</td></tr><tr><td>Mexico</td><td>25 km</td><td>5 km</td><td>—</td></tr><tr><td>Panama</td><td>27 km</td><td>9 km</td><td>3 km</td></tr><tr><td>Midden-Amerika</td><td>27 km</td><td>9 km</td><td>—</td></tr><tr><td>Cuba</td><td>27 km</td><td>9 km</td><td>—</td></tr><tr><td>Dominica</td><td>27 km</td><td>9 km</td><td>—</td></tr><tr><td>Dominicaanse Republiek</td><td>27 km</td><td>9 km</td><td>—</td></tr></table></div>
+        <p class="muted">Het Free-abonnement bevat alleen de kolom d01. Als je geen domein opgeeft, kiest de API het meest geschikte voor je locatie.</p>
+
+        <h2>Voorbeeld</h2>
+        <p>Voorspelling van 24 uur voor één locatie:</p>
+<pre class="code"><code>curl "https://thredds.b1tmet.com/v1/forecast/point?lat=23.13&amp;lon=-82.38&amp;hours=24" \
+  -H "Authorization: Bearer b1t_live_JOUW_SLEUTEL"</code></pre>
+        <p>Antwoord (ingekort):</p>
+<pre class="code"><code>{
+  "model": { "domain": "cuba", "grid": "d02", "resolution_km": 9,
+             "run_init": "2026-10-31T00:00:00Z" },
+  "data": [
+    { "time": "2026-10-31T03:00:00Z",
+      "temperature_2m": 24.6, "relative_humidity_2m": 91.4,
+      "wind_speed_10m": 0.8, "wind_direction_10m": 120,
+      "precipitation_3h": 0, "apparent_temperature": 24.8 }
+  ]
+}</code></pre>
+        <p class="muted">De sleutel kan ook als parameter <code>?apikey=</code> worden meegestuurd. De volledige documentatie volgt binnenkort.</p>
+
+        <h2>Veelgestelde vragen</h2>
+        <details class="faq"><summary>Wat telt als verzoek?</summary><p>Elke aanroep van <code>/v1/forecast/point</code>, <code>/v1/domains</code> of <code>/v1/domains/{domein}/runs</code> die gegevens teruggeeft of coördinaten buiten het domein meldt. <code>/v1/usage</code> en <code>/v1/status</code> tellen niet mee.</p></details>
+        <details class="faq"><summary>Wanneer worden de quota gereset?</summary><p>Het dagquotum om 00:00 UTC. De limiet per minuut aan het begin van elke minuut.</p></details>
+        <details class="faq"><summary>Wat gebeurt er als ik de limiet overschrijd?</summary><p>De API antwoordt met code 429 en de header <code>Retry-After</code>, die aangeeft hoeveel seconden je moet wachten. Er worden geen extra kosten in rekening gebracht.</p></details>
+        <details class="faq"><summary>Hoe vaak wordt de voorspelling bijgewerkt?</summary><p>Het model draait vier keer per dag (00, 06, 12 en 18 UTC). Elk antwoord vermeldt de gebruikte modelrun in <code>run_init</code>.</p></details>
+        <details class="faq"><summary>Kan ik de API vanuit een browser gebruiken?</summary><p>Ja, de API accepteert verzoeken van elke herkomst. Houd er rekening mee dat een sleutel in een website voor iedereen zichtbaar is: als hij uitlekt, trekken we hem in en krijg je een nieuwe.</p></details>
+        <details class="faq"><summary>Mag ik het Free-abonnement in een commercieel product gebruiken?</summary><p>Nee. Free is bedoeld voor evaluatie. Voor commercieel gebruik heb je Starter of een hoger abonnement nodig.</p></details>
+        <details class="faq"><summary>Hoe neem ik een abonnement?</summary><p>Schrijf ons via de knop van het abonnement. We sturen je de betaallink (verwerkt door Stripe) en, na bevestiging, je sleutel.</p></details>
+        <details class="faq"><summary>Kan ik opzeggen?</summary><p>Ja. Het abonnement is maandelijks en je kunt het altijd opzeggen; je sleutel blijft actief tot het einde van de betaalde periode.</p></details>
+
+        <div class="note">De voorspellingen zijn indicatief en vervangen geen officiële waarschuwingen van nationale weerdiensten. Het gebruik van de API valt onder de <a href="terminos-api.html">API-voorwaarden</a>.</div>
+      </article>
+    </main>
+
+    <footer class="foot">
+      <picture>
+        <source srcset="assets/logo-h-light.png" media="(prefers-color-scheme: dark)" />
+        <img class="foot-img" src="assets/logo-h-dark.png" alt="B1TMET" />
+      </picture>
+      <p lang="es">
+        <a href="index.html">Aviso de privacidad</a> ·
+        <a href="terminos.html">Términos de uso</a> ·
+        <a href="precios.html">Precios API</a> ·
+        <a href="terminos-api.html">Términos de la API</a> ·
+        <a href="eliminar-cuenta.html">Eliminar cuenta</a> ·
+        <a href="mailto:b1tmet@b1tmet.com">Contacto</a> ·
+        <a href="https://b1tmet.com">Acerca de</a>
+      </p>
+      <p lang="en">
+        <a href="index.html">Privacy Policy</a> ·
+        <a href="terminos.html">Terms of Use</a> ·
+        <a href="precios.html">API Pricing</a> ·
+        <a href="terminos-api.html">API Terms</a> ·
+        <a href="eliminar-cuenta.html">Delete account</a> ·
+        <a href="mailto:b1tmet@b1tmet.com">Contact</a> ·
+        <a href="https://b1tmet.com">About</a>
+      </p>
+      <p lang="pt">
+        <a href="index.html">Aviso de privacidade</a> ·
+        <a href="terminos.html">Termos de uso</a> ·
+        <a href="precios.html">Preços da API</a> ·
+        <a href="terminos-api.html">Termos da API</a> ·
+        <a href="eliminar-cuenta.html">Excluir conta</a> ·
+        <a href="mailto:b1tmet@b1tmet.com">Contato</a> ·
+        <a href="https://b1tmet.com">Sobre</a>
+      </p>
+      <p lang="fr">
+        <a href="index.html">Politique de confidentialité</a> ·
+        <a href="terminos.html">Conditions d'utilisation</a> ·
+        <a href="precios.html">Tarifs de l'API</a> ·
+        <a href="terminos-api.html">Conditions de l'API</a> ·
+        <a href="eliminar-cuenta.html">Supprimer le compte</a> ·
+        <a href="mailto:b1tmet@b1tmet.com">Contact</a> ·
+        <a href="https://b1tmet.com">À propos</a>
+      </p>
+      <p lang="it">
+        <a href="index.html">Informativa sulla privacy</a> ·
+        <a href="terminos.html">Termini di utilizzo</a> ·
+        <a href="precios.html">Prezzi API</a> ·
+        <a href="terminos-api.html">Termini dell'API</a> ·
+        <a href="eliminar-cuenta.html">Elimina account</a> ·
+        <a href="mailto:b1tmet@b1tmet.com">Contatti</a> ·
+        <a href="https://b1tmet.com">Chi siamo</a>
+      </p>
+      <p lang="nl">
+        <a href="index.html">Privacybeleid</a> ·
+        <a href="terminos.html">Gebruiksvoorwaarden</a> ·
+        <a href="precios.html">API-prijzen</a> ·
+        <a href="terminos-api.html">API-voorwaarden</a> ·
+        <a href="eliminar-cuenta.html">Account verwijderen</a> ·
+        <a href="mailto:b1tmet@b1tmet.com">Contact</a> ·
+        <a href="https://b1tmet.com">Over ons</a>
+      </p>
+      <p lang="es" class="muted">Los pronósticos de B1TMET son orientativos y no sustituyen los avisos oficiales de los servicios meteorológicos nacionales. Mapas: © colaboradores de OpenStreetMap, © CARTO, © OpenTopoMap.</p>
+      <p lang="en" class="muted">B1TMET forecasts are for guidance only and do not replace official warnings from national weather services. Maps: © OpenStreetMap contributors, © CARTO, © OpenTopoMap.</p>
+      <p lang="pt" class="muted">As previsões da B1TMET são apenas orientativas e não substituem os avisos oficiais dos serviços meteorológicos nacionais. Mapas: © colaboradores do OpenStreetMap, © CARTO, © OpenTopoMap.</p>
+      <p lang="fr" class="muted">Les prévisions de B1TMET sont fournies à titre indicatif et ne remplacent pas les alertes officielles des services météorologiques nationaux. Cartes : © contributeurs d'OpenStreetMap, © CARTO, © OpenTopoMap.</p>
+      <p lang="it" class="muted">Le previsioni di B1TMET sono indicative e non sostituiscono gli avvisi ufficiali dei servizi meteorologici nazionali. Mappe: © collaboratori di OpenStreetMap, © CARTO, © OpenTopoMap.</p>
+      <p lang="nl" class="muted">De voorspellingen van B1TMET zijn indicatief en vervangen geen officiële waarschuwingen van nationale weerdiensten. Kaarten: © OpenStreetMap-bijdragers, © CARTO, © OpenTopoMap.</p>
+      <div>© 2026 B1TMET Technologies</div>
+    </footer>
+
+    <script src="assets/lang.js"></script>
+  </body>
+</html>

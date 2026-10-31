@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es" data-lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Términos de la API · API Terms — B1TMET</title>
+    <meta name="description" content="Términos de la API de pronóstico B1TMET / B1TMET Forecast API Terms" />
+    <meta name="theme-color" content="#17062b" />
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script>
+      (function () {
+        var S = ["es", "en", "pt", "fr", "it", "nl"], l = null;
+        try { l = new URLSearchParams(location.search).get("lang"); } catch (e) {}
+        if (S.indexOf(l) >= 0) { try { localStorage.setItem("b1t-lang", l); } catch (e) {} }
+        else { try { l = localStorage.getItem("b1t-lang"); } catch (e) {} }
+        if (S.indexOf(l) < 0) {
+          l = "en";
+          var list = navigator.languages || [navigator.language || "en"];
+          for (var i = 0; i < list.length; i++) {
+            var c = String(list[i] || "").slice(0, 2).toLowerCase();
+            if (S.indexOf(c) >= 0) { l = c; break; }
+          }
+        }
+        document.documentElement.setAttribute("data-lang", l);
+        document.documentElement.lang = l;
+      })();
+    </script>
+  </head>
+  <body>
+    <header class="hero">
+      <span class="logo mark" aria-hidden="true"></span>
+      <div class="bar">
+        <a class="brand" href="index.html"><img class="brand-img" src="assets/logo-h-light.png" alt="B1TMET" /><small>API</small></a>
+        <label class="langsel">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9s1.3-6.3 3.8-9z"/></svg>
+          <select id="langsel" aria-label="Idioma / Language">
+            <option value="es">Español</option>
+            <option value="en">English</option>
+            <option value="pt">Português</option>
+            <option value="fr">Français</option>
+            <option value="it">Italiano</option>
+            <option value="nl">Nederlands</option>
+          </select>
+        </label>
+      </div>
+      <div class="title">
+        <h1 lang="es">Términos de la API</h1>
+        <h1 lang="en">API Terms</h1>
+        <h1 lang="pt">Termos da API</h1>
+        <h1 lang="fr">Conditions de l'API</h1>
+        <h1 lang="it">Termini dell'API</h1>
+        <h1 lang="nl">API-voorwaarden</h1>
+        <p lang="es">Última actualización: 31 de octubre de 2026</p>
+        <p lang="en">Last updated: October 31, 2026</p>
+        <p lang="pt">Última atualização: 31 de outubro de 2026</p>
+        <p lang="fr">Dernière mise à jour : 31 octobre 2026</p>
+        <p lang="it">Ultimo aggiornamento: 31 ottobre 2026</p>
+        <p lang="nl">Laatst bijgewerkt: 31 oktober 2026</p>
+      </div>
+      <svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,40 C240,80 480,0 720,30 C960,60 1200,10 1440,35 L1440,70 L0,70 Z" fill="var(--bg)" />
+      </svg>
+    </header>
+
+    <main>
+      <!-- ======================= ES ======================= -->
+      <article class="card" lang="es">
+        <h2>1. Aceptación</h2>
+        <p>Estos Términos de la API (los «Términos de la API») regulan el acceso a la API de pronóstico de B1TMET (la «API»), prestada por <strong>B1TMET Technologies</strong>, con domicilio en Copilco 300, Edificio 1, Depto. 104, Col. Copilco Universidad, Alcaldía Coyoacán, C.P. 04360, Ciudad de México, México. Se aplican junto con los <a href="terminos.html">Términos de uso</a>; en todo lo relativo a la API, prevalecen estos Términos de la API. Al solicitar una clave o usar la API, los aceptas en tu nombre o en el de la organización que representas.</p>
+        <h2>2. Claves de API</h2>
+        <ul><li>Cada clave es confidencial y solo puede usarla tu organización. Eres responsable de todo el uso que se haga con ella.</li><li>Si sospechas que una clave se ha filtrado, avísanos: la revocaremos y te daremos otra.</li><li>Podemos revocar una clave filtrada o usada de forma abusiva.</li></ul>
+        <h2>3. Planes, límites y cambios</h2>
+        <p>Los límites, el horizonte de pronóstico, las resoluciones y el precio de cada plan se publican en la página de <a href="precios.html">Precios</a>. Los límites se aplican por cliente y los comparten todas sus claves. Avisaremos con al menos <strong>30 días</strong> de antelación de cualquier subida de precio o reducción de límites de un plan de pago; el cambio se aplicará a partir del siguiente periodo de facturación.</p>
+        <h2>4. Plan Free</h2>
+        <p>El plan Free es solo para evaluación y no puede usarse en productos o servicios comerciales. Su clave es válida durante 30 días y puede renovarse a petición. Podemos modificar o retirar el plan Free en cualquier momento.</p>
+        <h2>5. Planes de pago y cancelación</h2>
+        <p>Los planes de pago son suscripciones mensuales que se pagan por adelantado a través de <strong>Stripe</strong>. Puedes cancelar en cualquier momento escribiendo a <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>: tu clave seguirá activa hasta el final del periodo pagado y la suscripción no se renovará.</p>
+        <h2>6. Reembolsos</h2>
+        <p>No se reembolsan periodos parciales. Siempre reembolsaremos:</p>
+        <ul><li>Un cobro duplicado o erróneo.</li><li>La parte proporcional del mes si la API deja de estar disponible durante más de <strong>72 horas seguidas</strong> por causas que nos sean imputables.</li></ul>
+        <p>Solicítalo por correo indicando tu plan y la fecha del cobro. El reembolso se hace al mismo medio de pago a través de Stripe. Nada en esta sección limita los derechos que la ley te reconozca.</p>
+        <h2>7. Uso permitido</h2>
+        <p>Con un plan de pago puedes integrar los datos de la API en tus productos y servicios, incluidos los comerciales, y mostrarlos a tus usuarios finales. También puedes usarlos como dato de entrada de tus propios análisis o modelos internos (por ejemplo, riego, logística o energía).</p>
+        <h2>8. Usos prohibidos</h2>
+        <p>Salvo acuerdo escrito con nosotros, no está permitido:</p>
+        <ul><li>Revender, sublicenciar o redistribuir los datos en bruto o de forma masiva, ni ofrecerlos como servicio de datos o como API.</li><li>Usar los datos para entrenar o ajustar modelos, incluidos los de inteligencia artificial, que generen pronósticos, ni para crear un servicio de pronóstico que compita con B1TMET.</li><li>Compartir claves fuera de tu organización, usar varias cuentas o claves para superar los límites o eludirlos de cualquier otro modo.</li><li>Usar la API con fines ilícitos o de forma que perjudique a nuestra infraestructura o a otros clientes.</li></ul>
+        <h2>9. Atribución</h2>
+        <p>En los planes <strong>Free</strong> y <strong>Starter</strong>, cuando muestres los datos públicamente debes indicar de forma visible «Pronóstico: B1TMET», con un enlace a <a href="https://b1tmet.com">b1tmet.com</a> si se trata de una web o una app. En los planes Pro y Enterprise la atribución es opcional.</p>
+        <h2>10. Naturaleza de los datos</h2>
+        <div class="note">Los pronósticos proceden de modelos numéricos, son <strong>orientativos</strong> y pueden contener errores o retrasos. <strong>No sustituyen</strong> los avisos oficiales de los servicios meteorológicos nacionales ni de protección civil. No los uses como única fuente para decisiones de las que dependa la seguridad de personas o bienes.</div>
+        <h2>11. Disponibilidad y versiones</h2>
+        <p>Hacemos lo razonable para que la API funcione de forma continua, pero no garantizamos un nivel de disponibilidad salvo en un acuerdo Enterprise. Puede haber interrupciones por mantenimiento. La versión <code>v1</code> es estable y solo recibe cambios compatibles. Los cambios incompatibles se publicarán en una versión nueva, y la anterior se mantendrá al menos <strong>12 meses</strong> desde su anuncio.</p>
+        <h2>12. Suspensión</h2>
+        <p>Podemos suspender o revocar el acceso a la API por impago, por incumplimiento de estos términos o por un uso que ponga en riesgo el servicio, con aviso previo cuando sea posible.</p>
+        <h2>13. Privacidad</h2>
+        <p>Tratamos los datos de los clientes de la API según el <a href="index.html">Aviso de privacidad</a>. Las coordenadas que envías se usan solo para calcular el pronóstico: no se registran en los logs y solo se conservan unas horas en caché. Si envías coordenadas de tus propios usuarios, eres responsable de informarles y de contar con la base legal necesaria.</p>
+        <h2>14. Limitación de responsabilidad</h2>
+        <p>En la medida en que la ley lo permita, nuestra responsabilidad total por la API se limita al importe que nos hayas pagado en los <strong>3 meses</strong> anteriores al hecho que la origine. No respondemos de daños indirectos ni de pérdidas derivadas del uso de la información meteorológica. Esto no limita la responsabilidad que no pueda excluirse conforme a la ley.</p>
+        <h2>15. Ley aplicable y contacto</h2>
+        <p>Estos Términos de la API se rigen por las leyes de los Estados Unidos Mexicanos. Para cualquier controversia, las partes se someten a los tribunales competentes de la Ciudad de México, sin perjuicio de los derechos que te correspondan como consumidor. Contacto: <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>.</p>
+      </article>
+
+      <!-- ======================= EN ======================= -->
+      <article class="card" lang="en">
+        <h2>1. Acceptance</h2>
+        <p>These API Terms govern access to the B1TMET forecast API (the "API"), provided by <strong>B1TMET Technologies</strong>, located at Copilco 300, Edificio 1, Depto. 104, Col. Copilco Universidad, Alcaldía Coyoacán, C.P. 04360, Ciudad de México, México. They apply together with the <a href="terminos.html">Terms of Use</a>; for everything related to the API, these API Terms prevail. By requesting a key or using the API, you accept them on your own behalf or on behalf of the organization you represent.</p>
+        <h2>2. API keys</h2>
+        <ul><li>Each key is confidential and may only be used by your organization. You are responsible for all use made with it.</li><li>If you suspect a key has leaked, let us know: we will revoke it and issue a new one.</li><li>We may revoke a key that has leaked or is being used abusively.</li></ul>
+        <h2>3. Plans, limits and changes</h2>
+        <p>The limits, forecast horizon, resolutions and price of each plan are published on the <a href="precios.html">Pricing</a> page. Limits apply per customer and are shared by all of its keys. We will give at least <strong>30 days'</strong> notice of any price increase or reduction in the limits of a paid plan; the change will apply from the next billing period.</p>
+        <h2>4. Free plan</h2>
+        <p>The Free plan is for evaluation only and may not be used in commercial products or services. Its key is valid for 30 days and can be renewed on request. We may modify or withdraw the Free plan at any time.</p>
+        <h2>5. Paid plans and cancellation</h2>
+        <p>Paid plans are monthly subscriptions paid in advance through <strong>Stripe</strong>. You can cancel at any time by writing to <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>: your key will remain active until the end of the paid period and the subscription will not renew.</p>
+        <h2>6. Refunds</h2>
+        <p>Partial periods are not refunded. We will always refund:</p>
+        <ul><li>A duplicate or erroneous charge.</li><li>The proportional part of the month if the API is unavailable for more than <strong>72 consecutive hours</strong> for reasons attributable to us.</li></ul>
+        <p>Request it by email stating your plan and the charge date. Refunds are issued to the same payment method through Stripe. Nothing in this section limits the rights granted to you by law.</p>
+        <h2>7. Permitted use</h2>
+        <p>With a paid plan you may integrate API data into your products and services, including commercial ones, and display it to your end users. You may also use it as input for your own internal analyses or models (for example, irrigation, logistics or energy).</p>
+        <h2>8. Prohibited uses</h2>
+        <p>Unless agreed with us in writing, you may not:</p>
+        <ul><li>Resell, sublicense or redistribute the data in raw form or in bulk, or offer it as a data service or as an API.</li><li>Use the data to train or fine-tune models, including artificial intelligence models, that generate forecasts, or to build a forecast service that competes with B1TMET.</li><li>Share keys outside your organization, use multiple accounts or keys to exceed the limits, or circumvent them in any other way.</li><li>Use the API for unlawful purposes or in a way that harms our infrastructure or other customers.</li></ul>
+        <h2>9. Attribution</h2>
+        <p>On the <strong>Free</strong> and <strong>Starter</strong> plans, when you display the data publicly you must visibly state "Forecast: B1TMET", with a link to <a href="https://b1tmet.com">b1tmet.com</a> if it is a website or an app. On the Pro and Enterprise plans attribution is optional.</p>
+        <h2>10. Nature of the data</h2>
+        <div class="note">Forecasts come from numerical models, are for <strong>guidance only</strong> and may contain errors or delays. They <strong>do not replace</strong> official warnings from national weather services or civil protection agencies. Do not use them as your only source for decisions on which the safety of people or property depends.</div>
+        <h2>11. Availability and versions</h2>
+        <p>We make reasonable efforts to keep the API running continuously, but we do not guarantee any level of availability except under an Enterprise agreement. There may be interruptions for maintenance. Version <code>v1</code> is stable and only receives compatible changes. Incompatible changes will be released in a new version, and the previous one will be maintained for at least <strong>12 months</strong> from its announcement.</p>
+        <h2>12. Suspension</h2>
+        <p>We may suspend or revoke access to the API for non-payment, breach of these terms or use that puts the service at risk, with prior notice where possible.</p>
+        <h2>13. Privacy</h2>
+        <p>We process API customers' data as described in the <a href="index.html">Privacy Policy</a>. The coordinates you send are used only to compute the forecast: they are not recorded in logs and are only kept in cache for a few hours. If you send your own users' coordinates, you are responsible for informing them and for having the necessary legal basis.</p>
+        <h2>14. Limitation of liability</h2>
+        <p>To the extent permitted by law, our total liability for the API is limited to the amount you paid us in the <strong>3 months</strong> preceding the event giving rise to it. We are not liable for indirect damages or for losses arising from the use of the weather information. This does not limit any liability that cannot be excluded by law.</p>
+        <h2>15. Governing law and contact</h2>
+        <p>These API Terms are governed by the laws of the United Mexican States. For any dispute, the parties submit to the competent courts of Mexico City, without prejudice to your rights as a consumer. Contact: <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>.</p>
+      </article>
+
+      <!-- ======================= PT ======================= -->
+      <article class="card" lang="pt">
+        <h2>1. Aceitação</h2>
+        <p>Estes Termos da API regulam o acesso à API de previsão da B1TMET (a «API»), prestada pela <strong>B1TMET Technologies</strong>, com domicílio em Copilco 300, Edificio 1, Depto. 104, Col. Copilco Universidad, Alcaldía Coyoacán, C.P. 04360, Ciudad de México, México. Aplicam-se em conjunto com os <a href="terminos.html">Termos de uso</a>; em tudo o que se refere à API, prevalecem estes Termos da API. Ao solicitar uma chave ou usar a API, você os aceita em seu próprio nome ou em nome da organização que representa.</p>
+        <h2>2. Chaves de API</h2>
+        <ul><li>Cada chave é confidencial e só pode ser usada pela sua organização. Você é responsável por todo o uso feito com ela.</li><li>Se suspeitar que uma chave vazou, avise-nos: nós a revogaremos e enviaremos outra.</li><li>Podemos revogar uma chave que tenha vazado ou que esteja sendo usada de forma abusiva.</li></ul>
+        <h2>3. Planos, limites e alterações</h2>
+        <p>Os limites, o horizonte de previsão, as resoluções e o preço de cada plano são publicados na página de <a href="precios.html">Preços</a>. Os limites se aplicam por cliente e são compartilhados por todas as suas chaves. Avisaremos com pelo menos <strong>30 dias</strong> de antecedência sobre qualquer aumento de preço ou redução de limites de um plano pago; a alteração será aplicada a partir do período de faturamento seguinte.</p>
+        <h2>4. Plano Free</h2>
+        <p>O plano Free é apenas para avaliação e não pode ser usado em produtos ou serviços comerciais. Sua chave é válida por 30 dias e pode ser renovada mediante solicitação. Podemos modificar ou retirar o plano Free a qualquer momento.</p>
+        <h2>5. Planos pagos e cancelamento</h2>
+        <p>Os planos pagos são assinaturas mensais pagas antecipadamente por meio da <strong>Stripe</strong>. Você pode cancelar a qualquer momento escrevendo para <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>: sua chave continuará ativa até o fim do período pago e a assinatura não será renovada.</p>
+        <h2>6. Reembolsos</h2>
+        <p>Períodos parciais não são reembolsados. Sempre reembolsaremos:</p>
+        <ul><li>Uma cobrança duplicada ou indevida.</li><li>A parte proporcional do mês se a API ficar indisponível por mais de <strong>72 horas seguidas</strong> por motivos que nos sejam imputáveis.</li></ul>
+        <p>Solicite por e-mail indicando seu plano e a data da cobrança. O reembolso é feito no mesmo meio de pagamento por meio da Stripe. Nada nesta seção limita os direitos que a lei lhe garante.</p>
+        <h2>7. Uso permitido</h2>
+        <p>Com um plano pago, você pode integrar os dados da API em seus produtos e serviços, incluindo os comerciais, e exibi-los aos seus usuários finais. Também pode usá-los como dado de entrada de suas próprias análises ou modelos internos (por exemplo, irrigação, logística ou energia).</p>
+        <h2>8. Usos proibidos</h2>
+        <p>Salvo acordo por escrito conosco, não é permitido:</p>
+        <ul><li>Revender, sublicenciar ou redistribuir os dados brutos ou em massa, nem oferecê-los como serviço de dados ou como API.</li><li>Usar os dados para treinar ou ajustar modelos, incluindo os de inteligência artificial, que gerem previsões, nem para criar um serviço de previsão que concorra com a B1TMET.</li><li>Compartilhar chaves fora da sua organização, usar várias contas ou chaves para ultrapassar os limites ou contorná-los de qualquer outra forma.</li><li>Usar a API para fins ilícitos ou de forma que prejudique nossa infraestrutura ou outros clientes.</li></ul>
+        <h2>9. Atribuição</h2>
+        <p>Nos planos <strong>Free</strong> e <strong>Starter</strong>, ao exibir os dados publicamente, você deve indicar de forma visível «Previsão: B1TMET», com um link para <a href="https://b1tmet.com">b1tmet.com</a> se for um site ou um app. Nos planos Pro e Enterprise a atribuição é opcional.</p>
+        <h2>10. Natureza dos dados</h2>
+        <div class="note">As previsões provêm de modelos numéricos, são <strong>orientativas</strong> e podem conter erros ou atrasos. <strong>Não substituem</strong> os avisos oficiais dos serviços meteorológicos nacionais nem da defesa civil. Não as use como única fonte para decisões das quais dependa a segurança de pessoas ou bens.</div>
+        <h2>11. Disponibilidade e versões</h2>
+        <p>Fazemos o razoável para que a API funcione de forma contínua, mas não garantimos um nível de disponibilidade, salvo em um acordo Enterprise. Pode haver interrupções para manutenção. A versão <code>v1</code> é estável e só recebe alterações compatíveis. As alterações incompatíveis serão publicadas em uma nova versão, e a anterior será mantida por pelo menos <strong>12 meses</strong> a partir do seu anúncio.</p>
+        <h2>12. Suspensão</h2>
+        <p>Podemos suspender ou revogar o acesso à API por falta de pagamento, por descumprimento destes termos ou por um uso que coloque o serviço em risco, com aviso prévio quando possível.</p>
+        <h2>13. Privacidade</h2>
+        <p>Tratamos os dados dos clientes da API conforme o <a href="index.html">Aviso de privacidade</a>. As coordenadas que você envia são usadas apenas para calcular a previsão: não são registradas nos logs e ficam em cache apenas por algumas horas. Se você enviar coordenadas dos seus próprios usuários, é responsável por informá-los e por contar com a base legal necessária.</p>
+        <h2>14. Limitação de responsabilidade</h2>
+        <p>Na medida em que a lei o permita, nossa responsabilidade total pela API se limita ao valor que você nos pagou nos <strong>3 meses</strong> anteriores ao fato que a originar. Não respondemos por danos indiretos nem por perdas decorrentes do uso da informação meteorológica. Isso não limita a responsabilidade que não possa ser excluída nos termos da lei.</p>
+        <h2>15. Lei aplicável e contato</h2>
+        <p>Estes Termos da API são regidos pelas leis dos Estados Unidos Mexicanos. Para qualquer controvérsia, as partes submetem-se aos tribunais competentes da Cidade do México, sem prejuízo dos direitos que lhe correspondam como consumidor. Contato: <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>.</p>
+      </article>
+
+      <!-- ======================= FR ======================= -->
+      <article class="card" lang="fr">
+        <h2>1. Acceptation</h2>
+        <p>Les présentes Conditions de l'API régissent l'accès à l'API de prévision de B1TMET (l'« API »), fournie par <strong>B1TMET Technologies</strong>, domiciliée à l'adresse suivante : Copilco 300, Edificio 1, Depto. 104, Col. Copilco Universidad, Alcaldía Coyoacán, C.P. 04360, Ciudad de México, México. Elles s'appliquent conjointement avec les <a href="terminos.html">Conditions d'utilisation</a> ; pour tout ce qui concerne l'API, les présentes Conditions de l'API prévalent. En demandant une clé ou en utilisant l'API, vous les acceptez en votre nom ou au nom de l'organisation que vous représentez.</p>
+        <h2>2. Clés d'API</h2>
+        <ul><li>Chaque clé est confidentielle et ne peut être utilisée que par votre organisation. Vous êtes responsable de toute utilisation qui en est faite.</li><li>Si vous soupçonnez la fuite d'une clé, prévenez-nous : nous la révoquerons et vous en fournirons une nouvelle.</li><li>Nous pouvons révoquer une clé qui a fuité ou qui est utilisée de manière abusive.</li></ul>
+        <h2>3. Offres, limites et modifications</h2>
+        <p>Les limites, l'horizon de prévision, les résolutions et le prix de chaque offre sont publiés sur la page <a href="precios.html">Tarifs</a>. Les limites s'appliquent par client et sont partagées par toutes ses clés. Nous vous informerons au moins <strong>30 jours</strong> à l'avance de toute hausse de prix ou réduction des limites d'une offre payante ; la modification s'appliquera à partir de la période de facturation suivante.</p>
+        <h2>4. Offre Free</h2>
+        <p>L'offre Free est réservée à l'évaluation et ne peut pas être utilisée dans des produits ou services commerciaux. Sa clé est valable 30 jours et peut être renouvelée sur demande. Nous pouvons modifier ou retirer l'offre Free à tout moment.</p>
+        <h2>5. Offres payantes et résiliation</h2>
+        <p>Les offres payantes sont des abonnements mensuels payés à l'avance via <strong>Stripe</strong>. Vous pouvez résilier à tout moment en écrivant à <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a> : votre clé restera active jusqu'à la fin de la période payée et l'abonnement ne sera pas renouvelé.</p>
+        <h2>6. Remboursements</h2>
+        <p>Les périodes partielles ne sont pas remboursées. Nous rembourserons toujours :</p>
+        <ul><li>Un débit en double ou erroné.</li><li>La part proportionnelle du mois si l'API est indisponible pendant plus de <strong>72 heures consécutives</strong> pour des raisons qui nous sont imputables.</li></ul>
+        <p>Faites-en la demande par e-mail en indiquant votre offre et la date du débit. Le remboursement est effectué sur le même moyen de paiement via Stripe. Rien dans cette section ne limite les droits que vous confère la loi.</p>
+        <h2>7. Utilisation autorisée</h2>
+        <p>Avec une offre payante, vous pouvez intégrer les données de l'API dans vos produits et services, y compris commerciaux, et les afficher à vos utilisateurs finaux. Vous pouvez également les utiliser comme données d'entrée de vos propres analyses ou modèles internes (par exemple, irrigation, logistique ou énergie).</p>
+        <h2>8. Utilisations interdites</h2>
+        <p>Sauf accord écrit de notre part, il est interdit de :</p>
+        <ul><li>Revendre, sous-licencier ou redistribuer les données brutes ou en masse, ou les proposer comme service de données ou comme API.</li><li>Utiliser les données pour entraîner ou affiner des modèles, y compris d'intelligence artificielle, qui génèrent des prévisions, ou pour créer un service de prévision concurrent de B1TMET.</li><li>Partager des clés en dehors de votre organisation, utiliser plusieurs comptes ou clés pour dépasser les limites ou les contourner de toute autre manière.</li><li>Utiliser l'API à des fins illicites ou d'une manière qui nuit à notre infrastructure ou à d'autres clients.</li></ul>
+        <h2>9. Attribution</h2>
+        <p>Avec les offres <strong>Free</strong> et <strong>Starter</strong>, lorsque vous affichez les données publiquement, vous devez indiquer de façon visible « Prévision : B1TMET », avec un lien vers <a href="https://b1tmet.com">b1tmet.com</a> s'il s'agit d'un site web ou d'une application. Avec les offres Pro et Enterprise, l'attribution est facultative.</p>
+        <h2>10. Nature des données</h2>
+        <div class="note">Les prévisions proviennent de modèles numériques, sont fournies <strong>à titre indicatif</strong> et peuvent contenir des erreurs ou des retards. Elles <strong>ne remplacent pas</strong> les alertes officielles des services météorologiques nationaux ni de la protection civile. Ne les utilisez pas comme seule source pour des décisions dont dépend la sécurité des personnes ou des biens.</div>
+        <h2>11. Disponibilité et versions</h2>
+        <p>Nous faisons des efforts raisonnables pour que l'API fonctionne en continu, mais nous ne garantissons aucun niveau de disponibilité, sauf dans le cadre d'un accord Enterprise. Des interruptions pour maintenance sont possibles. La version <code>v1</code> est stable et ne reçoit que des modifications compatibles. Les modifications incompatibles seront publiées dans une nouvelle version, et la précédente sera maintenue au moins <strong>12 mois</strong> à compter de son annonce.</p>
+        <h2>12. Suspension</h2>
+        <p>Nous pouvons suspendre ou révoquer l'accès à l'API en cas de non-paiement, de manquement aux présentes conditions ou d'une utilisation qui met le service en danger, avec un préavis lorsque c'est possible.</p>
+        <h2>13. Confidentialité</h2>
+        <p>Nous traitons les données des clients de l'API conformément à la <a href="index.html">Politique de confidentialité</a>. Les coordonnées que vous envoyez servent uniquement à calculer la prévision : elles ne sont pas enregistrées dans les journaux et ne sont conservées en cache que quelques heures. Si vous envoyez les coordonnées de vos propres utilisateurs, il vous appartient de les en informer et de disposer de la base légale nécessaire.</p>
+        <h2>14. Limitation de responsabilité</h2>
+        <p>Dans la mesure permise par la loi, notre responsabilité totale au titre de l'API est limitée au montant que vous nous avez payé au cours des <strong>3 mois</strong> précédant le fait qui l'a engendrée. Nous ne sommes pas responsables des dommages indirects ni des pertes résultant de l'utilisation des informations météorologiques. Cela ne limite pas la responsabilité qui ne peut être exclue en vertu de la loi.</p>
+        <h2>15. Droit applicable et contact</h2>
+        <p>Les présentes Conditions de l'API sont régies par les lois des États-Unis du Mexique. Pour tout litige, les parties se soumettent aux tribunaux compétents de Mexico, sans préjudice de vos droits en tant que consommateur. Contact : <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>.</p>
+      </article>
+
+      <!-- ======================= IT ======================= -->
+      <article class="card" lang="it">
+        <h2>1. Accettazione</h2>
+        <p>I presenti Termini dell'API regolano l'accesso all'API di previsione di B1TMET (l'«API»), fornita da <strong>B1TMET Technologies</strong>, con sede in Copilco 300, Edificio 1, Depto. 104, Col. Copilco Universidad, Alcaldía Coyoacán, C.P. 04360, Ciudad de México, México. Si applicano insieme ai <a href="terminos.html">Termini di utilizzo</a>; per tutto ciò che riguarda l'API, prevalgono i presenti Termini dell'API. Richiedendo una chiave o usando l'API, li accetti a nome tuo o dell'organizzazione che rappresenti.</p>
+        <h2>2. Chiavi API</h2>
+        <ul><li>Ogni chiave è riservata e può essere usata solo dalla tua organizzazione. Sei responsabile di qualsiasi uso fatto con essa.</li><li>Se sospetti che una chiave sia stata divulgata, avvisaci: la revocheremo e te ne forniremo un'altra.</li><li>Possiamo revocare una chiave divulgata o usata in modo abusivo.</li></ul>
+        <h2>3. Piani, limiti e modifiche</h2>
+        <p>I limiti, l'orizzonte di previsione, le risoluzioni e il prezzo di ciascun piano sono pubblicati nella pagina <a href="precios.html">Prezzi</a>. I limiti si applicano per cliente e sono condivisi da tutte le sue chiavi. Daremo un preavviso di almeno <strong>30 giorni</strong> per qualsiasi aumento di prezzo o riduzione dei limiti di un piano a pagamento; la modifica si applicherà dal periodo di fatturazione successivo.</p>
+        <h2>4. Piano Free</h2>
+        <p>Il piano Free è solo per la valutazione e non può essere usato in prodotti o servizi commerciali. La sua chiave è valida 30 giorni e può essere rinnovata su richiesta. Possiamo modificare o ritirare il piano Free in qualsiasi momento.</p>
+        <h2>5. Piani a pagamento e disdetta</h2>
+        <p>I piani a pagamento sono abbonamenti mensili pagati in anticipo tramite <strong>Stripe</strong>. Puoi disdire in qualsiasi momento scrivendo a <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>: la tua chiave resterà attiva fino alla fine del periodo pagato e l'abbonamento non verrà rinnovato.</p>
+        <h2>6. Rimborsi</h2>
+        <p>I periodi parziali non vengono rimborsati. Rimborseremo sempre:</p>
+        <ul><li>Un addebito duplicato o errato.</li><li>La parte proporzionale del mese se l'API resta non disponibile per più di <strong>72 ore consecutive</strong> per cause a noi imputabili.</li></ul>
+        <p>Richiedilo via e-mail indicando il tuo piano e la data dell'addebito. Il rimborso viene effettuato sullo stesso metodo di pagamento tramite Stripe. Nulla in questa sezione limita i diritti che la legge ti riconosce.</p>
+        <h2>7. Uso consentito</h2>
+        <p>Con un piano a pagamento puoi integrare i dati dell'API nei tuoi prodotti e servizi, anche commerciali, e mostrarli ai tuoi utenti finali. Puoi anche usarli come dati di ingresso per le tue analisi o i tuoi modelli interni (ad esempio irrigazione, logistica o energia).</p>
+        <h2>8. Usi vietati</h2>
+        <p>Salvo accordo scritto con noi, non è consentito:</p>
+        <ul><li>Rivendere, concedere in sublicenza o ridistribuire i dati grezzi o in massa, né offrirli come servizio di dati o come API.</li><li>Usare i dati per addestrare o perfezionare modelli, compresi quelli di intelligenza artificiale, che generano previsioni, né per creare un servizio di previsione in concorrenza con B1TMET.</li><li>Condividere chiavi al di fuori della tua organizzazione, usare più account o chiavi per superare i limiti o aggirarli in qualsiasi altro modo.</li><li>Usare l'API per scopi illeciti o in modo da danneggiare la nostra infrastruttura o altri clienti.</li></ul>
+        <h2>9. Attribuzione</h2>
+        <p>Nei piani <strong>Free</strong> e <strong>Starter</strong>, quando mostri i dati pubblicamente devi indicare in modo visibile «Previsione: B1TMET», con un link a <a href="https://b1tmet.com">b1tmet.com</a> se si tratta di un sito web o di un'app. Nei piani Pro ed Enterprise l'attribuzione è facoltativa.</p>
+        <h2>10. Natura dei dati</h2>
+        <div class="note">Le previsioni provengono da modelli numerici, sono <strong>indicative</strong> e possono contenere errori o ritardi. <strong>Non sostituiscono</strong> gli avvisi ufficiali dei servizi meteorologici nazionali né della protezione civile. Non usarle come unica fonte per decisioni da cui dipende la sicurezza di persone o beni.</div>
+        <h2>11. Disponibilità e versioni</h2>
+        <p>Facciamo quanto ragionevolmente possibile perché l'API funzioni in modo continuo, ma non garantiamo alcun livello di disponibilità, salvo in un accordo Enterprise. Possono verificarsi interruzioni per manutenzione. La versione <code>v1</code> è stabile e riceve solo modifiche compatibili. Le modifiche incompatibili saranno pubblicate in una nuova versione e la precedente sarà mantenuta per almeno <strong>12 mesi</strong> dal suo annuncio.</p>
+        <h2>12. Sospensione</h2>
+        <p>Possiamo sospendere o revocare l'accesso all'API per mancato pagamento, per violazione dei presenti termini o per un uso che metta a rischio il servizio, con preavviso quando possibile.</p>
+        <h2>13. Privacy</h2>
+        <p>Trattiamo i dati dei clienti dell'API secondo l'<a href="index.html">Informativa sulla privacy</a>. Le coordinate che invii vengono usate solo per calcolare la previsione: non vengono registrate nei log e restano in cache solo per alcune ore. Se invii coordinate dei tuoi utenti, sei responsabile di informarli e di disporre della base giuridica necessaria.</p>
+        <h2>14. Limitazione di responsabilità</h2>
+        <p>Nei limiti consentiti dalla legge, la nostra responsabilità complessiva per l'API è limitata all'importo che ci hai pagato nei <strong>3 mesi</strong> precedenti il fatto che l'ha originata. Non rispondiamo di danni indiretti né di perdite derivanti dall'uso delle informazioni meteorologiche. Ciò non limita la responsabilità che non può essere esclusa per legge.</p>
+        <h2>15. Legge applicabile e contatti</h2>
+        <p>I presenti Termini dell'API sono regolati dalle leggi degli Stati Uniti Messicani. Per qualsiasi controversia, le parti si sottopongono ai tribunali competenti di Città del Messico, fatti salvi i diritti che ti spettano come consumatore. Contatto: <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>.</p>
+      </article>
+
+      <!-- ======================= NL ======================= -->
+      <article class="card" lang="nl">
+        <h2>1. Aanvaarding</h2>
+        <p>Deze API-voorwaarden regelen de toegang tot de voorspellings-API van B1TMET (de "API"), geleverd door <strong>B1TMET Technologies</strong>, gevestigd te Copilco 300, Edificio 1, Depto. 104, Col. Copilco Universidad, Alcaldía Coyoacán, C.P. 04360, Ciudad de México, México. Ze gelden samen met de <a href="terminos.html">Gebruiksvoorwaarden</a>; voor alles wat met de API te maken heeft, gaan deze API-voorwaarden voor. Door een sleutel aan te vragen of de API te gebruiken, aanvaard je ze namens jezelf of namens de organisatie die je vertegenwoordigt.</p>
+        <h2>2. API-sleutels</h2>
+        <ul><li>Elke sleutel is vertrouwelijk en mag alleen door je eigen organisatie worden gebruikt. Je bent verantwoordelijk voor al het gebruik ervan.</li><li>Vermoed je dat een sleutel is uitgelekt, laat het ons weten: we trekken hem in en geven je een nieuwe.</li><li>We kunnen een sleutel intrekken die is uitgelekt of die misbruikt wordt.</li></ul>
+        <h2>3. Abonnementen, limieten en wijzigingen</h2>
+        <p>De limieten, voorspellingshorizon, resoluties en prijs van elk abonnement staan op de pagina <a href="precios.html">Prijzen</a>. De limieten gelden per klant en worden gedeeld door al zijn sleutels. We kondigen elke prijsverhoging of verlaging van de limieten van een betaald abonnement minstens <strong>30 dagen</strong> vooraf aan; de wijziging geldt vanaf de volgende factuurperiode.</p>
+        <h2>4. Free-abonnement</h2>
+        <p>Het Free-abonnement is alleen bedoeld voor evaluatie en mag niet in commerciële producten of diensten worden gebruikt. De sleutel is 30 dagen geldig en kan op verzoek worden verlengd. We kunnen het Free-abonnement op elk moment wijzigen of intrekken.</p>
+        <h2>5. Betaalde abonnementen en opzegging</h2>
+        <p>Betaalde abonnementen zijn maandelijkse abonnementen die vooraf via <strong>Stripe</strong> worden betaald. Je kunt op elk moment opzeggen door te schrijven naar <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>: je sleutel blijft actief tot het einde van de betaalde periode en het abonnement wordt niet verlengd.</p>
+        <h2>6. Terugbetalingen</h2>
+        <p>Gedeeltelijke periodes worden niet terugbetaald. We betalen altijd terug:</p>
+        <ul><li>Een dubbele of onterechte afschrijving.</li><li>Het evenredige deel van de maand als de API langer dan <strong>72 uur achter elkaar</strong> niet beschikbaar is door oorzaken die aan ons te wijten zijn.</li></ul>
+        <p>Vraag het aan per e-mail met vermelding van je abonnement en de datum van de afschrijving. Het bedrag wordt via Stripe teruggestort op hetzelfde betaalmiddel. Niets in dit artikel beperkt de rechten die de wet je geeft.</p>
+        <h2>7. Toegestaan gebruik</h2>
+        <p>Met een betaald abonnement mag je de gegevens van de API in je producten en diensten integreren, ook commerciële, en ze aan je eindgebruikers tonen. Je mag ze ook gebruiken als invoer voor je eigen interne analyses of modellen (bijvoorbeeld irrigatie, logistiek of energie).</p>
+        <h2>8. Verboden gebruik</h2>
+        <p>Tenzij schriftelijk met ons overeengekomen, is het niet toegestaan om:</p>
+        <ul><li>De gegevens in ruwe vorm of op grote schaal door te verkopen, in sublicentie te geven of te herverspreiden, of ze aan te bieden als gegevensdienst of als API.</li><li>De gegevens te gebruiken om modellen, waaronder AI-modellen, te trainen of te verfijnen die voorspellingen genereren, of om een voorspellingsdienst op te zetten die concurreert met B1TMET.</li><li>Sleutels buiten je organisatie te delen, meerdere accounts of sleutels te gebruiken om de limieten te overschrijden of ze op een andere manier te omzeilen.</li><li>De API te gebruiken voor onwettige doeleinden of op een manier die onze infrastructuur of andere klanten schaadt.</li></ul>
+        <h2>9. Bronvermelding</h2>
+        <p>Bij de abonnementen <strong>Free</strong> en <strong>Starter</strong> moet je, wanneer je de gegevens openbaar toont, zichtbaar vermelden "Voorspelling: B1TMET", met een link naar <a href="https://b1tmet.com">b1tmet.com</a> als het om een website of app gaat. Bij Pro en Enterprise is bronvermelding optioneel.</p>
+        <h2>10. Aard van de gegevens</h2>
+        <div class="note">De voorspellingen zijn afkomstig van numerieke modellen, zijn <strong>indicatief</strong> en kunnen fouten of vertragingen bevatten. Ze <strong>vervangen geen</strong> officiële waarschuwingen van nationale weerdiensten of de civiele bescherming. Gebruik ze niet als enige bron voor beslissingen waarvan de veiligheid van personen of goederen afhangt.</div>
+        <h2>11. Beschikbaarheid en versies</h2>
+        <p>We doen redelijke inspanningen om de API ononderbroken te laten werken, maar garanderen geen beschikbaarheidsniveau, behalve in een Enterprise-overeenkomst. Er kunnen onderbrekingen voor onderhoud zijn. Versie <code>v1</code> is stabiel en krijgt alleen compatibele wijzigingen. Incompatibele wijzigingen verschijnen in een nieuwe versie, en de vorige blijft minstens <strong>12 maanden</strong> na de aankondiging beschikbaar.</p>
+        <h2>12. Opschorting</h2>
+        <p>We kunnen de toegang tot de API opschorten of intrekken bij niet-betaling, bij schending van deze voorwaarden of bij gebruik dat de dienst in gevaar brengt, indien mogelijk met voorafgaande kennisgeving.</p>
+        <h2>13. Privacy</h2>
+        <p>We verwerken de gegevens van API-klanten zoals beschreven in het <a href="index.html">Privacybeleid</a>. De coördinaten die je stuurt, worden alleen gebruikt om de voorspelling te berekenen: ze worden niet in logboeken vastgelegd en slechts enkele uren in de cache bewaard. Als je coördinaten van je eigen gebruikers stuurt, ben je zelf verantwoordelijk om hen te informeren en over de nodige rechtsgrond te beschikken.</p>
+        <h2>14. Beperking van aansprakelijkheid</h2>
+        <p>Voor zover de wet dat toestaat, is onze totale aansprakelijkheid voor de API beperkt tot het bedrag dat je ons hebt betaald in de <strong>3 maanden</strong> voorafgaand aan de gebeurtenis die haar veroorzaakt. We zijn niet aansprakelijk voor indirecte schade of voor verliezen als gevolg van het gebruik van de weersinformatie. Dit beperkt geen aansprakelijkheid die volgens de wet niet kan worden uitgesloten.</p>
+        <h2>15. Toepasselijk recht en contact</h2>
+        <p>Op deze API-voorwaarden is het recht van de Verenigde Mexicaanse Staten van toepassing. Geschillen worden voorgelegd aan de bevoegde rechtbanken van Mexico-Stad, onverminderd je rechten als consument. Contact: <a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>.</p>
+      </article>
+    </main>
+
+    <footer class="foot">
+      <picture>
+        <source srcset="assets/logo-h-light.png" media="(prefers-color-scheme: dark)" />
+        <img class="foot-img" src="assets/logo-h-dark.png" alt="B1TMET" />
+      </picture>
+      <p lang="es">
+        <a href="index.html">Aviso de privacidad</a> ·
+        <a href="terminos.html">Términos de uso</a> ·
+        <a href="precios.html">Precios API</a> ·
+        <a href="terminos-api.html">Términos de la API</a> ·
+        <a href="eliminar-cuenta.html">Eliminar cuenta</a> ·
+        <a href="mailto:b1tmet@b1tmet.com">Contacto</a> ·
+        <a href="https://b1tmet.com">Acerca de</a>
+      </p>
+      <p lang="en">
+        <a href="index.html">Privacy Policy</a> ·
+        <a href="terminos.html">Terms of Use</a> ·
+        <a href="precios.html">API Pricing</a> ·
+        <a href="terminos-api.html">API Terms</a> ·
+        <a href="eliminar-cuenta.html">Delete account</a> ·
+        <a href="mailto:b1tmet@b1tmet.com">Contact</a> ·
+        <a href="https://b1tmet.com">About</a>
+      </p>
+      <p lang="pt">
+        <a href="index.html">Aviso de privacidade</a> ·
+        <a href="terminos.html">Termos de uso</a> ·
+        <a href="precios.html">Preços da API</a> ·
+        <a href="terminos-api.html">Termos da API</a> ·
+        <a href="eliminar-cuenta.html">Excluir conta</a> ·
+        <a href="mailto:b1tmet@b1tmet.com">Contato</a> ·
+        <a href="https://b1tmet.com">Sobre</a>
+      </p>
+      <p lang="fr">
+        <a href="index.html">Politique de confidentialité</a> ·
+        <a href="terminos.html">Conditions d'utilisation</a> ·
+        <a href="precios.html">Tarifs de l'API</a> ·
+        <a href="terminos-api.html">Conditions de l'API</a> ·
+        <a href="eliminar-cuenta.html">Supprimer le compte</a> ·
+        <a href="mailto:b1tmet@b1tmet.com">Contact</a> ·
+        <a href="https://b1tmet.com">À propos</a>
+      </p>
+      <p lang="it">
+        <a href="index.html">Informativa sulla privacy</a> ·
+        <a href="terminos.html">Termini di utilizzo</a> ·
+        <a href="precios.html">Prezzi API</a> ·
+        <a href="terminos-api.html">Termini dell'API</a> ·
+        <a href="eliminar-cuenta.html">Elimina account</a> ·
+        <a href="mailto:b1tmet@b1tmet.com">Contatti</a> ·
+        <a href="https://b1tmet.com">Chi siamo</a>
+      </p>
+      <p lang="nl">
+        <a href="index.html">Privacybeleid</a> ·
+        <a href="terminos.html">Gebruiksvoorwaarden</a> ·
+        <a href="precios.html">API-prijzen</a> ·
+        <a href="terminos-api.html">API-voorwaarden</a> ·
+        <a href="eliminar-cuenta.html">Account verwijderen</a> ·
+        <a href="mailto:b1tmet@b1tmet.com">Contact</a> ·
+        <a href="https://b1tmet.com">Over ons</a>
+      </p>
+      <p lang="es" class="muted">Los pronósticos de B1TMET son orientativos y no sustituyen los avisos oficiales de los servicios meteorológicos nacionales. Mapas: © colaboradores de OpenStreetMap, © CARTO, © OpenTopoMap.</p>
+      <p lang="en" class="muted">B1TMET forecasts are for guidance only and do not replace official warnings from national weather services. Maps: © OpenStreetMap contributors, © CARTO, © OpenTopoMap.</p>
+      <p lang="pt" class="muted">As previsões da B1TMET são apenas orientativas e não substituem os avisos oficiais dos serviços meteorológicos nacionais. Mapas: © colaboradores do OpenStreetMap, © CARTO, © OpenTopoMap.</p>
+      <p lang="fr" class="muted">Les prévisions de B1TMET sont fournies à titre indicatif et ne remplacent pas les alertes officielles des services météorologiques nationaux. Cartes : © contributeurs d'OpenStreetMap, © CARTO, © OpenTopoMap.</p>
+      <p lang="it" class="muted">Le previsioni di B1TMET sono indicative e non sostituiscono gli avvisi ufficiali dei servizi meteorologici nazionali. Mappe: © collaboratori di OpenStreetMap, © CARTO, © OpenTopoMap.</p>
+      <p lang="nl" class="muted">De voorspellingen van B1TMET zijn indicatief en vervangen geen officiële waarschuwingen van nationale weerdiensten. Kaarten: © OpenStreetMap-bijdragers, © CARTO, © OpenTopoMap.</p>
+      <div>© 2026 B1TMET Technologies</div>
+    </footer>
+
+    <script src="assets/lang.js"></script>
+  </body>
+</html>

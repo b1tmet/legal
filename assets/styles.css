@@ -325,3 +325,26 @@ ul li {
 
 .brand-img{height:34px;width:auto;display:block}
 .foot-img{height:26px;width:auto;display:block}
+
+/* ===== Página de precios ===== */
+.lead{font-size:1.05rem;color:var(--muted);margin:0 0 8px}
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0}
+@media (max-width:900px){.plans{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.plans{grid-template-columns:1fr}}
+/* Páginas anchas (precios): más espacio para 4 columnas */
+body.wide .bar,body.wide .title,body.wide main{max-width:1120px}
+.plan{border:1px solid var(--border);border-radius:14px;padding:18px;display:flex;flex-direction:column;background:var(--surface)}
+.plan.featured{border:2px solid var(--primary);box-shadow:0 8px 24px rgba(56,91,214,.15)}
+.plan h3{margin:0 0 4px;font-size:1.1rem}
+.plan .tag{display:inline-block;align-self:flex-start;font-size:.75rem;font-weight:700;color:#fff;background:var(--primary);border-radius:999px;padding:2px 10px;margin-bottom:8px}
+.price{font-size:1.9rem;font-weight:800;margin:6px 0 2px}
+.price small{font-size:.9rem;font-weight:500;color:var(--muted)}
+.plan ul{list-style:none;padding:0;margin:10px 0 16px;flex:1}
+.plan li{padding:5px 0;border-bottom:1px dashed var(--border);font-size:.92rem}
+.plan li:last-child{border-bottom:0}
+.plan .btn{text-align:center}
+pre.code{background:#17062b;color:#edeef4;border-radius:12px;padding:14px 16px;overflow-x:auto;font-size:.85rem;line-height:1.5;margin:10px 0}
+pre.code code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+details.faq{border-bottom:1px solid var(--border);padding:10px 0}
+details.faq summary{cursor:pointer;font-weight:600}
+details.faq p{margin:8px 0 0}
