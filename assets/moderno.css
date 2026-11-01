@@ -1,0 +1,405 @@
+/* =====================================================================
+   moderno.css — capa visual opcional sobre styles.css
+   Se carga DESPUÉS de styles.css. No cambia el HTML ni los colores de marca
+   (#385bd6, #17062b, #a2b2f4): solo profundidad, transiciones y detalle.
+   Hover solo en escritorio (puntero fino). Sin animación si el sistema
+   pide movimiento reducido.
+   ===================================================================== */
+
+:root {
+  --grad: linear-gradient(135deg, #385bd6 0%, #5b7cf0 55%, #8a9cf6 100%);
+  --ring: 0 0 0 3px rgba(56, 91, 214, .35);
+  --shadow-1: 0 1px 2px rgba(23, 6, 43, .06), 0 4px 12px rgba(23, 6, 43, .06);
+  --shadow-2: 0 2px 4px rgba(23, 6, 43, .06), 0 18px 40px rgba(23, 6, 43, .14);
+  --shadow-brand: 0 10px 30px rgba(56, 91, 214, .28);
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --shadow-1: 0 1px 2px rgba(0, 0, 0, .3), 0 4px 12px rgba(0, 0, 0, .25);
+    --shadow-2: 0 2px 4px rgba(0, 0, 0, .35), 0 18px 40px rgba(0, 0, 0, .45);
+    --shadow-brand: 0 10px 34px rgba(91, 124, 240, .35);
+  }
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+::selection { background: rgba(56, 91, 214, .25) }
+
+/* ---------- Cabecera: halos de luz y retícula sutil ---------- */
+.hero { isolation: isolate }
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(600px 300px at 15% 20%, rgba(138, 156, 246, .35), transparent 70%),
+    radial-gradient(500px 280px at 85% 75%, rgba(56, 91, 214, .45), transparent 70%),
+    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, .09) 1px, transparent 0) 0 0 / 22px 22px;
+  -webkit-mask: linear-gradient(to bottom, #000 55%, transparent);
+  mask: linear-gradient(to bottom, #000 55%, transparent);
+}
+.title h1 { letter-spacing: -.02em; font-weight: 800 }
+.title p { letter-spacing: .01em }
+
+/* Píldoras de la cabecera con efecto cristal */
+.subnav .seg, .langsel {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.langsel { transition: background .2s, border-color .2s }
+
+/* ---------- Tarjeta principal ---------- */
+.card {
+  box-shadow: var(--shadow-2);
+  border-color: transparent;
+  /* filo superior con el degradado de marca (el radio lo recorta) */
+  background: var(--grad) top / 100% 4px no-repeat, var(--surface);
+}
+
+/* Títulos de sección: barra en degradado */
+h2 {
+  position: relative;
+  border-left: 0;
+  padding-left: 14px;
+  letter-spacing: -.01em;
+}
+h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .15em;
+  bottom: .15em;
+  width: 4px;
+  border-radius: 4px;
+  background: var(--grad);
+}
+
+a { text-underline-offset: 3px; transition: color .15s }
+
+/* ---------- Botones ---------- */
+.btn, button.btn {
+  background: var(--grad);
+  background-size: 140% 100%;
+  background-position: 0 0;
+  box-shadow: 0 4px 14px rgba(56, 91, 214, .3);
+  transition: transform .18s var(--ease), box-shadow .18s var(--ease), background-position .3s var(--ease);
+}
+.btn:focus-visible, button.btn:focus-visible { outline: none; box-shadow: var(--ring) }
+.btn:active { transform: translateY(1px) }
+button.btn.sec { box-shadow: none }
+button.btn.danger { background: #c2410c; box-shadow: 0 4px 14px rgba(194, 65, 12, .25) }
+.btn.ghost {
+  background: rgba(255, 255, 255, .08);
+  box-shadow: none;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+/* ---------- Planes (precios.html) ---------- */
+.plans { gap: 18px; margin: 22px 0 }
+.plan {
+  position: relative;
+  border-radius: 18px;
+  padding: 22px 20px;
+  box-shadow: var(--shadow-1);
+  transition: transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s;
+}
+.plan h3 { font-size: 1.15rem; letter-spacing: -.01em }
+.price { font-variant-numeric: tabular-nums; letter-spacing: -.02em; font-size: 2.2rem }
+
+/* Lista con puntos de marca en lugar de líneas discontinuas */
+.plan li {
+  position: relative;
+  border-bottom: 0;
+  padding: 5px 0 5px 17px;
+}
+.plan li::before {
+  content: "";
+  position: absolute;
+  left: 1px;
+  top: calc(5px + .62em);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--grad);
+  transform: translateY(-50%);
+}
+
+/* Botón secundario en los planes no destacados: el recomendado resalta solo */
+.plan:not(.featured) .btn {
+  background: transparent;
+  color: var(--primary) !important;
+  border: 1.5px solid var(--primary);
+  box-shadow: none;
+}
+
+/* Plan destacado: borde en degradado, halo y precio en degradado */
+.plan.featured {
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--surface), var(--surface)) padding-box,
+    linear-gradient(160deg, #385bd6, #a2b2f4 50%, #385bd6) border-box;
+  box-shadow: var(--shadow-brand);
+}
+.plan.featured .price {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.plan.featured .price small { -webkit-text-fill-color: var(--muted) }
+.plan .tag {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 4px 14px;
+  background: var(--grad);
+  box-shadow: 0 4px 12px rgba(56, 91, 214, .35);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.plan.featured h3 { margin-top: 6px }
+
+@media (min-width: 901px) {
+  .plan.featured { transform: translateY(-8px) }
+}
+
+/* ---------- Tablas ---------- */
+.tbl {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-1);
+}
+.tbl table { margin: 0 }
+.tbl tr:last-child td { border-bottom: 0 }
+th { letter-spacing: .01em }
+td { transition: background .15s }
+
+/* ---------- Código ---------- */
+pre.code {
+  border: 1px solid rgba(162, 178, 244, .18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04), var(--shadow-1);
+  border-radius: 14px;
+}
+
+/* ---------- Preguntas frecuentes ---------- */
+details.faq {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0;
+  margin: 8px 0;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+}
+details.faq summary {
+  list-style: none;
+  position: relative;
+  padding: 12px 44px 12px 16px;
+}
+details.faq summary::-webkit-details-marker { display: none }
+details.faq summary::after {
+  content: "";
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--primary);
+  border-bottom: 2px solid var(--primary);
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform .25s var(--ease);
+}
+details.faq[open] { border-color: var(--primary); box-shadow: var(--shadow-1) }
+details.faq[open] summary::after { transform: translateY(-30%) rotate(-135deg) }
+details.faq p { margin: 0; padding: 0 16px 14px }
+details.faq summary:focus-visible { outline: none; box-shadow: var(--ring); border-radius: 12px }
+
+/* ---------- Notas y estadísticas ---------- */
+.note {
+  border-left: 0;
+  position: relative;
+  padding-left: 20px;
+  overflow: hidden;
+}
+.note::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, #a2b2f4, #385bd6);
+}
+.stat {
+  border-radius: 14px;
+  transition: transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s;
+}
+.stat b {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Formularios (alta.html, claves.html) ---------- */
+input[type=email], input[type=text], .newk input {
+  transition: border-color .15s, box-shadow .15s;
+}
+input[type=email]:focus, input[type=text]:focus, .newk input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: var(--ring);
+}
+.client { box-shadow: var(--shadow-1); transition: box-shadow .25s, border-color .25s }
+.keybox { box-shadow: var(--shadow-brand) }
+
+/* ---------- Pestañas de código y mapa ---------- */
+.tab-btns button, .map-tabs button { transition: background .15s, color .15s, border-color .15s }
+
+/* =====================================================================
+   Hover: solo con ratón (escritorio). En móvil no hay estados pegados.
+   ===================================================================== */
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover, button.btn:not(:disabled):hover {
+    transform: translateY(-2px);
+    background-position: 100% 0;
+    box-shadow: 0 8px 22px rgba(56, 91, 214, .4);
+  }
+  button.btn.sec:not(:disabled):hover { box-shadow: var(--shadow-1); border-color: var(--primary) }
+  button.btn.danger:not(:disabled):hover { box-shadow: 0 8px 22px rgba(194, 65, 12, .35) }
+
+  .plan:hover {
+    transform: translateY(-6px);
+    border-color: var(--primary);
+    box-shadow: var(--shadow-2);
+  }
+  .plan.featured:hover { box-shadow: 0 22px 50px rgba(56, 91, 214, .38) }
+  .plan:not(.featured) .btn:hover {
+    background: var(--primary);
+    color: #fff !important;
+    box-shadow: 0 8px 22px rgba(56, 91, 214, .35);
+  }
+
+  .stat:hover { transform: translateY(-3px); box-shadow: var(--shadow-1); border-color: var(--primary) }
+  .client:hover { border-color: var(--secondary); box-shadow: var(--shadow-2) }
+  details.faq:not([open]):hover { border-color: var(--secondary); background: var(--row) }
+  .tbl tr:hover td { background: rgba(56, 91, 214, .07) }
+  .langsel:hover { background: rgba(255, 255, 255, .2) }
+  .tab-btns button:not(.active):hover, .map-tabs button:not(.active):hover { border-color: var(--primary); color: var(--primary) }
+}
+@media (hover: hover) and (pointer: fine) and (min-width: 901px) {
+  .plan.featured:hover { transform: translateY(-14px) }
+}
+
+/* ---------- Entrada suave al cargar ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes mx-rise { from { opacity: 0; transform: translateY(14px) } to { opacity: 1; transform: none } }
+  @keyframes mx-rise-up { from { opacity: 0; transform: translateY(6px) } to { opacity: 1; transform: translateY(-8px) } }
+  @keyframes mx-drift { 0%, 100% { background-position: 0 0, 0 0, 0 0 } 50% { background-position: 40px 10px, -40px -10px, 0 0 } }
+  .title, .subnav { animation: mx-rise .6s var(--ease) backwards }
+  .card { animation: mx-rise .6s .08s var(--ease) backwards }
+  .plan { animation: mx-rise .55s var(--ease) backwards }
+  .plan:nth-child(1) { animation-delay: .15s }
+  .plan:nth-child(2) { animation-delay: .22s }
+  .plan:nth-child(3) { animation-delay: .29s }
+  .plan:nth-child(4) { animation-delay: .36s }
+  .hero::before { animation: mx-drift 18s ease-in-out infinite }
+}
+@media (prefers-reduced-motion: no-preference) and (min-width: 901px) {
+  .plan.featured { animation-name: mx-rise-up }
+}
+@media (prefers-reduced-motion: reduce) {
+  .plan, .btn, .stat, details.faq summary::after { transition: none }
+}
+
+/* ---------- Modo oscuro ---------- */
+@media (prefers-color-scheme: dark) {
+  .card { border-color: rgba(162, 178, 244, .12) }
+  .plan.featured .price, .stat b { background: linear-gradient(135deg, #8a9cf6, #c9d2fb) ; -webkit-background-clip: text; background-clip: text }
+  .plan:not(.featured) .btn { color: var(--secondary) !important; border-color: var(--secondary) }
+  details.faq summary::after { border-color: var(--secondary) }
+  details.faq[open] { border-color: var(--secondary) }
+  .tbl tr:hover td { background: rgba(162, 178, 244, .08) }
+  @media (hover: hover) and (pointer: fine) {
+    .plan:hover { border-color: var(--secondary) }
+    .plan:not(.featured) .btn:hover { background: var(--secondary); color: #17062b !important }
+  }
+}
+
+/* =====================================================================
+   App bar: barra fija compacta que aparece al hacer scroll (moderno.js)
+   ===================================================================== */
+html { scroll-padding-top: calc(var(--appbar-h, 0px) + 12px) }
+.appbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  color: #fff;
+  background: linear-gradient(90deg, rgba(23, 6, 43, .88) 0%, rgba(42, 16, 96, .86) 55%, rgba(56, 91, 214, .86) 100%);
+  -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  backdrop-filter: saturate(1.4) blur(14px);
+  border-bottom: 1px solid rgba(162, 178, 244, .2);
+  box-shadow: 0 6px 24px rgba(23, 6, 43, .25);
+  transform: translateY(-110%);
+  transition: transform .3s var(--ease);
+}
+.appbar.on { transform: none }
+.ab-in {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+body.wide .ab-in { max-width: 1120px }
+.ab-in .brand { flex: none; font-size: 1.05rem }
+.ab-in .brand-img { height: 28px }
+.ab-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-left: 14px;
+  border-left: 1px solid rgba(255, 255, 255, .25);
+  font-weight: 700;
+  font-size: .95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ab-title:empty { visibility: hidden }
+.appbar .subnav { margin: 0; max-width: none; flex: none }
+.appbar .subnav .seg { padding: 3px }
+.appbar .subnav a { padding: 5px 14px; font-size: .88rem }
+.appbar .langsel { flex: none }
+.appbar .langsel select { padding-top: 5px; padding-bottom: 5px; font-size: .85rem }
+
+/* El índice fijo de la documentación queda por debajo de la barra */
+.ab-on .toc { top: calc(var(--appbar-h, 0px) + 16px); max-height: calc(100vh - var(--appbar-h, 0px) - 32px) }
+.toc { transition: top .3s var(--ease) }
+
+/* Pantallas medianas: fuera el título */
+@media (max-width: 1000px) {
+  .ab-title { visibility: hidden; padding: 0; border: 0 }
+}
+/* Móvil: logo e idioma arriba, pestañas debajo a todo el ancho */
+@media (max-width: 640px) {
+  .ab-in { flex-wrap: wrap; gap: 8px 10px; padding: 8px 14px }
+  .ab-title { flex: 1 1 0; }
+  .appbar .subnav { order: 3; flex: 1 1 100% }
+  .appbar .subnav .seg { display: flex; width: 100% }
+  .appbar .subnav a { flex: 1 1 auto; justify-content: center; padding: 5px 10px }
+}
+@media (prefers-reduced-motion: reduce) {
+  .appbar, .toc { transition: none }
+}
