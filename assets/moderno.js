@@ -85,3 +85,92 @@
     }, { passive: true });
   }
 })();
+
+/* Fondo animado de la cabecera: partículas que siguen un campo de viento
+   (alisios del este y un ciclón que gira en sentido antihorario).
+   Es decorativo: no son datos reales. Se pausa fuera de pantalla, con la
+   pestaña oculta y si el sistema pide movimiento reducido. */
+(function () {
+  var hero = document.querySelector('.hero');
+  if (!hero || !window.requestAnimationFrame) return;
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var cv = document.createElement('canvas');
+  cv.className = 'wind';
+  cv.setAttribute('aria-hidden', 'true');
+  hero.insertBefore(cv, hero.firstChild);
+  var ctx = cv.getContext('2d');
+  if (!ctx) return;
+
+  var W = 0, H = 0, dpr = 1, P = [], N = 0, visible = true, raf = 0, t = 0;
+
+  function size() {
+    var r = hero.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = Math.max(1, Math.round(r.width));
+    H = Math.max(1, Math.round(r.height));
+    cv.width = W * dpr; cv.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    N = Math.round(Math.min(900, W * H / 900));       // densidad según el área
+    P = [];
+    for (var i = 0; i < N; i++) P.push(spawn({}, true));
+  }
+
+  function spawn(p, anywhere) {
+    p.x = anywhere ? Math.random() * W : W + Math.random() * 40;   // los alisios entran por el este
+    p.y = Math.random() * H;
+    p.age = 0;
+    p.life = 80 + Math.random() * 160;
+    return p;
+  }
+
+  // Campo de viento en px/fotograma
+  function wind(x, y) {
+    var s = Math.min(W, 1200) / 1200 + .4;
+    var cx = W * (.74 + .04 * Math.sin(t * .0007)), cy = H * (.42 + .08 * Math.cos(t * .0009));
+    var R = Math.min(W, H) * .22 + 30;
+    var dx = x - cx, dy = y - cy, r = Math.sqrt(dx * dx + dy * dy) + .001;
+    var vt = 3.2 * s * (r < R ? r / R : Math.pow(R / r, .8));    // vórtice de Rankine
+    var inflow = .35 * vt;
+    var u = (dy / r) * vt - (dx / r) * inflow;                    // giro antihorario + convergencia
+    var v = (-dx / r) * vt - (dy / r) * inflow;
+    u += -1.1 * s + .35 * Math.sin(y / 70 + t * .01);             // alisios con ondulación
+    v += .25 * Math.sin(x / 90 - t * .008);
+    return [u, v];
+  }
+
+  function frame() {
+    t++;
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.fillStyle = 'rgba(0,0,0,.08)';                // estela que se desvanece
+    ctx.fillRect(0, 0, W, H);
+    ctx.globalCompositeOperation = 'lighter';
+    ctx.lineWidth = 1.1;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    for (var i = 0; i < N; i++) {
+      var p = P[i], w = wind(p.x, p.y);
+      var nx = p.x + w[0], ny = p.y + w[1];
+      ctx.moveTo(p.x, p.y);
+      ctx.lineTo(nx, ny);
+      p.x = nx; p.y = ny; p.age++;
+      if (p.age > p.life || nx < -10 || ny < -10 || ny > H + 10 || nx > W + 60) spawn(p, Math.random() < .7);
+    }
+    ctx.strokeStyle = 'rgba(190,205,255,.22)';
+    ctx.stroke();
+    raf = visible && !document.hidden ? requestAnimationFrame(frame) : 0;
+  }
+
+  function start() { if (!raf && visible && !document.hidden) raf = requestAnimationFrame(frame); }
+
+  size();
+  cv.classList.add('on');
+  start();
+
+  var rt;
+  window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(size, 150); });
+  document.addEventListener('visibilitychange', start);
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { visible = es[0].isIntersecting; start(); }).observe(hero);
+  }
+})();

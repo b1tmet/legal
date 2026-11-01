@@ -75,25 +75,62 @@
 
     <main>
       <article class="card">
-        <div class="stats">
-          <div class="stat"><b>3 km</b><div lang="es">resolución máxima</div><div lang="en">finest resolution</div><div lang="pt">resolução máxima</div><div lang="fr">résolution maximale</div><div lang="it">risoluzione massima</div><div lang="nl">hoogste resolutie</div></div>
-          <div class="stat"><b>7</b><div lang="es">dominios del modelo</div><div lang="en">model domains</div><div lang="pt">domínios do modelo</div><div lang="fr">domaines du modèle</div><div lang="it">domini del modello</div><div lang="nl">modeldomeinen</div></div>
-          <div class="stat"><b>72 h</b><div lang="es">de pronóstico, cada 3 h</div><div lang="en">of forecast, every 3 h</div><div lang="pt">de previsão, a cada 3 h</div><div lang="fr">de prévision, toutes les 3 h</div><div lang="it">di previsione, ogni 3 h</div><div lang="nl">vooruit, elke 3 uur</div></div>
-          <div class="stat"><b>4</b><div lang="es">corridas del modelo al día</div><div lang="en">model runs per day</div><div lang="pt">rodadas do modelo por dia</div><div lang="fr">exécutions du modèle par jour</div><div lang="it">esecuzioni del modello al giorno</div><div lang="nl">modelruns per dag</div></div>
+        <!-- Cifras: animadas al entrar en pantalla; las dos primeras llevan al mapa, las otras a la documentación -->
+        <div class="stats" id="stats">
+          <a class="stat" href="#cobertura" data-act="res">
+            <svg class="viz" viewBox="0 0 64 40" aria-hidden="true">
+              <rect class="g27" x="4" y="2" width="56" height="36" rx="3"/>
+              <path class="g9" d="M22.7 2V38M41.3 2V38M4 14H60M4 26H60"/>
+              <path class="g3" d="M10.2 2V38M16.4 2V38M28.9 2V38M35.1 2V38M47.6 2V38M53.8 2V38M4 6H60M4 10H60M4 18H60M4 22H60M4 30H60M4 34H60"/>
+            </svg>
+            <b data-seq="27,9,3" data-unit=" km">3 km</b>
+            <div lang="es">resolución máxima</div><div lang="en">finest resolution</div><div lang="pt">resolução máxima</div><div lang="fr">résolution maximale</div><div lang="it">risoluzione massima</div><div lang="nl">hoogste resolutie</div>
+            <small class="sub">27 → 9 → 3 km</small>
+          </a>
+          <a class="stat" href="#cobertura" data-act="doms">
+            <svg class="viz" viewBox="0 0 64 40" aria-hidden="true">
+              <circle cx="10" cy="26" r="4" fill="#e76f51"/><circle cx="19" cy="14" r="4" fill="#2a9d8f"/><circle cx="28" cy="27" r="4" fill="#8e7dff"/><circle cx="35" cy="12" r="4" fill="#4f86f7"/><circle cx="42" cy="24" r="4" fill="#d264b6"/><circle cx="51" cy="15" r="4" fill="#e9b949"/><circle cx="56" cy="29" r="4" fill="#3fbf5f"/>
+            </svg>
+            <b data-to="7">7</b>
+            <div lang="es">dominios del modelo</div><div lang="en">model domains</div><div lang="pt">domínios do modelo</div><div lang="fr">domaines du modèle</div><div lang="it">domini del modello</div><div lang="nl">modeldomeinen</div>
+            <small class="sub">d01 · d02 · d03</small>
+          </a>
+          <a class="stat" href="api-docs.html#es-point" data-doc="point">
+            <svg class="viz" viewBox="0 0 64 40" aria-hidden="true">
+              <path class="axis" d="M4 30H60"/>
+              <g class="ticks"></g>
+              <path class="curve" d="M4 24C11 24 13 12 20 12S29 26 36 26 45 10 52 10 58 18 60 18" pathLength="1"/>
+            </svg>
+            <b data-to="72" data-unit=" h">72 h</b>
+            <div lang="es">de pronóstico, cada 3 h</div><div lang="en">of forecast, every 3 h</div><div lang="pt">de previsão, a cada 3 h</div><div lang="fr">de prévision, toutes les 3 h</div><div lang="it">di previsione, ogni 3 h</div><div lang="nl">vooruit, elke 3 uur</div>
+            <small class="sub">0 → 72 h</small>
+          </a>
+          <a class="stat" href="api-docs.html#es-runs" data-doc="runs">
+            <svg class="viz clock" viewBox="0 0 64 40" aria-hidden="true">
+              <circle class="face" cx="32" cy="20" r="17"/>
+              <path class="run" d="M32 3V8M49 20H44M32 37V32M15 20H20"/>
+              <path class="hand" d="M32 20V7"/>
+              <circle cx="32" cy="20" r="2"/>
+            </svg>
+            <b data-to="4">4</b>
+            <div lang="es">corridas del modelo al día</div><div lang="en">model runs per day</div><div lang="pt">rodadas do modelo por dia</div><div lang="fr">exécutions du modèle par jour</div><div lang="it">esecuzioni del modello al giorno</div><div lang="nl">modelruns per dag</div>
+            <small class="sub">00 · 06 · 12 · 18 UTC</small>
+          </a>
         </div>
 
+        <span id="cobertura"></span>
         <h2 lang="es">Cobertura</h2>
         <h2 lang="en">Coverage</h2>
         <h2 lang="pt">Cobertura</h2>
         <h2 lang="fr">Couverture</h2>
         <h2 lang="it">Copertura</h2>
         <h2 lang="nl">Dekking</h2>
-        <p lang="es">Cada recuadro es un dominio del modelo. Pasa el cursor por un dominio de la lista (o tócalo) para resaltarlo.</p>
-        <p lang="en">Each box is a model domain. Hover over a domain in the list (or tap it) to highlight it.</p>
-        <p lang="pt">Cada retângulo é um domínio do modelo. Passe o cursor sobre um domínio da lista (ou toque nele) para destacá-lo.</p>
-        <p lang="fr">Chaque cadre est un domaine du modèle. Survolez un domaine de la liste (ou touchez-le) pour le mettre en évidence.</p>
-        <p lang="it">Ogni riquadro è un dominio del modello. Passa il cursore su un dominio dell'elenco (o toccalo) per evidenziarlo.</p>
-        <p lang="nl">Elk kader is een modeldomein. Beweeg over een domein in de lijst (of tik erop) om het te markeren.</p>
+        <p lang="es">Cada color es un dominio del modelo, y cada recuadro, una de sus mallas: cuanto más interior, más fina. Pasa el cursor por un dominio de la lista (o tócalo) para resaltarlo.</p>
+        <p lang="en">Each color is a model domain, and each box one of its grids: the further in, the finer. Hover over a domain in the list (or tap it) to highlight it.</p>
+        <p lang="pt">Cada cor é um domínio do modelo, e cada retângulo, uma das suas grades: quanto mais interna, mais fina. Passe o cursor sobre um domínio da lista (ou toque nele) para destacá-lo.</p>
+        <p lang="fr">Chaque couleur est un domaine du modèle, et chaque cadre l'une de ses grilles : plus elle est intérieure, plus elle est fine. Survolez un domaine de la liste (ou touchez-le) pour le mettre en évidence.</p>
+        <p lang="it">Ogni colore è un dominio del modello e ogni riquadro una delle sue griglie: più è interna, più è fine. Passa il cursore su un dominio dell'elenco (o toccalo) per evidenziarlo.</p>
+        <p lang="nl">Elke kleur is een modeldomein en elk kader een van zijn roosters: hoe verder naar binnen, hoe fijner. Beweeg over een domein in de lijst (of tik erop) om het te markeren.</p>
         <div class="map-tabs" role="group"><button type="button" data-view="best" class="active" id="tab-best"></button><button type="button" data-view="d01" id="tab-d01"></button></div>
         <div class="map-wrap">
           <svg class="map" id="map" viewBox="0 0 1100 550" role="img" aria-label="Mapa de cobertura / Coverage map">
@@ -292,28 +329,29 @@ print(r.json()["data"][0]["temperature_2m"])</code></pre>
       (function () {
         var T = {
           es: { checking: "Comprobando el servicio…", ok: "API operativa", degraded: "Servicio degradado", unknown: "No se pudo comprobar el estado",
-          best: "Planes de pago", d01: "Plan Free (d01)",
+          best: "Planes de pago · todas las mallas", d01: "Plan Free (d01)",
                 n: { caribe: "Caribe", mexico: "México", panama: "Panamá", centro_america: "Centroamérica", cuba: "Cuba", dominica: "Dominica", dominicana: "República Dominicana" } },
-          en: { checking: "Checking service…", ok: "API operational", degraded: "Service degraded", unknown: "Could not check status", best: "Paid plans", d01: "Free plan (d01)",
+          en: { checking: "Checking service…", ok: "API operational", degraded: "Service degraded", unknown: "Could not check status", best: "Paid plans · all grids", d01: "Free plan (d01)",
                 n: { caribe: "Caribbean", mexico: "Mexico", panama: "Panama", centro_america: "Central America", cuba: "Cuba", dominica: "Dominica", dominicana: "Dominican Republic" } },
-          pt: { checking: "Verificando o serviço…", ok: "API operacional", degraded: "Serviço degradado", unknown: "Não foi possível verificar o status", best: "Planos pagos", d01: "Plano Free (d01)",
+          pt: { checking: "Verificando o serviço…", ok: "API operacional", degraded: "Serviço degradado", unknown: "Não foi possível verificar o status", best: "Planos pagos · todas as grades", d01: "Plano Free (d01)",
                 n: { caribe: "Caribe", mexico: "México", panama: "Panamá", centro_america: "América Central", cuba: "Cuba", dominica: "Dominica", dominicana: "República Dominicana" } },
-          fr: { checking: "Vérification du service…", ok: "API opérationnelle", degraded: "Service dégradé", unknown: "Impossible de vérifier l'état", best: "Offres payantes", d01: "Offre Free (d01)",
+          fr: { checking: "Vérification du service…", ok: "API opérationnelle", degraded: "Service dégradé", unknown: "Impossible de vérifier l'état", best: "Offres payantes · toutes les grilles", d01: "Offre Free (d01)",
                 n: { caribe: "Caraïbes", mexico: "Mexique", panama: "Panama", centro_america: "Amérique centrale", cuba: "Cuba", dominica: "Dominique", dominicana: "République dominicaine" } },
-          it: { checking: "Verifica del servizio…", ok: "API operativa", degraded: "Servizio degradato", unknown: "Impossibile verificare lo stato", best: "Piani a pagamento", d01: "Piano Free (d01)",
+          it: { checking: "Verifica del servizio…", ok: "API operativa", degraded: "Servizio degradato", unknown: "Impossibile verificare lo stato", best: "Piani a pagamento · tutte le griglie", d01: "Piano Free (d01)",
                 n: { caribe: "Caraibi", mexico: "Messico", panama: "Panama", centro_america: "America centrale", cuba: "Cuba", dominica: "Dominica", dominicana: "Repubblica Dominicana" } },
-          nl: { checking: "Dienst controleren…", ok: "API operationeel", degraded: "Dienst verstoord", unknown: "Status kon niet worden gecontroleerd", best: "Betaalde abonnementen", d01: "Free-abonnement (d01)",
+          nl: { checking: "Dienst controleren…", ok: "API operationeel", degraded: "Dienst verstoord", unknown: "Status kon niet worden gecontroleerd", best: "Betaalde abonnementen · alle roosters", d01: "Free-abonnement (d01)",
                 n: { caribe: "Caribisch gebied", mexico: "Mexico", panama: "Panama", centro_america: "Midden-Amerika", cuba: "Cuba", dominica: "Dominica", dominicana: "Dominicaanse Republiek" } }
         };
-        // [sur, oeste, norte, este, km, grid]  (src/utils/domainBounds.js)
+        // Mallas de cada dominio: [sur, oeste, norte, este, km, malla]  (src/utils/domainBounds.js)
+        // null = malla sin límites: cuenta en la leyenda pero no se dibuja
         var D = [
-          { k: "mexico",         c: "#e76f51", d01: [2.67, -133.77, 43.15, -71.57, 25, "d01"], best: [8.90, -124.25, 36.99, -80.02, 5, "d02"] },
-          { k: "caribe",         c: "#2a9d8f", d01: [-2.45, -102.84, 34.59, -46.77, 9, "d01"], best: [-2.45, -102.84, 34.59, -46.77, 9, "d01"] },
-          { k: "centro_america", c: "#8e7dff", d01: [-7.20, -113.45, 31.52, -57.76, 27, "d01"], best: [1.93, -100.80, 24.77, -70.41, 9, "d02"] },
-          { k: "dominica",       c: "#e9b949", d01: [-0.41, -86.10, 27.81, -26.61, 27, "d01"], best: [6.71, -68.01, 22.71, -40.96, 9, "d02"] },
-          { k: "dominicana",     c: "#d264b6", d01: [6.62, -96.00, 30.74, -48.20, 27, "d01"], best: [11.86, -85.81, 26.07, -57.36, 9, "d02"] },
-          { k: "cuba",           c: "#4f86f7", d01: [13.65, -99.28, 32.04, -62.83, 27, "d01"], best: [17.64, -88.27, 26.60, -70.93, 9, "d02"] },
-          { k: "panama",         c: "#3fbf5f", d01: [-5.22, -97.23, 22.91, -62.79, 27, "d01"], best: [6.53, -83.48, 10.56, -76.62, 3, "d03"] }
+          { k: "mexico",         c: "#e76f51", g: [[2.67, -133.77, 43.15, -71.57, 25, "d01"], [8.90, -124.25, 36.99, -80.02, 5, "d02"]] },
+          { k: "caribe",         c: "#2a9d8f", g: [[-2.45, -102.84, 34.59, -46.77, 9, "d01"]] },
+          { k: "centro_america", c: "#8e7dff", g: [[-7.20, -113.45, 31.52, -57.76, 27, "d01"], [1.93, -100.80, 24.77, -70.41, 9, "d02"]] },
+          { k: "dominica",       c: "#e9b949", g: [[-0.41, -86.10, 27.81, -26.61, 27, "d01"], [6.71, -68.01, 22.71, -40.96, 9, "d02"]] },
+          { k: "dominicana",     c: "#d264b6", g: [[6.62, -96.00, 30.74, -48.20, 27, "d01"], [11.86, -85.81, 26.07, -57.36, 9, "d02"]] },
+          { k: "cuba",           c: "#4f86f7", g: [[13.65, -99.28, 32.04, -62.83, 27, "d01"], [17.64, -88.27, 26.60, -70.93, 9, "d02"]] },
+          { k: "panama",         c: "#3fbf5f", g: [[-5.22, -97.23, 22.91, -62.79, 27, "d01"], [3.05, -87.47, 15.09, -72.55, 9, "d02"], [6.53, -83.48, 10.56, -76.62, 3, "d03"]] }
         ];
         var NS = "http://www.w3.org/2000/svg";
         var gDoms = document.getElementById("doms"), legend = document.getElementById("legend");
@@ -334,28 +372,40 @@ print(r.json()["data"][0]["temperature_2m"])</code></pre>
           document.getElementById("tab-best").textContent = t.best;
           document.getElementById("tab-d01").textContent = t.d01;
           document.querySelectorAll(".map-tabs button").forEach(function (b) { b.classList.toggle("active", b.dataset.view === view); });
-          var items = D.map(function (d) { return { k: d.k, c: d.c, b: d[view] }; });
-          // los más grandes debajo
+          // Free: solo d01. De pago: todas las mallas, anidadas
+          var items = [];
+          D.forEach(function (d) {
+            d.g.forEach(function (g, i) {
+              if (g[0] === null || (view === "d01" && g[5] !== "d01")) return;
+              items.push({ k: d.k, c: d.c, b: g, inner: i > 0 });
+            });
+          });
+          // las más grandes debajo
           items.sort(function (a, b) { return (b.b[2] - b.b[0]) * (b.b[3] - b.b[1]) - (a.b[2] - a.b[0]) * (a.b[3] - a.b[1]); });
           gDoms.textContent = "";
-          items.forEach(function (it) {
+          items.forEach(function (it, n) {
             var r = document.createElementNS(NS, "rect"), b = it.b;
             r.setAttribute("x", X(b[1])); r.setAttribute("y", Y(b[2]));
             r.setAttribute("width", X(b[3]) - X(b[1])); r.setAttribute("height", Y(b[0]) - Y(b[2]));
-            r.setAttribute("class", "dom"); r.setAttribute("fill", it.c); r.setAttribute("stroke", it.c);
+            r.setAttribute("pathLength", "1");
+            r.setAttribute("class", "dom" + (view === "best" && !it.inner && D.filter(function (d) { return d.k === it.k; })[0].g.length > 1 ? " outer" : ""));
+            r.setAttribute("fill", it.c); r.setAttribute("stroke", it.c);
+            r.style.animationDelay = (n * 0.06) + "s";
             r.dataset.k = it.k;
             r.addEventListener("mouseenter", function () { if (!pinned) highlight(it.k); });
             r.addEventListener("mouseleave", function () { if (!pinned) highlight(null); });
             gDoms.appendChild(r);
           });
           legend.textContent = "";
-          D.slice().sort(function (a, b) { return a[view][4] - b[view][4] || t.n[a.k].localeCompare(t.n[b.k]); }).forEach(function (d) {
-            var li = document.createElement("li"), b = d[view];
+          var finest = function (d) { return view === "d01" ? d.g[0][4] : Math.min.apply(null, d.g.map(function (g) { return g[4]; })); };
+          D.slice().sort(function (a, b) { return finest(a) - finest(b) || t.n[a.k].localeCompare(t.n[b.k]); }).forEach(function (d) {
+            var li = document.createElement("li");
             li.dataset.k = d.k; li.tabIndex = 0;
             li.innerHTML = '<span class="sw"></span><span class="nm"></span><span class="km"></span>';
             li.querySelector(".sw").style.background = d.c;
             li.querySelector(".nm").textContent = t.n[d.k];
-            li.querySelector(".km").textContent = b[5] + " · " + b[4] + " km";
+            li.querySelector(".km").textContent = view === "d01" ? "d01 · " + d.g[0][4] + " km"
+              : d.g.map(function (g) { return g[4]; }).join(" · ") + " km";
             li.addEventListener("mouseenter", function () { if (!pinned) highlight(d.k); });
             li.addEventListener("mouseleave", function () { if (!pinned) highlight(null); });
             li.addEventListener("click", function () { pinned = pinned === d.k ? null : d.k; highlight(pinned); });
@@ -370,6 +420,67 @@ print(r.json()["data"][0]["temperature_2m"])</code></pre>
         });
         new MutationObserver(render).observe(document.documentElement, { attributes: true, attributeFilter: ["data-lang"] });
         render();
+
+        // ---------- Cifras ----------
+        var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var stats = document.getElementById("stats");
+        // Marcas del eje de 72 h: una cada 3 h (25 instantes)
+        var ticks = stats.querySelector(".ticks");
+        for (var i = 0; i <= 24; i++) {
+          var tk = document.createElementNS(NS, "path");
+          tk.setAttribute("d", "M" + (4 + i * 56 / 24).toFixed(2) + " 30V" + (i % 8 === 0 ? 35 : 33));
+          tk.style.animationDelay = (i * 0.04) + "s";
+          ticks.appendChild(tk);
+        }
+        // Reloj UTC: la aguja marca la hora UTC actual sobre las 4 corridas
+        var hand = stats.querySelector(".hand");
+        function clock() {
+          var d = new Date(), h = d.getUTCHours() + d.getUTCMinutes() / 60;
+          hand.setAttribute("transform", "rotate(" + (h * 15) + " 32 20)");
+        }
+        clock(); setInterval(clock, 60000);
+
+        function countUp(el) {
+          var unit = el.dataset.unit || "", seq = el.dataset.seq;
+          if (reduce) return;
+          if (seq) {                                   // 27 → 9 → 3 km
+            var v = seq.split(","), k = 0;
+            el.textContent = v[0] + unit;
+            var iv = setInterval(function () { k++; el.textContent = v[k] + unit; if (k >= v.length - 1) clearInterval(iv); }, 450);
+            return;
+          }
+          var to = +el.dataset.to, t0 = null;
+          function step(ts) {
+            if (!t0) t0 = ts;
+            var p = Math.min(1, (ts - t0) / 1100), e = 1 - Math.pow(1 - p, 3);
+            el.textContent = Math.round(to * e) + unit;
+            if (p < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+        }
+        if ("IntersectionObserver" in window) {
+          var io = new IntersectionObserver(function (es) {
+            if (!es[0].isIntersecting) return;
+            io.disconnect();
+            stats.classList.add("go");
+            stats.querySelectorAll("b").forEach(countUp);
+          }, { threshold: 0.4 });
+          io.observe(stats);
+        } else stats.classList.add("go");
+
+        // Las dos primeras llevan al mapa: 3 km fija Panamá (malla d03); 7 dominios los muestra todos
+        stats.querySelectorAll("[data-act]").forEach(function (a) {
+          a.addEventListener("click", function () {
+            view = "best"; pinned = a.dataset.act === "res" ? "panama" : null; render();
+          });
+        });
+        // La documentación existe en español e inglés
+        function docLinks() {
+          var l = document.documentElement.getAttribute("data-lang") === "es" ? "es" : "en";
+          stats.querySelectorAll("[data-doc]").forEach(function (a) { a.href = "api-docs.html#" + l + "-" + a.dataset.doc; });
+        }
+        docLinks();
+        new MutationObserver(docLinks).observe(document.documentElement, { attributes: true, attributeFilter: ["data-lang"] });
 
         // Estado en vivo (no necesita clave ni consume cuota)
         function setState(s) { state = s; document.getElementById("status").dataset.state = s; render(); }
