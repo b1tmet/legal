@@ -35,6 +35,11 @@
       .chk input { margin-top: 5px; width: 18px; height: 18px; flex: none; accent-color: var(--primary) }
       button.btn { border: 0; font: inherit; font-weight: 600; cursor: pointer }
       button.btn:disabled { opacity: .6; cursor: default }
+      /* Enviando: spinner en el botón (el envío del correo puede tardar unos segundos) */
+      button.btn.busy { position: relative; color: transparent !important; opacity: 1 }
+      button.btn.busy::after { content: ""; position: absolute; inset: 0; margin: auto; width: 18px; height: 18px;
+        border-radius: 50%; border: 2px solid rgba(255,255,255,.45); border-top-color: #fff; animation: sp .8s linear infinite }
+      @keyframes sp { to { transform: rotate(360deg) } }
       .ok { background: #e6f6ea; color: #14532d; border-left: 4px solid #3fbf5f; border-radius: 10px; padding: 12px 14px }
       .err { background: #fde8e4; color: #6b1c0e; border-left: 4px solid #e76f51; border-radius: 10px; padding: 12px 14px }
       #msg:empty { display: none }
@@ -132,29 +137,98 @@
       (function () {
         var LOCAL = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
         var API = LOCAL ? location.origin : "https://thredds.b1tmet.com";
+        var MAIL = '<a href="mailto:b1tmet@b1tmet.com">b1tmet@b1tmet.com</a>';
+        var LOCALES = { es: "es-ES", en: "en-US", pt: "pt-PT", fr: "fr-FR", it: "it-IT", nl: "nl-NL" };
+        // Textos: cadenas o funciones (p = parámetros de la respuesta)
         var M = {
-          es: { sent: "Si el correo es válido, en unos minutos recibirás un enlace para ver tu clave. Revisa también la carpeta de spam. El enlace caduca en 24 horas. Si ya tienes una clave Free vigente, podrás pedir otra en los últimos 3 días antes de que caduque.", email: "Escribe un correo válido.", terms: "Debes aceptar los Términos de la API.", rate: "Demasiadas solicitudes desde tu conexión. Inténtalo mañana.", error: "No se pudo contactar con el servidor. Inténtalo de nuevo en unos minutos." },
-          en: { sent: "If the email is valid, you'll receive a link to see your key within a few minutes. Check your spam folder too. The link expires in 24 hours. If you already have a valid Free key, you can request a new one in the last 3 days before it expires.", email: "Enter a valid email.", terms: "You must accept the API Terms.", rate: "Too many requests from your connection. Try again tomorrow.", error: "Could not reach the server. Try again in a few minutes." },
-          pt: { sent: "Se o e-mail for válido, em alguns minutos você receberá um link para ver sua chave. Verifique também a pasta de spam. O link expira em 24 horas. Se você já tem uma chave Free válida, poderá pedir outra nos últimos 3 dias antes de expirar.", email: "Digite um e-mail válido.", terms: "Você deve aceitar os Termos da API.", rate: "Solicitações demais a partir da sua conexão. Tente novamente amanhã.", error: "Não foi possível contatar o servidor. Tente novamente em alguns minutos." },
-          fr: { sent: "Si l'adresse est valide, vous recevrez dans quelques minutes un lien pour afficher votre clé. Vérifiez aussi vos spams. Le lien expire dans 24 heures. Si vous avez déjà une clé Free valide, vous pourrez en demander une nouvelle dans les 3 derniers jours avant son expiration.", email: "Saisissez une adresse e-mail valide.", terms: "Vous devez accepter les Conditions de l'API.", rate: "Trop de demandes depuis votre connexion. Réessayez demain.", error: "Impossible de joindre le serveur. Réessayez dans quelques minutes." },
-          it: { sent: "Se l'indirizzo è valido, tra pochi minuti riceverai un link per vedere la chiave. Controlla anche lo spam. Il link scade tra 24 ore. Se hai già una chiave Free valida, potrai richiederne un'altra negli ultimi 3 giorni prima della scadenza.", email: "Inserisci un'e-mail valida.", terms: "Devi accettare i Termini dell'API.", rate: "Troppe richieste dalla tua connessione. Riprova domani.", error: "Impossibile contattare il server. Riprova tra qualche minuto." },
-          nl: { sent: "Als het e-mailadres geldig is, ontvang je binnen enkele minuten een link om je sleutel te bekijken. Kijk ook in je spammap. De link verloopt over 24 uur. Heb je al een geldige Free-sleutel, dan kun je in de laatste 3 dagen voor het verlopen een nieuwe aanvragen.", email: "Vul een geldig e-mailadres in.", terms: "Je moet akkoord gaan met de API-voorwaarden.", rate: "Te veel aanvragen vanaf je verbinding. Probeer het morgen opnieuw.", error: "Kan de server niet bereiken. Probeer het over een paar minuten opnieuw." }
+          es: { sent: "Te hemos enviado un enlace para ver tu clave. Revisa tu bandeja de entrada y la carpeta de spam. El enlace caduca en 24 horas. Si no llega en 10 minutos, comprueba que el correo esté bien escrito.",
+                hasKey: function (d) { return d ? "Este correo ya tiene una clave Free vigente. Podrás renovarla a partir del " + d + "." : "Este correo ya tiene una clave vigente sin caducidad."; },
+                cooldown: function (m) { return "Ya te enviamos un enlace hace un momento. Revisa tu correo (también spam) o vuelve a intentarlo en " + m + " min."; },
+                daily: "Has alcanzado el máximo de 3 enlaces por día para este correo. Inténtalo mañana.",
+                blocked: "No podemos emitir una clave para este correo. Escríbenos a " + MAIL + ".",
+                email: "El correo no es válido o su dominio no puede recibir mensajes. Revisa que esté bien escrito.",
+                terms: "Debes aceptar los Términos de la API.",
+                sendFailed: "No hemos podido enviar el correo en este momento. Inténtalo de nuevo en unos minutos.",
+                rate: "Demasiadas solicitudes desde tu conexión. Inténtalo mañana.",
+                error: "No se pudo contactar con el servidor. Inténtalo de nuevo en unos minutos." },
+          en: { sent: "We've sent you a link to see your key. Check your inbox and spam folder. The link expires in 24 hours. If it doesn't arrive within 10 minutes, check that the email is spelled correctly.",
+                hasKey: function (d) { return d ? "This email already has a valid Free key. You can renew it from " + d + "." : "This email already has a valid key with no expiry."; },
+                cooldown: function (m) { return "We sent you a link a moment ago. Check your email (spam too) or try again in " + m + " min."; },
+                daily: "You've reached the maximum of 3 links per day for this email. Try again tomorrow.",
+                blocked: "We can't issue a key for this email. Write to " + MAIL + ".",
+                email: "The email is invalid or its domain can't receive messages. Check the spelling.",
+                terms: "You must accept the API Terms.",
+                sendFailed: "We couldn't send the email right now. Try again in a few minutes.",
+                rate: "Too many requests from your connection. Try again tomorrow.",
+                error: "Could not reach the server. Try again in a few minutes." },
+          pt: { sent: "Enviamos um link para ver sua chave. Verifique a caixa de entrada e a pasta de spam. O link expira em 24 horas. Se não chegar em 10 minutos, confira se o e-mail está escrito corretamente.",
+                hasKey: function (d) { return d ? "Este e-mail já tem uma chave Free válida. Você poderá renová-la a partir de " + d + "." : "Este e-mail já tem uma chave válida sem expiração."; },
+                cooldown: function (m) { return "Enviamos um link há pouco. Verifique seu e-mail (também o spam) ou tente novamente em " + m + " min."; },
+                daily: "Você atingiu o máximo de 3 links por dia para este e-mail. Tente novamente amanhã.",
+                blocked: "Não podemos emitir uma chave para este e-mail. Escreva para " + MAIL + ".",
+                email: "O e-mail é inválido ou o domínio não pode receber mensagens. Confira se está escrito corretamente.",
+                terms: "Você deve aceitar os Termos da API.",
+                sendFailed: "Não conseguimos enviar o e-mail agora. Tente novamente em alguns minutos.",
+                rate: "Solicitações demais a partir da sua conexão. Tente novamente amanhã.",
+                error: "Não foi possível contatar o servidor. Tente novamente em alguns minutos." },
+          fr: { sent: "Nous vous avons envoyé un lien pour afficher votre clé. Vérifiez votre boîte de réception et vos spams. Le lien expire dans 24 heures. S'il n'arrive pas dans 10 minutes, vérifiez l'orthographe de l'adresse.",
+                hasKey: function (d) { return d ? "Cette adresse a déjà une clé Free valide. Vous pourrez la renouveler à partir du " + d + "." : "Cette adresse a déjà une clé valide sans expiration."; },
+                cooldown: function (m) { return "Nous vous avons envoyé un lien il y a un instant. Vérifiez votre e-mail (spams compris) ou réessayez dans " + m + " min."; },
+                daily: "Vous avez atteint le maximum de 3 liens par jour pour cette adresse. Réessayez demain.",
+                blocked: "Nous ne pouvons pas émettre de clé pour cette adresse. Écrivez à " + MAIL + ".",
+                email: "L'adresse n'est pas valide ou son domaine ne peut pas recevoir de messages. Vérifiez l'orthographe.",
+                terms: "Vous devez accepter les Conditions de l'API.",
+                sendFailed: "Nous n'avons pas pu envoyer l'e-mail pour le moment. Réessayez dans quelques minutes.",
+                rate: "Trop de demandes depuis votre connexion. Réessayez demain.",
+                error: "Impossible de joindre le serveur. Réessayez dans quelques minutes." },
+          it: { sent: "Ti abbiamo inviato un link per vedere la chiave. Controlla la posta in arrivo e lo spam. Il link scade tra 24 ore. Se non arriva entro 10 minuti, verifica che l'indirizzo sia scritto correttamente.",
+                hasKey: function (d) { return d ? "Questo indirizzo ha già una chiave Free valida. Potrai rinnovarla dal " + d + "." : "Questo indirizzo ha già una chiave valida senza scadenza."; },
+                cooldown: function (m) { return "Ti abbiamo inviato un link poco fa. Controlla la posta (anche lo spam) o riprova tra " + m + " min."; },
+                daily: "Hai raggiunto il massimo di 3 link al giorno per questo indirizzo. Riprova domani.",
+                blocked: "Non possiamo emettere una chiave per questo indirizzo. Scrivi a " + MAIL + ".",
+                email: "L'indirizzo non è valido o il suo dominio non può ricevere messaggi. Controlla che sia scritto correttamente.",
+                terms: "Devi accettare i Termini dell'API.",
+                sendFailed: "Non siamo riusciti a inviare l'e-mail in questo momento. Riprova tra qualche minuto.",
+                rate: "Troppe richieste dalla tua connessione. Riprova domani.",
+                error: "Impossibile contattare il server. Riprova tra qualche minuto." },
+          nl: { sent: "We hebben je een link gestuurd om je sleutel te bekijken. Kijk in je inbox en spammap. De link verloopt over 24 uur. Komt hij niet binnen 10 minuten, controleer dan of het e-mailadres goed gespeld is.",
+                hasKey: function (d) { return d ? "Dit e-mailadres heeft al een geldige Free-sleutel. Je kunt hem verlengen vanaf " + d + "." : "Dit e-mailadres heeft al een geldige sleutel zonder vervaldatum."; },
+                cooldown: function (m) { return "We hebben je zojuist een link gestuurd. Kijk in je e-mail (ook spam) of probeer het over " + m + " min opnieuw."; },
+                daily: "Je hebt het maximum van 3 links per dag voor dit e-mailadres bereikt. Probeer het morgen opnieuw.",
+                blocked: "We kunnen geen sleutel uitgeven voor dit e-mailadres. Schrijf naar " + MAIL + ".",
+                email: "Het e-mailadres is ongeldig of het domein kan geen berichten ontvangen. Controleer de spelling.",
+                terms: "Je moet akkoord gaan met de API-voorwaarden.",
+                sendFailed: "We konden de e-mail nu niet versturen. Probeer het over een paar minuten opnieuw.",
+                rate: "Te veel aanvragen vanaf je verbinding. Probeer het morgen opnieuw.",
+                error: "Kan de server niet bereiken. Probeer het over een paar minuten opnieuw." }
         };
         var form = document.getElementById("form"), email = document.getElementById("email"),
             terms = document.getElementById("terms"), send = document.getElementById("send"),
             msg = document.getElementById("msg"), last = null;
         var lang = function () { var l = document.documentElement.getAttribute("data-lang"); return M[l] ? l : "en"; };
 
-        function show(kind, key) { last = { kind: kind, key: key }; msg.className = kind; msg.textContent = M[lang()][key]; }
+        function fmtDate(iso) {
+          return new Intl.DateTimeFormat(LOCALES[lang()], { dateStyle: "long", timeZone: "UTC" }).format(new Date(iso));
+        }
+        // Los textos son propios (no vienen del servidor): se pueden insertar como HTML.
+        // Para hasKey, arg es la fecha ISO: se formatea en el idioma actual (también al cambiarlo).
+        function show(kind, key, arg) {
+          last = { kind: kind, key: key, arg: arg };
+          var t = M[lang()][key];
+          var a = key === "hasKey" && arg ? fmtDate(arg) : arg;
+          msg.className = kind;
+          msg.innerHTML = typeof t === "function" ? t(a) : t;
+        }
         var sel = document.getElementById("langsel");
-        if (sel) sel.addEventListener("change", function () { if (last) show(last.kind, last.key); });
+        if (sel) sel.addEventListener("change", function () { if (last) show(last.kind, last.key, last.arg); });
 
         form.addEventListener("submit", function (ev) {
           ev.preventDefault();
           var v = email.value.trim();
           if (!/^[^\s@]{1,64}@[^\s@]+\.[^\s@]{2,}$/.test(v) || v.length > 190) { show("err", "email"); email.focus(); return; }
           if (!terms.checked) { show("err", "terms"); terms.focus(); return; }
-          send.disabled = true;
+          send.disabled = true; send.classList.add("busy"); send.setAttribute("aria-busy", "true");
+          msg.className = ""; msg.textContent = ""; last = null;
           fetch(API + "/billing/free/signup", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -162,12 +236,22 @@
             cache: "no-store",
             credentials: "omit"
           }).then(function (r) {
-            if (r.status === 200) { show("ok", "sent"); form.reset(); }
-            else if (r.status === 400) show("err", "email");
-            else if (r.status === 429) show("err", "rate");
+            return r.json().catch(function () { return {}; }).then(function (j) { return { status: r.status, j: j }; });
+          }).then(function (res) {
+            var j = res.j || {};
+            if (res.status === 200 && j.status === "sent") { show("ok", "sent"); form.reset(); }
+            else if (res.status === 200 && j.status === "has_key") {
+              show("err", "hasKey", j.renew_from || null);
+            }
+            else if (res.status === 200 && j.status === "cooldown") show("err", "cooldown", Math.max(1, Math.ceil((j.retry_after || 600) / 60)));
+            else if (res.status === 200 && j.status === "daily_limit") show("err", "daily");
+            else if (res.status === 200 && j.status === "blocked") show("err", "blocked");
+            else if (res.status === 400) show("err", "email");
+            else if (res.status === 429) show("err", "rate");
+            else if (res.status === 503 && j.error === "send_failed") show("err", "sendFailed");
             else show("err", "error");
           }).catch(function () { show("err", "error"); })
-            .then(function () { send.disabled = false; });
+            .then(function () { send.disabled = false; send.classList.remove("busy"); send.removeAttribute("aria-busy"); });
         });
       })();
     </script>
