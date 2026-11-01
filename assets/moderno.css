@@ -502,3 +502,7 @@ a.stat:focus-visible { outline: none; box-shadow: var(--ring) }
 @media (prefers-reduced-motion: no-preference) {
   .map .dom { stroke-dasharray: 1; animation: mx-draw .9s ease-out backwards }
 }
+
+/* Al resaltar un dominio (hover o toque en la leyenda o el mapa) solo quedan sus mallas */
+.map .dom { transition: fill-opacity .15s, stroke-opacity .15s, opacity .25s }
+.map .dom.dim { opacity: 0; pointer-events: none }
