@@ -53,8 +53,8 @@
       <div class="title">
         <h1 lang="es">Documentación de la API</h1>
         <h1 lang="en">API documentation</h1>
-        <p lang="es">Versión v1 · Última actualización: 31 de octubre de 2026</p>
-        <p lang="en">Version v1 · Last updated: October 31, 2026</p>
+        <p lang="es">Versión v1 · Última actualización: 1 de noviembre de 2026</p>
+        <p lang="en">Version v1 · Last updated: November 1, 2026</p>
       </div>
       <svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true">
         <path d="M0,40 C240,80 480,0 720,30 C960,60 1200,10 1440,35 L1440,70 L0,70 Z" fill="var(--bg)" />
@@ -103,7 +103,7 @@
 
             <h2 id="es-quickstart">2. Inicio rápido</h2>
             <ol>
-              <li>Solicita una clave desde la página de <a href="precios.html">precios</a>. Recibirás una clave con el formato <code>b1t_live_…</code>.</li>
+              <li>Consigue una clave. Plan Free: solicítala con tu correo en la <a href="alta.html">página de alta</a>. Starter o Pro: contrata en <a href="precios.html">precios</a> y la verás en pantalla al terminar el pago. La clave tiene el formato <code>b1t_live_…</code> y <strong>solo se muestra una vez</strong>: guárdala al verla.</li>
               <li>Haz tu primera petición: pronóstico de 24 horas para La Habana.</li>
             </ol>
             <div class="tabs">
@@ -142,7 +142,8 @@ https://thredds.b1tmet.com/v1/usage?apikey=b1t_live_TU_CLAVE</code></pre>
               <li>Si envías las dos, se usa la cabecera.</li>
               <li>La API admite peticiones desde cualquier origen (CORS), así que puedes llamarla desde el navegador.</li>
               <li>Una clave incluida en una web es visible para cualquiera. Si sospechas que se ha filtrado, escríbenos: la revocamos y te damos otra.</li>
-              <li>Las claves del plan Free caducan a los 30 días y se pueden renovar.</li>
+              <li>Las claves del plan Free caducan a los 30 días. Renuévala en la <a href="alta.html">página de alta</a> con el mismo correo durante sus 3 últimos días de validez o después de que caduque; al emitir la nueva, la anterior se revoca.</li>
+              <li>Planes de pago: cambia de plan, actualiza la tarjeta o cancela desde el portal de cliente (enlace en el correo de bienvenida).</li>
             </ul>
 
             <h2 id="es-endpoints">4. Endpoints</h2>
@@ -234,7 +235,7 @@ https://thredds.b1tmet.com/v1/usage?apikey=b1t_live_TU_CLAVE</code></pre>
             <h2 id="es-errors">7. Errores</h2>
             <p>Todos los errores tienen el mismo formato. Usa <code>code</code> en tu lógica; <code>message</code> es solo orientativo.</p>
 <pre class="code"><code>{ "error": { "code": "daily_quota_exceeded", "message": "Daily quota exceeded.", "request_id": "req_…" } }</code></pre>
-            <div class="tbl"><table><tr><th>HTTP</th><th><code>code</code></th><th>Qué hacer</th></tr><tr><td>400</td><td><code>invalid_parameter</code></td><td>Corrige el parámetro indicado en <code>param</code></td></tr><tr><td>401</td><td><code>missing_api_key</code>, <code>invalid_api_key</code></td><td>Revisa la clave</td></tr><tr><td>403</td><td><code>key_revoked</code>, <code>key_expired</code></td><td>Escríbenos para renovar o reemplazar la clave</td></tr><tr><td>403</td><td><code>domain_not_allowed</code>, <code>horizon_not_allowed</code></td><td>Dominio, grid u horizonte fuera de tu plan</td></tr><tr><td>404</td><td><code>unknown_domain</code>, <code>not_found</code></td><td>Revisa el dominio o la ruta</td></tr><tr><td>422</td><td><code>coordinates_outside_domain</code></td><td>El punto está fuera del dominio; <code>domain_bounds</code> indica sus límites</td></tr><tr><td>422</td><td><code>coordinates_outside_coverage</code></td><td>Ningún dominio de tu plan cubre el punto</td></tr><tr><td>429</td><td><code>rate_limited</code>, <code>daily_quota_exceeded</code></td><td>Espera los segundos de <code>Retry-After</code></td></tr><tr><td>503</td><td><code>server_busy</code>, <code>no_data_available</code></td><td>Reintenta tras <code>Retry-After</code></td></tr><tr><td>504</td><td><code>upstream_timeout</code></td><td>Reintenta más tarde</td></tr><tr><td>500</td><td><code>internal_error</code></td><td>Reintenta; si persiste, escríbenos con el <code>request_id</code></td></tr></table></div>
+            <div class="tbl"><table><tr><th>HTTP</th><th><code>code</code></th><th>Qué hacer</th></tr><tr><td>400</td><td><code>invalid_parameter</code></td><td>Corrige el parámetro indicado en <code>param</code></td></tr><tr><td>401</td><td><code>missing_api_key</code>, <code>invalid_api_key</code></td><td>Revisa la clave</td></tr><tr><td>403</td><td><code>key_revoked</code>, <code>key_expired</code></td><td>Free: renueva la clave en la <a href="alta.html">página de alta</a>. Planes de pago: revisa tu suscripción en el portal de cliente o escríbenos</td></tr><tr><td>403</td><td><code>domain_not_allowed</code>, <code>horizon_not_allowed</code></td><td>Dominio, grid u horizonte fuera de tu plan</td></tr><tr><td>404</td><td><code>unknown_domain</code>, <code>not_found</code></td><td>Revisa el dominio o la ruta</td></tr><tr><td>422</td><td><code>coordinates_outside_domain</code></td><td>El punto está fuera del dominio; <code>domain_bounds</code> indica sus límites</td></tr><tr><td>422</td><td><code>coordinates_outside_coverage</code></td><td>Ningún dominio de tu plan cubre el punto</td></tr><tr><td>429</td><td><code>rate_limited</code>, <code>daily_quota_exceeded</code></td><td>Espera los segundos de <code>Retry-After</code></td></tr><tr><td>503</td><td><code>server_busy</code>, <code>no_data_available</code></td><td>Reintenta tras <code>Retry-After</code></td></tr><tr><td>504</td><td><code>upstream_timeout</code></td><td>Reintenta más tarde</td></tr><tr><td>500</td><td><code>internal_error</code></td><td>Reintenta; si persiste, escríbenos con el <code>request_id</code></td></tr></table></div>
 
             <h2 id="es-limits">8. Límites y cuotas</h2>
             <p>Cada plan tiene un límite de peticiones por minuto y por día, un horizonte máximo y unos grids. Los valores están en <a href="precios.html">Precios de la API</a>. La cuota es por cliente y la comparten todas sus claves.</p>
@@ -301,7 +302,7 @@ https://thredds.b1tmet.com/v1/usage?apikey=b1t_live_TU_CLAVE</code></pre>
 
             <h2 id="en-quickstart">2. Quick start</h2>
             <ol>
-              <li>Request a key from the <a href="precios.html">pricing</a> page. You will receive a key in the format <code>b1t_live_…</code>.</li>
+              <li>Get a key. Free plan: request it with your email on the <a href="alta.html">sign-up page</a>. Starter or Pro: subscribe on the <a href="precios.html">pricing</a> page and the key is shown on screen when payment completes. Keys have the format <code>b1t_live_…</code> and are <strong>shown only once</strong>: save yours when you see it.</li>
               <li>Make your first request: a 24-hour forecast for Havana.</li>
             </ol>
             <div class="tabs">
@@ -340,7 +341,8 @@ https://thredds.b1tmet.com/v1/usage?apikey=b1t_live_YOUR_KEY</code></pre>
               <li>If you send both, the header is used.</li>
               <li>The API accepts requests from any origin (CORS), so you can call it from the browser.</li>
               <li>A key embedded in a website is visible to anyone. If you think it has leaked, contact us: we will revoke it and issue a new one.</li>
-              <li>Free plan keys expire after 30 days and can be renewed.</li>
+              <li>Free plan keys expire after 30 days. Renew yours on the <a href="alta.html">sign-up page</a> with the same email during its last 3 days of validity or after it expires; the previous key is revoked when the new one is issued.</li>
+              <li>Paid plans: change plan, update your card or cancel from the customer portal (link in the welcome email).</li>
             </ul>
 
             <h2 id="en-endpoints">4. Endpoints</h2>
@@ -432,7 +434,7 @@ https://thredds.b1tmet.com/v1/usage?apikey=b1t_live_YOUR_KEY</code></pre>
             <h2 id="en-errors">7. Errors</h2>
             <p>All errors share the same format. Use <code>code</code> in your logic; <code>message</code> is for guidance only.</p>
 <pre class="code"><code>{ "error": { "code": "daily_quota_exceeded", "message": "Daily quota exceeded.", "request_id": "req_…" } }</code></pre>
-            <div class="tbl"><table><tr><th>HTTP</th><th><code>code</code></th><th>What to do</th></tr><tr><td>400</td><td><code>invalid_parameter</code></td><td>Fix the parameter named in <code>param</code></td></tr><tr><td>401</td><td><code>missing_api_key</code>, <code>invalid_api_key</code></td><td>Check your key</td></tr><tr><td>403</td><td><code>key_revoked</code>, <code>key_expired</code></td><td>Contact us to renew or replace the key</td></tr><tr><td>403</td><td><code>domain_not_allowed</code>, <code>horizon_not_allowed</code></td><td>Domain, grid or horizon not included in your plan</td></tr><tr><td>404</td><td><code>unknown_domain</code>, <code>not_found</code></td><td>Check the domain or the path</td></tr><tr><td>422</td><td><code>coordinates_outside_domain</code></td><td>The point is outside the domain; <code>domain_bounds</code> gives its bounds</td></tr><tr><td>422</td><td><code>coordinates_outside_coverage</code></td><td>No domain in your plan covers the point</td></tr><tr><td>429</td><td><code>rate_limited</code>, <code>daily_quota_exceeded</code></td><td>Wait the seconds given in <code>Retry-After</code></td></tr><tr><td>503</td><td><code>server_busy</code>, <code>no_data_available</code></td><td>Retry after <code>Retry-After</code></td></tr><tr><td>504</td><td><code>upstream_timeout</code></td><td>Retry later</td></tr><tr><td>500</td><td><code>internal_error</code></td><td>Retry; if it persists, contact us with the <code>request_id</code></td></tr></table></div>
+            <div class="tbl"><table><tr><th>HTTP</th><th><code>code</code></th><th>What to do</th></tr><tr><td>400</td><td><code>invalid_parameter</code></td><td>Fix the parameter named in <code>param</code></td></tr><tr><td>401</td><td><code>missing_api_key</code>, <code>invalid_api_key</code></td><td>Check your key</td></tr><tr><td>403</td><td><code>key_revoked</code>, <code>key_expired</code></td><td>Free: renew the key on the <a href="alta.html">sign-up page</a>. Paid plans: check your subscription in the customer portal or contact us</td></tr><tr><td>403</td><td><code>domain_not_allowed</code>, <code>horizon_not_allowed</code></td><td>Domain, grid or horizon not included in your plan</td></tr><tr><td>404</td><td><code>unknown_domain</code>, <code>not_found</code></td><td>Check the domain or the path</td></tr><tr><td>422</td><td><code>coordinates_outside_domain</code></td><td>The point is outside the domain; <code>domain_bounds</code> gives its bounds</td></tr><tr><td>422</td><td><code>coordinates_outside_coverage</code></td><td>No domain in your plan covers the point</td></tr><tr><td>429</td><td><code>rate_limited</code>, <code>daily_quota_exceeded</code></td><td>Wait the seconds given in <code>Retry-After</code></td></tr><tr><td>503</td><td><code>server_busy</code>, <code>no_data_available</code></td><td>Retry after <code>Retry-After</code></td></tr><tr><td>504</td><td><code>upstream_timeout</code></td><td>Retry later</td></tr><tr><td>500</td><td><code>internal_error</code></td><td>Retry; if it persists, contact us with the <code>request_id</code></td></tr></table></div>
 
             <h2 id="en-limits">8. Limits and quotas</h2>
             <p>Each plan has a per-minute and a daily request limit, a maximum horizon and a set of grids. The values are on the <a href="precios.html">API Pricing</a> page. Quotas are per customer and shared by all of the customer's keys.</p>
