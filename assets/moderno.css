@@ -698,3 +698,47 @@ pre.code .copy.done { background: #1f8a44; border-color: #1f8a44; opacity: 1 }
 .ch-tip .ch-free { color: var(--muted) }
 .ch-tip .ch-paid { color: var(--primary); font-weight: 600 }
 @media (prefers-color-scheme: dark) { .ch-tip .ch-paid { color: var(--secondary) } }
+
+/* Relieve de Panamá a 27, 9 y 3 km (api.html) */
+.terrain { margin: 30px 0 8px }
+.tr-tabs { display: inline-flex; gap: 4px; padding: 4px; margin: 6px 0 12px; border: 1px solid var(--border); border-radius: 12px; background: var(--row) }
+.tr-tabs button {
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+  font: inherit; border: 0; border-radius: 9px; padding: 6px 16px; cursor: pointer;
+  background: transparent; color: var(--text); transition: background .2s, color .2s;
+}
+.tr-tabs button b { font-size: 1rem; font-variant-numeric: tabular-nums }
+.tr-tabs button small { font-size: .7rem; color: var(--muted) }
+.tr-tabs button.active { background: var(--grad); color: #fff; box-shadow: 0 4px 12px rgba(56, 91, 214, .3) }
+.tr-tabs button.active small { color: rgba(255, 255, 255, .85) }
+.tr-tabs button:focus-visible { outline: none; box-shadow: var(--ring) }
+.tr-view {
+  position: relative; aspect-ratio: 1200 / 712; border-radius: 14px; overflow: hidden;
+  background: #152a5c; box-shadow: var(--shadow-2);
+}
+.tr-view img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; transition: opacity .6s ease; image-rendering: pixelated }
+.tr-view img.active { opacity: 1 }
+.tr-info {
+  position: absolute; left: 12px; bottom: 12px; padding: 6px 12px; border-radius: 10px;
+  background: rgba(23, 6, 43, .72); color: #fff; font-size: .85rem; font-weight: 600;
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  opacity: 0; transition: opacity .4s; font-variant-numeric: tabular-nums;
+}
+.tr-info.active { opacity: 1 }
+.terrain .muted { margin-top: 8px }
+@media (hover: hover) and (pointer: fine) {
+  .tr-tabs button:not(.active):hover { background: var(--surface) }
+}
+@media (prefers-reduced-motion: reduce) { .tr-view img, .tr-info { transition: none } }
+.tr-regions { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 0 }
+.tr-regions button {
+  font: inherit; font-size: .85rem; font-weight: 600; padding: 6px 14px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--border); background: var(--surface); color: var(--text); transition: border-color .15s, background .15s, color .15s;
+}
+.tr-regions button.active { background: var(--text); color: var(--surface); border-color: var(--text) }
+.tr-regions button:focus-visible { outline: none; box-shadow: var(--ring) }
+@media (hover: hover) and (pointer: fine) { .tr-regions button:not(.active):hover { border-color: var(--primary); color: var(--primary) } }
+.tr-view { max-height: 78vh; margin-inline: auto }
+.tr-view img { object-fit: contain }
+.tr-info:empty { display: none }
+.tr-info { opacity: 1 }

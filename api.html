@@ -396,6 +396,21 @@
           </div>
         </section>
 
+        <!-- Relieve por región en sus mallas (imágenes de HGT de los wrfout, export_terrain.py) -->
+        <section class="terrain" id="relieve">
+          <h2 lang="es">Así ve el modelo cada región</h2><h2 lang="en">How the model sees each region</h2><h2 lang="pt">Como o modelo vê cada região</h2><h2 lang="fr">Comment le modèle voit chaque région</h2><h2 lang="it">Come il modello vede ogni regione</h2><h2 lang="nl">Zo ziet het model elke regio</h2>
+          <p lang="es">La misma zona en las distintas mallas del modelo. Elige una región: cada cuadro es un punto de cálculo y, cuanto más fina la malla, mejor se representan las montañas, los valles y la costa, y con ellos el viento, la temperatura y la lluvia que dependen del relieve.</p>
+          <p lang="en">The same area on the model’s different grids. Pick a region: each square is a computation point and, the finer the grid, the better mountains, valleys and coastline are represented, and with them the wind, temperature and rain that depend on the terrain.</p>
+          <p lang="pt">A mesma área nas diferentes grades do modelo. Escolha uma região: cada quadrado é um ponto de cálculo e, quanto mais fina a grade, melhor são representados as montanhas, os vales e a costa, e com eles o vento, a temperatura e a chuva que dependem do relevo.</p>
+          <p lang="fr">La même zone sur les différentes grilles du modèle. Choisissez une région : chaque carré est un point de calcul et, plus la grille est fine, mieux sont représentés les montagnes, les vallées et le littoral, et avec eux le vent, la température et la pluie qui dépendent du relief.</p>
+          <p lang="it">La stessa area nelle diverse griglie del modello. Scegli una regione: ogni quadrato è un punto di calcolo e, più la griglia è fine, meglio sono rappresentati montagne, valli e costa, e con essi il vento, la temperatura e la pioggia che dipendono dal rilievo.</p>
+          <p lang="nl">Hetzelfde gebied op de verschillende roosters van het model. Kies een regio: elk vakje is een rekenpunt en hoe fijner het rooster, hoe beter bergen, dalen en kustlijn worden weergegeven, en daarmee de wind, temperatuur en regen die van het reliëf afhangen.</p>
+          <div class="tr-regions" role="group"></div>
+          <div class="tr-tabs" role="tablist"></div>
+          <div class="tr-view"><div class="tr-info"></div></div>
+          <p class="muted tr-note"></p>
+        </section>
+
         <span id="cobertura"></span>
         <h2 lang="es">Cobertura</h2>
         <h2 lang="en">Coverage</h2>
@@ -1024,6 +1039,109 @@ print(r.json()["data"][0]["temperature_2m"])</code></pre>
           b.addEventListener("click", function () { show(b.dataset.tab); try { localStorage.setItem(KEY, b.dataset.tab); } catch (e) {} });
         });
         show(def);
+      })();
+    </script>
+    <script>
+      // Relieve por región: selector de región y pestañas por malla. Ciclo continuo de la malla gruesa
+      // a la fina (más tiempo en la fina) mientras se ve; pausa con el ratón encima o fuera de pantalla;
+      // se detiene al tocar una pestaña de malla. Las imágenes se cargan al elegir la región.
+      (function () {
+        var box = document.getElementById("relieve");
+        if (!box) return;
+        // [malla, km, puntos sobre tierra en la ventana, (sin uso)]
+        var R = {"panama":{"w":1200,"h":712,"g":[["d01",27,229,1110],["d02",9,1624,2170],["d03",3,13188,2781]]},"cuba":{"w":1200,"h":441,"g":[["d01",27,202,431],["d02",9,1555,539]]},"mexico":{"w":1200,"h":777,"g":[["d01",25,5281,2529],["d02",5,125678,4233]]},"centro_america":{"w":1200,"h":868,"g":[["d01",27,1096,2452],["d02",9,8739,2722]]},"dominicana":{"w":1200,"h":557,"g":[["d01",27,155,1773],["d02",9,1153,2106]]},"dominica":{"w":822,"h":900,"g":[["d01",27,39,110],["d02",9,198,392]]}};
+        var NAME = {
+          es: { panama: "Panamá", cuba: "Cuba", mexico: "México", centro_america: "Centroamérica", dominicana: "Rep. Dominicana", dominica: "Dominica" },
+          en: { panama: "Panama", cuba: "Cuba", mexico: "Mexico", centro_america: "Central America", dominicana: "Dominican Rep.", dominica: "Dominica" },
+          pt: { panama: "Panamá", cuba: "Cuba", mexico: "México", centro_america: "América Central", dominicana: "Rep. Dominicana", dominica: "Dominica" },
+          fr: { panama: "Panama", cuba: "Cuba", mexico: "Mexique", centro_america: "Amérique centrale", dominicana: "Rép. dominicaine", dominica: "Dominique" },
+          it: { panama: "Panama", cuba: "Cuba", mexico: "Messico", centro_america: "America centrale", dominicana: "Rep. Dominicana", dominica: "Dominica" },
+          nl: { panama: "Panama", cuba: "Cuba", mexico: "Mexico", centro_america: "Midden-Amerika", dominicana: "Dominicaanse Rep.", dominica: "Dominica" }
+        };
+        var TX = {
+          es: { st: "{n} puntos sobre tierra", x: " · {x} veces más que el plan Free", note: "Relieve y línea de costa tal como los usa el modelo en cada malla.", alt: "Relieve de {r} en la malla de {k} km" },
+          en: { st: "{n} land points", x: " · {x}× the Free plan", note: "Terrain and coastline as the model uses them on each grid.", alt: "{r} terrain on the {k} km grid" },
+          pt: { st: "{n} pontos em terra", x: " · {x} vezes mais que o plano Free", note: "Relevo e linha de costa tal como o modelo os usa em cada grade.", alt: "Relevo de {r} na grade de {k} km" },
+          fr: { st: "{n} points sur terre", x: " · {x} fois plus que l’offre Free", note: "Relief et trait de côte tels que le modèle les utilise sur chaque grille.", alt: "Relief de {r} sur la grille de {k} km" },
+          it: { st: "{n} punti su terra", x: " · {x} volte più del piano Free", note: "Rilievo e linea di costa come li usa il modello in ogni griglia.", alt: "Rilievo di {r} nella griglia di {k} km" },
+          nl: { st: "{n} landpunten", x: " · {x}× zoveel als het Free-abonnement", note: "Reliëf en kustlijn zoals het model ze op elk rooster gebruikt.", alt: "Reliëf van {r} op het rooster van {k} km" }
+        };
+        var regEl = box.querySelector(".tr-regions"), tabEl = box.querySelector(".tr-tabs"),
+            view = box.querySelector(".tr-view"), info = box.querySelector(".tr-info"), noteEl = box.querySelector(".tr-note");
+        var region = "panama", cur = null, user = false, visible = false, hover = false, timer = null, imgs = {};
+        var DWELL = 1800, DWELL_FINE = 3600;
+        var lang = function () { var l = document.documentElement.getAttribute("data-lang"); return TX[l] ? l : "en"; };
+        var nf = function (n) { try { return new Intl.NumberFormat(lang()).format(n); } catch (e) { return String(n); } };
+        var grids = function () { return R[region].g; };
+
+        function img(r, g) {
+          var k = r + g;
+          if (!imgs[k]) {
+            var im = document.createElement("img");
+            im.src = "assets/terrain-" + r.replace("_", "-") + "-" + g + ".webp";
+            im.width = R[r].w; im.height = R[r].h; im.decoding = "async"; im.alt = "";
+            im.dataset.k = k;
+            view.insertBefore(im, info);
+            imgs[k] = im;
+          }
+          return imgs[k];
+        }
+        function paint() {
+          var l = lang(), t = TX[l], gs = grids();
+          regEl.textContent = "";
+          Object.keys(R).forEach(function (r) {
+            var b = document.createElement("button"); b.type = "button"; b.textContent = NAME[l][r];
+            if (r === region) b.classList.add("active");
+            b.addEventListener("click", function () { if (r !== region) setRegion(r); });
+            regEl.appendChild(b);
+          });
+          tabEl.textContent = "";
+          gs.forEach(function (x) {
+            var b = document.createElement("button"); b.type = "button"; b.setAttribute("role", "tab"); b.dataset.g = x[0];
+            b.innerHTML = "<b>" + x[1] + " km</b><small>" + (x[0] === "d01" ? "Free" : "Starter · Pro") + "</small>";
+            var on = x[0] === cur; b.classList.toggle("active", on); b.setAttribute("aria-selected", on ? "true" : "false");
+            b.addEventListener("click", function () { user = true; stop(); show(x[0]); });
+            tabEl.appendChild(b);
+          });
+          var x = gs.filter(function (y) { return y[0] === cur; })[0];
+          var base = gs[0][2];                                  // puntos sobre tierra de la malla Free (d01)
+          info.textContent = !x ? "" : t.st.replace("{n}", nf(x[2])) +
+            (x[0] !== "d01" && base ? t.x.replace("{x}", nf(Math.round(x[2] / base))) : "");
+          noteEl.textContent = t.note;
+          Object.keys(imgs).forEach(function (k) { var im = imgs[k]; var g = k.slice(-3);
+            im.alt = t.alt.replace("{r}", NAME[l][k.slice(0, -3)]).replace("{k}", (R[k.slice(0, -3)].g.filter(function (y) { return y[0] === g; })[0] || [0, ""])[1]); });
+        }
+        function show(g) {
+          cur = g;
+          img(region, g);
+          Object.keys(imgs).forEach(function (k) { imgs[k].classList.toggle("active", k === region + g); });
+          paint();
+        }
+        function setRegion(r) {
+          region = r;
+          view.style.aspectRatio = R[r].w + " / " + R[r].h;
+          grids().forEach(function (x) { img(r, x[0]); });          // precarga las mallas de la región
+          show(user ? grids()[grids().length - 1][0] : grids()[0][0]);
+          next();
+        }
+        function stop() { clearTimeout(timer); timer = null; }
+        function next() {
+          stop();
+          if (user || !visible || hover || document.hidden || reduce) return;
+          var gs = grids().map(function (x) { return x[0]; }), i = gs.indexOf(cur);
+          timer = setTimeout(function () { show(gs[(i + 1) % gs.length]); next(); }, i === gs.length - 1 ? DWELL_FINE : DWELL);
+        }
+        var reduce = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+        view.style.aspectRatio = R[region].w + " / " + R[region].h;
+        grids().forEach(function (x) { img(region, x[0]); });
+        show(reduce ? grids()[grids().length - 1][0] : grids()[0][0]);
+        new MutationObserver(paint).observe(document.documentElement, { attributes: true, attributeFilter: ["data-lang"] });
+        view.addEventListener("mouseenter", function () { hover = true; stop(); });
+        view.addEventListener("mouseleave", function () { hover = false; next(); });
+        document.addEventListener("visibilitychange", next);
+        if ("IntersectionObserver" in window) {
+          new IntersectionObserver(function (es) { visible = es[0].isIntersecting; next(); }, { threshold: 0.5 }).observe(view);
+        }
       })();
     </script>
   </body>
