@@ -625,3 +625,76 @@ pre.code .copy.done { background: #1f8a44; border-color: #1f8a44; opacity: 1 }
 .team p { margin: 0 0 8px; color: var(--muted); font-size: .95rem }
 .team a { font-weight: 600; text-decoration: none }
 @media (max-width: 560px) { .team { flex-direction: column } }
+
+/* Demo del mapa: botón y gráfica (api.html) */
+.demo { margin: 12px 0 0 }
+.demo-btn { border: 0; font: inherit; font-weight: 600; cursor: pointer; margin: 0 }
+.demo-btn:disabled { cursor: default; opacity: .85 }
+.demo-btn.busy::before {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+  vertical-align: -2px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, .4);
+  border-top-color: #fff;
+  animation: mx-spin .8s linear infinite;
+}
+@keyframes mx-spin { to { transform: rotate(360deg) } }
+.demo-msg.err { margin: 0 0 10px; color: #c2410c; font-weight: 600 }
+.chart { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px 4px }
+.ch-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: .85rem; margin-bottom: 4px }
+.ch-legend span { display: inline-flex; align-items: center; gap: 8px }
+.ch-legend i { width: 18px; height: 0; border-top: 3px solid; display: inline-block }
+.ch-legend .ch-free { color: var(--muted) }
+.ch-legend .ch-free i { border-top-style: dashed }
+.ch-legend .ch-paid { color: var(--primary); font-weight: 600 }
+.ch-svg { display: block; width: 100%; height: auto }
+.ch-title { font-size: 12px; font-weight: 600; fill: var(--text) }
+.ch-tick { font-size: 10.5px; fill: var(--muted); font-variant-numeric: tabular-nums }
+.ch-axis { stroke: var(--border); stroke-width: 1 }
+.ch-grid { stroke: var(--border); stroke-width: 1; stroke-dasharray: 3 4; opacity: .7 }
+.ch-line { fill: none; stroke-width: 2.4; stroke-linejoin: round; stroke-linecap: round }
+.ch-line.ch-free { stroke: var(--muted); stroke-dasharray: 5 4; stroke-width: 1.8 }
+.ch-line.ch-paid { stroke: var(--primary) }
+.ch-bar.ch-free { fill: var(--muted); opacity: .45 }
+.ch-bar.ch-paid { fill: var(--primary) }
+.ch-note { margin: 4px 0 8px; font-size: .8rem }
+@media (prefers-color-scheme: dark) {
+  .ch-legend .ch-paid { color: var(--secondary) }
+  .ch-line.ch-paid { stroke: var(--secondary) }
+  .ch-bar.ch-paid { fill: var(--secondary) }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ch-line.ch-paid { stroke-dasharray: 1; animation: mx-draw 1.1s ease-out backwards }
+  .chart { animation: mx-rise .4s var(--ease) backwards }
+}
+
+/* Gráfica de la demo: cursor y ficha de valores */
+.chart { position: relative }
+.ch-hit { fill: transparent; cursor: crosshair; touch-action: pan-y }
+.ch-cursor { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 2 3; opacity: 0; pointer-events: none }
+.ch-cursor.on { opacity: .8 }
+.ch-tip {
+  position: absolute;
+  top: 44px;
+  z-index: 2;
+  pointer-events: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow-2);
+  padding: 8px 10px;
+  font-size: .8rem;
+  white-space: nowrap;
+}
+.ch-tip b { display: block; margin-bottom: 4px; text-transform: capitalize }
+.ch-tip table { border-collapse: collapse; font-size: .8rem; width: auto }
+.ch-tip th, .ch-tip td { padding: 2px 6px; border: 0; background: none !important; text-align: right; font-variant-numeric: tabular-nums }
+.ch-tip th { color: inherit; font-weight: 600 }
+.ch-tip td:first-child { text-align: left; color: var(--muted); padding-left: 0 }
+.ch-tip .ch-free { color: var(--muted) }
+.ch-tip .ch-paid { color: var(--primary); font-weight: 600 }
+@media (prefers-color-scheme: dark) { .ch-tip .ch-paid { color: var(--secondary) } }

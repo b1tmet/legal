@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>API de pronóstico · Forecast API — B1TMET</title>
     <meta name="description" content="API de pronóstico WRF de alta resolución para el Caribe y Centroamérica / High-resolution WRF forecast API for the Caribbean and Central America" />
+    <!-- Tarjeta al compartir el enlace (Open Graph / X); en inglés para todos los idiomas -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="B1TMET" />
+    <meta property="og:title" content="B1TMET WRF Forecast API" />
+    <meta property="og:description" content="High-resolution WRF forecasts for the Caribbean and Central America, up to 3 km, as JSON. Try it on the map, no key needed." />
+    <meta property="og:url" content="https://b1tmet.github.io/legal/api.html" />
+    <meta property="og:image" content="https://b1tmet.github.io/legal/assets/og-api.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="B1TMET WRF Forecast API — Caribbean &amp; Central America, up to 3 km" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#17062b" />
     <link rel="icon" href="favicon.ico" sizes="any" />
     <link rel="stylesheet" href="assets/styles.css" />
@@ -119,7 +130,7 @@
         </div>
 
 
-        <!-- BORRADOR (solo ES): textos de valor para revisar antes de traducir -->
+        <!-- Por qué B1TMET (un bloque por idioma) -->
         <section class="why" lang="es">
           <h2>Por qué B1TMET</h2>
           <p class="lead">Un pronóstico vale lo que vale el modelo que lo produce. Esto es lo que hay detrás de cada respuesta de la API.</p>
@@ -159,8 +170,228 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.2c.6-.1 1.3-.2 2-.2 2.8 0 4 1.8 4 5"/></svg>
             <div>
               <h3>Detrás hay un equipo de especialistas</h3>
-              <p>La API la desarrolla B1TMET, un equipo de meteorólogos, físicos y especialistas en computación y matemáticas con más de 20 años de experiencia en investigación y consultoría en modelación numérica del tiempo y el clima del Caribe. Es el mismo equipo que configura y mantiene el modelo, y que ha realizado estudios de configuración de WRF para servicios meteorológicos de la región.</p>
+              <p>La API la desarrolla B1TMET, un equipo de meteorólogos, físicos y especialistas en computación y matemáticas con más de 20 años de experiencia en investigación y consultoría en modelación numérica del tiempo y el clima del Caribe. Es el mismo equipo que adapta el modelo WRF a la región y opera sus corridas a diario, y que ha realizado estudios de configuración de WRF para servicios meteorológicos de la zona.</p>
               <a href="https://b1tmet.mx" target="_blank" rel="noopener">Conoce al equipo →</a>
+            </div>
+          </div>
+        </section>
+        <section class="why" lang="en">
+          <h2>Why B1TMET</h2>
+          <p class="lead">A forecast is only as good as the model behind it. This is what stands behind every API response.</p>
+          <div class="why-grid">
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16M12 4a12 12 0 0 1 0 16M12 4a12 12 0 0 0 0 16"/><circle cx="12" cy="12" r="8"/></svg>
+              <h3>Our own regional model</h3>
+              <p>Global models compute the whole planet on a single grid. B1TMET runs the WRF model over the Caribbean and Central America only: it takes the global model’s conditions at the boundaries and solves the region’s atmosphere again in much greater detail.</p>
+            </div>
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19l6-9 4 5 3-4 5 8z"/><path d="M3 19h18"/></svg>
+              <h3>More detail where it matters</h3>
+              <p>A finer grid represents terrain and coastlines better: mountains, valleys, bays and small islands that barely exist on a coarse grid. That is where wind, temperature and rain change from one place to another: sea and land breezes, rain on the slopes, contrasts between the coast and inland areas.</p>
+            </div>
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 15a4 4 0 0 1 .5-8 5 5 0 0 1 9.5 1.5A3.5 3.5 0 0 1 16.5 15z"/><path d="M11 15l-2 4h3l-1 3"/></svg>
+              <h3>Each scale, properly configured</h3>
+              <p>A fine grid is not a zoomed-in coarse grid: the model runs on each one, nested inside the previous one. The model physics, such as how clouds and rain form, was chosen through sensitivity studies: different combinations were tested and the one that performed best in the region was kept.</p>
+            </div>
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-5.5-6-10a6 6 0 0 1 12 0c0 4.5-6 10-6 10z"/><circle cx="12" cy="11" r="2"/></svg>
+              <h3>The best grid, automatically</h3>
+              <p>You send coordinates and the API picks the most detailed grid covering your point within your plan. Every response states which grid and which run were used, so you always know where the data comes from.</p>
+            </div>
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
+              <h3>Always up to date</h3>
+              <p>The model runs four times a day, at 00, 06, 12 and 18 UTC, and the API always serves the latest available run.</p>
+            </div>
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5c-2 0-2 1.5-2 3s0 3-2 4c2 1 2 2.5 2 4s0 3 2 3M15 5c2 0 2 1.5 2 3s0 3 2 4c-2 1-2 2.5-2 4s0 3-2 3"/></svg>
+              <h3>Easy to integrate</h3>
+              <p>One HTTP request and a JSON response, in metric or imperial units. It works from any language, server or browser, with no libraries.</p>
+            </div>
+          </div>
+          <div class="team">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.2c.6-.1 1.3-.2 2-.2 2.8 0 4 1.8 4 5"/></svg>
+            <div>
+              <h3>A team of specialists behind it</h3>
+              <p>The API is built by B1TMET, a team of meteorologists, physicists and computer science and mathematics specialists with more than 20 years of experience in research and consulting on numerical weather and climate modelling of the Caribbean. It is the same team that adapts the WRF model to the region and operates its daily runs, and that has carried out WRF configuration studies for meteorological services in the area.</p>
+              <a href="https://b1tmet.mx" target="_blank" rel="noopener">Meet the team →</a>
+            </div>
+          </div>
+        </section>
+        <section class="why" lang="pt">
+          <h2>Por que a B1TMET</h2>
+          <p class="lead">Uma previsão vale o que vale o modelo que a produz. Isto é o que está por trás de cada resposta da API.</p>
+          <div class="why-grid">
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16M12 4a12 12 0 0 1 0 16M12 4a12 12 0 0 0 0 16"/><circle cx="12" cy="12" r="8"/></svg>
+              <h3>Modelo regional próprio</h3>
+              <p>Os modelos globais calculam o planeta inteiro com uma mesma grade. A B1TMET executa o modelo WRF apenas sobre o Caribe e a América Central: recebe as condições do modelo global nas bordas e volta a resolver a atmosfera da região com muito mais detalhe.</p>
+            </div>
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19l6-9 4 5 3-4 5 8z"/><path d="M3 19h18"/></svg>
+              <h3>Mais detalhe onde faz diferença</h3>
+              <p>Uma grade mais fina representa melhor o relevo e a linha da costa: montanhas, vales, baías e ilhas pequenas que numa grade grossa quase não existem. É aí que o vento, a temperatura e a chuva mudam de um lugar para outro: brisas marítimas e terrestres, chuva nas encostas, contrastes entre o litoral e o interior.</p>
+            </div>
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 15a4 4 0 0 1 .5-8 5 5 0 0 1 9.5 1.5A3.5 3.5 0 0 1 16.5 15z"/><path d="M11 15l-2 4h3l-1 3"/></svg>
+              <h3>Cada escala, bem configurada</h3>
+              <p>Uma grade fina não é uma ampliação da grossa: o modelo é executado em cada uma, aninhada dentro da anterior. A física do modelo, como a formação de nuvens e chuva, foi escolhida com estudos de sensibilidade: testaram-se várias combinações e ficou a que deu melhor resultado na região.</p>
+            </div>
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-5.5-6-10a6 6 0 0 1 12 0c0 4.5-6 10-6 10z"/><circle cx="12" cy="11" r="2"/></svg>
+              <h3>A melhor grade, sem pedir</h3>
+              <p>Você envia coordenadas e a API escolhe a grade mais detalhada que cobre o seu ponto dentro do seu plano. Cada resposta indica que grade e que rodada foram usadas: você sempre sabe de onde vem o dado.</p>
+            </div>
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
+              <h3>Sempre atualizada</h3>
+              <p>O modelo é executado quatro vezes por dia, às 00, 06, 12 e 18 UTC, e a API serve sempre a rodada mais recente disponível.</p>
+            </div>
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5c-2 0-2 1.5-2 3s0 3-2 4c2 1 2 2.5 2 4s0 3 2 3M15 5c2 0 2 1.5 2 3s0 3 2 4c-2 1-2 2.5-2 4s0 3-2 3"/></svg>
+              <h3>Fácil de integrar</h3>
+              <p>Uma requisição HTTP e uma resposta em JSON, em unidades métricas ou imperiais. Funciona em qualquer linguagem, servidor ou navegador, sem bibliotecas.</p>
+            </div>
+          </div>
+          <div class="team">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.2c.6-.1 1.3-.2 2-.2 2.8 0 4 1.8 4 5"/></svg>
+            <div>
+              <h3>Por trás, uma equipe de especialistas</h3>
+              <p>A API é desenvolvida pela B1TMET, uma equipe de meteorologistas, físicos e especialistas em computação e matemática com mais de 20 anos de experiência em pesquisa e consultoria em modelagem numérica do tempo e do clima do Caribe. É a mesma equipe que adapta o modelo WRF à região e opera as suas rodadas diárias, e que realizou estudos de configuração do WRF para serviços meteorológicos da área.</p>
+              <a href="https://b1tmet.mx" target="_blank" rel="noopener">Conheça a equipe →</a>
+            </div>
+          </div>
+        </section>
+        <section class="why" lang="fr">
+          <h2>Pourquoi B1TMET</h2>
+          <p class="lead">Une prévision vaut ce que vaut le modèle qui la produit. Voici ce qu’il y a derrière chaque réponse de l’API.</p>
+          <div class="why-grid">
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16M12 4a12 12 0 0 1 0 16M12 4a12 12 0 0 0 0 16"/><circle cx="12" cy="12" r="8"/></svg>
+              <h3>Un modèle régional propre</h3>
+              <p>Les modèles globaux calculent toute la planète avec une même grille. B1TMET exécute le modèle WRF uniquement sur les Caraïbes et l’Amérique centrale : il reçoit les conditions du modèle global aux bords et résout à nouveau l’atmosphère de la région avec beaucoup plus de détail.</p>
+            </div>
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19l6-9 4 5 3-4 5 8z"/><path d="M3 19h18"/></svg>
+              <h3>Plus de détail là où ça compte</h3>
+              <p>Une grille plus fine représente mieux le relief et le trait de côte : montagnes, vallées, baies et petites îles qui existent à peine sur une grille grossière. C’est là que le vent, la température et la pluie changent d’un endroit à l’autre : brises de mer et de terre, pluie sur les versants, contrastes entre la côte et l’intérieur.</p>
+            </div>
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 15a4 4 0 0 1 .5-8 5 5 0 0 1 9.5 1.5A3.5 3.5 0 0 1 16.5 15z"/><path d="M11 15l-2 4h3l-1 3"/></svg>
+              <h3>Chaque échelle, bien configurée</h3>
+              <p>Une grille fine n’est pas un agrandissement de la grille grossière : le modèle est exécuté sur chacune, imbriquée dans la précédente. La physique du modèle, comme la formation des nuages et de la pluie, a été choisie par des études de sensibilité : plusieurs combinaisons ont été testées et la plus performante dans la région a été retenue.</p>
+            </div>
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-5.5-6-10a6 6 0 0 1 12 0c0 4.5-6 10-6 10z"/><circle cx="12" cy="11" r="2"/></svg>
+              <h3>La meilleure grille, automatiquement</h3>
+              <p>Vous envoyez des coordonnées et l’API choisit la grille la plus détaillée qui couvre votre point dans votre offre. Chaque réponse indique la grille et l’exécution utilisées : vous savez toujours d’où vient la donnée.</p>
+            </div>
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
+              <h3>Toujours à jour</h3>
+              <p>Le modèle est exécuté quatre fois par jour, à 00, 06, 12 et 18 UTC, et l’API sert toujours l’exécution la plus récente disponible.</p>
+            </div>
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5c-2 0-2 1.5-2 3s0 3-2 4c2 1 2 2.5 2 4s0 3 2 3M15 5c2 0 2 1.5 2 3s0 3 2 4c-2 1-2 2.5-2 4s0 3-2 3"/></svg>
+              <h3>Facile à intégrer</h3>
+              <p>Une requête HTTP et une réponse en JSON, en unités métriques ou impériales. Fonctionne depuis n’importe quel langage, serveur ou navigateur, sans bibliothèque.</p>
+            </div>
+          </div>
+          <div class="team">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.2c.6-.1 1.3-.2 2-.2 2.8 0 4 1.8 4 5"/></svg>
+            <div>
+              <h3>Une équipe de spécialistes derrière l’API</h3>
+              <p>L’API est développée par B1TMET, une équipe de météorologues, de physiciens et de spécialistes en informatique et en mathématiques forte de plus de 20 ans d’expérience en recherche et en conseil sur la modélisation numérique du temps et du climat des Caraïbes. C’est la même équipe qui adapte le modèle WRF à la région et en opère les exécutions quotidiennes, et qui a réalisé des études de configuration de WRF pour des services météorologiques de la zone.</p>
+              <a href="https://b1tmet.mx" target="_blank" rel="noopener">Découvrir l’équipe →</a>
+            </div>
+          </div>
+        </section>
+        <section class="why" lang="it">
+          <h2>Perché B1TMET</h2>
+          <p class="lead">Una previsione vale quanto il modello che la produce. Ecco cosa c’è dietro ogni risposta dell’API.</p>
+          <div class="why-grid">
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16M12 4a12 12 0 0 1 0 16M12 4a12 12 0 0 0 0 16"/><circle cx="12" cy="12" r="8"/></svg>
+              <h3>Un modello regionale proprio</h3>
+              <p>I modelli globali calcolano l’intero pianeta con un’unica griglia. B1TMET esegue il modello WRF solo sui Caraibi e sull’America centrale: riceve le condizioni del modello globale ai bordi e risolve di nuovo l’atmosfera della regione con molto più dettaglio.</p>
+            </div>
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19l6-9 4 5 3-4 5 8z"/><path d="M3 19h18"/></svg>
+              <h3>Più dettaglio dove conta</h3>
+              <p>Una griglia più fine rappresenta meglio il rilievo e la linea di costa: montagne, valli, baie e piccole isole che in una griglia grossolana quasi non esistono. È lì che vento, temperatura e pioggia cambiano da un luogo all’altro: brezze di mare e di terra, pioggia sui versanti, contrasti tra la costa e l’entroterra.</p>
+            </div>
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 15a4 4 0 0 1 .5-8 5 5 0 0 1 9.5 1.5A3.5 3.5 0 0 1 16.5 15z"/><path d="M11 15l-2 4h3l-1 3"/></svg>
+              <h3>Ogni scala, ben configurata</h3>
+              <p>Una griglia fine non è un ingrandimento di quella grossolana: il modello viene eseguito su ciascuna, annidata nella precedente. La fisica del modello, come la formazione di nubi e pioggia, è stata scelta con studi di sensibilità: sono state provate diverse combinazioni ed è stata tenuta quella che ha dato i risultati migliori nella regione.</p>
+            </div>
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-5.5-6-10a6 6 0 0 1 12 0c0 4.5-6 10-6 10z"/><circle cx="12" cy="11" r="2"/></svg>
+              <h3>La griglia migliore, in automatico</h3>
+              <p>Invii delle coordinate e l’API sceglie la griglia più dettagliata che copre il tuo punto nel tuo piano. Ogni risposta indica quale griglia e quale esecuzione sono state usate: sai sempre da dove viene il dato.</p>
+            </div>
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
+              <h3>Sempre aggiornata</h3>
+              <p>Il modello viene eseguito quattro volte al giorno, alle 00, 06, 12 e 18 UTC, e l’API fornisce sempre l’esecuzione più recente disponibile.</p>
+            </div>
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5c-2 0-2 1.5-2 3s0 3-2 4c2 1 2 2.5 2 4s0 3 2 3M15 5c2 0 2 1.5 2 3s0 3 2 4c-2 1-2 2.5-2 4s0 3-2 3"/></svg>
+              <h3>Facile da integrare</h3>
+              <p>Una richiesta HTTP e una risposta in JSON, in unità metriche o imperiali. Funziona da qualsiasi linguaggio, server o browser, senza librerie.</p>
+            </div>
+          </div>
+          <div class="team">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.2c.6-.1 1.3-.2 2-.2 2.8 0 4 1.8 4 5"/></svg>
+            <div>
+              <h3>Dietro c’è un team di specialisti</h3>
+              <p>L’API è sviluppata da B1TMET, un team di meteorologi, fisici e specialisti in informatica e matematica con oltre 20 anni di esperienza nella ricerca e nella consulenza sulla modellazione numerica del tempo e del clima dei Caraibi. È lo stesso team che adatta il modello WRF alla regione e ne gestisce le esecuzioni quotidiane, e che ha realizzato studi di configurazione di WRF per servizi meteorologici dell’area.</p>
+              <a href="https://b1tmet.mx" target="_blank" rel="noopener">Scopri il team →</a>
+            </div>
+          </div>
+        </section>
+        <section class="why" lang="nl">
+          <h2>Waarom B1TMET</h2>
+          <p class="lead">Een verwachting is zo goed als het model dat haar maakt. Dit zit er achter elk antwoord van de API.</p>
+          <div class="why-grid">
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16M12 4a12 12 0 0 1 0 16M12 4a12 12 0 0 0 0 16"/><circle cx="12" cy="12" r="8"/></svg>
+              <h3>Een eigen regionaal model</h3>
+              <p>Mondiale modellen rekenen de hele planeet door met één rooster. B1TMET draait het WRF-model alleen boven het Caribisch gebied en Midden-Amerika: het neemt de omstandigheden van het mondiale model aan de randen over en berekent de atmosfeer van de regio opnieuw, veel gedetailleerder.</p>
+            </div>
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19l6-9 4 5 3-4 5 8z"/><path d="M3 19h18"/></svg>
+              <h3>Meer detail waar het telt</h3>
+              <p>Een fijner rooster geeft reliëf en kustlijn beter weer: bergen, dalen, baaien en kleine eilanden die in een grof rooster nauwelijks bestaan. Juist daar veranderen wind, temperatuur en regen van plek tot plek: zee- en landbries, regen op de hellingen, verschillen tussen kust en binnenland.</p>
+            </div>
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 15a4 4 0 0 1 .5-8 5 5 0 0 1 9.5 1.5A3.5 3.5 0 0 1 16.5 15z"/><path d="M11 15l-2 4h3l-1 3"/></svg>
+              <h3>Elke schaal, goed ingesteld</h3>
+              <p>Een fijn rooster is geen uitvergroting van het grove: het model draait op elk rooster, genest in het vorige. De modelfysica, zoals de vorming van wolken en regen, is gekozen met gevoeligheidsstudies: verschillende combinaties zijn getest en de combinatie met de beste resultaten in de regio is behouden.</p>
+            </div>
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-5.5-6-10a6 6 0 0 1 12 0c0 4.5-6 10-6 10z"/><circle cx="12" cy="11" r="2"/></svg>
+              <h3>Het beste rooster, automatisch</h3>
+              <p>Je stuurt coördinaten en de API kiest het meest gedetailleerde rooster dat je punt binnen je abonnement dekt. Elk antwoord vermeldt welk rooster en welke run zijn gebruikt: je weet altijd waar de gegevens vandaan komen.</p>
+            </div>
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
+              <h3>Altijd actueel</h3>
+              <p>Het model draait vier keer per dag, om 00, 06, 12 en 18 UTC, en de API levert altijd de meest recente beschikbare run.</p>
+            </div>
+            <div class="why-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5c-2 0-2 1.5-2 3s0 3-2 4c2 1 2 2.5 2 4s0 3 2 3M15 5c2 0 2 1.5 2 3s0 3 2 4c-2 1-2 2.5-2 4s0 3-2 3"/></svg>
+              <h3>Eenvoudig te integreren</h3>
+              <p>Eén HTTP-verzoek en een antwoord in JSON, in metrische of imperiale eenheden. Werkt vanuit elke programmeertaal, server of browser, zonder bibliotheken.</p>
+            </div>
+          </div>
+          <div class="team">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.2c.6-.1 1.3-.2 2-.2 2.8 0 4 1.8 4 5"/></svg>
+            <div>
+              <h3>Een team van specialisten erachter</h3>
+              <p>De API wordt ontwikkeld door B1TMET, een team van meteorologen, natuurkundigen en specialisten in informatica en wiskunde met meer dan 20 jaar ervaring in onderzoek en advies op het gebied van numerieke weer- en klimaatmodellering van het Caribisch gebied. Het is hetzelfde team dat het WRF-model aanpast aan de regio en de dagelijkse runs uitvoert, en dat WRF-configuratiestudies heeft gedaan voor meteorologische diensten in het gebied.</p>
+              <a href="https://b1tmet.mx" target="_blank" rel="noopener">Maak kennis met het team →</a>
             </div>
           </div>
         </section>
@@ -411,22 +642,35 @@ print(r.json()["data"][0]["temperature_2m"])</code></pre>
         // Selector de punto: qué malla corresponde en cada plan
         var PK = {
           es: { hint: "Haz clic en cualquier punto del mapa para ver qué malla le corresponde en cada plan.", free: "Plan Free", paid: "Starter y Pro", out: "fuera de cobertura",
-                gain: "Con un plan de pago, este punto pasa de {a} km a {b} km.", same: "Este punto tiene la misma resolución en todos los planes; los de pago añaden pronóstico hasta 72 h y uso comercial." },
+                gain: "Con un plan de pago, este punto pasa de {a} km a {b} km.", same: "Este punto tiene la misma resolución en todos los planes; los de pago añaden pronóstico hasta 72 h y uso comercial.",
+                btn: "Ver el pronóstico de este punto", loading: "Calculando el pronóstico…", eRate: "Has hecho muchas consultas de prueba. Vuelve a intentarlo en un rato.", eUnav: "La demo no está disponible ahora mismo. Inténtalo más tarde.", eErr: "No se pudo obtener el pronóstico. Inténtalo de nuevo.", temp: "Temperatura a 2 m (°C)", rain: "Lluvia en 3 h (mm)", wind: "Viento a 10 m (m/s)", note: "Muestra gratuita: próximas 24 h, punto redondeado a 0,1°. Hora local de tu dispositivo. Corrida {run}." },
           en: { hint: "Click anywhere on the map to see which grid each plan uses there.", free: "Free plan", paid: "Starter and Pro", out: "outside coverage",
-                gain: "With a paid plan, this point goes from {a} km to {b} km.", same: "This point has the same resolution on every plan; paid plans add forecasts up to 72 h and commercial use." },
+                gain: "With a paid plan, this point goes from {a} km to {b} km.", same: "This point has the same resolution on every plan; paid plans add forecasts up to 72 h and commercial use.",
+                btn: "Show the forecast for this point", loading: "Computing the forecast…", eRate: "You have made many test requests. Try again in a while.", eUnav: "The demo is not available right now. Try again later.", eErr: "Could not get the forecast. Please try again.", temp: "2 m temperature (°C)", rain: "3 h precipitation (mm)", wind: "10 m wind (m/s)", note: "Free sample: next 24 h, point rounded to 0.1°. Local time of your device. Run {run}." },
           pt: { hint: "Clique em qualquer ponto do mapa para ver que grade cada plano usa ali.", free: "Plano Free", paid: "Starter e Pro", out: "fora da cobertura",
-                gain: "Com um plano pago, este ponto passa de {a} km para {b} km.", same: "Este ponto tem a mesma resolução em todos os planos; os pagos acrescentam previsão até 72 h e uso comercial." },
+                gain: "Com um plano pago, este ponto passa de {a} km para {b} km.", same: "Este ponto tem a mesma resolução em todos os planos; os pagos acrescentam previsão até 72 h e uso comercial.",
+                btn: "Ver a previsão deste ponto", loading: "Calculando a previsão…", eRate: "Você fez muitas consultas de teste. Tente novamente daqui a pouco.", eUnav: "A demo não está disponível agora. Tente mais tarde.", eErr: "Não foi possível obter a previsão. Tente novamente.", temp: "Temperatura a 2 m (°C)", rain: "Chuva em 3 h (mm)", wind: "Vento a 10 m (m/s)", note: "Amostra gratuita: próximas 24 h, ponto arredondado a 0,1°. Hora local do seu dispositivo. Rodada {run}." },
           fr: { hint: "Cliquez n'importe où sur la carte pour voir quelle grille chaque offre utilise à cet endroit.", free: "Offre Free", paid: "Starter et Pro", out: "hors couverture",
-                gain: "Avec une offre payante, ce point passe de {a} km à {b} km.", same: "Ce point a la même résolution dans toutes les offres ; les offres payantes ajoutent la prévision jusqu'à 72 h et l'usage commercial." },
+                gain: "Avec une offre payante, ce point passe de {a} km à {b} km.", same: "Ce point a la même résolution dans toutes les offres ; les offres payantes ajoutent la prévision jusqu'à 72 h et l'usage commercial.",
+                btn: "Voir la prévision pour ce point", loading: "Calcul de la prévision…", eRate: "Vous avez fait beaucoup de requêtes d'essai. Réessayez dans un moment.", eUnav: "La démo n'est pas disponible pour le moment. Réessayez plus tard.", eErr: "Impossible d'obtenir la prévision. Réessayez.", temp: "Température à 2 m (°C)", rain: "Pluie en 3 h (mm)", wind: "Vent à 10 m (m/s)", note: "Échantillon gratuit : prochaines 24 h, point arrondi à 0,1°. Heure locale de votre appareil. Exécution {run}." },
           it: { hint: "Fai clic in un punto qualsiasi della mappa per vedere quale griglia usa ogni piano.", free: "Piano Free", paid: "Starter e Pro", out: "fuori copertura",
-                gain: "Con un piano a pagamento, questo punto passa da {a} km a {b} km.", same: "Questo punto ha la stessa risoluzione in tutti i piani; quelli a pagamento aggiungono previsioni fino a 72 h e l'uso commerciale." },
+                gain: "Con un piano a pagamento, questo punto passa da {a} km a {b} km.", same: "Questo punto ha la stessa risoluzione in tutti i piani; quelli a pagamento aggiungono previsioni fino a 72 h e l'uso commerciale.",
+                btn: "Vedi la previsione per questo punto", loading: "Calcolo della previsione…", eRate: "Hai fatto molte richieste di prova. Riprova tra poco.", eUnav: "La demo non è disponibile in questo momento. Riprova più tardi.", eErr: "Impossibile ottenere la previsione. Riprova.", temp: "Temperatura a 2 m (°C)", rain: "Pioggia in 3 h (mm)", wind: "Vento a 10 m (m/s)", note: "Campione gratuito: prossime 24 h, punto arrotondato a 0,1°. Ora locale del tuo dispositivo. Esecuzione {run}." },
           nl: { hint: "Klik ergens op de kaart om te zien welk rooster elk abonnement daar gebruikt.", free: "Free-abonnement", paid: "Starter en Pro", out: "buiten dekking",
-                gain: "Met een betaald abonnement gaat dit punt van {a} km naar {b} km.", same: "Dit punt heeft in elk abonnement dezelfde resolutie; betaalde abonnementen voegen verwachtingen tot 72 uur en commercieel gebruik toe." }
+                gain: "Met een betaald abonnement gaat dit punt van {a} km naar {b} km.", same: "Dit punt heeft in elk abonnement dezelfde resolutie; betaalde abonnementen voegen verwachtingen tot 72 uur en commercieel gebruik toe.",
+                btn: "Toon de verwachting voor dit punt", loading: "Verwachting wordt berekend…", eRate: "Je hebt veel testverzoeken gedaan. Probeer het straks opnieuw.", eUnav: "De demo is nu niet beschikbaar. Probeer het later opnieuw.", eErr: "Kon de verwachting niet ophalen. Probeer het opnieuw.", temp: "Temperatuur op 2 m (°C)", rain: "Neerslag in 3 uur (mm)", wind: "Wind op 10 m (m/s)", note: "Gratis voorbeeld: komende 24 uur, punt afgerond op 0,1°. Lokale tijd van je apparaat. Run {run}." }
         };
+        // Servida desde el backend local (http://localhost:8081/api.html): la demo usa ese mismo servidor
+        var API = /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(location.origin) ? location.origin : "https://thredds.b1tmet.com";
         var pick = null, pickEl = document.getElementById("pick"), gPin = document.getElementById("pin"), svgMap = document.getElementById("map");
 
         // Misma regla que la API (domain=auto): primero el grid más anidado (d03 > d02 > d01);
         // a igual grid, el dominio con el centro más cercano al punto. Free: solo d01.
+        function hav(a1, o1, a2, o2) {               // km, como haversineKm de la API
+          var r = Math.PI / 180, dA = (a2 - a1) * r, dO = (o2 - o1) * r;
+          var x = Math.pow(Math.sin(dA / 2), 2) + Math.cos(a1 * r) * Math.cos(a2 * r) * Math.pow(Math.sin(dO / 2), 2);
+          return 6371 * 2 * Math.atan2(Math.sqrt(x), Math.sqrt(1 - x));
+        }
         function choose(lat, lon, freeOnly) {
           var best = null;
           D.forEach(function (d) {
@@ -434,7 +678,7 @@ print(r.json()["data"][0]["temperature_2m"])</code></pre>
               if (g[0] === null || (freeOnly && g[5] !== "d01")) return;
               if (lat < g[0] || lat > g[2] || lon < g[1] || lon > g[3]) return;
               var lvl = +g[5].slice(1), cy = (g[0] + g[2]) / 2, cx = (g[1] + g[3]) / 2;
-              var dist = Math.pow(lat - cy, 2) + Math.pow(lon - cx, 2);
+              var dist = hav(lat, lon, cy, cx);
               if (!best || lvl > best.lvl || (lvl === best.lvl && dist < best.dist)) best = { d: d, g: g, lvl: lvl, dist: dist };
             });
           });
@@ -463,12 +707,152 @@ print(r.json()["data"][0]["temperature_2m"])</code></pre>
             var note = document.createElement("p"); note.className = "pick-note";
             note.textContent = fr && pd.g[4] < fr.g[4] ? p.gain.replace("{a}", fr.g[4]).replace("{b}", pd.g[4]) : (fr ? p.same : "");
             if (note.textContent) pickEl.appendChild(note);
+            var demo = document.createElement("div"); demo.className = "demo";
+            if (pick.demo) demo.appendChild(chart(pick.demo, t, p));
+            else if (pick.err) { var e = document.createElement("p"); e.className = "demo-msg err"; e.textContent = p[pick.err]; demo.appendChild(e); }
+            if (!pick.demo) {
+              var bt = document.createElement("button"); bt.type = "button"; bt.className = "btn demo-btn";
+              bt.textContent = pick.loading ? p.loading : p.btn; bt.disabled = !!pick.loading;
+              if (pick.loading) bt.classList.add("busy");
+              bt.addEventListener("click", loadDemo);
+              demo.appendChild(bt);
+            }
+            pickEl.appendChild(demo);
             var pre = document.createElement("pre"); pre.className = "code";
             var code = document.createElement("code");
             code.textContent = 'curl "https://thredds.b1tmet.com/v1/forecast/point?lat=' + pick.lat.toFixed(2) + '&lon=' + pick.lon.toFixed(2) + '&hours=24" \\\n  -H "Authorization: Bearer $B1TMET_KEY"';
             pre.appendChild(code); pickEl.appendChild(pre);
             if (window.b1tCopy) window.b1tCopy(pickEl);
           }
+        }
+
+        // ---------- Demo: pronóstico real del punto (Free frente a pago) ----------
+        function loadDemo() {
+          var my = pick;
+          my.loading = true; my.err = null; drawPick();
+          var ctl = window.AbortController ? new AbortController() : null;
+          var to = setTimeout(function () { if (ctl) ctl.abort(); }, 60000);
+          fetch(API + "/v1/demo/point?lat=" + my.lat.toFixed(2) + "&lon=" + my.lon.toFixed(2), { signal: ctl ? ctl.signal : undefined })
+            .then(function (r) {
+              if (r.ok) return r.json();
+              my.err = r.status === 429 ? "eRate" : (r.status === 503 ? "eUnav" : "eErr");
+              return null;
+            })
+            .catch(function () { my.err = "eErr"; return null; })
+            .then(function (j) {
+              clearTimeout(to);
+              my.loading = false;
+              if (j && j.paid) my.demo = j;
+              if (pick === my) drawPick();
+            });
+        }
+
+        function chart(d, t, p) {
+          var wrap = document.createElement("div"); wrap.className = "chart";
+          var series = [["free", d.free], ["paid", d.paid]].filter(function (x) { return x[1]; });
+          var leg = document.createElement("div"); leg.className = "ch-legend";
+          series.forEach(function (x) {
+            var s = document.createElement("span"); s.className = "ch-" + x[0];
+            var i = document.createElement("i"); s.appendChild(i);
+            s.appendChild(document.createTextNode((x[0] === "free" ? p.free : p.paid) + " · " + t.n[x[1].domain] + " " + x[1].grid + " · " + x[1].resolution_km + " km"));
+            leg.appendChild(s);
+          });
+          wrap.appendChild(leg);
+
+          var W = 600, L = 34, R = 8, PH = 74, GAP = 30, TOP = 18;
+          var panels = [["temperature_2m", p.temp, "line"], ["precipitation_3h", p.rain, "bar"], ["wind_speed_10m", p.wind, "line"]];
+          var H = TOP + panels.length * (PH + GAP) + 4;
+          var svg = document.createElementNS(NS, "svg");
+          svg.setAttribute("viewBox", "0 0 " + W + " " + H); svg.setAttribute("class", "ch-svg");
+          svg.setAttribute("role", "img"); svg.setAttribute("aria-label", p.temp + ", " + p.rain + ", " + p.wind);
+          var n = d.paid.data.length, x = function (i) { return L + (W - L - R) * (n > 1 ? i / (n - 1) : 0); };
+          function el(tag, attrs, txt) {
+            var e = document.createElementNS(NS, tag);
+            for (var k in attrs) e.setAttribute(k, attrs[k]);
+            if (txt !== undefined) e.textContent = txt;
+            svg.appendChild(e); return e;
+          }
+          panels.forEach(function (pn, k) {
+            var y0 = TOP + k * (PH + GAP), key = pn[0];
+            var vals = [];
+            series.forEach(function (sr) { sr[1].data.forEach(function (r) { if (r[key] !== null) vals.push(r[key]); }); });
+            if (!vals.length) return;
+            var lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals);
+            if (pn[2] === "bar") { lo = 0; hi = Math.max(hi, 1); }
+            else { var pad = Math.max(.5, (hi - lo) * .15); lo = Math.floor(lo - pad); hi = Math.ceil(hi + pad); }
+            if (key === "wind_speed_10m") lo = Math.max(0, lo);          // el viento no baja de 0
+            var y = function (v) { return y0 + PH - (v - lo) / (hi - lo) * PH; };
+            el("text", { x: L, y: y0 - 6, "class": "ch-title" }, pn[1]);
+            el("line", { x1: L, x2: W - R, y1: y0 + PH, y2: y0 + PH, "class": "ch-axis" });
+            el("line", { x1: L, x2: W - R, y1: y0, y2: y0, "class": "ch-grid" });
+            el("text", { x: L - 6, y: y0 + 4, "class": "ch-tick", "text-anchor": "end" }, String(+hi.toFixed(1)));
+            el("text", { x: L - 6, y: y0 + PH, "class": "ch-tick", "text-anchor": "end" }, String(+lo.toFixed(1)));
+            series.forEach(function (sr, si) {
+              var rows = sr[1].data;
+              if (pn[2] === "bar") {
+                var bw = Math.max(3, (W - L - R) / (n - 1) / (series.length + 1.5));
+                rows.forEach(function (r, i) {
+                  if (r[key] === null || r[key] <= 0) return;
+                  var bx = x(i) + (si - series.length / 2) * bw;
+                  el("rect", { x: bx, y: y(r[key]), width: bw - 1, height: y0 + PH - y(r[key]), rx: 1.5, "class": "ch-bar ch-" + sr[0] });
+                });
+              } else {
+                var dd = "";
+                rows.forEach(function (r, i) { if (r[key] !== null) dd += (dd ? "L" : "M") + x(i).toFixed(1) + " " + y(r[key]).toFixed(1); });
+                var pa = { d: dd, "class": "ch-line ch-" + sr[0] };
+                if (sr[0] === "paid") pa.pathLength = 1;       // solo la de pago se dibuja animada
+                el("path", pa);
+              }
+            });
+          });
+          // horas locales bajo el último panel
+          var yl = TOP + panels.length * (PH + GAP) - GAP + 16;
+          d.paid.data.forEach(function (r, i) {
+            if (i % 2) return;
+            var dt = new Date(r.time);
+            if (isNaN(dt)) return;
+            el("text", { x: x(i), y: yl, "class": "ch-tick", "text-anchor": i === 0 ? "start" : (i === n - 1 ? "end" : "middle") }, ("0" + dt.getHours()).slice(-2) + "h");
+          });
+          // Valores al pasar el ratón (o tocar): línea vertical y ficha con las dos series
+          var cur = el("line", { x1: 0, x2: 0, y1: TOP - 4, y2: TOP + panels.length * (PH + GAP) - GAP, "class": "ch-cursor" });
+          var hit = el("rect", { x: L, y: 0, width: W - L - R, height: H, "class": "ch-hit" });
+          var tip = document.createElement("div"); tip.className = "ch-tip"; tip.hidden = true;
+          wrap.appendChild(svg); wrap.appendChild(tip);
+          var fmtV = { temperature_2m: function (v) { return v.toFixed(1) + " °C"; },
+                       precipitation_3h: function (v) { return v.toFixed(1) + " mm"; },
+                       wind_speed_10m: function (v) { return v.toFixed(1) + " m/s"; } };
+          function showAt(clientX) {
+            var m = svg.getScreenCTM(); if (!m) return;
+            var pt = svg.createSVGPoint(); pt.x = clientX; pt.y = 0;
+            var sx = pt.matrixTransform(m.inverse()).x;
+            var i = Math.max(0, Math.min(n - 1, Math.round((sx - L) / (W - L - R) * (n - 1))));
+            cur.setAttribute("x1", x(i)); cur.setAttribute("x2", x(i)); cur.classList.add("on");
+            var dt = new Date(d.paid.data[i].time);
+            var html = '<b>' + (isNaN(dt) ? "" : dt.toLocaleString(document.documentElement.lang || undefined, { weekday: "short", hour: "2-digit", minute: "2-digit" })) + '</b>';
+            html += '<table><tr><th></th>' + series.map(function (sr) { return '<th class="ch-' + sr[0] + '">' + sr[1].resolution_km + ' km</th>'; }).join("") + '</tr>';
+            panels.forEach(function (pn) {
+              html += '<tr><td>' + pn[1].replace(/\s*\(.*\)$/, "") + '</td>' + series.map(function (sr) {
+                var r = sr[1].data[i], v = r ? r[pn[0]] : null;
+                return '<td class="ch-' + sr[0] + '">' + (v === null || v === undefined ? "—" : fmtV[pn[0]](v)) + '</td>';
+              }).join("") + '</tr>';
+            });
+            tip.innerHTML = html + '</table>';
+            tip.hidden = false;
+            // a la derecha del cursor; si no cabe, a la izquierda
+            var box = wrap.getBoundingClientRect(), cx = x(i) * m.a + m.e - box.left;
+            var tw = tip.offsetWidth, left = cx + 14;
+            if (left + tw > box.width - 6) left = cx - tw - 14;
+            tip.style.left = Math.max(6, left) + "px";
+          }
+          function hide() { tip.hidden = true; cur.classList.remove("on"); }
+          hit.addEventListener("pointermove", function (e) { showAt(e.clientX); });
+          hit.addEventListener("pointerdown", function (e) { showAt(e.clientX); });
+          hit.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") hide(); });
+          var note = document.createElement("p"); note.className = "muted ch-note";
+          var ri = d.paid.run_init ? String(d.paid.run_init).slice(0, 13).replace("T", " ") + " UTC" : "—";
+          note.textContent = p.note.replace("{run}", ri);
+          wrap.appendChild(note);
+          return wrap;
         }
         svgMap.addEventListener("click", function (ev) {
           var m = svgMap.getScreenCTM(); if (!m) return;
