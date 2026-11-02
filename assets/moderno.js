@@ -174,3 +174,44 @@
     new IntersectionObserver(function (es) { visible = es[0].isIntersecting; start(); }).observe(hero);
   }
 })();
+
+/* Botón «Copiar» en los bloques de código. window.b1tCopy(raíz) lo añade también
+   a bloques creados después (p. ej. el ejemplo del mapa en api.html). */
+(function () {
+  var L = {
+    es: ['Copiar', 'Copiado'], en: ['Copy', 'Copied'], pt: ['Copiar', 'Copiado'],
+    fr: ['Copier', 'Copié'], it: ['Copia', 'Copiato'], nl: ['Kopiëren', 'Gekopieerd']
+  };
+  function txt(i) { var l = document.documentElement.getAttribute('data-lang'); return (L[l] || L.en)[i]; }
+  function copy(text) {
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+    return new Promise(function (ok, ko) {               // file:// o http sin TLS
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy') ? ok() : ko(); } catch (e) { ko(e); }
+      document.body.removeChild(ta);
+    });
+  }
+  function add(root) {
+    (root || document).querySelectorAll('pre.code').forEach(function (pre) {
+      if (pre.querySelector('.copy')) return;
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'copy'; b.textContent = txt(0);
+      b.addEventListener('click', function () {
+        var code = pre.querySelector('code') || pre;
+        copy(code.textContent).then(function () {
+          b.textContent = txt(1); b.classList.add('done');
+          setTimeout(function () { b.textContent = txt(0); b.classList.remove('done'); }, 1600);
+        }, function () {});
+      });
+      pre.appendChild(b);
+    });
+  }
+  window.b1tCopy = add;
+  add(document);
+  // Al cambiar de idioma se actualiza el texto de los botones
+  new MutationObserver(function () {
+    document.querySelectorAll('pre.code .copy:not(.done)').forEach(function (b) { b.textContent = txt(0); });
+  }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-lang'] });
+})();
