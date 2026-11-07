@@ -8,7 +8,7 @@ Página estática, sin compilación. Se sirve tal cual desde GitHub Pages o cual
 - `app.js`: los gráficos y las tablas.
 - `dash-shim.js`: carga los CSV de `data/` y le pasa los datos a `app.js`.
 - `vendor/`: D3 v7.9.0 y las fuentes Inter y Source Serif 4 (subconjunto latino), con sus licencias.
-- `data/*.csv`: los datos de la prueba, que salen de k6 y del colector del VPS.
+- `data/*.csv` (incluido `cambios.csv`): los datos de la prueba, que salen de k6 y del colector del VPS.
 - `Prueba_de_carga_B1TMET_nov2026.pdf`: la versión en PDF.
 
 ## Publicar en GitHub Pages

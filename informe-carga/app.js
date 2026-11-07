@@ -55,17 +55,15 @@
     el.textContent = r ? (FMT[el.dataset.fmt] || String)(r[el.dataset.field]) : '—';
   });
 
-  // ---------- mejora (calc)
+  // ---------- mejora (calc): cuántas veces mejor que cada entorno de la prueba anterior
   dash.calc('mejora', {
     inputs: ['comparacion'],
     title: 'Veces mejor que antes',
-    description: 'Tiempos: peor valor de antes entre el de ahora. Peticiones/s: ahora entre el mejor de antes. Fallos: sin cociente.',
+    description: 'Tiempos: valor de antes entre el de ahora. Peticiones/s: ahora entre antes. Fallos: sin cociente.',
     fn: (comparacion) => comparacion.map((r) => {
-      const a = Math.max(Number(r.antes_2cpu), Number(r.antes_sin_limites)), b = Number(r.ahora);
-      let veces = null;
-      if (r.unidad === 'ms') veces = Math.round((a / b) * 10) / 10;
-      if (r.unidad === 'pet/s') veces = Math.round((b / a) * 10) / 10;
-      return { id: r.id, veces };
+      const b = Number(r.ahora);
+      const f = (a) => (r.unidad === 'ms' ? Math.round((a / b) * 10) / 10 : r.unidad === 'pet/s' ? Math.round((b / a) * 10) / 10 : null);
+      return { id: r.id, veces_2cpu: f(Number(r.antes_2cpu)), veces_sin_limites: f(Number(r.antes_sin_limites)) };
     }),
   });
 
@@ -134,16 +132,53 @@
   });
 
   const unitFmt = (u, v) => (u === 'ms' ? fmtMs(v) : u === '%' ? FMT.pct1(v) : FMT.dec1(v) + ' pet/s');
-  dash.draw('tabla-compara', (el) => {
+  // pares antes → ahora de la portada
+  dash.draw('par', (el) => {
+    const d = dash.data('comparacion'), m = dash.data('mejora');
+    const r = d.status === 'ok' ? d.data.find((x) => whereMatch(x, el.dataset.where || '')) : null;
+    if (!r) return;
+    const v = m.status === 'ok' ? m.data.find((x) => x.id === r.id) : null;
+    const set = (sel, t) => { const n = el.querySelector(sel); if (n) n.textContent = t; };
+    set('.p-antes', unitFmt(r.unidad, r.antes_2cpu));
+    set('.p-ahora', unitFmt(r.unidad, r.ahora));
+    set('.p-sl', unitFmt(r.unidad, r.antes_sin_limites));
+    set('.p-x', v && v.veces_2cpu != null ? `${NF(0).format(v.veces_2cpu)} veces más rápido` : (Number(r.ahora) === 0 ? 'Sin fallos' : ''));
+  });
+
+  // tablas de los experimentos (100 y 500 usuarios)
+  dash.draw('tabla-exp', (el) => {
     const d = dash.data('comparacion'), m = dash.data('mejora');
     clear(el);
     if (d.status !== 'ok') return;
     const mej = m.status === 'ok' ? m.data : [];
-    d.data.forEach((r) => {
+    const vx = (n) => (n != null ? '×' + NF(0).format(n) : '');
+    d.data.filter((r) => r.id.endsWith('_' + el.dataset.exp)).forEach((r) => {
       const tr = document.createElement('tr'); tr.dataset.key = r.id;
-      const v = mej.find((x) => x.id === r.id);
-      [r.indicador, unitFmt(r.unidad, r.antes_2cpu), unitFmt(r.unidad, r.antes_sin_limites), unitFmt(r.unidad, r.ahora), v && v.veces != null ? '×' + NF(1).format(v.veces) : '—']
-        .forEach((t) => { const td = document.createElement('td'); td.textContent = t; tr.append(td); });
+      const v = mej.find((x) => x.id === r.id) || {};
+      const cells = [r.indicador, unitFmt(r.unidad, r.antes_2cpu), unitFmt(r.unidad, r.antes_sin_limites), unitFmt(r.unidad, r.ahora),
+        r.unidad === '%' ? (Number(r.ahora) === 0 ? 'sin fallos' : '') : vx(v.veces_2cpu)];
+      cells.forEach((t, i) => { const td = document.createElement('td'); td.textContent = t; if (i === 3) td.className = 'now'; if (i === 4) td.className = 'gain'; tr.append(td); });
+      el.append(tr);
+    });
+  });
+
+  // qué cambiamos → qué arregló
+  dash.draw('tabla-cambios', (el) => {
+    const d = dash.data('cambios');
+    clear(el);
+    if (d.status !== 'ok') return;
+    const fmt = (u, v) => (v === '' || v == null ? '—' : u === 'MB' ? NF(2).format(num(v)) + ' MB' : unitFmt(u, v));
+    let prev = null;
+    d.data.forEach((r) => {
+      const tr = document.createElement('tr'); tr.dataset.key = r.orden;
+      const same = r.cambio === prev; prev = r.cambio;
+      const c0 = document.createElement('td'); c0.textContent = same ? '' : r.cambio; c0.className = 'chg';
+      const c1 = document.createElement('td'); c1.textContent = r.efecto; c1.className = 'eff';
+      const c2 = document.createElement('td'); c2.textContent = r.indicador; c2.className = 'ind';
+      const c3 = document.createElement('td'); c3.textContent = fmt(r.unidad, r.antes);
+      const c4 = document.createElement('td'); c4.textContent = fmt(r.unidad, r.ahora); c4.className = 'now';
+      tr.append(c0, c1, c2, c3, c4);
+      if (same) tr.classList.add('cont');
       el.append(tr);
     });
   });

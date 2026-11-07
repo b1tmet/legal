@@ -3,7 +3,7 @@
 // que usa app.js: data(), draw(), calc(), onData() y colors.
 (function () {
   const DATASETS = ['kpis', 'comparacion', 'rampa', 'escalones', 'endpoints_mezcla', 'serie_run1',
-    'recursos', 'api_planes', 'sonda', 'errores', 'videos'];
+    'recursos', 'api_planes', 'sonda', 'errores', 'videos', 'cambios'];
   const store = {};      // id -> {status, data}
   const drawers = {};    // nombre -> función(el)
   const calcs = {};      // nombre -> spec

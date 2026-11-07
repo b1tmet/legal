@@ -1,0 +1,10 @@
+orden,cambio,efecto,indicador,antes,ahora,unidad
+1,"Caché del pronóstico en Redis, con deduplicación de peticiones iguales","El pronóstico de un punto se calcula una vez y se reparte; ya no se recalcula por cada usuario","Pronóstico: tiempo medio, 500 usuarios",26000,187,ms
+2,"Pool de procesos Python compartido y limitado, y un único cliente de Redis","El servidor no se satura: en un pico rechaza con 503 en vez de quedarse colgado","Tiempo de respuesta p95, 500 usuarios",98000,876,ms
+3,"Consultas a la base de datos con límite de 8 s, sobre un servidor que ya no se satura","El login ya no se queda esperando detrás del resto de peticiones","Login: tiempo medio, 500 usuarios",37000,487,ms
+4,"Consultas a la base de datos con límite de 8 s, sobre un servidor que ya no se satura","Los logins dejan de caer por tiempo de espera","Login: fallos, 500 usuarios",5.8,0,%
+5,"Caché en memoria del catálogo de THREDDS","Consultar si un dominio está disponible ya no pregunta a THREDDS cada vez","check_domain p95, 100 usuarios",6200,864,ms
+6,"Caché en memoria del catálogo de THREDDS","La consulta de disponibilidad deja de fallar bajo carga","check_domain: fallos, 100 usuarios",18.4,0,%
+7,"Vídeos recodificados a 900 px en el VPS al llegar cada corrida","Cada usuario nuevo descarga entre un 58 % y un 68 % menos","Vídeo de nubosidad (Cuba d01)",2.36,0.75,MB
+8,"Imágenes de dominio dentro de la APK, en WebP sin pérdida","La pestaña de dominios ya no descarga imágenes: salen al instante y sin conexión","Imágenes de dominio (14)",3.6,1.3,MB
+9,"Sesión con JWT y refresh token","El usuario no repite el login en cada arranque. No tiene cifra comparable: ambas pruebas hacen un solo login por usuario","Login en cada arranque",,,

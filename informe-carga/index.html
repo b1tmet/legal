@@ -84,6 +84,28 @@ footer.pie { max-width: 1180px; margin: 48px auto 0; font-size: 12px; color: var
 .lt dl { display: grid; grid-template-columns: minmax(9rem, max-content) 1fr; gap: 6px 16px; font-size: var(--cds-font-size-caption); }
 .lt dt { font-weight: var(--cds-font-weight-medium); }
 .lt dd { margin: 0; color: var(--color-fg-muted); }
+.lt .pairs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: var(--cds-gap-md); margin: var(--cds-gap-sm) 0 var(--cds-gap-lg); }
+.lt .pair { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); }
+.lt .pair .lbl { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.lt .pair .row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin: 6px 0 4px; font-variant-numeric: tabular-nums; }
+.lt .pair .p-antes { font-family: var(--font-anthropic-serif); font-size: calc(var(--cds-font-size-title) * 1.05); color: var(--color-fg-muted); text-decoration: line-through; text-decoration-thickness: 1px; }
+.lt .pair .arrow { color: var(--color-fg-muted); }
+.lt .pair .p-ahora { font-family: var(--font-anthropic-serif); font-size: calc(var(--cds-font-size-title) * 1.5); color: var(--color-ok); line-height: 1.1; }
+.lt .pair .p-x { font-size: var(--cds-font-size-caption); font-weight: 600; color: var(--color-ok); }
+.lt .pair .foot { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-top: 2px; }
+.lt .pairs-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0; }
+.lt .harder { border-left: 3px solid var(--color-ok); padding: var(--cds-pad-sm) var(--cds-pad-lg); background: var(--color-panel); border-radius: 0 var(--cds-radius) var(--cds-radius) 0; margin: var(--cds-gap-sm) 0 var(--cds-gap-md); }
+.lt .harder ul { margin: 6px 0 0; padding-left: 1.2em; }
+.lt .harder li { font-size: var(--cds-font-size-caption); line-height: 1.5; }
+.lt td:not(:first-child):not(.eff):not(.ind) { white-space: nowrap; }
+.lt td.now { font-weight: 600; color: var(--color-ok); }
+.lt td.gain { font-weight: 600; color: var(--color-ok); }
+.lt table.cambios td { vertical-align: top; }
+.lt table.cambios td.chg { font-weight: 500; text-align: left; max-width: 16rem; }
+.lt table.cambios td.eff, .lt table.cambios td.ind { text-align: left; color: var(--color-fg-muted); }
+.lt table.cambios th:nth-child(2), .lt table.cambios th:nth-child(3) { text-align: left; }
+.lt table.cambios tr.cont td { border-top: none; }
+.lt table.cambios tr:has(+ tr.cont) td { border-bottom-style: dashed; }
 [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
 [data-dash-source-state=empty] { color: transparent; }
 @media (prefers-reduced-motion: no-preference) {
@@ -97,54 +119,93 @@ footer.pie { max-width: 1180px; margin: 48px auto 0; font-size: 12px; color: var
   <header id="inicio">
     <p class="sub">B1TMET · app B1TMET Pro y API pública /v1 · VPS de IONOS (2 vCPU, 1,9 GB) · 7 de noviembre de 2026</p>
     <h1>Prueba de carga: el backend aguanta 500 usuarios simultáneos sin fallos</h1>
-    <p class="sub"><a href="Prueba_de_carga_B1TMET_nov2026.pdf" download>Descargar en PDF</a> · Datos en CSV: <a href="data/kpis.csv">cifras</a>, <a href="data/comparacion.csv">comparación</a>, <a href="data/endpoints_mezcla.csv">endpoints</a>, <a href="data/rampa.csv">rampa</a>, <a href="data/recursos.csv">recursos</a></p>
+    <p class="sub"><a href="Prueba_de_carga_B1TMET_nov2026.pdf" download>Descargar en PDF</a> · Datos en CSV: <a href="data/kpis.csv">cifras</a>, <a href="data/comparacion.csv">comparación</a>, <a href="data/cambios.csv">cambios</a>, <a href="data/endpoints_mezcla.csv">endpoints</a>, <a href="data/rampa.csv">rampa</a>, <a href="data/recursos.csv">recursos</a></p>
     <p class="lead">Con 500 usuarios a la vez, el 95 % de las peticiones respondió en menos de <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=p95_500" data-fmt="ms">—</b>; en la prueba anterior, con los mismos 500 usuarios, ese tiempo llegaba a <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=antes_p95_500" data-fmt="ms">—</b>. El servidor no llegó a su límite. El primer techo real para salir al mercado no está en el VPS sino fuera: la cuota gratuita de OpenWeather, que admite unos <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=owm_arranques_min" data-fmt="int">—</b> arranques de la app por minuto.</p>
   </header>
 
-  <section class="tiles" aria-label="Cifras principales">
-    <div class="tile">
-      <div class="lbl">Tiempo p95 con 500 usuarios</div>
-      <div class="big good" data-draw="val" data-source="kpis" data-field="valor" data-where="clave=p95_500" data-fmt="ms">—</div>
-      <div class="was">Antes: hasta <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=antes_p95_500" data-fmt="ms">—</b></div>
+  <section aria-label="Antes y ahora en cifras">
+    <div class="pairs">
+    <div class="pair" data-draw="par" data-source="comparacion" data-where="id=p95_500">
+      <div class="lbl">Tiempo de respuesta p95 · 500 usuarios</div>
+      <div class="row"><span class="p-antes">—</span><span class="arrow">→</span><span class="p-ahora">—</span></div>
+      <div class="p-x"></div>
+      <div class="foot">Antes sin límites de CPU: <span class="p-sl">—</span></div>
     </div>
-    <div class="tile">
-      <div class="lbl">Login, tiempo medio con 500 usuarios</div>
-      <div class="big good" data-draw="val" data-source="kpis" data-field="valor" data-where="clave=login_media" data-fmt="ms">—</div>
-      <div class="was">Antes: hasta <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=antes_login_500" data-fmt="ms">—</b></div>
+    <div class="pair" data-draw="par" data-source="comparacion" data-where="id=login_media_500">
+      <div class="lbl">Login, tiempo medio · 500 usuarios</div>
+      <div class="row"><span class="p-antes">—</span><span class="arrow">→</span><span class="p-ahora">—</span></div>
+      <div class="p-x"></div>
+      <div class="foot">Antes sin límites de CPU: <span class="p-sl">—</span></div>
     </div>
-    <div class="tile">
-      <div class="lbl">Peticiones por segundo con 500 usuarios</div>
-      <div class="big" data-draw="val" data-source="kpis" data-field="valor" data-where="clave=rps_500" data-fmt="dec1">—</div>
-      <div class="was">Sin saturarse: crece en línea con los usuarios</div>
+    <div class="pair" data-draw="par" data-source="comparacion" data-where="id=pronostico_500">
+      <div class="lbl">Pronóstico, tiempo medio · 500 usuarios</div>
+      <div class="row"><span class="p-antes">—</span><span class="arrow">→</span><span class="p-ahora">—</span></div>
+      <div class="p-x"></div>
+      <div class="foot">Antes sin límites de CPU: <span class="p-sl">—</span></div>
     </div>
-    <div class="tile">
-      <div class="lbl">Peticiones fallidas en la rampa</div>
-      <div class="big good" data-draw="val" data-source="kpis" data-field="valor" data-where="clave=fallos_rampa" data-fmt="pct2">—</div>
-      <div class="was">Antes: hasta un <b data-draw="val" data-source="comparacion" data-field="antes_sin_limites" data-where="id=login_fallos_500" data-fmt="pct0">—</b> de los logins fallaban</div>
+    <div class="pair" data-draw="par" data-source="comparacion" data-where="id=check_p95_100">
+      <div class="lbl">Disponibilidad del dominio, p95 · 100 usuarios</div>
+      <div class="row"><span class="p-antes">—</span><span class="arrow">→</span><span class="p-ahora">—</span></div>
+      <div class="p-x"></div>
+      <div class="foot">Antes sin límites de CPU: <span class="p-sl">—</span></div>
     </div>
+    <div class="pair" data-draw="par" data-source="comparacion" data-where="id=login_fallos_500">
+      <div class="lbl">Logins fallidos · 500 usuarios</div>
+      <div class="row"><span class="p-antes">—</span><span class="arrow">→</span><span class="p-ahora">—</span></div>
+      <div class="p-x"></div>
+      <div class="foot">Antes sin límites de CPU: <span class="p-sl">—</span></div>
+    </div>
+    <div class="pair" data-draw="par" data-source="comparacion" data-where="id=check_fallos_100">
+      <div class="lbl">Consultas de dominio fallidas · 100 usuarios</div>
+      <div class="row"><span class="p-antes">—</span><span class="arrow">→</span><span class="p-ahora">—</span></div>
+      <div class="p-x"></div>
+      <div class="foot">Antes sin límites de CPU: <span class="p-sl">—</span></div>
+    </div>
+    </div>
+    <p class="pairs-note">Tachado: la prueba anterior en el entorno equivalente al VPS (Docker con 2 CPU y 2 GB). Debajo, la misma prueba sin límites de CPU. Valores de entonces leídos de sus capturas, aproximados.</p>
   </section>
 
   <h2 id="antes-ahora">Antes y ahora</h2>
-  <p class="sub">La prueba anterior se hizo con Locust sobre el backend en local, dentro de Docker: una vez limitado a 2 CPU y 2 GB (como el VPS) y otra sin límites (6 CPU, 32 GB). Los valores de entonces se leyeron de sus capturas y son aproximados. Esta vez la carga llegó al VPS real por internet, con Nginx y TLS de por medio.</p>
+  <p class="sub">La prueba anterior la hizo el equipo de la web con Locust, en dos experimentos: 100 y 500 usuarios concurrentes que inician sesión y piden la disponibilidad de un dominio o un pronóstico, con pausas de 2 a 5 s. Esta vez se repitió ese mismo perfil contra el servidor real.</p>
+  <div class="harder">
+    <b>Esta vez la prueba fue más exigente que entonces</b>
+    <ul>
+      <li>Entonces: el backend en un ordenador local, dentro de Docker. Ahora: el VPS de producción, con la web y los túneles de THREDDS funcionando a la vez.</li>
+      <li>Entonces: peticiones desde la misma máquina. Ahora: por internet desde Panamá, con unos 160 ms de ida y vuelta en cada petición.</li>
+      <li>Ahora con Nginx y TLS por medio, y con la API /v1 recibiendo carga de fondo durante toda la rampa.</li>
+    </ul>
+  </div>
   <div class="grid">
     <div class="card">
-      <h3>Tiempos de respuesta: escala logarítmica</h3>
-      <p class="sub">Cada fila, de la prueba anterior a hoy. Pasa el ratón por una fila para ver los valores.</p>
-      <div class="legend"><span style="--c: var(--cds-chart-muted)">Antes, 2 CPU</span><span style="--c: var(--cds-chart-reference)">Antes, sin límites</span><span class="sw-now" style="--c: var(--color-ok)">Ahora, VPS real</span></div>
-      <div class="chart dash-skeleton" data-draw="compara" data-source="comparacion"></div>
+      <h3>Experimento 1 · 100 usuarios concurrentes</h3>
+      <p class="sub">En la prueba anterior, el cuello de botella con 100 usuarios ya era la consulta de disponibilidad del dominio.</p>
+      <div class="tbl"><table data-source="comparacion" data-row-key="id"><thead><tr><th>Indicador</th><th>Antes, 2 CPU</th><th>Antes, sin límites</th><th>Ahora</th><th>Mejora</th></tr></thead><tbody data-draw="tabla-exp" data-exp="100"></tbody></table></div>
+      <p class="sub" style="margin-top: var(--cds-gap-sm)">Ahora, con 100 usuarios, el p95 de todas las peticiones fue de <b data-draw="val" data-source="escalones" data-field="p95_ms" data-where="usuarios=100" data-fmt="ms">—</b> y no falló ninguna.</p>
     </div>
     <div class="card">
-      <h3>Todas las comparaciones</h3>
-      <p class="sub">«Veces más rápido» compara con el peor de los dos entornos de entonces.</p>
-      <div class="tbl">
-        <table data-source="comparacion" data-row-key="id">
-          <thead><tr><th data-field="indicador">Indicador</th><th data-field="antes_2cpu">Antes, 2 CPU</th><th data-field="antes_sin_limites">Antes, sin límites</th><th data-field="ahora">Ahora</th><th data-source="mejora" data-field="veces">Veces mejor</th></tr></thead>
-          <tbody data-draw="tabla-compara"></tbody>
-        </table>
-      </div>
+      <h3>Experimento 2 · 500 usuarios concurrentes</h3>
+      <p class="sub">Con 500 usuarios, la prueba anterior tardaba decenas de segundos y perdía logins. Ahora atiende más peticiones con tiempos por debajo del segundo.</p>
+      <div class="tbl"><table data-source="comparacion" data-row-key="id"><thead><tr><th>Indicador</th><th>Antes, 2 CPU</th><th>Antes, sin límites</th><th>Ahora</th><th>Mejora</th></tr></thead><tbody data-draw="tabla-exp" data-exp="500"></tbody></table></div>
+      <p class="sub" style="margin-top: var(--cds-gap-sm)">«Mejora» compara con el entorno de 2 CPU. Fallos en toda la rampa de ahora: <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=fallos_rampa" data-fmt="pct2">—</b>.</p>
     </div>
   </div>
-  <p class="sub">Qué cambió desde entonces: caché del pronóstico en Redis con deduplicación de peticiones iguales; un único cliente de Redis; sesión con JWT y refresh token (el login ya no se repite en cada arranque); un pool de procesos Python compartido y limitado; caché en disco de las coordenadas de la malla; vídeos recodificados a 900 px en el propio VPS e imágenes de dominio dentro de la APK.</p>
+  <div class="card" style="margin-top: var(--cds-gap-md)">
+    <h3>Los mismos tiempos en una escala</h3>
+    <p class="sub">Escala logarítmica: cada marca vertical es tres veces la anterior. Pasa el ratón por una fila para ver los valores.</p>
+    <div class="legend"><span style="--c: var(--cds-chart-muted)">Antes, 2 CPU</span><span style="--c: var(--cds-chart-reference)">Antes, sin límites</span><span style="--c: var(--color-ok)">Ahora, VPS real</span></div>
+    <div class="chart dash-skeleton" data-draw="compara" data-source="comparacion"></div>
+  </div>
+
+  <h2 id="cambios">Qué cambiamos y qué arregló</h2>
+  <p class="sub">Cada cambio hecho desde la prueba anterior, con el indicador en el que más se nota. Algunas mejoras salen de varios cambios a la vez; se indica el principal. En vídeos e imágenes, «antes» es el archivo original.</p>
+  <div class="card">
+    <div class="tbl" style="max-height: none">
+      <table class="cambios" data-source="cambios" data-row-key="orden">
+        <thead><tr><th data-field="cambio">Cambio</th><th data-field="efecto">Qué resolvió</th><th data-field="indicador">Indicador</th><th data-field="antes">Antes</th><th data-field="ahora">Ahora</th></tr></thead>
+        <tbody data-draw="tabla-cambios"></tbody>
+      </table>
+    </div>
+  </div>
 
   <h2 id="rampa">Rampa hasta 500 usuarios</h2>
   <p class="sub">Perfil «espejo» de la prueba anterior: cada usuario inicia sesión una vez y luego pide la disponibilidad de un dominio o el pronóstico de un punto, con pausas de 2 a 5 s. Escalones de 25, 50, 100, 200, 300 y 500 usuarios. Con 500 usuarios así se generan unas <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=rps_500" data-fmt="int">—</b> peticiones por segundo: mucho más de lo que pedirían 500 personas reales usando la app.</p>
