@@ -1,0 +1,46 @@
+clave,valor,unidad,descripcion
+usuarios_max,500.0,usuarios,Usuarios simultáneos en el último escalón de la rampa
+p95_500,876.0,ms,p95 del perfil espejo con 500 usuarios
+rps_500,124.4,pet/s,Peticiones por segundo con 500 usuarios
+login_media,487.0,ms,Login: tiempo medio en la rampa (500 logins)
+fallos_rampa,0.05,%,Fallos del perfil espejo en toda la rampa
+antes_p95_500,98000.0,ms,p95 de la prueba anterior con 500 usuarios (contenedor de 2 CPU)
+antes_login_500,71000.0,ms,Login medio de la prueba anterior con 500 usuarios (peor caso)
+mezcla_usuarios,40.0,usuarios,Usuarios de la app con la app abierta a la vez (ejecución 1)
+mezcla_peticiones,40233.0,peticiones,Peticiones en la ejecución 1
+mezcla_rps,25.4,pet/s,Peticiones por segundo de media en la ejecución 1
+mezcla_sesiones,1492.0,sesiones,Sesiones de la app en la ejecución 1
+mezcla_fallos,0.06,%,Fallos en la ejecución 1
+mezcla_gb,4.91,GB,Datos servidos en la ejecución 1
+sesiones_hora,3541.0,sesiones/h,Sesiones de la app por hora sostenidas en la ejecución 1
+usuarios_dia_min,5900.0,usuarios,"Usuarios diarios equivalentes (3 sesiones al día, 20 % en la hora punta)"
+usuarios_dia_max,8900.0,usuarios,"Usuarios diarios equivalentes (2 sesiones al día, 20 % en la hora punta)"
+pron_p50,702.0,ms,"Pronóstico de la app, mediana (ejecución 1)"
+pron_p95,3659.0,ms,"Pronóstico de la app, p95 (ejecución 1)"
+video_p50,1008.0,ms,"Descarga de vídeo, mediana (ejecución 1)"
+video_p95,3990.0,ms,"Descarga de vídeo, p95 (ejecución 1)"
+api_cache_p50,168.0,ms,"API con caché, mediana"
+api_frio_p50,2325.0,ms,"API sin caché, mediana"
+api_frio_p95,3241.0,ms,"API sin caché, p95"
+cache_hit,89.4,%,Respuestas de la API servidas desde caché
+demo_ok,29.0,peticiones,Demo: respuestas correctas en la hora
+demo_429,8.0,peticiones,Demo: peticiones frenadas por el límite de 30 por hora
+cpu_media,35.7,%,CPU media del VPS (ejecución 1)
+cpu_max,97.0,%,CPU máxima del VPS en una muestra de 5 s (ejecución 1)
+svc_nucleos,1.18,núcleos,CPU máxima del servicio (Node + Python)
+mem_min,537.0,MB,Memoria disponible mínima
+eld_p99,9.1,ms,"Retardo del bucle de eventos de Node, p99 (mediana)"
+health_interno,1.5,ms,Tiempo de /api/health medido dentro del VPS (mediana)
+rtt_panama,163.0,ms,Respuesta mínima típica desde Panamá (viaje de ida y vuelta)
+rtt_cuba,346.0,ms,"Respuesta típica desde Cuba (sonda, /api/health)"
+sonda_pron_p50,459.0,ms,"Pronóstico desde Cuba, mediana"
+sonda_video_p50,2483.0,ms,"Vídeo desde Cuba, mediana"
+sonda_owm_p50,630.0,ms,"OpenWeather desde Cuba, mediana"
+owm_arranques_min,15.0,arranques/min,"Arranques por minuto que permite el plan gratuito de OpenWeather (60 llamadas/min, 4 por arranque)"
+owm_arranques_hora,900.0,arranques/h,Arranques por hora que permite OpenWeather
+heavy_ip,30.0,arranques/10 min,Arranques por IP cada 10 min que permite heavyLimiter
+video_red_min,58.0,%,Reducción de peso de los vídeos (mínimo de la muestra)
+video_red_max,68.0,%,Reducción de peso de los vídeos (máximo de la muestra)
+img_png_mb,3.6,MB,Imágenes de dominio en PNG
+img_webp_mb,1.3,MB,"Imágenes de dominio en WebP, ahora dentro de la APK"
+swap_npm,594,MB,Swap ocupado por procesos de npm bloqueados antes de la prueba

@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prueba de carga B1TMET — noviembre 2026</title>
+<meta name="description" content="Resultados de la prueba de carga de la app B1TMET Pro y la API /v1, comparados con la prueba anterior.">
+<meta name="robots" content="noindex">
+<style>
+@font-face { font-family: 'Inter'; font-weight: 400; font-display: swap; src: url(vendor/fonts/inter-latin-400-normal.woff2) format('woff2'); }
+@font-face { font-family: 'Inter'; font-weight: 500; font-display: swap; src: url(vendor/fonts/inter-latin-500-normal.woff2) format('woff2'); }
+@font-face { font-family: 'Inter'; font-weight: 600; font-display: swap; src: url(vendor/fonts/inter-latin-600-normal.woff2) format('woff2'); }
+@font-face { font-family: 'Source Serif 4'; font-weight: 400; font-display: swap; src: url(vendor/fonts/source-serif-4-latin-400-normal.woff2) format('woff2'); }
+:root {
+  --font-anthropic-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-anthropic-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --color-fg: #1f1e1b; --color-fg-muted: #6b685f; --color-panel: #ffffff; --color-bg: #f6f5f1;
+  --color-border-line: #e2dfd7; --color-ok: #2f8f5b; --color-bad: #c0473b; --color-warn: #d0a03a;
+  --cds-chart-axis: #b9b6ad; --cds-chart-grid: #ebe8e1; --cds-chart-muted: #c9c5bb; --cds-chart-reference: #6d6a62;
+  --cds-font-size-caption: 13px; --cds-font-size-body: 15.5px; --cds-font-size-heading: 16px; --cds-font-size-title: 24px;
+  --cds-font-weight-medium: 500;
+  --cds-gap-xs: 6px; --cds-gap-sm: 10px; --cds-gap-md: 16px; --cds-gap-lg: 24px; --cds-gap-xl: 44px;
+  --cds-pad-xs: 6px; --cds-pad-sm: 10px; --cds-pad-lg: 18px; --cds-radius: 8px;
+  --cds-surface-popover: #ffffff; --cds-border: #d8d5cc; --cds-shadow-popover: 0 4px 16px rgba(0,0,0,.10);
+  --cds-text-secondary: #6b685f; --cds-dur-slow: 320ms; --cds-ease-out: cubic-bezier(.2,.7,.2,1);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-fg: #ecebe6; --color-fg-muted: #a6a39a; --color-panel: #24231f; --color-bg: #1a1916;
+    --color-border-line: #37352f; --color-ok: #5cc28a; --cds-chart-axis: #5a5850; --cds-chart-grid: #33312c;
+    --cds-chart-muted: #5f5c54; --cds-chart-reference: #a6a39a; --cds-surface-popover: #2c2b26; --cds-border: #45433c;
+    --cds-text-secondary: #a6a39a;
+  }
+}
+html { background: var(--color-bg); }
+body { margin: 0; padding: clamp(16px, 4vw, 48px) clamp(12px, 3vw, 40px) 64px; }
+.lt a { color: inherit; }
+.dash-select { font: inherit; font-size: var(--cds-font-size-caption); color: var(--color-fg); background: var(--color-panel);
+  border: 1px solid var(--color-border-line); border-radius: 6px; padding: 4px 8px; }
+.dash-skeleton { background: linear-gradient(90deg, transparent, rgba(128,128,128,.08), transparent); border-radius: var(--cds-radius); }
+footer.pie { max-width: 1180px; margin: 48px auto 0; font-size: 12px; color: var(--color-fg-muted); font-family: var(--font-anthropic-sans); }
+
+
+.lt { font-family: var(--font-anthropic-sans); color: var(--color-fg); max-width: 1180px; margin-inline: auto; }
+.lt h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: calc(var(--cds-font-size-title) * 1.35); margin: 0 0 var(--cds-gap-sm); line-height: 1.15; }
+.lt h2 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: var(--cds-gap-xl) 0 var(--cds-gap-xs); }
+.lt h3 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0 0 var(--cds-gap-xs); }
+.lt p, .lt li { font-size: var(--cds-font-size-body); line-height: 1.55; }
+.lt .sub { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: 0 0 var(--cds-gap-sm); }
+.lt .lead { font-size: calc(var(--cds-font-size-body) * 1.12); max-width: 62rem; }
+.lt .lt-intro b, .lt .lead b, .lt p b, .lt li b { font-weight: 600; font-variant-numeric: tabular-nums; }
+.lt .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: var(--cds-gap-md); margin: var(--cds-gap-lg) 0; }
+.lt .tile { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); }
+.lt .tile .lbl { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.lt .tile .big { font-family: var(--font-anthropic-serif); font-size: calc(var(--cds-font-size-title) * 1.5); font-variant-numeric: tabular-nums; margin: var(--cds-gap-xs) 0; line-height: 1.1; }
+.lt .tile .was { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.lt .tile .was b { color: var(--color-fg); }
+.lt .good { color: var(--color-ok); }
+.lt .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); gap: var(--cds-gap-md); }
+.lt .card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); min-width: 0; }
+.lt .chart { position: relative; min-height: 300px; }
+.lt .chart.tall { min-height: 420px; }
+.lt .chart.short { min-height: 230px; }
+.lt .chart svg text { fill: var(--color-fg-muted); font-size: var(--cds-font-size-caption); font-family: var(--font-anthropic-sans); }
+.lt .chart svg .lab { fill: var(--color-fg); }
+.lt .tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); white-space: nowrap; z-index: 2; }
+.lt .tip .h { color: var(--cds-text-secondary); margin-bottom: 2px; }
+.lt .tip .sw { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 6px; }
+.lt .legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: var(--cds-gap-xs) 0; }
+.lt .legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; background: var(--c); }
+.lt .ctrl { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm); align-items: center; margin-bottom: var(--cds-gap-sm); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.lt .tbl { overflow: auto; max-height: 460px; }
+.lt table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.lt th { text-align: right; font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); padding: 6px 8px; border-bottom: 1px solid var(--color-border-line); position: sticky; top: 0; background: var(--color-panel); }
+.lt td { text-align: right; padding: 6px 8px; border-bottom: 1px solid var(--color-border-line); }
+.lt th:first-child, .lt td:first-child { text-align: left; }
+.lt td.muted { color: var(--color-fg-muted); }
+.lt .risks { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: var(--cds-gap-md); }
+.lt .risk h3 { display: flex; gap: 8px; align-items: center; }
+.lt .risk h3::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--color-warn)); flex: none; }
+.lt .pill { display: inline-block; font-size: var(--cds-font-size-caption); border: 1px solid var(--color-border-line); border-radius: 999px; padding: 1px 10px; color: var(--color-fg-muted); margin-right: 6px; }
+.lt details { margin-top: var(--cds-gap-xl); border-top: 1px solid var(--color-border-line); padding-top: var(--cds-gap-md); }
+.lt summary { cursor: pointer; font-weight: var(--cds-font-weight-medium); }
+.lt dl { display: grid; grid-template-columns: minmax(9rem, max-content) 1fr; gap: 6px 16px; font-size: var(--cds-font-size-caption); }
+.lt dt { font-weight: var(--cds-font-weight-medium); }
+.lt dd { margin: 0; color: var(--color-fg-muted); }
+[data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+[data-dash-source-state=empty] { color: transparent; }
+@media (prefers-reduced-motion: no-preference) {
+  .lt .tile, .lt .card { animation: ltin var(--cds-dur-slow) var(--cds-ease-out) both; }
+  @keyframes ltin { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+}
+</style>
+</head>
+<body>
+<div class="lt" data-read lang="es">
+  <header id="inicio">
+    <p class="sub">B1TMET · app B1TMET Pro y API pública /v1 · VPS de IONOS (2 vCPU, 1,9 GB) · 7 de noviembre de 2026</p>
+    <h1>Prueba de carga: el backend aguanta 500 usuarios simultáneos sin fallos</h1>
+    <p class="sub"><a href="Prueba_de_carga_B1TMET_nov2026.pdf" download>Descargar en PDF</a> · Datos en CSV: <a href="data/kpis.csv">cifras</a>, <a href="data/comparacion.csv">comparación</a>, <a href="data/endpoints_mezcla.csv">endpoints</a>, <a href="data/rampa.csv">rampa</a>, <a href="data/recursos.csv">recursos</a></p>
+    <p class="lead">Con 500 usuarios a la vez, el 95 % de las peticiones respondió en menos de <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=p95_500" data-fmt="ms">—</b>; en la prueba anterior, con los mismos 500 usuarios, ese tiempo llegaba a <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=antes_p95_500" data-fmt="ms">—</b>. El servidor no llegó a su límite. El primer techo real para salir al mercado no está en el VPS sino fuera: la cuota gratuita de OpenWeather, que admite unos <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=owm_arranques_min" data-fmt="int">—</b> arranques de la app por minuto.</p>
+  </header>
+
+  <section class="tiles" aria-label="Cifras principales">
+    <div class="tile">
+      <div class="lbl">Tiempo p95 con 500 usuarios</div>
+      <div class="big good" data-draw="val" data-source="kpis" data-field="valor" data-where="clave=p95_500" data-fmt="ms">—</div>
+      <div class="was">Antes: hasta <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=antes_p95_500" data-fmt="ms">—</b></div>
+    </div>
+    <div class="tile">
+      <div class="lbl">Login, tiempo medio con 500 usuarios</div>
+      <div class="big good" data-draw="val" data-source="kpis" data-field="valor" data-where="clave=login_media" data-fmt="ms">—</div>
+      <div class="was">Antes: hasta <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=antes_login_500" data-fmt="ms">—</b></div>
+    </div>
+    <div class="tile">
+      <div class="lbl">Peticiones por segundo con 500 usuarios</div>
+      <div class="big" data-draw="val" data-source="kpis" data-field="valor" data-where="clave=rps_500" data-fmt="dec1">—</div>
+      <div class="was">Sin saturarse: crece en línea con los usuarios</div>
+    </div>
+    <div class="tile">
+      <div class="lbl">Peticiones fallidas en la rampa</div>
+      <div class="big good" data-draw="val" data-source="kpis" data-field="valor" data-where="clave=fallos_rampa" data-fmt="pct2">—</div>
+      <div class="was">Antes: hasta un <b data-draw="val" data-source="comparacion" data-field="antes_sin_limites" data-where="id=login_fallos_500" data-fmt="pct0">—</b> de los logins fallaban</div>
+    </div>
+  </section>
+
+  <h2 id="antes-ahora">Antes y ahora</h2>
+  <p class="sub">La prueba anterior se hizo con Locust sobre el backend en local, dentro de Docker: una vez limitado a 2 CPU y 2 GB (como el VPS) y otra sin límites (6 CPU, 32 GB). Los valores de entonces se leyeron de sus capturas y son aproximados. Esta vez la carga llegó al VPS real por internet, con Nginx y TLS de por medio.</p>
+  <div class="grid">
+    <div class="card">
+      <h3>Tiempos de respuesta: escala logarítmica</h3>
+      <p class="sub">Cada fila, de la prueba anterior a hoy. Pasa el ratón por una fila para ver los valores.</p>
+      <div class="legend"><span style="--c: var(--cds-chart-muted)">Antes, 2 CPU</span><span style="--c: var(--cds-chart-reference)">Antes, sin límites</span><span class="sw-now" style="--c: var(--color-ok)">Ahora, VPS real</span></div>
+      <div class="chart dash-skeleton" data-draw="compara" data-source="comparacion"></div>
+    </div>
+    <div class="card">
+      <h3>Todas las comparaciones</h3>
+      <p class="sub">«Veces más rápido» compara con el peor de los dos entornos de entonces.</p>
+      <div class="tbl">
+        <table data-source="comparacion" data-row-key="id">
+          <thead><tr><th data-field="indicador">Indicador</th><th data-field="antes_2cpu">Antes, 2 CPU</th><th data-field="antes_sin_limites">Antes, sin límites</th><th data-field="ahora">Ahora</th><th data-source="mejora" data-field="veces">Veces mejor</th></tr></thead>
+          <tbody data-draw="tabla-compara"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <p class="sub">Qué cambió desde entonces: caché del pronóstico en Redis con deduplicación de peticiones iguales; un único cliente de Redis; sesión con JWT y refresh token (el login ya no se repite en cada arranque); un pool de procesos Python compartido y limitado; caché en disco de las coordenadas de la malla; vídeos recodificados a 900 px en el propio VPS e imágenes de dominio dentro de la APK.</p>
+
+  <h2 id="rampa">Rampa hasta 500 usuarios</h2>
+  <p class="sub">Perfil «espejo» de la prueba anterior: cada usuario inicia sesión una vez y luego pide la disponibilidad de un dominio o el pronóstico de un punto, con pausas de 2 a 5 s. Escalones de 25, 50, 100, 200, 300 y 500 usuarios. Con 500 usuarios así se generan unas <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=rps_500" data-fmt="int">—</b> peticiones por segundo: mucho más de lo que pedirían 500 personas reales usando la app.</p>
+  <div class="card">
+    <h3>Usuarios simultáneos frente al tiempo de respuesta</h3>
+    <p class="sub">Medianas y p95 cada 30 s; la banda gris son los usuarios activos (eje derecho).</p>
+    <div class="legend"><span style="--c: var(--cds-chart-muted)">Usuarios</span><span class="sw0">Mediana</span><span class="sw1">p95</span></div>
+    <div class="chart tall dash-skeleton" data-draw="rampa" data-source="rampa"></div>
+  </div>
+  <div class="card" style="margin-top: var(--cds-gap-md)">
+    <h3>Resultado por escalón</h3>
+    <p class="sub">El tiempo no crece con los usuarios: con 25 y con 500 el p95 es casi el mismo. Los pocos picos coinciden con ráfagas aisladas.</p>
+    <div class="tbl">
+      <table data-source="escalones" data-row-key="usuarios">
+        <thead><tr><th data-field="usuarios">Usuarios</th><th data-field="peticiones_s">Peticiones/s</th><th data-field="p50_ms">Mediana</th><th data-field="p95_ms">p95</th><th data-field="p99_ms">p99</th><th data-field="check_domain_p95_ms">check_domain p95</th><th data-field="errores_pct">Fallos</th></tr></thead>
+        <tbody data-draw="tabla-escalones"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <h2 id="mezcla">Uso realista: app, API y demo a la vez</h2>
+  <p class="lead">Durante 25 minutos, <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=mezcla_usuarios" data-fmt="int">—</b> usuarios con la app abierta a la vez (la mitad, nuevos, que descargan vídeos), clientes de la API en los tres planes (con y sin caché), la demo de la web y la verificación. En total <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=mezcla_peticiones" data-fmt="int">—</b> peticiones y <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=mezcla_sesiones" data-fmt="int">—</b> sesiones de la app, con un <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=mezcla_fallos" data-fmt="pct2">—</b> de fallos.</p>
+  <div class="card">
+    <h3>Tiempo de respuesta por endpoint</h3>
+    <p class="sub">La barra va de la mediana al p95; el punto es el p99. Escala logarítmica. Unos 160 ms son solo el viaje de ida y vuelta Panamá–VPS.</p>
+    <div class="ctrl"><label for="lt-grupo">Mostrar</label>
+      <select id="lt-grupo" class="dash-select lt-grupo">
+        <option value="">Todos los endpoints</option>
+        <option value="App · arranque">App · arranque</option>
+        <option value="App · cuenta">App · cuenta</option>
+        <option value="App · dominios">App · dominios</option>
+        <option value="App · mapa">App · mapa</option>
+        <option value="API /v1">API /v1</option>
+      </select></div>
+    <div class="legend"><span class="sw0">Mediana → p95</span><span class="sw1">p99</span></div>
+    <div class="chart tall dash-skeleton" data-draw="endpoints" data-source="endpoints_mezcla"></div>
+  </div>
+  <div class="grid" style="margin-top: var(--cds-gap-md)">
+    <div class="card">
+      <h3>p95 minuto a minuto</h3>
+      <p class="sub">Los endpoints más pesados no se degradan con el tiempo.</p>
+      <div class="legend"><span class="sw0">Pronóstico de la app</span><span class="sw1">Descarga de vídeo</span><span class="sw2">API sin caché</span></div>
+      <div class="chart dash-skeleton" data-draw="serie" data-source="serie_run1"></div>
+    </div>
+    <div class="card">
+      <h3>Peticiones por segundo</h3>
+      <p class="sub">Media de la ejecución: <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=mezcla_rps" data-fmt="dec1">—</b> pet/s, con <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=mezcla_gb" data-fmt="dec2">—</b> GB servidos.</p>
+      <div class="chart dash-skeleton" data-draw="rps" data-source="serie_run1"></div>
+    </div>
+  </div>
+  <div class="card" style="margin-top: var(--cds-gap-md)">
+    <h3>Detalle por endpoint</h3>
+    <div class="tbl">
+      <table data-source="endpoints_mezcla" data-row-key="endpoint">
+        <thead><tr><th data-field="nombre">Endpoint</th><th data-field="grupo">Grupo</th><th data-field="peticiones">Peticiones</th><th data-field="p50_ms">Mediana</th><th data-field="p95_ms">p95</th><th data-field="p99_ms">p99</th><th data-field="max_ms">Máximo</th><th data-field="fallos_pct">Fallos</th></tr></thead>
+        <tbody data-draw="tabla-endpoints"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <h2 id="api">API /v1 por plan</h2>
+  <p class="sub">El <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=cache_hit" data-fmt="pct1">—</b> de las respuestas salió de caché. Una petición nueva (sin caché) calcula el pronóstico en ese momento: mediana de <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=api_frio_p50" data-fmt="ms">—</b>, muy por debajo de los 60 s de timeout que recomienda la documentación. La demo dejó pasar <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=demo_ok" data-fmt="int">—</b> peticiones y frenó <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=demo_429" data-fmt="int">—</b>, como debe con su límite de 30 por hora e IP.</p>
+  <div class="grid">
+    <div class="card">
+      <h3>p95 por plan, con y sin caché</h3>
+      <div class="legend"><span class="sw0">Con caché</span><span class="sw1">Sin caché</span></div>
+      <div class="chart short dash-skeleton" data-draw="api" data-source="api_planes"></div>
+    </div>
+    <div class="card">
+      <h3>Tabla por plan</h3>
+      <div class="tbl">
+        <table data-source="api_planes" data-row-key="plan,tipo">
+          <thead><tr><th data-field="plan">Plan</th><th data-field="tipo">Tipo</th><th data-field="peticiones">Peticiones</th><th data-field="p50_ms">Mediana</th><th data-field="p95_ms">p95</th><th data-field="fallos_pct">Fallos</th></tr></thead>
+          <tbody data-draw="tabla-api"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <h2 id="servidor">Uso de recursos del servidor</h2>
+  <p class="sub">Medido en el VPS cada 5 s. CPU media en la mezcla: <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=cpu_media" data-fmt="pct1">—</b>; el bucle de eventos de Node se mantuvo en <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=eld_p99" data-fmt="dec1ms">—</b> (p99, mediana) y una petición trivial dentro del VPS tardó <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=health_interno" data-fmt="dec1ms">—</b>. Los picos de CPU, de segundos, coinciden con la llegada de vídeos nuevos y la carga de TLS de Nginx; la memoria disponible no bajó de <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=mem_min" data-fmt="mb">—</b>.</p>
+  <div class="card">
+    <div class="ctrl"><label for="lt-rec">Métrica</label>
+      <select id="lt-rec" class="dash-select lt-rec">
+        <option value="cpu_pct">CPU total del VPS (%)</option>
+        <option value="svc_cpu_pct">CPU del servicio: Node + Python (% de un núcleo)</option>
+        <option value="mem_avail_mb">Memoria disponible (MB)</option>
+        <option value="eld_p99_ms">Retardo del bucle de eventos, p99 (ms)</option>
+        <option value="health_ms">/api/health dentro del VPS (ms)</option>
+      </select></div>
+    <div class="legend"><span class="sw0">Uso realista (40 usuarios)</span><span class="sw1">Rampa (hasta 500)</span></div>
+    <div class="chart dash-skeleton" data-draw="recursos" data-source="recursos"></div>
+  </div>
+
+  <h2 id="cuba">Un usuario desde Cuba con el servidor cargado</h2>
+  <p class="sub">Mientras Panamá generaba la carga, un único usuario desde una conexión cubana (unos 200 kB/s) repetía la sesión completa. Lo que añade su red es casi todo: <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=rtt_cuba" data-fmt="ms">—</b> por petición frente a <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=rtt_panama" data-fmt="ms">—</b> desde Panamá. Aun así, el pronóstico llegó con una mediana de <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=sonda_pron_p50" data-fmt="ms">—</b> y cada vídeo en <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=sonda_video_p50" data-fmt="ms">—</b>.</p>
+  <div class="card">
+    <h3>Mediana desde Panamá y desde Cuba</h3>
+    <div class="legend"><span class="sw0">Panamá (generador de carga)</span><span class="sw1">Cuba (un usuario)</span></div>
+    <div class="chart dash-skeleton" data-draw="sonda" data-source="sonda"></div>
+  </div>
+
+  <h2 id="medios">Vídeos e imágenes más ligeros</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Peso de los vídeos (Cuba, malla d01)</h3>
+      <p class="sub">Recodificados en el VPS a 900 px cada vez que llega una corrida: entre <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=video_red_min" data-fmt="pct0">—</b> y <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=video_red_max" data-fmt="pct0">—</b> menos, sin pérdida visible.</p>
+      <div class="legend"><span style="--c: var(--cds-chart-muted)">Original</span><span class="sw0">Ahora</span></div>
+      <div class="chart short dash-skeleton" data-draw="videos" data-source="videos"></div>
+    </div>
+    <div class="card">
+      <h3>Imágenes de dominio</h3>
+      <p>Las 14 imágenes de los dominios van ahora dentro de la APK en WebP sin pérdida: <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=img_webp_mb" data-fmt="dec1mb">—</b> frente a <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=img_png_mb" data-fmt="dec1mb">—</b> en PNG. La pestaña de dominios ya no las descarga: salen al instante, incluso sin conexión.</p>
+      <p>Con buena conexión, la descarga de un vídeo tuvo una mediana de <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=video_p50" data-fmt="ms">—</b> y un p95 de <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=video_p95" data-fmt="ms">—</b> con 40 usuarios descargando a la vez.</p>
+    </div>
+  </div>
+
+  <h2 id="mercado">Qué significa para salir al mercado</h2>
+  <p class="lead">La ejecución realista sostuvo <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=sesiones_hora" data-fmt="int">—</b> aperturas de la app por hora con la CPU por debajo de la mitad. Si la hora punta concentra un 20 % de las aperturas del día y cada usuario abre la app 2 o 3 veces, eso equivale a entre <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=usuarios_dia_min" data-fmt="int">—</b> y <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=usuarios_dia_max" data-fmt="int">—</b> usuarios activos al día, sin tocar el servidor. Es una estimación: depende de cómo se reparta el uso real.</p>
+  <div class="risks">
+    <div class="card risk" style="--c: var(--color-bad)">
+      <h3>OpenWeather (plan gratuito)</h3>
+      <p>Cada arranque de la app hace 4 llamadas a OpenWeather sin caché. El plan gratuito permite 60 por minuto: unos <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=owm_arranques_min" data-fmt="int">—</b> arranques por minuto, <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=owm_arranques_hora" data-fmt="int">—</b> por hora. Es el primer límite que se alcanzaría, muy por debajo de lo que aguanta el VPS. Se excluyó de la carga para no agotar la cuota de producción.</p>
+      <p><span class="pill">Recomendación</span>Caché de OpenWeather en Redis por zona (≈0,1°, 15–30 min) o plan de pago.</p>
+    </div>
+    <div class="card risk">
+      <h3>Límite por IP y operadoras móviles</h3>
+      <p>Las rutas pesadas admiten 60 peticiones cada 10 min por IP: unos <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=heavy_ip" data-fmt="int">—</b> arranques. Las operadoras móviles ponen a muchos usuarios detrás de una misma IP (CGNAT), y en hora punta recibirían errores 429.</p>
+      <p><span class="pill">Recomendación</span>Limitar por usuario o token en vez de por IP, o subir el límite.</p>
+    </div>
+    <div class="card risk">
+      <h3>Pool de Python en los picos</h3>
+      <p>Unas pocas peticiones de pronóstico sin caché recibieron 503 «servidor ocupado» en momentos de pico (menos del 1 %): el pool de 7 procesos se defiende rechazando en lugar de colgarse.</p>
+      <p><span class="pill">Recomendación</span>Reintento automático en la app ante un 503; vigilar si crece con el uso real.</p>
+    </div>
+    <div class="card risk" style="--c: var(--color-ok)">
+      <h3>Memoria del VPS</h3>
+      <p>El VPS trabajó con <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=swap_npm" data-fmt="mb">—</b> de swap ocupados por procesos de npm bloqueados desde octubre. Aun así no se quedó sin memoria.</p>
+      <p><span class="pill">Recomendación</span>Reiniciar el VPS en una ventana tranquila para recuperar ese margen.</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top: var(--cds-gap-lg)">
+    <h3>Errores registrados</h3>
+    <p class="sub">Todas las respuestas fallidas de las dos ejecuciones. Estado 0: conexión cortada antes de responder. 503: pool de Python ocupado.</p>
+    <div class="tbl">
+      <table data-source="errores" data-row-key="ejecucion,endpoint,estado">
+        <thead><tr><th data-field="ejecucion">Ejecución</th><th data-field="endpoint">Endpoint</th><th data-field="estado">Estado HTTP</th><th data-field="peticiones">Peticiones</th></tr></thead>
+        <tbody data-draw="tabla-errores"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <details>
+    <summary>Cómo se hizo la prueba</summary>
+    <dl>
+      <dt>Herramienta</dt><dd>k6 v2.3, con escenarios etiquetados por tipo de cliente.</dd>
+      <dt>Generador</dt><dd>Servidor de modelación de Panamá (112 núcleos, con margen de CPU). Desde Cuba solo un usuario de control: la conexión cubana no da para generar carga y habría medido la línea, no el servidor.</dd>
+      <dt>Ejecución 1</dt><dd>Uso realista durante 25 min: 40 usuarios de la app con el flujo real sacado del código (arranque, pronóstico, vídeos, cuenta; pestaña de dominios en la mitad de las sesiones y mapa en el 40 %), API por plan con y sin caché, demo y verificación.</dd>
+      <dt>Ejecución 2</dt><dd>Rampa de 27 min con el perfil de la prueba anterior hasta 500 usuarios, con la API de fondo. El pronóstico de la app sustituye al de OpenWeather para no gastar cuota; con las mismas 7 coordenadas, sale casi siempre de caché.</dd>
+      <dt>Servidor</dt><dd>VPS real en producción, con Nginx, TLS y la base de datos compartida con la web. La IP del generador estuvo exenta del límite por IP durante la prueba; la de Cuba, no.</dd>
+      <dt>Métricas</dt><dd>Mediana, p95 y p99 por endpoint en k6; CPU, memoria, swap, bucle de eventos de Node, Redis y túneles en el VPS cada 5 s.</dd>
+      <dt>Lo que queda fuera</dt><dd>OpenWeather (por su cuota), el registro de usuarios y los correos. La base de datos está en otro proveedor y no se midió por dentro; su efecto aparece en «Perfil del usuario» (<b data-draw="val" data-source="endpoints_mezcla" data-field="p50_ms" data-where="endpoint=users_me" data-fmt="ms">—</b> de mediana, frente a <b data-draw="val" data-source="endpoints_mezcla" data-field="p50_ms" data-where="endpoint=health" data-fmt="ms">—</b> de un endpoint sin base de datos). Los JSON grandes pueden salir algo peor que en la app real, que pide compresión.</dd>
+    </dl>
+  </details>
+</div>
+<footer class="pie">B1TMET · Prueba de carga realizada el 7 de noviembre de 2026 con k6 contra el servidor de producción.</footer>
+<script src="vendor/d3.min.js"></script>
+<script src="dash-shim.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+ejecucion,endpoint,estado,peticiones
+Mezcla,forecast_thredds,503,4
+Mezcla,v1_demo,503,1
+Mezcla,v1_point_cache,503,12
+Mezcla,v1_point_frio,503,9
+Rampa,check_domain,0,5
+Rampa,check_domain,500,1
+Rampa,forecast_thredds,0,3
+Rampa,forecast_thredds,503,30

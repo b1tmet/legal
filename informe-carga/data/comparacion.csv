@@ -1,0 +1,8 @@
+id,indicador,antes_2cpu,antes_sin_limites,ahora,unidad
+login_media_500,"Login: tiempo medio, 500 usuarios",37000.0,71000.0,487.0,ms
+p95_500,"Tiempo de respuesta p95, 500 usuarios",98000.0,44000.0,876.0,ms
+pronostico_500,"Pronóstico: tiempo medio, 500 usuarios",26000.0,46000.0,187.0,ms
+check_p95_100,"check_domain p95, 100 usuarios",6200.0,2200.0,864.0,ms
+login_fallos_500,"Login: fallos, 500 usuarios",5.8,20.0,0.0,%
+check_fallos_100,"check_domain: fallos, 100 usuarios",18.4,16.7,0.0,%
+rps_500,"Peticiones atendidas por segundo, 500 usuarios",55.0,110.0,124.4,pet/s

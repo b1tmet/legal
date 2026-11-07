@@ -1,0 +1,7 @@
+plan,tipo,peticiones,p50_ms,p95_ms,p99_ms,fallos_pct
+Free,Con caché,1500,170.0,382.0,1070.0,0.33
+Free,Sin caché,225,1815.0,2618.0,3538.0,1.78
+Pro,Con caché,3001,167.0,326.0,1095.0,0.17
+Pro,Sin caché,226,2483.0,3353.0,3896.0,1.33
+Starter,Con caché,1500,170.0,395.0,1130.0,0.13
+Starter,Sin caché,225,2489.0,3302.0,4104.0,0.89

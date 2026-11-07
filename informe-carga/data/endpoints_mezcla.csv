@@ -1,0 +1,33 @@
+endpoint,nombre,grupo,peticiones,p50_ms,p95_ms,p99_ms,max_ms,fallos_pct
+v1_verif_summary,Verificación: resumen,API /v1,745,1507,4390,11261,18589,0.0
+v1_demo,Demo de la web,API /v1,38,509,4182,4617,4752,2.63
+video_file,Descarga del vídeo,App · arranque,2043,1008,3990,9024,23424,0.0
+forecast_thredds,Pronóstico del punto (WRF),App · arranque,1492,702,3659,4163,4782,0.27
+v1_point_frio,"Pronóstico, sin caché",API /v1,676,2325,3241,4039,5122,1.33
+grid_wind,Viento del mapa,App · mapa,638,496,3219,7095,8606,0.0
+grid_bin,Rejilla del mapa,App · mapa,638,352,2571,5694,20939,0.0
+domain_config_tabs,Pestañas del dominio,App · dominios,744,740,1083,1283,2757,0.0
+placeholder_img,Descarga de la imagen previa,App · arranque,2043,323,999,1465,4141,0.0
+webp,Fotogramas del mapa,App · mapa,2552,178,867,1635,5717,0.0
+login,Inicio de sesión,App · cuenta,40,487,699,788,841,0.0
+grid_point,Valor en un punto,App · mapa,638,172,471,640,1387,0.0
+users_order,Orden de las tarjetas,App · cuenta,1492,392,423,662,1156,0.0
+users_me,Perfil del usuario,App · cuenta,1532,392,422,619,1218,0.0
+v1_point_cache,"Pronóstico, con caché",API /v1,6001,168,366,1104,3532,0.2
+v1_verif_series,Verificación: serie,API /v1,745,169,323,1145,1485,0.0
+mapview,Página del mapa,App · mapa,638,164,293,1098,1702,0.0
+refresh,Renovación del token,App · cuenta,40,166,193,238,255,0.0
+readjsonfile,Nombre del país,App · arranque,1492,164,192,398,1416,0.0
+domain_last_date,Última corrida del dominio,App · arranque,1492,163,191,573,974,0.0
+domain_config_png,Variables (mapa),App · mapa,638,164,191,232,815,0.0
+sliders,Carrusel de inicio,App · arranque,1492,164,190,309,815,0.0
+check_domain_apk,Disponibilidad del dominio,App · arranque,1492,164,190,240,645,0.0
+domain_config_apk,Variables del dominio,App · dominios,744,164,190,267,818,0.0
+v1_status,Estado del servicio,API /v1,745,165,190,256,944,0.0
+apk_config,Configuración de la app,App · arranque,1492,164,189,220,579,0.0
+all_config,Configuración general,App · dominios,744,163,189,308,573,0.0
+check_domain_png,Disponibilidad (mapa),App · mapa,638,163,188,253,527,0.0
+mini_video,Ruta del vídeo,App · arranque,2301,163,188,399,983,0.0
+health,Comprobación del servidor,App · arranque,1492,163,188,298,1015,0.0
+placeholder,Ruta de la imagen previa,App · arranque,2043,163,187,333,1063,0.0
+all_config_png,Configuración del mapa,App · mapa,638,162,187,278,591,0.0
