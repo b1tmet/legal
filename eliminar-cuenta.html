@@ -7,11 +7,15 @@
     <meta name="description" content="Cómo eliminar tu cuenta de B1TMET Pro / How to delete your B1TMET Pro account" />
     <meta name="theme-color" content="#17062b" />
     <link rel="icon" href="favicon.ico" sizes="any" />
-    <link rel="stylesheet" href="assets/styles.css" />
-    <link rel="stylesheet" href="assets/moderno.css" />
+    <link rel="preload" href="assets/fonts/montserrat-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="assets/marca.css" />
     <script>
       (function () {
-        var S = ["es", "en", "pt", "fr", "it", "nl"], l = null;
+        var S = ["es", "en", "pt", "fr", "it", "nl"], l = null, d = document.documentElement;
+        d.className += " js";
+        var hr = new Date().getHours();
+        d.setAttribute("data-tod", hr >= 5 && hr < 8 ? "dawn" : hr >= 8 && hr < 17 ? "day" : hr >= 17 && hr < 20 ? "dusk" : "night");
+        try { var th = localStorage.getItem("b1t-theme"); if (th === "dark" || th === "light") d.setAttribute("data-theme", th); } catch (e) {}
         try { l = new URLSearchParams(location.search).get("lang"); } catch (e) {}
         if (S.indexOf(l) >= 0) { try { localStorage.setItem("b1t-lang", l); } catch (e) {} }
         else { try { l = localStorage.getItem("b1t-lang"); } catch (e) {} }
@@ -23,203 +27,510 @@
             if (S.indexOf(c) >= 0) { l = c; break; }
           }
         }
-        document.documentElement.setAttribute("data-lang", l);
-        document.documentElement.lang = l;
+        d.setAttribute("data-lang", l);
+        d.lang = l;
       })();
     </script>
   </head>
   <body>
-    <header class="hero">
-      <span class="logo mark" aria-hidden="true"></span>
-      <div class="bar">
-        <a class="brand" href="index.html"><img class="brand-img" src="assets/logo-h-light.png" alt="B1TMET" /><small>Pro</small></a>
-        <label class="langsel">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9s1.3-6.3 3.8-9z"/></svg>
-          <select id="langsel" aria-label="Idioma / Language">
-            <option value="es">Español</option>
-            <option value="en">English</option>
-            <option value="pt">Português</option>
-            <option value="fr">Français</option>
-            <option value="it">Italiano</option>
-            <option value="nl">Nederlands</option>
-          </select>
-        </label>
+    <div class="progress" aria-hidden="true"></div>
+
+    <header class="top">
+      <a class="brand" href="eliminar-cuenta.html"><img src="assets/logo-h-light.png" alt="B1TMET" width="138" height="40" /><small>Pro</small></a>
+      <nav class="top-nav" aria-label="Secciones">
+        <a href="index.html"><span lang="es">Privacidad</span><span lang="en">Privacy</span><span lang="pt">Privacidade</span><span lang="fr">Confidentialité</span><span lang="it">Privacy</span><span lang="nl">Privacy</span></a>
+        <a href="terminos.html"><span lang="es">Términos</span><span lang="en">Terms</span><span lang="pt">Termos</span><span lang="fr">Conditions</span><span lang="it">Termini</span><span lang="nl">Voorwaarden</span></a>
+        <a href="api.html"><span lang="es">API</span><span lang="en">API</span><span lang="pt">API</span><span lang="fr">API</span><span lang="it">API</span><span lang="nl">API</span></a>
+      </nav>
+      <button class="theme" type="button" aria-label="Tema">
+        <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
+      </button>
+      <label class="langsel">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9s1.3-6.3 3.8-9z"/></svg>
+        <select id="langsel" aria-label="Idioma / Language">
+          <option value="es">Español</option>
+          <option value="en">English</option>
+          <option value="pt">Português</option>
+          <option value="fr">Français</option>
+          <option value="it">Italiano</option>
+          <option value="nl">Nederlands</option>
+        </select>
+      </label>
+    </header>
+
+    <section class="hero">
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="gPlane" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0" stop-color="#385BD6" stop-opacity=".95" />
+              <stop offset="1" stop-color="#385BD6" stop-opacity=".55" />
+            </linearGradient>
+          </defs>
+          <g class="rings r2"><circle cx="110" cy="40" r="60" fill="#385BD6" fill-opacity=".06" /><circle cx="110" cy="40" r="122" fill="#385BD6" fill-opacity=".06" /><circle cx="110" cy="40" r="184" fill="#385BD6" fill-opacity=".06" /><circle cx="110" cy="40" r="246" fill="#385BD6" fill-opacity=".06" /><circle cx="110" cy="40" r="308" fill="#385BD6" fill-opacity=".06" /><circle cx="110" cy="40" r="370" fill="#385BD6" fill-opacity=".06" /><circle cx="110" cy="40" r="432" fill="#385BD6" fill-opacity=".06" /><circle cx="110" cy="40" r="494" fill="#385BD6" fill-opacity=".06" /><circle cx="110" cy="40" r="556" fill="#385BD6" fill-opacity=".06" /><circle cx="110" cy="40" r="618" fill="#385BD6" fill-opacity=".06" /></g>
+          <polygon class="plane" points="560,860 1500,120 1500,860" fill="url(#gPlane)" />
+          <g class="rings r1"><circle cx="1270" cy="700" r="70" fill="#A2B2F4" fill-opacity=".07" /><circle cx="1270" cy="700" r="140" fill="#A2B2F4" fill-opacity=".07" /><circle cx="1270" cy="700" r="210" fill="#A2B2F4" fill-opacity=".07" /><circle cx="1270" cy="700" r="280" fill="#A2B2F4" fill-opacity=".07" /><circle cx="1270" cy="700" r="350" fill="#A2B2F4" fill-opacity=".07" /><circle cx="1270" cy="700" r="420" fill="#A2B2F4" fill-opacity=".07" /><circle cx="1270" cy="700" r="490" fill="#A2B2F4" fill-opacity=".07" /><circle cx="1270" cy="700" r="560" fill="#A2B2F4" fill-opacity=".07" /><circle cx="1270" cy="700" r="630" fill="#A2B2F4" fill-opacity=".07" /><circle cx="1270" cy="700" r="700" fill="#A2B2F4" fill-opacity=".07" /></g>
+        </svg>
       </div>
-      <div class="title">
+      <svg class="ribbon" viewBox="0 0 660 320" aria-hidden="true">
+        <defs>
+          <linearGradient id="gRib" gradientUnits="userSpaceOnUse" x1="40" y1="0" x2="640" y2="0">
+            <stop offset="0" stop-color="#385BD6" />
+            <stop offset=".55" stop-color="#385BD6" stop-opacity=".75" />
+            <stop offset="1" stop-color="#17062B" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+        <g>
+          <path class="trail" d="M70 240 L180 120 L290 240 L400 120 L510 240 L620 120" stroke="url(#gRib)" stroke-width="58" opacity=".22" transform="translate(30 18)" />
+          <path class="trail" d="M70 240 L180 120 L290 240 L400 120 L510 240 L620 120" stroke="url(#gRib)" stroke-width="58" opacity=".4" transform="translate(20 12)" />
+          <path class="trail" d="M70 240 L180 120 L290 240 L400 120 L510 240 L620 120" stroke="url(#gRib)" stroke-width="58" opacity=".65" transform="translate(10 6)" />
+          <path class="trail" d="M70 240 L180 120 L290 240 L400 120 L510 240 L620 120" stroke="url(#gRib)" stroke-width="58" />
+        </g>
+      </svg>
+      <canvas class="wind" aria-hidden="true"></canvas>
+      <div class="hero-in">
+        <p class="eyebrow">B1TMET Pro</p>
         <h1 lang="es">Eliminar tu cuenta</h1>
         <h1 lang="en">Delete your account</h1>
         <h1 lang="pt">Excluir sua conta</h1>
         <h1 lang="fr">Supprimer votre compte</h1>
         <h1 lang="it">Elimina il tuo account</h1>
         <h1 lang="nl">Je account verwijderen</h1>
+        <ul class="chips" lang="es"><li>Inmediato desde la App</li><li>También por correo</li><li>Registros técnicos borrados en 14 días</li></ul>
+        <ul class="chips" lang="en"><li>Instant from the App</li><li>Also by email</li><li>Technical logs deleted within 14 days</li></ul>
+        <ul class="chips" lang="pt"><li>Imediato pelo App</li><li>Também por e-mail</li><li>Registros técnicos apagados em até 14 dias</li></ul>
+        <ul class="chips" lang="fr"><li>Immédiat depuis l'App</li><li>Aussi par e-mail</li><li>Journaux techniques effacés sous 14 jours</li></ul>
+        <ul class="chips" lang="it"><li>Immediato dall'App</li><li>Anche via e-mail</li><li>Log tecnici cancellati entro 14 giorni</li></ul>
+        <ul class="chips" lang="nl"><li>Direct vanuit de App</li><li>Ook per e-mail</li><li>Technische logs binnen 14 dagen verwijderd</li></ul>
       </div>
-      <svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0,40 C240,80 480,0 720,30 C960,60 1200,10 1440,35 L1440,70 L0,70 Z" fill="var(--bg)" />
-      </svg>
-    </header>
+      <div class="edge back" aria-hidden="true"></div>
+      <div class="edge" aria-hidden="true"></div>
+    </section>
 
-    <main>
+    <nav class="toc-m" aria-label="Índice">
+      <details lang="es">
+        <summary>En esta página</summary>
+        <ol>
+          <li><a href="#es-s1"><b>01</b>Desde la App (inmediato)</a></li>
+          <li><a href="#es-s2"><b>02</b>Sin acceso a la App</a></li>
+          <li><a href="#es-s3"><b>03</b>Qué se elimina</a></li>
+          <li><a href="#es-s4"><b>04</b>Qué se conserva y por cuánto tiempo</a></li>
+        </ol>
+      </details>
+      <details lang="en">
+        <summary>On this page</summary>
+        <ol>
+          <li><a href="#en-s1"><b>01</b>In the App (immediate)</a></li>
+          <li><a href="#en-s2"><b>02</b>Without access to the App</a></li>
+          <li><a href="#en-s3"><b>03</b>What is deleted</a></li>
+          <li><a href="#en-s4"><b>04</b>What is kept and for how long</a></li>
+        </ol>
+      </details>
+      <details lang="pt">
+        <summary>Nesta página</summary>
+        <ol>
+          <li><a href="#pt-s1"><b>01</b>No App (imediato)</a></li>
+          <li><a href="#pt-s2"><b>02</b>Sem acesso ao App</a></li>
+          <li><a href="#pt-s3"><b>03</b>O que é excluído</a></li>
+          <li><a href="#pt-s4"><b>04</b>O que é mantido e por quanto tempo</a></li>
+        </ol>
+      </details>
+      <details lang="fr">
+        <summary>Sur cette page</summary>
+        <ol>
+          <li><a href="#fr-s1"><b>01</b>Dans l'App (immédiat)</a></li>
+          <li><a href="#fr-s2"><b>02</b>Sans accès à l'App</a></li>
+          <li><a href="#fr-s3"><b>03</b>Ce qui est supprimé</a></li>
+          <li><a href="#fr-s4"><b>04</b>Ce qui est conservé et pendant combien de temps</a></li>
+        </ol>
+      </details>
+      <details lang="it">
+        <summary>In questa pagina</summary>
+        <ol>
+          <li><a href="#it-s1"><b>01</b>Dall'App (immediato)</a></li>
+          <li><a href="#it-s2"><b>02</b>Senza accesso all'App</a></li>
+          <li><a href="#it-s3"><b>03</b>Cosa viene eliminato</a></li>
+          <li><a href="#it-s4"><b>04</b>Cosa viene conservato e per quanto tempo</a></li>
+        </ol>
+      </details>
+      <details lang="nl">
+        <summary>Op deze pagina</summary>
+        <ol>
+          <li><a href="#nl-s1"><b>01</b>In de App (direct)</a></li>
+          <li><a href="#nl-s2"><b>02</b>Zonder toegang tot de App</a></li>
+          <li><a href="#nl-s3"><b>03</b>Wat wordt verwijderd</a></li>
+          <li><a href="#nl-s4"><b>04</b>Wat blijft bewaard en hoe lang</a></li>
+        </ol>
+      </details>
+    </nav>
+    <ol class="rail" lang="es" aria-label="En esta página">
+      <li><a href="#es-s1">01<span>Desde la App (inmediato)</span></a></li>
+      <li><a href="#es-s2">02<span>Sin acceso a la App</span></a></li>
+      <li><a href="#es-s3">03<span>Qué se elimina</span></a></li>
+      <li><a href="#es-s4">04<span>Qué se conserva y por cuánto tiempo</span></a></li>
+    </ol>
+    <ol class="rail" lang="en" aria-label="On this page">
+      <li><a href="#en-s1">01<span>In the App (immediate)</span></a></li>
+      <li><a href="#en-s2">02<span>Without access to the App</span></a></li>
+      <li><a href="#en-s3">03<span>What is deleted</span></a></li>
+      <li><a href="#en-s4">04<span>What is kept and for how long</span></a></li>
+    </ol>
+    <ol class="rail" lang="pt" aria-label="Nesta página">
+      <li><a href="#pt-s1">01<span>No App (imediato)</span></a></li>
+      <li><a href="#pt-s2">02<span>Sem acesso ao App</span></a></li>
+      <li><a href="#pt-s3">03<span>O que é excluído</span></a></li>
+      <li><a href="#pt-s4">04<span>O que é mantido e por quanto tempo</span></a></li>
+    </ol>
+    <ol class="rail" lang="fr" aria-label="Sur cette page">
+      <li><a href="#fr-s1">01<span>Dans l'App (immédiat)</span></a></li>
+      <li><a href="#fr-s2">02<span>Sans accès à l'App</span></a></li>
+      <li><a href="#fr-s3">03<span>Ce qui est supprimé</span></a></li>
+      <li><a href="#fr-s4">04<span>Ce qui est conservé et pendant combien de temps</span></a></li>
+    </ol>
+    <ol class="rail" lang="it" aria-label="In questa pagina">
+      <li><a href="#it-s1">01<span>Dall'App (immediato)</span></a></li>
+      <li><a href="#it-s2">02<span>Senza accesso all'App</span></a></li>
+      <li><a href="#it-s3">03<span>Cosa viene eliminato</span></a></li>
+      <li><a href="#it-s4">04<span>Cosa viene conservato e per quanto tempo</span></a></li>
+    </ol>
+    <ol class="rail" lang="nl" aria-label="Op deze pagina">
+      <li><a href="#nl-s1">01<span>In de App (direct)</span></a></li>
+      <li><a href="#nl-s2">02<span>Zonder toegang tot de App</span></a></li>
+      <li><a href="#nl-s3">03<span>Wat wordt verwijderd</span></a></li>
+      <li><a href="#nl-s4">04<span>Wat blijft bewaard en hoe lang</span></a></li>
+    </ol>
+
+    <main class="doc">
       <!-- ======================= ES ======================= -->
-      <article class="card" lang="es">
-        <h2>Desde la App (inmediato)</h2>
-        <ol><li>Abre B1TMET Pro e inicia sesión.</li><li>Ve a <strong>Ajustes → Privacidad → Eliminar cuenta</strong>.</li><li>Confirma la eliminación.</li></ol>
-        <h2>Sin acceso a la App</h2>
-        <p>Escríbenos desde el correo asociado a tu cuenta con el asunto <strong>«Eliminar cuenta»</strong>. Eliminaremos tu cuenta y te lo confirmaremos por correo.</p>
-        <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=Eliminar%20cuenta">b1tmet@b1tmet.com</a>
-        <h2>Qué se elimina</h2>
-        <ul><li>Tu nombre de usuario, correo, contraseña (hash) y vinculación con Google.</li><li>Tus preferencias guardadas y todas tus sesiones activas.</li></ul>
-        <h2>Qué se conserva y por cuánto tiempo</h2>
-        <ul><li><strong>Registros técnicos con IP:</strong> se eliminan automáticamente en un máximo de 14 días.</li><li><strong>Registros de pago</strong> de cursos comprados en la web (Stripe): lo que exijan las obligaciones fiscales y contables.</li></ul>
-        <p>Más información en nuestro <a href="index.html">Aviso de privacidad</a>.</p>
+      <article lang="es">
+        <section class="sec" id="es-s1">
+          <div class="sec-in">
+            <div class="sec-n rv" aria-hidden="true">01</div>
+            <div class="sec-b rv">
+              <h2>Desde la App (inmediato)</h2>
+              <ol><li>Abre B1TMET Pro e inicia sesión.</li><li>Ve a <strong>Ajustes → Privacidad → Eliminar cuenta</strong>.</li><li>Confirma la eliminación.</li></ol>
+            </div>
+          </div>
+        </section>
+        <section class="sec" id="es-s2">
+          <div class="sec-in">
+            <div class="sec-n rv" aria-hidden="true">02</div>
+            <div class="sec-b rv">
+              <h2>Sin acceso a la App</h2>
+              <p>Escríbenos desde el correo asociado a tu cuenta con el asunto <strong>«Eliminar cuenta»</strong>. Eliminaremos tu cuenta y te lo confirmaremos por correo.</p>
+                      <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=Eliminar%20cuenta">b1tmet@b1tmet.com</a>
+            </div>
+          </div>
+        </section>
+        <section class="sec" id="es-s3">
+          <div class="sec-in">
+            <div class="sec-n rv" aria-hidden="true">03</div>
+            <div class="sec-b rv">
+              <h2>Qué se elimina</h2>
+              <ul><li>Tu nombre de usuario, correo, contraseña (hash) y vinculación con Google.</li><li>Tus preferencias guardadas y todas tus sesiones activas.</li></ul>
+            </div>
+          </div>
+        </section>
+        <section class="sec" id="es-s4">
+          <div class="sec-in">
+            <div class="sec-n rv" aria-hidden="true">04</div>
+            <div class="sec-b rv">
+              <h2>Qué se conserva y por cuánto tiempo</h2>
+              <ul><li><strong>Registros técnicos con IP:</strong> se eliminan automáticamente en un máximo de 14 días.</li><li><strong>Registros de pago</strong> de cursos comprados en la web (Stripe): lo que exijan las obligaciones fiscales y contables.</li></ul>
+                      <p>Más información en nuestro <a href="index.html">Aviso de privacidad</a>.</p>
+            </div>
+          </div>
+        </section>
       </article>
 
       <!-- ======================= EN ======================= -->
-      <article class="card" lang="en">
-        <h2>In the App (immediate)</h2>
-        <ol><li>Open B1TMET Pro and sign in.</li><li>Go to <strong>Settings → Privacy → Delete account</strong>.</li><li>Confirm the deletion.</li></ol>
-        <h2>Without access to the App</h2>
-        <p>Email us from the address linked to your account with the subject <strong>"Delete account"</strong>. We will delete your account and confirm by email.</p>
-        <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=Delete%20account">b1tmet@b1tmet.com</a>
-        <h2>What is deleted</h2>
-        <ul><li>Your username, email, password (hash) and Google link.</li><li>Your saved preferences and all active sessions.</li></ul>
-        <h2>What is kept and for how long</h2>
-        <ul><li><strong>Technical logs with IP:</strong> automatically deleted within 14 days at most.</li><li><strong>Payment records</strong> for courses purchased on the website (Stripe): as required by tax and accounting obligations.</li></ul>
-        <p>More information in our <a href="index.html">Privacy Policy</a>.</p>
+      <article lang="en">
+        <section class="sec" id="en-s1">
+          <div class="sec-in">
+            <div class="sec-n rv" aria-hidden="true">01</div>
+            <div class="sec-b rv">
+              <h2>In the App (immediate)</h2>
+              <ol><li>Open B1TMET Pro and sign in.</li><li>Go to <strong>Settings → Privacy → Delete account</strong>.</li><li>Confirm the deletion.</li></ol>
+            </div>
+          </div>
+        </section>
+        <section class="sec" id="en-s2">
+          <div class="sec-in">
+            <div class="sec-n rv" aria-hidden="true">02</div>
+            <div class="sec-b rv">
+              <h2>Without access to the App</h2>
+              <p>Email us from the address linked to your account with the subject <strong>"Delete account"</strong>. We will delete your account and confirm by email.</p>
+                      <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=Delete%20account">b1tmet@b1tmet.com</a>
+            </div>
+          </div>
+        </section>
+        <section class="sec" id="en-s3">
+          <div class="sec-in">
+            <div class="sec-n rv" aria-hidden="true">03</div>
+            <div class="sec-b rv">
+              <h2>What is deleted</h2>
+              <ul><li>Your username, email, password (hash) and Google link.</li><li>Your saved preferences and all active sessions.</li></ul>
+            </div>
+          </div>
+        </section>
+        <section class="sec" id="en-s4">
+          <div class="sec-in">
+            <div class="sec-n rv" aria-hidden="true">04</div>
+            <div class="sec-b rv">
+              <h2>What is kept and for how long</h2>
+              <ul><li><strong>Technical logs with IP:</strong> automatically deleted within 14 days at most.</li><li><strong>Payment records</strong> for courses purchased on the website (Stripe): as required by tax and accounting obligations.</li></ul>
+                      <p>More information in our <a href="index.html">Privacy Policy</a>.</p>
+            </div>
+          </div>
+        </section>
       </article>
 
       <!-- ======================= PT ======================= -->
-      <article class="card" lang="pt">
-        <h2>No App (imediato)</h2>
-        <ol><li>Abra o B1TMET Pro e entre na sua conta.</li><li>Vá em <strong>Configurações → Privacidade → Excluir conta</strong>.</li><li>Confirme a exclusão.</li></ol>
-        <h2>Sem acesso ao App</h2>
-        <p>Escreva para nós a partir do e-mail associado à sua conta, com o assunto <strong>«Excluir conta»</strong>. Excluiremos sua conta e confirmaremos por e-mail.</p>
-        <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=Excluir%20conta">b1tmet@b1tmet.com</a>
-        <h2>O que é excluído</h2>
-        <ul><li>Seu nome de usuário, e-mail, senha (hash) e vínculo com o Google.</li><li>Suas preferências salvas e todas as suas sessões ativas.</li></ul>
-        <h2>O que é mantido e por quanto tempo</h2>
-        <ul><li><strong>Registros técnicos com IP:</strong> são excluídos automaticamente em no máximo 14 dias.</li><li><strong>Registros de pagamento</strong> de cursos comprados no site (Stripe): o que exigirem as obrigações fiscais e contábeis.</li></ul>
-        <p>Mais informações no nosso <a href="index.html">Aviso de privacidade</a>.</p>
+      <article lang="pt">
+        <section class="sec" id="pt-s1">
+          <div class="sec-in">
+            <div class="sec-n rv" aria-hidden="true">01</div>
+            <div class="sec-b rv">
+              <h2>No App (imediato)</h2>
+              <ol><li>Abra o B1TMET Pro e entre na sua conta.</li><li>Vá em <strong>Configurações → Privacidade → Excluir conta</strong>.</li><li>Confirme a exclusão.</li></ol>
+            </div>
+          </div>
+        </section>
+        <section class="sec" id="pt-s2">
+          <div class="sec-in">
+            <div class="sec-n rv" aria-hidden="true">02</div>
+            <div class="sec-b rv">
+              <h2>Sem acesso ao App</h2>
+              <p>Escreva para nós a partir do e-mail associado à sua conta, com o assunto <strong>«Excluir conta»</strong>. Excluiremos sua conta e confirmaremos por e-mail.</p>
+                      <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=Excluir%20conta">b1tmet@b1tmet.com</a>
+            </div>
+          </div>
+        </section>
+        <section class="sec" id="pt-s3">
+          <div class="sec-in">
+            <div class="sec-n rv" aria-hidden="true">03</div>
+            <div class="sec-b rv">
+              <h2>O que é excluído</h2>
+              <ul><li>Seu nome de usuário, e-mail, senha (hash) e vínculo com o Google.</li><li>Suas preferências salvas e todas as suas sessões ativas.</li></ul>
+            </div>
+          </div>
+        </section>
+        <section class="sec" id="pt-s4">
+          <div class="sec-in">
+            <div class="sec-n rv" aria-hidden="true">04</div>
+            <div class="sec-b rv">
+              <h2>O que é mantido e por quanto tempo</h2>
+              <ul><li><strong>Registros técnicos com IP:</strong> são excluídos automaticamente em no máximo 14 dias.</li><li><strong>Registros de pagamento</strong> de cursos comprados no site (Stripe): o que exigirem as obrigações fiscais e contábeis.</li></ul>
+                      <p>Mais informações no nosso <a href="index.html">Aviso de privacidade</a>.</p>
+            </div>
+          </div>
+        </section>
       </article>
 
       <!-- ======================= FR ======================= -->
-      <article class="card" lang="fr">
-        <h2>Dans l'App (immédiat)</h2>
-        <ol><li>Ouvrez B1TMET Pro et connectez-vous.</li><li>Allez dans <strong>Paramètres → Confidentialité → Supprimer le compte</strong>.</li><li>Confirmez la suppression.</li></ol>
-        <h2>Sans accès à l'App</h2>
-        <p>Écrivez-nous depuis l'adresse e-mail associée à votre compte, avec l'objet <strong>« Supprimer le compte »</strong>. Nous supprimerons votre compte et vous le confirmerons par e-mail.</p>
-        <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=Supprimer%20le%20compte">b1tmet@b1tmet.com</a>
-        <h2>Ce qui est supprimé</h2>
-        <ul><li>Votre nom d'utilisateur, votre e-mail, votre mot de passe (haché) et l'association avec Google.</li><li>Vos préférences enregistrées et toutes vos sessions actives.</li></ul>
-        <h2>Ce qui est conservé et pendant combien de temps</h2>
-        <ul><li><strong>Journaux techniques avec IP :</strong> supprimés automatiquement dans un délai maximal de 14 jours.</li><li><strong>Registres de paiement</strong> des cours achetés sur le site web (Stripe) : selon les obligations fiscales et comptables.</li></ul>
-        <p>Plus d'informations dans notre <a href="index.html">Politique de confidentialité</a>.</p>
+      <article lang="fr">
+        <section class="sec" id="fr-s1">
+          <div class="sec-in">
+            <div class="sec-n rv" aria-hidden="true">01</div>
+            <div class="sec-b rv">
+              <h2>Dans l'App (immédiat)</h2>
+              <ol><li>Ouvrez B1TMET Pro et connectez-vous.</li><li>Allez dans <strong>Paramètres → Confidentialité → Supprimer le compte</strong>.</li><li>Confirmez la suppression.</li></ol>
+            </div>
+          </div>
+        </section>
+        <section class="sec" id="fr-s2">
+          <div class="sec-in">
+            <div class="sec-n rv" aria-hidden="true">02</div>
+            <div class="sec-b rv">
+              <h2>Sans accès à l'App</h2>
+              <p>Écrivez-nous depuis l'adresse e-mail associée à votre compte, avec l'objet <strong>« Supprimer le compte »</strong>. Nous supprimerons votre compte et vous le confirmerons par e-mail.</p>
+                      <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=Supprimer%20le%20compte">b1tmet@b1tmet.com</a>
+            </div>
+          </div>
+        </section>
+        <section class="sec" id="fr-s3">
+          <div class="sec-in">
+            <div class="sec-n rv" aria-hidden="true">03</div>
+            <div class="sec-b rv">
+              <h2>Ce qui est supprimé</h2>
+              <ul><li>Votre nom d'utilisateur, votre e-mail, votre mot de passe (haché) et l'association avec Google.</li><li>Vos préférences enregistrées et toutes vos sessions actives.</li></ul>
+            </div>
+          </div>
+        </section>
+        <section class="sec" id="fr-s4">
+          <div class="sec-in">
+            <div class="sec-n rv" aria-hidden="true">04</div>
+            <div class="sec-b rv">
+              <h2>Ce qui est conservé et pendant combien de temps</h2>
+              <ul><li><strong>Journaux techniques avec IP :</strong> supprimés automatiquement dans un délai maximal de 14 jours.</li><li><strong>Registres de paiement</strong> des cours achetés sur le site web (Stripe) : selon les obligations fiscales et comptables.</li></ul>
+                      <p>Plus d'informations dans notre <a href="index.html">Politique de confidentialité</a>.</p>
+            </div>
+          </div>
+        </section>
       </article>
 
       <!-- ======================= IT ======================= -->
-      <article class="card" lang="it">
-        <h2>Dall'App (immediato)</h2>
-        <ol><li>Apri B1TMET Pro ed effettua l'accesso.</li><li>Vai su <strong>Impostazioni → Privacy → Elimina account</strong>.</li><li>Conferma l'eliminazione.</li></ol>
-        <h2>Senza accesso all'App</h2>
-        <p>Scrivici dall'indirizzo e-mail associato al tuo account con oggetto <strong>«Elimina account»</strong>. Elimineremo il tuo account e te lo confermeremo via e-mail.</p>
-        <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=Elimina%20account">b1tmet@b1tmet.com</a>
-        <h2>Cosa viene eliminato</h2>
-        <ul><li>Nome utente, e-mail, password (hash) e collegamento con Google.</li><li>Le preferenze salvate e tutte le sessioni attive.</li></ul>
-        <h2>Cosa viene conservato e per quanto tempo</h2>
-        <ul><li><strong>Log tecnici con IP:</strong> eliminati automaticamente entro un massimo di 14 giorni.</li><li><strong>Registrazioni dei pagamenti</strong> dei corsi acquistati sul sito web (Stripe): quanto richiesto dagli obblighi fiscali e contabili.</li></ul>
-        <p>Maggiori informazioni nella nostra <a href="index.html">Informativa sulla privacy</a>.</p>
+      <article lang="it">
+        <section class="sec" id="it-s1">
+          <div class="sec-in">
+            <div class="sec-n rv" aria-hidden="true">01</div>
+            <div class="sec-b rv">
+              <h2>Dall'App (immediato)</h2>
+              <ol><li>Apri B1TMET Pro ed effettua l'accesso.</li><li>Vai su <strong>Impostazioni → Privacy → Elimina account</strong>.</li><li>Conferma l'eliminazione.</li></ol>
+            </div>
+          </div>
+        </section>
+        <section class="sec" id="it-s2">
+          <div class="sec-in">
+            <div class="sec-n rv" aria-hidden="true">02</div>
+            <div class="sec-b rv">
+              <h2>Senza accesso all'App</h2>
+              <p>Scrivici dall'indirizzo e-mail associato al tuo account con oggetto <strong>«Elimina account»</strong>. Elimineremo il tuo account e te lo confermeremo via e-mail.</p>
+                      <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=Elimina%20account">b1tmet@b1tmet.com</a>
+            </div>
+          </div>
+        </section>
+        <section class="sec" id="it-s3">
+          <div class="sec-in">
+            <div class="sec-n rv" aria-hidden="true">03</div>
+            <div class="sec-b rv">
+              <h2>Cosa viene eliminato</h2>
+              <ul><li>Nome utente, e-mail, password (hash) e collegamento con Google.</li><li>Le preferenze salvate e tutte le sessioni attive.</li></ul>
+            </div>
+          </div>
+        </section>
+        <section class="sec" id="it-s4">
+          <div class="sec-in">
+            <div class="sec-n rv" aria-hidden="true">04</div>
+            <div class="sec-b rv">
+              <h2>Cosa viene conservato e per quanto tempo</h2>
+              <ul><li><strong>Log tecnici con IP:</strong> eliminati automaticamente entro un massimo di 14 giorni.</li><li><strong>Registrazioni dei pagamenti</strong> dei corsi acquistati sul sito web (Stripe): quanto richiesto dagli obblighi fiscali e contabili.</li></ul>
+                      <p>Maggiori informazioni nella nostra <a href="index.html">Informativa sulla privacy</a>.</p>
+            </div>
+          </div>
+        </section>
       </article>
 
       <!-- ======================= NL ======================= -->
-      <article class="card" lang="nl">
-        <h2>In de App (direct)</h2>
-        <ol><li>Open B1TMET Pro en log in.</li><li>Ga naar <strong>Instellingen → Privacy → Account verwijderen</strong>.</li><li>Bevestig het verwijderen.</li></ol>
-        <h2>Zonder toegang tot de App</h2>
-        <p>Stuur ons een e-mail vanaf het adres dat aan je account is gekoppeld, met als onderwerp <strong>"Account verwijderen"</strong>. We verwijderen je account en bevestigen dat per e-mail.</p>
-        <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=Account%20verwijderen">b1tmet@b1tmet.com</a>
-        <h2>Wat wordt verwijderd</h2>
-        <ul><li>Je gebruikersnaam, e-mailadres, wachtwoord (hash) en koppeling met Google.</li><li>Je opgeslagen voorkeuren en al je actieve sessies.</li></ul>
-        <h2>Wat blijft bewaard en hoe lang</h2>
-        <ul><li><strong>Technische logboeken met IP:</strong> worden binnen maximaal 14 dagen automatisch verwijderd.</li><li><strong>Betalingsgegevens</strong> van cursussen die op de website zijn gekocht (Stripe): zolang fiscale en boekhoudkundige verplichtingen dat vereisen.</li></ul>
-        <p>Meer informatie in onze <a href="index.html">Privacybeleid</a>.</p>
+      <article lang="nl">
+        <section class="sec" id="nl-s1">
+          <div class="sec-in">
+            <div class="sec-n rv" aria-hidden="true">01</div>
+            <div class="sec-b rv">
+              <h2>In de App (direct)</h2>
+              <ol><li>Open B1TMET Pro en log in.</li><li>Ga naar <strong>Instellingen → Privacy → Account verwijderen</strong>.</li><li>Bevestig het verwijderen.</li></ol>
+            </div>
+          </div>
+        </section>
+        <section class="sec" id="nl-s2">
+          <div class="sec-in">
+            <div class="sec-n rv" aria-hidden="true">02</div>
+            <div class="sec-b rv">
+              <h2>Zonder toegang tot de App</h2>
+              <p>Stuur ons een e-mail vanaf het adres dat aan je account is gekoppeld, met als onderwerp <strong>"Account verwijderen"</strong>. We verwijderen je account en bevestigen dat per e-mail.</p>
+                      <a class="btn" href="mailto:b1tmet@b1tmet.com?subject=Account%20verwijderen">b1tmet@b1tmet.com</a>
+            </div>
+          </div>
+        </section>
+        <section class="sec" id="nl-s3">
+          <div class="sec-in">
+            <div class="sec-n rv" aria-hidden="true">03</div>
+            <div class="sec-b rv">
+              <h2>Wat wordt verwijderd</h2>
+              <ul><li>Je gebruikersnaam, e-mailadres, wachtwoord (hash) en koppeling met Google.</li><li>Je opgeslagen voorkeuren en al je actieve sessies.</li></ul>
+            </div>
+          </div>
+        </section>
+        <section class="sec" id="nl-s4">
+          <div class="sec-in">
+            <div class="sec-n rv" aria-hidden="true">04</div>
+            <div class="sec-b rv">
+              <h2>Wat blijft bewaard en hoe lang</h2>
+              <ul><li><strong>Technische logboeken met IP:</strong> worden binnen maximaal 14 dagen automatisch verwijderd.</li><li><strong>Betalingsgegevens</strong> van cursussen die op de website zijn gekocht (Stripe): zolang fiscale en boekhoudkundige verplichtingen dat vereisen.</li></ul>
+                      <p>Meer informatie in onze <a href="index.html">Privacybeleid</a>.</p>
+            </div>
+          </div>
+        </section>
       </article>
 
     </main>
 
-    <footer class="foot">
-      <picture>
-        <source srcset="assets/logo-h-light.png" media="(prefers-color-scheme: dark)" />
-        <img class="foot-img" src="assets/logo-h-dark.png" alt="B1TMET" />
-      </picture>
-      <p lang="es">
-        <a href="index.html">Aviso de privacidad</a> ·
-        <a href="terminos.html">Términos de uso</a> ·
-        <a href="api.html">API</a> ·
-        <a href="precios.html">Precios API</a> ·
-        <a href="terminos-api.html">Términos de la API</a> ·
-        <a href="eliminar-cuenta.html">Eliminar cuenta</a> ·
-        <a href="mailto:b1tmet@b1tmet.com">Contacto</a> ·
-        <a href="https://b1tmet.com">Acerca de</a>
-      </p>
-      <p lang="en">
-        <a href="index.html">Privacy Policy</a> ·
-        <a href="terminos.html">Terms of Use</a> ·
-        <a href="api.html">API</a> ·
-        <a href="precios.html">API Pricing</a> ·
-        <a href="terminos-api.html">API Terms</a> ·
-        <a href="eliminar-cuenta.html">Delete account</a> ·
-        <a href="mailto:b1tmet@b1tmet.com">Contact</a> ·
-        <a href="https://b1tmet.com">About</a>
-      </p>
-      <p lang="pt">
-        <a href="index.html">Aviso de privacidade</a> ·
-        <a href="terminos.html">Termos de uso</a> ·
-        <a href="api.html">API</a> ·
-        <a href="precios.html">Preços da API</a> ·
-        <a href="terminos-api.html">Termos da API</a> ·
-        <a href="eliminar-cuenta.html">Excluir conta</a> ·
-        <a href="mailto:b1tmet@b1tmet.com">Contato</a> ·
-        <a href="https://b1tmet.com">Sobre</a>
-      </p>
-      <p lang="fr">
-        <a href="index.html">Politique de confidentialité</a> ·
-        <a href="terminos.html">Conditions d'utilisation</a> ·
-        <a href="api.html">API</a> ·
-        <a href="precios.html">Tarifs de l'API</a> ·
-        <a href="terminos-api.html">Conditions de l'API</a> ·
-        <a href="eliminar-cuenta.html">Supprimer le compte</a> ·
-        <a href="mailto:b1tmet@b1tmet.com">Contact</a> ·
-        <a href="https://b1tmet.com">À propos</a>
-      </p>
-      <p lang="it">
-        <a href="index.html">Informativa sulla privacy</a> ·
-        <a href="terminos.html">Termini di utilizzo</a> ·
-        <a href="api.html">API</a> ·
-        <a href="precios.html">Prezzi API</a> ·
-        <a href="terminos-api.html">Termini dell'API</a> ·
-        <a href="eliminar-cuenta.html">Elimina account</a> ·
-        <a href="mailto:b1tmet@b1tmet.com">Contatti</a> ·
-        <a href="https://b1tmet.com">Chi siamo</a>
-      </p>
-      <p lang="nl">
-        <a href="index.html">Privacybeleid</a> ·
-        <a href="terminos.html">Gebruiksvoorwaarden</a> ·
-        <a href="api.html">API</a> ·
-        <a href="precios.html">API-prijzen</a> ·
-        <a href="terminos-api.html">API-voorwaarden</a> ·
-        <a href="eliminar-cuenta.html">Account verwijderen</a> ·
-        <a href="mailto:b1tmet@b1tmet.com">Contact</a> ·
-        <a href="https://b1tmet.com">Over ons</a>
-      </p>
-      <p lang="es" class="muted">Los pronósticos de B1TMET Pro son orientativos y no sustituyen los avisos oficiales de los servicios meteorológicos nacionales. Mapas: © colaboradores de OpenStreetMap, © CARTO, © OpenTopoMap.</p>
-      <p lang="en" class="muted">B1TMET Pro forecasts are for guidance only and do not replace official warnings from national weather services. Maps: © OpenStreetMap contributors, © CARTO, © OpenTopoMap.</p>
-      <p lang="pt" class="muted">As previsões do B1TMET Pro são apenas orientativas e não substituem os avisos oficiais dos serviços meteorológicos nacionais. Mapas: © colaboradores do OpenStreetMap, © CARTO, © OpenTopoMap.</p>
-      <p lang="fr" class="muted">Les prévisions de B1TMET Pro sont fournies à titre indicatif et ne remplacent pas les alertes officielles des services météorologiques nationaux. Cartes : © contributeurs d'OpenStreetMap, © CARTO, © OpenTopoMap.</p>
-      <p lang="it" class="muted">Le previsioni di B1TMET Pro sono indicative e non sostituiscono gli avvisi ufficiali dei servizi meteorologici nazionali. Mappe: © collaboratori di OpenStreetMap, © CARTO, © OpenTopoMap.</p>
-      <p lang="nl" class="muted">De voorspellingen van B1TMET Pro zijn indicatief en vervangen geen officiële waarschuwingen van nationale weerdiensten. Kaarten: © OpenStreetMap-bijdragers, © CARTO, © OpenTopoMap.</p>
-      <div>© 2026 B1TMET Technologies</div>
+    <footer class="foot" style="--band-last: var(--band-b)">
+      <div class="foot-glow" aria-hidden="true"></div>
+      <div class="foot-in">
+        <img class="foot-logo" src="assets/logo-h-light.png" alt="B1TMET" width="138" height="40" />
+        <ul class="foot-links" lang="es">
+          <li><a href="index.html">Aviso de privacidad</a></li>
+          <li><a href="terminos.html">Términos de uso</a></li>
+          <li><a href="api.html">API</a></li>
+          <li><a href="precios.html">Precios API</a></li>
+          <li><a href="terminos-api.html">Términos de la API</a></li>
+          <li><a href="eliminar-cuenta.html" aria-current="page">Eliminar cuenta</a></li>
+          <li><a href="mailto:b1tmet@b1tmet.com">Contacto</a></li>
+          <li><a href="https://b1tmet.com">Acerca de</a></li>
+        </ul>
+        <ul class="foot-links" lang="en">
+          <li><a href="index.html">Privacy Policy</a></li>
+          <li><a href="terminos.html">Terms of Use</a></li>
+          <li><a href="api.html">API</a></li>
+          <li><a href="precios.html">API Pricing</a></li>
+          <li><a href="terminos-api.html">API Terms</a></li>
+          <li><a href="eliminar-cuenta.html" aria-current="page">Delete account</a></li>
+          <li><a href="mailto:b1tmet@b1tmet.com">Contact</a></li>
+          <li><a href="https://b1tmet.com">About</a></li>
+        </ul>
+        <ul class="foot-links" lang="pt">
+          <li><a href="index.html">Aviso de privacidade</a></li>
+          <li><a href="terminos.html">Termos de uso</a></li>
+          <li><a href="api.html">API</a></li>
+          <li><a href="precios.html">Preços da API</a></li>
+          <li><a href="terminos-api.html">Termos da API</a></li>
+          <li><a href="eliminar-cuenta.html" aria-current="page">Excluir conta</a></li>
+          <li><a href="mailto:b1tmet@b1tmet.com">Contato</a></li>
+          <li><a href="https://b1tmet.com">Sobre</a></li>
+        </ul>
+        <ul class="foot-links" lang="fr">
+          <li><a href="index.html">Politique de confidentialité</a></li>
+          <li><a href="terminos.html">Conditions d'utilisation</a></li>
+          <li><a href="api.html">API</a></li>
+          <li><a href="precios.html">Tarifs de l'API</a></li>
+          <li><a href="terminos-api.html">Conditions de l'API</a></li>
+          <li><a href="eliminar-cuenta.html" aria-current="page">Supprimer le compte</a></li>
+          <li><a href="mailto:b1tmet@b1tmet.com">Contact</a></li>
+          <li><a href="https://b1tmet.com">À propos</a></li>
+        </ul>
+        <ul class="foot-links" lang="it">
+          <li><a href="index.html">Informativa sulla privacy</a></li>
+          <li><a href="terminos.html">Termini di utilizzo</a></li>
+          <li><a href="api.html">API</a></li>
+          <li><a href="precios.html">Prezzi API</a></li>
+          <li><a href="terminos-api.html">Termini dell'API</a></li>
+          <li><a href="eliminar-cuenta.html" aria-current="page">Elimina account</a></li>
+          <li><a href="mailto:b1tmet@b1tmet.com">Contatti</a></li>
+          <li><a href="https://b1tmet.com">Chi siamo</a></li>
+        </ul>
+        <ul class="foot-links" lang="nl">
+          <li><a href="index.html">Privacybeleid</a></li>
+          <li><a href="terminos.html">Gebruiksvoorwaarden</a></li>
+          <li><a href="api.html">API</a></li>
+          <li><a href="precios.html">API-prijzen</a></li>
+          <li><a href="terminos-api.html">API-voorwaarden</a></li>
+          <li><a href="eliminar-cuenta.html" aria-current="page">Account verwijderen</a></li>
+          <li><a href="mailto:b1tmet@b1tmet.com">Contact</a></li>
+          <li><a href="https://b1tmet.com">Over ons</a></li>
+        </ul>
+        <p class="foot-legal" lang="es">Los pronósticos de B1TMET Pro son orientativos y no sustituyen los avisos oficiales de los servicios meteorológicos nacionales. Mapas: © colaboradores de OpenStreetMap, © CARTO, © OpenTopoMap.</p>
+        <p class="foot-legal" lang="en">B1TMET Pro forecasts are for guidance only and do not replace official warnings from national weather services. Maps: © OpenStreetMap contributors, © CARTO, © OpenTopoMap.</p>
+        <p class="foot-legal" lang="pt">As previsões do B1TMET Pro são apenas orientativas e não substituem os avisos oficiais dos serviços meteorológicos nacionais. Mapas: © colaboradores do OpenStreetMap, © CARTO, © OpenTopoMap.</p>
+        <p class="foot-legal" lang="fr">Les prévisions de B1TMET Pro sont fournies à titre indicatif et ne remplacent pas les alertes officielles des services météorologiques nationaux. Cartes : © contributeurs d'OpenStreetMap, © CARTO, © OpenTopoMap.</p>
+        <p class="foot-legal" lang="it">Le previsioni di B1TMET Pro sono indicative e non sostituiscono gli avvisi ufficiali dei servizi meteorologici nazionali. Mappe: © collaboratori di OpenStreetMap, © CARTO, © OpenTopoMap.</p>
+        <p class="foot-legal" lang="nl">De voorspellingen van B1TMET Pro zijn indicatief en vervangen geen officiële waarschuwingen van nationale weerdiensten. Kaarten: © OpenStreetMap-bijdragers, © CARTO, © OpenTopoMap.</p>
+        <div class="foot-copy"><span>© 2026 B1TMET Technologies</span><span class="wm">Bitmet</span></div>
+      </div>
     </footer>
 
     <script src="assets/lang.js"></script>
-    <script src="assets/moderno.js"></script>
+    <script src="assets/marca.js"></script>
   </body>
 </html>

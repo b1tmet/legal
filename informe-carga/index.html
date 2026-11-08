@@ -6,46 +6,59 @@
 <title>Prueba de carga B1TMET — noviembre 2026</title>
 <meta name="description" content="Resultados de la prueba de carga de la app B1TMET Pro y la API /v1, comparados con la prueba anterior.">
 <meta name="robots" content="noindex">
-<link rel="icon" href="favicon.ico" sizes="any" />
-
+<link rel="stylesheet" href="vendor/marca.css">
+<script>
+(function () {
+  var d = document.documentElement; d.className += " js"; d.setAttribute("data-lang", "es");
+  var hr = new Date().getHours();
+  d.setAttribute("data-tod", hr >= 5 && hr < 8 ? "dawn" : hr >= 8 && hr < 17 ? "day" : hr >= 17 && hr < 20 ? "dusk" : "night");
+  try { var th = localStorage.getItem("b1t-theme"); if (th === "dark" || th === "light") d.setAttribute("data-theme", th); } catch (e) {}
+})();
+</script>
 <style>
-@font-face { font-family: 'Inter'; font-weight: 400; font-display: swap; src: url(vendor/fonts/inter-latin-400-normal.woff2) format('woff2'); }
-@font-face { font-family: 'Inter'; font-weight: 500; font-display: swap; src: url(vendor/fonts/inter-latin-500-normal.woff2) format('woff2'); }
-@font-face { font-family: 'Inter'; font-weight: 600; font-display: swap; src: url(vendor/fonts/inter-latin-600-normal.woff2) format('woff2'); }
-@font-face { font-family: 'Source Serif 4'; font-weight: 400; font-display: swap; src: url(vendor/fonts/source-serif-4-latin-400-normal.woff2) format('woff2'); }
+@font-face { font-family: 'Montserrat'; font-weight: 400; font-display: swap; src: url(vendor/fonts/montserrat-400.woff2) format('woff2'); }
+@font-face { font-family: 'Montserrat'; font-weight: 500; font-display: swap; src: url(vendor/fonts/montserrat-500.woff2) format('woff2'); }
+@font-face { font-family: 'Montserrat'; font-weight: 600; font-display: swap; src: url(vendor/fonts/montserrat-600.woff2) format('woff2'); }
+@font-face { font-family: 'Montserrat'; font-weight: 700; font-display: swap; src: url(vendor/fonts/montserrat-700.woff2) format('woff2'); }
 :root {
-  --font-anthropic-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-anthropic-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
-  --color-fg: #1f1e1b; --color-fg-muted: #6b685f; --color-panel: #ffffff; --color-bg: #f6f5f1;
-  --color-border-line: #e2dfd7; --color-ok: #2f8f5b; --color-bad: #c0473b; --color-warn: #d0a03a;
-  --cds-chart-axis: #b9b6ad; --cds-chart-grid: #ebe8e1; --cds-chart-muted: #c9c5bb; --cds-chart-reference: #6d6a62;
+  --font-anthropic-sans: 'Montserrat', system-ui, sans-serif;
+  --font-anthropic-serif: 'Montserrat', system-ui, sans-serif;
+  --color-fg: #17062b; --color-fg-muted: #5a5470; --color-panel: #ffffff; --color-bg: #edeef4;
+  --color-border-line: #d6dbf1; --color-ok: #2f8f5b; --color-bad: #c0473b; --color-warn: #d0a03a;
+  --cds-chart-axis: #a2b2f4; --cds-chart-grid: #e1e5f6; --cds-chart-muted: #b9c3ef; --cds-chart-reference: #5a5470;
   --cds-font-size-caption: 13px; --cds-font-size-body: 15.5px; --cds-font-size-heading: 16px; --cds-font-size-title: 24px;
   --cds-font-weight-medium: 500;
   --cds-gap-xs: 6px; --cds-gap-sm: 10px; --cds-gap-md: 16px; --cds-gap-lg: 24px; --cds-gap-xl: 44px;
   --cds-pad-xs: 6px; --cds-pad-sm: 10px; --cds-pad-lg: 18px; --cds-radius: 8px;
-  --cds-surface-popover: #ffffff; --cds-border: #d8d5cc; --cds-shadow-popover: 0 4px 16px rgba(0,0,0,.10);
-  --cds-text-secondary: #6b685f; --cds-dur-slow: 320ms; --cds-ease-out: cubic-bezier(.2,.7,.2,1);
+  --cds-surface-popover: #ffffff; --cds-border: #d6dbf1; --cds-shadow-popover: 0 4px 16px rgba(0,0,0,.10);
+  --cds-text-secondary: #5a5470; --cds-radius-lg: 18px; --cds-dur-slow: 320ms; --cds-ease-out: cubic-bezier(.2,.7,.2,1);
+}
+html[data-theme="dark"] {
+    --color-fg: #edeef4; --color-fg-muted: #b3acc8; --color-panel: #20103d; --color-bg: #17062b;
+    --color-border-line: #3a2a5c; --color-ok: #5cc28a; --cds-chart-axis: #5a4d80; --cds-chart-grid: #2b1a4d;
+    --cds-chart-muted: #4b3d74; --cds-chart-reference: #b3acc8; --cds-surface-popover: #241245; --cds-border: #3a2a5c;
+    --cds-text-secondary: #b3acc8;
 }
 @media (prefers-color-scheme: dark) {
-  :root {
-    --color-fg: #ecebe6; --color-fg-muted: #a6a39a; --color-panel: #24231f; --color-bg: #1a1916;
-    --color-border-line: #37352f; --color-ok: #5cc28a; --cds-chart-axis: #5a5850; --cds-chart-grid: #33312c;
-    --cds-chart-muted: #5f5c54; --cds-chart-reference: #a6a39a; --cds-surface-popover: #2c2b26; --cds-border: #45433c;
-    --cds-text-secondary: #a6a39a;
+  html:not([data-theme="light"]) {
+    --color-fg: #edeef4; --color-fg-muted: #b3acc8; --color-panel: #20103d; --color-bg: #17062b;
+    --color-border-line: #3a2a5c; --color-ok: #5cc28a; --cds-chart-axis: #5a4d80; --cds-chart-grid: #2b1a4d;
+    --cds-chart-muted: #4b3d74; --cds-chart-reference: #b3acc8; --cds-surface-popover: #241245; --cds-border: #3a2a5c;
+    --cds-text-secondary: #b3acc8;
   }
 }
 html { background: var(--color-bg); }
-body { margin: 0; padding: clamp(16px, 4vw, 48px) clamp(12px, 3vw, 40px) 64px; }
+body { margin: 0; padding: 0; background: var(--color-bg); }
+.lt { padding: clamp(24px, 4vw, 48px) clamp(12px, 3vw, 40px) 64px; box-sizing: border-box; }
 .lt a { color: inherit; }
 .dash-select { font: inherit; font-size: var(--cds-font-size-caption); color: var(--color-fg); background: var(--color-panel);
   border: 1px solid var(--color-border-line); border-radius: 6px; padding: 4px 8px; }
 .dash-skeleton { background: linear-gradient(90deg, transparent, rgba(128,128,128,.08), transparent); border-radius: var(--cds-radius); }
-footer.pie { max-width: 1180px; margin: 48px auto 0; font-size: 12px; color: var(--color-fg-muted); font-family: var(--font-anthropic-sans); }
 
 
 .lt { font-family: var(--font-anthropic-sans); color: var(--color-fg); max-width: 1180px; margin-inline: auto; }
-.lt h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: calc(var(--cds-font-size-title) * 1.35); margin: 0 0 var(--cds-gap-sm); line-height: 1.15; }
-.lt h2 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: var(--cds-gap-xl) 0 var(--cds-gap-xs); }
+.lt h1 { font-family: var(--font-anthropic-serif); font-weight: 900; letter-spacing: -.01em; font-size: calc(var(--cds-font-size-title) * 1.35); margin: 0 0 var(--cds-gap-sm); line-height: 1.15; }
+.lt h2 { font-family: var(--font-anthropic-serif); font-weight: 700; font-size: var(--cds-font-size-title); margin: var(--cds-gap-xl) 0 var(--cds-gap-xs); }
 .lt h3 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0 0 var(--cds-gap-xs); }
 .lt p, .lt li { font-size: var(--cds-font-size-body); line-height: 1.55; }
 .lt .sub { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: 0 0 var(--cds-gap-sm); }
@@ -54,7 +67,7 @@ footer.pie { max-width: 1180px; margin: 48px auto 0; font-size: 12px; color: var
 .lt .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: var(--cds-gap-md); margin: var(--cds-gap-lg) 0; }
 .lt .tile { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); }
 .lt .tile .lbl { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
-.lt .tile .big { font-family: var(--font-anthropic-serif); font-size: calc(var(--cds-font-size-title) * 1.5); font-variant-numeric: tabular-nums; margin: var(--cds-gap-xs) 0; line-height: 1.1; }
+.lt .tile .big { font-family: var(--font-anthropic-serif); font-weight: 900; color: #385bd6; font-size: calc(var(--cds-font-size-title) * 1.5); font-variant-numeric: tabular-nums; margin: var(--cds-gap-xs) 0; line-height: 1.1; }
 .lt .tile .was { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
 .lt .tile .was b { color: var(--color-fg); }
 .lt .good { color: var(--color-ok); }
@@ -92,7 +105,7 @@ footer.pie { max-width: 1180px; margin: 48px auto 0; font-size: 12px; color: var
 .lt .pair .row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin: 6px 0 4px; font-variant-numeric: tabular-nums; }
 .lt .pair .p-antes { font-family: var(--font-anthropic-serif); font-size: calc(var(--cds-font-size-title) * 1.05); color: var(--color-fg-muted); text-decoration: line-through; text-decoration-thickness: 1px; }
 .lt .pair .arrow { color: var(--color-fg-muted); }
-.lt .pair .p-ahora { font-family: var(--font-anthropic-serif); font-size: calc(var(--cds-font-size-title) * 1.5); color: var(--color-ok); line-height: 1.1; }
+.lt .pair .p-ahora { font-family: var(--font-anthropic-serif); font-weight: 900; font-size: calc(var(--cds-font-size-title) * 1.5); color: var(--color-ok); line-height: 1.1; }
 .lt .pair .p-x { font-size: var(--cds-font-size-caption); font-weight: 600; color: var(--color-ok); }
 .lt .pair .foot { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-top: 2px; }
 .lt .pairs-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0; }
@@ -114,16 +127,76 @@ footer.pie { max-width: 1180px; margin: 48px auto 0; font-size: 12px; color: var
   .lt .tile, .lt .card { animation: ltin var(--cds-dur-slow) var(--cds-ease-out) both; }
   @keyframes ltin { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 }
+/* ---- Identidad B1TMET ---- */
+.lt .tile, .lt .card, .lt .pair { border-radius: var(--cds-radius-lg); }
+.lt .tile, .lt .pair { border-top: 3px solid #385bd6; }
+.lt h2 { display: flex; align-items: center; gap: 12px; }
+.lt h2::before { content: ""; width: 34px; height: 5px; border-radius: 5px; background: linear-gradient(90deg, #385bd6, #a2b2f4); flex: none; }
+.lt a { text-decoration-color: #385bd6; text-underline-offset: 3px; }
+.hero .edge { background: var(--color-bg); }
+.hero .sub { color: color-mix(in srgb, var(--ghost) 72%, transparent); font-size: .9rem; max-width: 80ch; margin: 0 0 14px; }
+.hero .sub a { color: var(--jordy); }
+.hero .lead { margin: 22px 0 0; max-width: 70ch; font-size: clamp(1rem, 1.5vw, 1.15rem); line-height: 1.6; font-weight: 500; color: color-mix(in srgb, var(--ghost) 90%, transparent) !important; }
+.hero .lead b { color: var(--jordy); font-variant-numeric: tabular-nums; }
+.hero h1 { max-width: 20ch; font-size: clamp(2rem, 4.6vw, 3.6rem); margin: 0 0 18px; }
+footer.foot { --band-last: var(--color-bg); margin-top: 40px; }
+/* Experimentos 1 y 2: a todo el ancho y sin barras de desplazamiento */
+.lt .grid.exp { grid-template-columns: minmax(0, 1fr); }
+.lt .grid.exp .tbl { max-height: none; overflow: visible; }
+.lt .tbl th { text-transform: none; letter-spacing: 0; white-space: normal; padding: 6px 8px; font-size: var(--cds-font-size-caption); }
 </style>
 </head>
 <body>
-<div class="lt" data-read lang="es">
-  <header id="inicio">
+<div class="progress" aria-hidden="true"></div>
+<header class="top">
+  <a class="brand" href="../api.html"><img src="vendor/logo-h-light.png" alt="B1TMET" width="138" height="40"><small>Informe</small></a>
+  <button class="theme" type="button" aria-label="Tema">
+    <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+    <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
+  </button>
+</header>
+<section class="hero hero-s" id="inicio">
+  <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="gPlane" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0" stop-color="#385BD6" stop-opacity=".95" />
+              <stop offset="1" stop-color="#385BD6" stop-opacity=".55" />
+            </linearGradient>
+          </defs>
+          <g class="rings r2"><circle cx="110" cy="40" r="60" fill="#385BD6" fill-opacity=".06" /><circle cx="110" cy="40" r="122" fill="#385BD6" fill-opacity=".06" /><circle cx="110" cy="40" r="184" fill="#385BD6" fill-opacity=".06" /><circle cx="110" cy="40" r="246" fill="#385BD6" fill-opacity=".06" /><circle cx="110" cy="40" r="308" fill="#385BD6" fill-opacity=".06" /><circle cx="110" cy="40" r="370" fill="#385BD6" fill-opacity=".06" /><circle cx="110" cy="40" r="432" fill="#385BD6" fill-opacity=".06" /><circle cx="110" cy="40" r="494" fill="#385BD6" fill-opacity=".06" /><circle cx="110" cy="40" r="556" fill="#385BD6" fill-opacity=".06" /><circle cx="110" cy="40" r="618" fill="#385BD6" fill-opacity=".06" /></g>
+          <polygon class="plane" points="560,860 1500,120 1500,860" fill="url(#gPlane)" />
+          <g class="rings r1"><circle cx="1270" cy="700" r="70" fill="#A2B2F4" fill-opacity=".07" /><circle cx="1270" cy="700" r="140" fill="#A2B2F4" fill-opacity=".07" /><circle cx="1270" cy="700" r="210" fill="#A2B2F4" fill-opacity=".07" /><circle cx="1270" cy="700" r="280" fill="#A2B2F4" fill-opacity=".07" /><circle cx="1270" cy="700" r="350" fill="#A2B2F4" fill-opacity=".07" /><circle cx="1270" cy="700" r="420" fill="#A2B2F4" fill-opacity=".07" /><circle cx="1270" cy="700" r="490" fill="#A2B2F4" fill-opacity=".07" /><circle cx="1270" cy="700" r="560" fill="#A2B2F4" fill-opacity=".07" /><circle cx="1270" cy="700" r="630" fill="#A2B2F4" fill-opacity=".07" /><circle cx="1270" cy="700" r="700" fill="#A2B2F4" fill-opacity=".07" /></g>
+        </svg>
+      </div>
+      <svg class="ribbon" viewBox="0 0 660 320" aria-hidden="true">
+        <defs>
+          <linearGradient id="gRib" gradientUnits="userSpaceOnUse" x1="40" y1="0" x2="640" y2="0">
+            <stop offset="0" stop-color="#385BD6" />
+            <stop offset=".55" stop-color="#385BD6" stop-opacity=".75" />
+            <stop offset="1" stop-color="#17062B" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+        <g>
+          <path class="trail" d="M70 240 L180 120 L290 240 L400 120 L510 240 L620 120" stroke="url(#gRib)" stroke-width="58" opacity=".22" transform="translate(30 18)" />
+          <path class="trail" d="M70 240 L180 120 L290 240 L400 120 L510 240 L620 120" stroke="url(#gRib)" stroke-width="58" opacity=".4" transform="translate(20 12)" />
+          <path class="trail" d="M70 240 L180 120 L290 240 L400 120 L510 240 L620 120" stroke="url(#gRib)" stroke-width="58" opacity=".65" transform="translate(10 6)" />
+          <path class="trail" d="M70 240 L180 120 L290 240 L400 120 L510 240 L620 120" stroke="url(#gRib)" stroke-width="58" />
+        </g>
+      </svg>
+  <canvas class="wind" aria-hidden="true"></canvas>
+  <div class="hero-in">
+    <p class="eyebrow">B1TMET · Informe</p>
+
     <p class="sub">B1TMET · app B1TMET Pro y API pública /v1 · VPS de IONOS (2 vCPU, 1,9 GB) · 7 de noviembre de 2026</p>
     <h1>Prueba de carga: el backend aguanta 500 usuarios simultáneos sin fallos</h1>
     <p class="sub"><a href="Prueba_de_carga_B1TMET_nov2026.pdf" download>Descargar en PDF</a> · Datos en CSV: <a href="data/kpis.csv">cifras</a>, <a href="data/comparacion.csv">comparación</a>, <a href="data/cambios.csv">cambios</a>, <a href="data/endpoints_mezcla.csv">endpoints</a>, <a href="data/rampa.csv">rampa</a>, <a href="data/recursos.csv">recursos</a></p>
     <p class="lead">Con 500 usuarios a la vez, el 95 % de las peticiones respondió en menos de <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=p95_500" data-fmt="ms">—</b>; en la prueba anterior, con los mismos 500 usuarios, ese tiempo llegaba a <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=antes_p95_500" data-fmt="ms">—</b>. El servidor no llegó a su límite. El primer techo real para salir al mercado no está en el VPS sino fuera: la cuota gratuita de OpenWeather, que admite unos <b data-draw="val" data-source="kpis" data-field="valor" data-where="clave=owm_arranques_min" data-fmt="int">—</b> arranques de la app por minuto.</p>
-  </header>
+  </div>
+  <div class="edge back" aria-hidden="true"></div>
+      <div class="edge" aria-hidden="true"></div>
+</section>
+<div class="lt" data-read lang="es">
 
   <section aria-label="Antes y ahora en cifras">
     <div class="pairs">
@@ -177,7 +250,7 @@ footer.pie { max-width: 1180px; margin: 48px auto 0; font-size: 12px; color: var
       <li>Ahora con Nginx y TLS por medio, y con la API /v1 recibiendo carga de fondo durante toda la rampa.</li>
     </ul>
   </div>
-  <div class="grid">
+  <div class="grid exp">
     <div class="card">
       <h3>Experimento 1 · 100 usuarios concurrentes</h3>
       <p class="sub">En la prueba anterior, el cuello de botella con 100 usuarios ya era la consulta de disponibilidad del dominio.</p>
@@ -374,9 +447,17 @@ footer.pie { max-width: 1180px; margin: 48px auto 0; font-size: 12px; color: var
     </dl>
   </details>
 </div>
-<footer class="pie">B1TMET · Prueba de carga realizada el 7 de noviembre de 2026 con k6 contra el servidor de producción.</footer>
+<footer class="foot">
+  <div class="foot-glow" aria-hidden="true"></div>
+  <div class="foot-in">
+    <img class="foot-logo" src="vendor/logo-h-light.png" alt="B1TMET" width="138" height="40">
+    <p class="foot-legal">Prueba de carga realizada el 7 de noviembre de 2026 con k6 contra el servidor de producción.</p>
+    <div class="foot-copy"><span>© 2026 B1TMET Technologies</span><span class="wm">Bitmet</span></div>
+  </div>
+</footer>
 <script src="vendor/d3.min.js"></script>
 <script src="dash-shim.js"></script>
 <script src="app.js"></script>
+<script src="vendor/marca.js"></script>
 </body>
 </html>

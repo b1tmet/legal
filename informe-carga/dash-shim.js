@@ -26,7 +26,7 @@
   }
 
   window.dash = {
-    colors: ['#2a6fb0', '#d97a3a', '#7a5cb8', '#3d9a8b', '#b0953a', '#c0473b'],
+    colors: ['#385bd6', '#d97a3a', '#7a5cb8', '#2a9d8f', '#b0953a', '#c0473b'],
     data: (id) => store[id] || { status: 'loading', data: null },
     draw(name, fn) { if (fn) drawers[name] = fn; runDraw(name); },
     calc(name, spec) { calcs[name] = spec; if (loaded) runCalc(name); },
