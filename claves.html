@@ -112,7 +112,7 @@
       <div class="edge" aria-hidden="true"></div>
     </section>
 
-    <main class="app">
+    <main class="app app-keys">
       <article class="card">
         <!-- Contenido dinámico: los textos salen del diccionario del script -->
         <div id="app" aria-live="polite"></div>
@@ -256,7 +256,7 @@
         var setS = function (v) { try { v ? sessionStorage.setItem(SKEY, v) : sessionStorage.removeItem(SKEY); } catch (e) {} };
 
         // Estado de la vista (se vuelve a pintar al cambiar de idioma)
-        var view = { name: "loading" }, newKey = null, copied = true, flash = null;
+        var view = { name: "loading" }, newKey = null, newKeyClient = null, copied = true, flash = null, focusAfter = false;
 
         function api(method, path, body, auth) {
           var h = {};
@@ -291,20 +291,25 @@
           }
           // Portal
           var d = view.data, h = '<div class="sess"><span>' + m.session + " <strong>" + esc(d.email) + '</strong></span><button class="btn sec small" id="out" type="button">' + m.logout + "</button></div>";
-          if (newKey) {
-            h += '<div class="client"><h3>' + m.newTitle + '</h3><p class="warn">' + m.newWarn + '</p><div class="keybox"><code id="nk"></code><button class="btn" id="cp" type="button" style="min-width:110px">' + m.copy + "</button></div></div>";
-          }
-          if (flash) h += '<p class="' + flash.kind + '">' + flash.text + "</p>";
+          // La clave nueva y los avisos se muestran en la tarjeta del cliente donde se pulsó; si no hay cliente, arriba
+          var known = function (id) { return d.clients.some(function (c) { return c.id === id; }); };
+          var keyHtml = '<div class="newkey" id="nkbox"><h3>' + m.newTitle + '</h3><p class="warn">' + m.newWarn + '</p><div class="keybox"><code id="nk"></code><button class="btn" id="cp" type="button" style="min-width:110px">' + m.copy + "</button></div></div>";
+          var flashHtml = function () { return '<p class="' + flash.kind + '" id="flash">' + flash.text + "</p>"; };
+          if (newKey && !known(newKeyClient)) h += keyHtml;
+          if (flash && !known(flash.client)) h += flashHtml();
           if (!d.clients.length) h += "<p>" + m.noClients + "</p>";
           d.clients.forEach(function (c) {
             var activeN = c.keys.filter(function (k) { return state(k) === "active"; }).length, paid = c.plan !== "free", susp = c.status !== "active";
             h += '<div class="client"><h3>' + esc(c.plan.charAt(0).toUpperCase() + c.plan.slice(1)) + ' <span class="muted">· #' + c.id + "</span>" + (susp ? '<span class="tag t-suspended">' + m.suspended + "</span>" : "") + "</h3>";
             h += '<p class="muted">' + (susp ? m.suspNote : (paid ? m.count(activeN, c.max_keys) : m.freeNote)) + "</p>";
-            h += '<div class="tbl"><table><tr><th>' + m.thKey + "</th><th>" + m.thLabel + "</th><th>" + m.thState + "</th><th>" + m.thCreated + "</th><th>" + m.thExpires + "</th><th>" + m.thUsed + "</th><th></th></tr>";
+            if (newKey && newKeyClient === c.id) h += keyHtml;
+            if (flash && flash.client === c.id) h += flashHtml();
+            h += '<div class="tbl"><table class="keys"><tr><th>' + m.thKey + "</th><th>" + m.thLabel + "</th><th>" + m.thState + "</th><th>" + m.thCreated + "</th><th>" + m.thExpires + "</th><th>" + m.thUsed + "</th><th></th></tr>";
             c.keys.forEach(function (k) {
               var st = state(k), lab = st === "active" ? m.active : st === "expired" ? m.expiredK : m.revoked;
-              h += '<tr><td class="mono">' + esc(k.prefix) + "…</td><td>" + esc(k.label || "") + '</td><td><span class="tag t-' + st + '" style="margin:0">' + lab + "</span></td><td>" + fmt(k.created_at) + "</td><td>" + fmt(k.expires_at) + "</td><td>" + fmt(k.last_used_at) + "</td><td>" +
-                   (st === "active" && !susp ? '<button class="btn sec small" data-rot="' + k.id + '" type="button">' + m.rotate + "</button> " + (paid ? '<button class="btn danger small" data-rev="' + k.id + '" type="button">' + m.revoke + "</button>" : "") : "") + "</td></tr>";
+              // data-label: título de cada dato cuando la tabla se muestra como fichas (pantallas estrechas)
+              h += '<tr><td class="mono" data-label="' + esc(m.thKey) + '">' + esc(k.prefix) + '…</td><td class="lbl" data-label="' + esc(m.thLabel) + '">' + (esc(k.label) || m.never) + '</td><td data-label="' + esc(m.thState) + '"><span class="tag t-' + st + '">' + lab + '</span></td><td data-label="' + esc(m.thCreated) + '">' + fmt(k.created_at) + '</td><td data-label="' + esc(m.thExpires) + '">' + fmt(k.expires_at) + '</td><td data-label="' + esc(m.thUsed) + '">' + fmt(k.last_used_at) + '</td><td class="act">' +
+                   (st === "active" && !susp ? '<button class="btn sec small" data-rot="' + k.id + '" data-cl="' + c.id + '" type="button">' + m.rotate + "</button>" + (paid ? '<button class="btn danger small" data-rev="' + k.id + '" data-cl="' + c.id + '" type="button">' + m.revoke + "</button>" : "") : "") + "</td></tr>";
             });
             h += "</table></div>";
             if (paid && !susp && activeN < c.max_keys) {
@@ -315,9 +320,22 @@
           app.innerHTML = h;
           if (newKey) { document.getElementById("nk").textContent = newKey; document.getElementById("cp").addEventListener("click", copyKey); }
           document.getElementById("out").addEventListener("click", logout);
-          app.querySelectorAll("[data-rot]").forEach(function (b) { b.addEventListener("click", function () { if (confirm(t().cRotate)) action(b, "POST", "/billing/portal/keys/" + b.dataset.rot + "/rotate"); }); });
-          app.querySelectorAll("[data-rev]").forEach(function (b) { b.addEventListener("click", function () { if (confirm(t().cRevoke)) action(b, "POST", "/billing/portal/keys/" + b.dataset.rev + "/revoke"); }); });
-          app.querySelectorAll("[data-new]").forEach(function (b) { b.addEventListener("click", function () { action(b, "POST", "/billing/portal/keys", { client_id: Number(b.dataset.new), label: document.getElementById("lb" + b.dataset.new).value }); }); });
+          app.querySelectorAll("[data-rot]").forEach(function (b) { b.addEventListener("click", function () { if (confirm(t().cRotate)) action(b, "POST", "/billing/portal/keys/" + b.dataset.rot + "/rotate", null, Number(b.dataset.cl)); }); });
+          app.querySelectorAll("[data-rev]").forEach(function (b) { b.addEventListener("click", function () { if (confirm(t().cRevoke)) action(b, "POST", "/billing/portal/keys/" + b.dataset.rev + "/revoke", null, Number(b.dataset.cl)); }); });
+          app.querySelectorAll("[data-new]").forEach(function (b) { b.addEventListener("click", function () { action(b, "POST", "/billing/portal/keys", { client_id: Number(b.dataset.new), label: document.getElementById("lb" + b.dataset.new).value }, Number(b.dataset.new)); }); });
+          if (focusAfter) { focusAfter = false; reveal(); }
+        }
+        // Tras una acción: deja a la vista la clave nueva (o el aviso) sin mover la página si ya se ve entera
+        function reveal() {
+          var box = document.getElementById("nkbox") || document.getElementById("flash");
+          if (!box) return;
+          var r = box.getBoundingClientRect(), top = 90; // alto aproximado de la barra superior fija
+          if (r.top < top || r.bottom > window.innerHeight) {
+            var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            box.scrollIntoView({ behavior: still ? "auto" : "smooth", block: "center" });
+          }
+          var cp = document.getElementById("cp");
+          if (cp && box.id === "nkbox") { try { cp.focus({ preventScroll: true }); } catch (e) { cp.focus(); } }
         }
         function state(k) {
           if (k.status !== "active") return "revoked";
@@ -346,15 +364,16 @@
             else { flash = { kind: "err", text: msgOf(res) }; if (view.name !== "portal") view = { name: "request", kind: "err", msg: "error" }; render(); }
           }).catch(function () { view = { name: "request", kind: "err", msg: "error" }; render(); });
         }
-        function action(btn, method, path, body) {
+        function action(btn, method, path, body, clientId) {
           flash = null;
           busy(btn, api(method, path, body, true)).then(function (res) {
-            if (res.status === 401) { setS(""); newKey = null; view = { name: "request", kind: "err", msg: "expired" }; render(); return; }
-            if (res.status === 200 && res.j.key) { newKey = res.j.key; copied = false; }
-            else if (res.status === 200) flash = { kind: "ok", text: t().revoked_ok };
-            else flash = { kind: "err", text: msgOf(res) };
+            if (res.status === 401) { setS(""); newKey = null; newKeyClient = null; view = { name: "request", kind: "err", msg: "expired" }; render(); return; }
+            if (res.status === 200 && res.j.key) { newKey = res.j.key; newKeyClient = clientId; copied = false; }
+            else if (res.status === 200) flash = { kind: "ok", text: t().revoked_ok, client: clientId };
+            else flash = { kind: "err", text: msgOf(res), client: clientId };
+            focusAfter = true;
             return load();
-          }).catch(function () { flash = { kind: "err", text: t().error }; render(); });
+          }).catch(function () { flash = { kind: "err", text: t().error, client: clientId }; focusAfter = true; render(); });
         }
         function copyKey() {
           var b = this;
@@ -364,7 +383,7 @@
         }
         function logout() {
           api("POST", "/billing/portal/logout", null, true).catch(function () {});
-          setS(""); newKey = null; flash = null; view = { name: "request" }; render();
+          setS(""); newKey = null; newKeyClient = null; flash = null; view = { name: "request" }; render();
         }
 
         window.addEventListener("beforeunload", function (ev) { if (newKey && !copied) { ev.preventDefault(); ev.returnValue = ""; } });
